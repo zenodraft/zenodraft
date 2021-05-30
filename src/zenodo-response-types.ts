@@ -1,1 +1,4 @@
-export type DepositionsResponse = Array<any>
+export type DepositionsResponse = {
+    conceptrecid: string
+    record_id: string
+}
