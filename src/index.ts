@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv'
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
-import { URLSearchParams } from 'url'
 import { DepositionsResponse } from './zenodo-response-types'
 
 
