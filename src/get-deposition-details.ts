@@ -4,7 +4,7 @@ import {RequestInit} from 'node-fetch'
 
 
 export const get_deposition_details = async (api: string, access_token: string, id: string): Promise<DepositionsResponse> => {
-
+    console.log(`getting deposition details for deposition with id ${id}...`)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'GET'
     const headers = {

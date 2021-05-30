@@ -5,7 +5,7 @@ import { get_deposition_details } from './get-deposition-details'
 
 
 export const add_file_to_deposition = async (api: string, access_token: string, id: string, filename: string): Promise<void> => {
-
+    console.log(`adding file ${filename} to deposition with id ${id}...`)
     const deposition = await get_deposition_details(api, access_token, id)
     const bucket = deposition.links.bucket
     console.log(bucket)

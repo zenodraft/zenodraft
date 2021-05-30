@@ -2,10 +2,10 @@ import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
 
 
-export const delete_draft_deposition = async (api: string, access_token: string, id: string): Promise<void> => {
-    console.log(`deleting draft deposition with id ${id}...`)
-    const endpoint = `/deposit/depositions/${id}`
-    const method = 'DELETE'
+export const publish_draft_deposition = async (api: string, access_token: string, id: string): Promise<void> => {
+    console.log(`publishing draft deposition with id ${id}...`)
+    const endpoint = `/deposit/depositions/${id}/actions/publish`
+    const method = 'POST'
     const headers = {
         'Authorization': `Bearer ${access_token}`
     }
@@ -18,6 +18,6 @@ export const delete_draft_deposition = async (api: string, access_token: string,
         }
     } catch (e) {
         console.debug(response)
-        throw new Error(`Something went wrong on DELETE to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
+        throw new Error(`Something went wrong on POST to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
     }
 }
