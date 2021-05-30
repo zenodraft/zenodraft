@@ -3,7 +3,7 @@ import { RequestInit } from 'node-fetch'
 import { DepositionsResponse } from './zenodo-response-types'
 
 
-export const create_new_empty_upload = async (api: string, access_token: string): Promise<string> => {
+export const create_empty_deposition = async (api: string, access_token: string): Promise<string> => {
     
     const endpoint = '/deposit/depositions'
     const method = 'POST'
@@ -14,9 +14,13 @@ export const create_new_empty_upload = async (api: string, access_token: string)
     const init: RequestInit = { method, headers, body: JSON.stringify({}) }
     let response: any
     try {
-        response = await fetch(api + endpoint, init)
+        response = await fetch(`${api}${endpoint}`, init)
+        if (response.ok !== true) {
+            console.debug(response)
+            throw new Error('Response was not OK')
+        }
     } catch (e) {
-        throw new Error(`Didn't get the expected response from ${api}${endpoint}: ${response.status} - ${response.statusText} `)
+        throw new Error(`Something went wrong on POST to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
     }
 
     try {
