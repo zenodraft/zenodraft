@@ -15,6 +15,11 @@ ZENODO_SANDBOX_ACCESS_TOKEN=<your access token for zenodo sandbox>
 ZENODO_ACCESS_TOKEN=
 ```
 
+Requirements:
+
+- node (I'm using v14, others may work)
+- npm (I'm using v7, others may work)
+
 Install the dependencies with
 
 ```shell
