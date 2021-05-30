@@ -17,8 +17,8 @@ ZENODO_ACCESS_TOKEN=
 
 Requirements:
 
-- node (I'm using v14, others may work)
-- npm (I'm using v7, others may work)
+- node (I'm using v14, other versions may work)
+- npm (I'm using v7, other versions may work)
 
 Install the dependencies with
 
