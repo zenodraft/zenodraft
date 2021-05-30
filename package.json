@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm `find build/ -type f -name *.js` 2> /dev/null && rm `find build/ -type f -name *.js.map` 2> /dev/null",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
