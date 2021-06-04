@@ -20,7 +20,7 @@ export const create_empty_deposition_in_new_collection = async (api: string, acc
             throw new Error('Response was not OK')
         }
     } catch (e) {
-        throw new Error(`Something went wrong on POST to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
     }
 
     try {
