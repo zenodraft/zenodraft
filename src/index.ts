@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 import { create_empty_deposition } from './create-empty-deposition'
 import { add_file_to_deposition } from './add-file-to-deposition'
-import { add_metadata_to_deposition } from './add-metadata-to-deposition'
+import { update_deposition_metadata } from './update-deposition-metadata'
 
 
 (async () => {
@@ -17,6 +17,6 @@ import { add_metadata_to_deposition } from './add-metadata-to-deposition'
     for (const filename of filenames) {
         await add_file_to_deposition(api, access_token, id, filename)
     }
-    await add_metadata_to_deposition(api, access_token, id)
+    await update_deposition_metadata(api, access_token, id)
 
 })()
