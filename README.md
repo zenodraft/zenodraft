@@ -2,7 +2,7 @@
 
 Functionality (works for either Zenodo or Zenodo Sandbox):
 
-1. [`create_empty_deposition_in_existing_collection`](src/create-empty-deposition-in-existing-collection.ts): create a new draft deposition in a new collection
+1. [`create_empty_deposition_in_new_collection`](src/create-empty-deposition-in-new-collection.ts): create a new draft deposition in a new collection
 1. [`add_file_to_deposition`](src/add-file-to-deposition.ts): upload files to an existing draft deposition
 1. [`update_deposition_metadata`](src/update-deposition-metadata.ts): update a deposition's metadata
 1. [`delete_draft_deposition`](src/delete-draft-deposition.ts): delete a draft of a deposition
