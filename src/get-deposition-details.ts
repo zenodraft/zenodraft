@@ -25,7 +25,6 @@ export const get_deposition_details = async (api: string, access_token: string, 
 
     try {
         const deposition: DepositionsResponse = await response.json()
-        console.log(`Got details for pre-existing deposition with id ${id}.`)
         return deposition
     } catch (e) {
         throw new Error(`Something went wrong while retrieving the json. ${e}`)
