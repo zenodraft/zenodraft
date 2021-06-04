@@ -9,6 +9,9 @@ Functionality (works for either Zenodo or Zenodo Sandbox):
 1. [`publish_draft_deposition`](src/publish-draft-deposition.ts): publish a pre-existing draft of a deposition
 1. [`get_deposition_details`](src/get-deposition-details.ts): get details for a deposition
 
+In progress:
+
+1. [`create_empty_deposition_in_existing_collection`](src/create-empty-deposition-in-existing-collection.ts): create a new draft deposition in an existing collection
 
 Create your personal access token at
 
