@@ -2,6 +2,19 @@ import { get_deposition_details } from './get-deposition-details'
 import { RequestInit } from 'node-fetch'
 import fetch from 'node-fetch'
 import { DepositionsResponse } from './zenodo-response-types'
+import { delete_deposition_file } from './delete-deposition-file'
+import { update_deposition_metadata } from './update-deposition-metadata'
+
+
+export const create_empty_deposition_in_existing_collection = async (api: string, access_token: string, collection_id: string): Promise<string> => {
+    console.log(`creating a new, empty versioned deposition in existing collection...`)
+    await validate_in_collection_value(api, access_token, collection_id)
+    const latest_id = await get_id_for_latest_version_in_collection(api, access_token, collection_id)
+    const new_id = await create_new_versioned_deposition(api, access_token, latest_id)
+    await remove_files_from_draft(api, access_token, new_id)
+    await update_deposition_metadata(api, access_token, new_id, '.zenodo.json.empty')
+    return new_id
+}
 
 
 const create_new_versioned_deposition = async (api: string, access_token: string, latest_id: string): Promise<string> => {
@@ -33,17 +46,6 @@ const create_new_versioned_deposition = async (api: string, access_token: string
 }
 
 
-export const create_empty_deposition_in_existing_collection = async (api: string, access_token: string, collection_id: string): Promise<string> => {
-    console.log(`creating a new, empty versioned deposition in existing collection...`)
-    await validate_in_collection_value(api, access_token, collection_id)
-    const latest_id = await get_id_for_latest_version_in_collection(api, access_token, collection_id)
-    const new_id = await create_new_versioned_deposition(api, access_token, latest_id)
-    await remove_files_from_draft(api, access_token, new_id)
-    await remove_metadata_from_draft()
-    return new_id
-}
-
-
 const get_id_for_latest_version_in_collection = async (api: string, access_token: string, collection_id: string): Promise<string> => {
     console.log(`getting id of the latest version in the collection...`)
     const id = (parseInt(collection_id) + 1).toString()
@@ -54,15 +56,12 @@ const get_id_for_latest_version_in_collection = async (api: string, access_token
 
 
 const remove_files_from_draft = async (api: string, access_token: string, id: string): Promise<void> => {
-    console.log(`TODO: removing the files from the newly drafted version...`)
+    console.log(`removing any files from the newly drafted version...`)
     const deposition = await get_deposition_details(api, access_token, id)
-    const bucket = deposition.links.bucket
-
-}
-
-
-const remove_metadata_from_draft = async (): Promise<void> => {
-    console.log(`TODO: remove the metadata from the newly drafted version...`)
+    const filenames = deposition.files.map((file) => {return file.filename})
+    for (const filename of filenames) {
+        delete_deposition_file(api, access_token, id, filename)
+    }
 }
 
 

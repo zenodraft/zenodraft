@@ -29,4 +29,5 @@ export const update_deposition_metadata = async (api: string, access_token: stri
         console.log(`Updated record ${deposition.record_id}.`)
     } catch (e) {
         throw new Error(`Something went wrong while retrieving the json. ${e}`)
-    }}
+    }
+}

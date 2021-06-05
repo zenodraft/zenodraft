@@ -1,5 +1,10 @@
 export type DepositionsResponse = {
     conceptrecid: string
+    files: [
+        {
+            filename: string
+        }
+    ]
     links: {
         bucket: string
         latest: string
