@@ -10,6 +10,32 @@ Functionality (works for either Zenodo or Zenodo Sandbox):
 1. [`publish_draft_deposition`](src/publish-draft-deposition.ts): publish a pre-existing draft of a deposition
 1. [`get_deposition_details`](src/get-deposition-details.ts): get details for a deposition
 
+Planned CLI:
+
+```
+zenodraft
+├── deposition
+│   ├── create
+│   │   ├── in-existing-collection
+│   │   │   └── create_empty_deposition_in_existing_collection
+│   │   └── in-new-collection
+│   │       └── create_empty_deposition_in_new_collection
+│   ├── delete
+│   │   └── delete_draft_deposition
+│   ├── get-details
+│   │   └── get_deposition_details
+│   └── publish
+│       └── publish_draft_deposition
+├── file
+│   ├── add
+│   │   └── add_file_to_deposition
+│   └── delete
+│       └── delete_deposition_file
+└── metadata
+    └── update
+        └── update_deposition_metadata
+```
+
 
 Create your personal access token at
 
