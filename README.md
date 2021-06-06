@@ -4,19 +4,21 @@ CLI to manage depositions on Zenodo or Zenodo Sandbox.
 
 ## Outline of the CLI structure
 
-- `zenodraft`
-    - `deposition`
-        - `create`
-            - `in-existing-collection`: _create a new, empty draft deposition as a new version in an existing collection_
-            - `in-new-collection`: _create a new, empty draft deposition in a new collection_
-        - `delete`: _delete a draft deposition_
-        - `get-details`: _get the details for a deposition_
-        - `publish`: _publish a draft deposition_
-    - `file`
-        - `add`: _add a file to a draft deposition_
-        - `delete`: _remove a file from a draft deposition_
-    - `metadata`
-        - `update`: _update the metadata for a deposition_
+```plain
+zenodraft
+├── deposition
+│   ├── create
+│   │   ├── in-existing-collection
+│   │   └── in-new-collection
+│   ├── delete
+│   ├── get-details
+│   └── publish
+├── file
+│   ├── add
+│   └── delete
+└── metadata
+    └── update
+```        
 
 ## Examples
 
