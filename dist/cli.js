@@ -149,7 +149,7 @@ var metadata = (function () {
 })();
 export var zenodraft = new commander.Command('zenodraft');
 zenodraft
-    .version('0.1.0')
+    .version('0.2.0')
     .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
     .option('-s, --sandbox', 'if used, run on Zenodo Sandbox, otherwise run on Zenodo', false)
     .addCommand(deposition)
