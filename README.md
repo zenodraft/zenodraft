@@ -1,5 +1,6 @@
 # `zenodraft`
 
+## Outline of the CLI structure
 
 - `zenodraft`
     - `deposition`
