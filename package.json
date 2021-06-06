@@ -42,7 +42,7 @@
     },
     "scripts": {
         "clean": "rm `find dist/ -type f -name *.js` 2> /dev/null && rm `find dist/ -type f -name *.js.map` 2> /dev/null",
-        "prepack": "tsc -p tsconfig.json && cp src/.zenodo.json.empty dist/"
+        "package": "tsc -p tsconfig.json && cp src/.zenodo.json.empty dist/"
     },
     "type": "module",
     "version": "0.3.0"
