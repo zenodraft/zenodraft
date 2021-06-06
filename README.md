@@ -77,8 +77,8 @@ cp example.env .env
 Then update its contents like so
 
 ```text
-ZENODO_SANDBOX_ACCESS_TOKEN=<your access token for zenodo sandbox>
-ZENODO_ACCESS_TOKEN=<your access token for zenodo>
+export ZENODO_SANDBOX_ACCESS_TOKEN=<your access token for zenodo sandbox>
+export ZENODO_ACCESS_TOKEN=<your access token for zenodo>
 ```
 
 Fill in the placeholders with values of your own, which you can get at
