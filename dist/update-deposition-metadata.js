@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -38,10 +49,12 @@ import fetch from 'node-fetch';
 import * as fs from 'fs';
 import { get_access_token_from_environment } from './get-access-token-from-environment.js';
 import { get_api } from './get-api.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 export var update_deposition_metadata = function (sandbox, id, filename) {
     if (filename === void 0) { filename = '.zenodo.json'; }
     return __awaiter(void 0, void 0, void 0, function () {
-        var access_token, api, endpoint, method, headers, metadata, init, response, e_1, deposition, e_2;
+        var access_token, api, endpoint, method, headers, here, parent, minimal_metadata_filename, minimal_metadata, user_metadata, init, response, e_1, deposition, e_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -54,8 +67,12 @@ export var update_deposition_metadata = function (sandbox, id, filename) {
                         'Authorization': "Bearer " + access_token,
                         'Content-Type': 'application/json'
                     };
-                    metadata = JSON.parse(fs.readFileSync(filename, 'utf8'));
-                    init = { method: method, headers: headers, body: JSON.stringify({ metadata: metadata }) };
+                    here = fileURLToPath(import.meta.url);
+                    parent = path.dirname(here);
+                    minimal_metadata_filename = path.join(parent, '.zenodo.json.empty');
+                    minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'));
+                    user_metadata = JSON.parse(fs.readFileSync(filename, 'utf8'));
+                    init = { method: method, headers: headers, body: JSON.stringify(__assign(__assign({}, minimal_metadata), user_metadata)) };
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
