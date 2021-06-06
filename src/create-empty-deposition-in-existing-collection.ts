@@ -14,7 +14,7 @@ export const create_empty_deposition_in_existing_collection = async (sandbox: bo
     const latest_id = await get_id_for_latest_version_in_collection(sandbox, collection_id)
     const new_id = await create_new_versioned_deposition(sandbox, latest_id)
     await remove_files_from_draft(sandbox, new_id)
-    await update_deposition_metadata(sandbox, new_id, '.zenodo.json.empty')
+    await update_deposition_metadata(sandbox, new_id, './.zenodo.json.empty')
     return new_id
 }
 

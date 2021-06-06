@@ -58,7 +58,7 @@ export var create_empty_deposition_in_existing_collection = function (sandbox, c
                 return [4 /*yield*/, remove_files_from_draft(sandbox, new_id)];
             case 4:
                 _a.sent();
-                return [4 /*yield*/, update_deposition_metadata(sandbox, new_id, '.zenodo.json.empty')];
+                return [4 /*yield*/, update_deposition_metadata(sandbox, new_id, './.zenodo.json.empty')];
             case 5:
                 _a.sent();
                 return [2 /*return*/, new_id];

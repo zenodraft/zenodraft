@@ -25,6 +25,9 @@
         "node": ">=14.17.0",
         "npm": ">=7.12.1"
     },
+    "files": [
+        "dist"
+    ],
     "homepage": "https://github.com/jspaaks/zenodraft",
     "keywords": [
         "cli",
@@ -38,7 +41,8 @@
         "url": "https://github.com/jspaaks/zenodraft.git"
     },
     "scripts": {
-        "clean": "rm `find dist/ -type f -name *.js` 2> /dev/null && rm `find dist/ -type f -name *.js.map` 2> /dev/null"
+        "clean": "rm `find dist/ -type f -name *.js` 2> /dev/null && rm `find dist/ -type f -name *.js.map` 2> /dev/null",
+        "prepack": "tsc -p tsconfig.json && cp src/.zenodo.json.empty dist/"
     },
     "type": "module",
     "version": "0.1.0"
