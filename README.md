@@ -1,40 +1,19 @@
 # `zenodraft`
 
-Functionality (works for either Zenodo or Zenodo Sandbox):
 
-1. [`create_empty_deposition_in_new_collection`](src/create-empty-deposition-in-new-collection.ts): create a new draft deposition in a new collection
-1. [`create_empty_deposition_in_existing_collection`](src/create-empty-deposition-in-existing-collection.ts): create a new draft deposition in an existing collection
-1. [`add_file_to_deposition`](src/add-file-to-deposition.ts): upload files to an existing draft deposition
-1. [`update_deposition_metadata`](src/update-deposition-metadata.ts): update a deposition's metadata
-1. [`delete_draft_deposition`](src/delete-draft-deposition.ts): delete a draft of a deposition
-1. [`publish_draft_deposition`](src/publish-draft-deposition.ts): publish a pre-existing draft of a deposition
-1. [`get_deposition_details`](src/get-deposition-details.ts): get details for a deposition
-
-Planned CLI:
-
-```
-zenodraft
-├── deposition
-│   ├── create
-│   │   ├── in-existing-collection
-│   │   │   └── create_empty_deposition_in_existing_collection
-│   │   └── in-new-collection
-│   │       └── create_empty_deposition_in_new_collection
-│   ├── delete
-│   │   └── delete_draft_deposition
-│   ├── get-details
-│   │   └── get_deposition_details
-│   └── publish
-│       └── publish_draft_deposition
-├── file
-│   ├── add
-│   │   └── add_file_to_deposition
-│   └── delete
-│       └── delete_deposition_file
-└── metadata
-    └── update
-        └── update_deposition_metadata
-```
+- `zenodraft`
+    - `deposition`
+        - `create`
+            - `in-existing-collection`: _create a new, empty draft deposition as a new version in an existing collection_
+            - `in-new-collection`: _create a new, empty draft deposition in a new collection_
+        - `delete`: _delete a draft deposition_
+        - `get-details`: _get the details for a deposition_
+        - `publish`: _publish a draft deposition_
+    - `file`
+        - `add`: _add a file to a draft deposition_
+        - `delete`: _remove a file from a draft deposition_
+    - `metadata`
+        - `update`: _update the metadata for a deposition_
 
 
 Create your personal access token at
