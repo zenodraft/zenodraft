@@ -14,5 +14,6 @@
     "license": {
         "id": "Apache-2.0"
     },
-    "title": "zenodraft"
+    "title": "zenodraft",
+    "upload_type": "software"
 }

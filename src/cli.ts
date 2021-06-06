@@ -54,8 +54,9 @@ const deposition = (() => {
         .command('get-details')
         .arguments('<id>')
         .description('get details pertaining to deposition with id <id>')
-        .action((id: string) => {
-            get_deposition_details(zenodraft.opts().sandbox, id)
+        .action(async (id: string) => {
+            const details = await get_deposition_details(zenodraft.opts().sandbox, id)
+            console.log(JSON.stringify(details, null, 4))
         })
 
     deposition
