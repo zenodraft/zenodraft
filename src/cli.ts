@@ -24,7 +24,9 @@ const create = (() => {
     create
         .command('in-existing-collection')
         .arguments('<collection_id>')
-        .description('create a new draft deposition as a new version in an existing collection')
+        .description('create a new draft deposition as a new version in an existing collection', {
+            collection_id: 'id for the collection that the new deposition will be part of.'
+        })
         .action((collection_id: string) => {
             create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id)
         })
@@ -45,7 +47,9 @@ const deposition = (() => {
     deposition
         .command('delete')
         .arguments('<id>')
-        .description('delete draft deposition with id <id>')
+        .description('delete draft deposition with id <id>', {
+            id: 'deposition id'
+        })
         .action((id: string) => {
             delete_draft_deposition(zenodraft.opts().sandbox, id)
         })
@@ -53,7 +57,9 @@ const deposition = (() => {
     deposition
         .command('get-details')
         .arguments('<id>')
-        .description('get details pertaining to deposition with id <id>')
+        .description('get details pertaining to deposition with id <id>', {
+            id: 'deposition id'
+        })
         .action(async (id: string) => {
             const details = await get_deposition_details(zenodraft.opts().sandbox, id)
             console.log(JSON.stringify(details, null, 4))
@@ -62,7 +68,9 @@ const deposition = (() => {
     deposition
         .command('publish')
         .arguments('<id>')
-        .description('publish draft deposition with id <id>')
+        .description('publish draft deposition with id <id>', {
+            id: 'deposition id'
+        })
         .action((id: string) => {
             publish_draft_deposition(zenodraft.opts().sandbox, id)
         })
@@ -79,7 +87,10 @@ const file = (() => {
     file
         .command('add')
         .arguments('<id> <filename>')
-        .description('add a local file with filename <filename> to existing deposition with id <id>')
+        .description('add a local file with filename <filename> to existing deposition with id <id>', {
+            id: 'deposition id',
+            filename: 'filename of the local file that is going to be added'
+        })
         .action((id: string, filename: string) => {
             add_file_to_deposition(zenodraft.opts().sandbox, id, filename)
         })
@@ -87,7 +98,10 @@ const file = (() => {
     file
         .command('delete')
         .arguments('<id> <filename>')
-        .description('delete a file with filename <filename> from draft deposition with id <id>')
+        .description('delete a file with filename <filename> from draft deposition with id <id>', {
+            id: 'deposition id',
+            filename: 'filename of the deposition file that is going to be deleted.'
+        })
         .action((id: string, filename: string) => {
             delete_deposition_file(zenodraft.opts().sandbox, id, filename)
         })
@@ -103,10 +117,13 @@ const metadata = (() => {
 
     metadata
         .command('update')
-        .arguments('<id>')
-        .description('update the metadata of existing deposition with id <id>')
-        .action((id: string) => {
-            update_deposition_metadata(zenodraft.opts().sandbox, id)
+        .arguments('<id> [filename]')
+        .description('update the metadata of existing deposition with id <id> using the metadata from [filename]', {
+            id: 'deposition id',
+            filename: 'filename of file holding the metadata in Zenodo metadata format'
+        })
+        .action((id: string, filename?: string) => {
+            update_deposition_metadata(zenodraft.opts().sandbox, id, filename)
         })
     return metadata
 })()
