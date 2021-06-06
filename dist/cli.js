@@ -44,6 +44,7 @@ import { delete_draft_deposition } from './delete-draft-deposition.js';
 import { get_deposition_details } from './get-deposition-details.js';
 import { publish_draft_deposition } from './publish-draft-deposition.js';
 import { update_deposition_metadata } from './update-deposition-metadata.js';
+import { get_latest_draft } from './get-latest-draft.js';
 var create = (function () {
     var create = new commander.Command('create');
     create.description('subcommands for creating a deposition');
@@ -79,7 +80,7 @@ var deposition = (function () {
         delete_draft_deposition(zenodraft.opts().sandbox, id);
     });
     deposition
-        .command('get-details')
+        .command('details')
         .arguments('<id>')
         .description('get details pertaining to deposition with id <id>', {
         id: 'deposition id'
@@ -92,6 +93,24 @@ var deposition = (function () {
                 case 1:
                     details = _a.sent();
                     console.log(JSON.stringify(details, null, 4));
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    deposition
+        .command('latest')
+        .arguments('<collection_id>')
+        .description('get the latest draft deposition id of the collection with id <collection_id>', {
+        collection_id: 'id of the collection whose latest draft we want to retrieve'
+    })
+        .action(function (collection_id) { return __awaiter(void 0, void 0, void 0, function () {
+        var latest_draft_id;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, get_latest_draft(zenodraft.opts().sandbox, collection_id)];
+                case 1:
+                    latest_draft_id = _a.sent();
+                    console.log(latest_draft_id);
                     return [2 /*return*/];
             }
         });

@@ -8,6 +8,7 @@ import { delete_draft_deposition } from './delete-draft-deposition.js'
 import { get_deposition_details } from './get-deposition-details.js'
 import { publish_draft_deposition } from './publish-draft-deposition.js'
 import { update_deposition_metadata } from './update-deposition-metadata.js'
+import { get_latest_draft } from './get-latest-draft.js'
 
 
 const create = (() => {
@@ -55,7 +56,7 @@ const deposition = (() => {
         })
 
     deposition
-        .command('get-details')
+        .command('details')
         .arguments('<id>')
         .description('get details pertaining to deposition with id <id>', {
             id: 'deposition id'
@@ -63,6 +64,17 @@ const deposition = (() => {
         .action(async (id: string) => {
             const details = await get_deposition_details(zenodraft.opts().sandbox, id)
             console.log(JSON.stringify(details, null, 4))
+        })
+
+    deposition
+        .command('latest')
+        .arguments('<collection_id>')
+        .description('get the latest draft deposition id of the collection with id <collection_id>', {
+            collection_id: 'id of the collection whose latest draft we want to retrieve'
+        })
+        .action(async (collection_id: string) => {
+            const latest_draft_id = await get_latest_draft(zenodraft.opts().sandbox, collection_id)
+            console.log(latest_draft_id)
         })
 
     deposition

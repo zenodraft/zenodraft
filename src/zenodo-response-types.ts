@@ -8,7 +8,7 @@ export type DepositionsResponse = {
     links: {
         bucket: string
         latest: string
-        latest_draft: string
+        latest_draft?: string
     }
     record_id: string
 }

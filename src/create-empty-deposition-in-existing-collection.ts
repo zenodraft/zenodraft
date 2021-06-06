@@ -6,6 +6,7 @@ import { delete_deposition_file } from './delete-deposition-file.js'
 import { update_deposition_metadata } from './update-deposition-metadata.js'
 import { get_access_token_from_environment } from './get-access-token-from-environment.js'
 import { get_api } from './get-api.js'
+import { validate_in_collection_value } from './validate-in-collection-value.js'
 
 
 export const create_empty_deposition_in_existing_collection = async (sandbox: boolean, collection_id: string): Promise<string> => {
@@ -41,7 +42,7 @@ const create_new_versioned_deposition = async (sandbox: boolean, latest_id: stri
     }
     try {
         const deposition: DepositionsResponse = await response.json()
-        const new_id = deposition.links.latest_draft.split('/').slice(-1)[0]
+        const new_id = deposition.links.latest_draft!.split('/').slice(-1)[0]
         console.log(`created new record ${new_id}`)
         return new_id
     } catch (e) {
@@ -65,15 +66,5 @@ const remove_files_from_draft = async (sandbox: boolean, id: string): Promise<vo
     const filenames = deposition.files.map((file) => {return file.filename})
     for (const filename of filenames) {
         delete_deposition_file(sandbox, id, filename)
-    }
-}
-
-
-const validate_in_collection_value = async (sandbox: boolean, collection_id: string): Promise<void> => {
-    console.log(`checking that the collection_id value resolves to a concept, not a version...`)
-    const id = (parseInt(collection_id) + 1).toString()
-    const deposition = await get_deposition_details(sandbox, id)
-    if (deposition.conceptrecid !== collection_id) {
-        throw new Error('Deposition id should be a concept id.')
     }
 }

@@ -40,6 +40,7 @@ import { delete_deposition_file } from './delete-deposition-file.js';
 import { update_deposition_metadata } from './update-deposition-metadata.js';
 import { get_access_token_from_environment } from './get-access-token-from-environment.js';
 import { get_api } from './get-api.js';
+import { validate_in_collection_value } from './validate-in-collection-value.js';
 export var create_empty_deposition_in_existing_collection = function (sandbox, collection_id) { return __awaiter(void 0, void 0, void 0, function () {
     var latest_id, new_id;
     return __generator(this, function (_a) {
@@ -136,23 +137,6 @@ var remove_files_from_draft = function (sandbox, id) { return __awaiter(void 0, 
                 for (_i = 0, filenames_1 = filenames; _i < filenames_1.length; _i++) {
                     filename = filenames_1[_i];
                     delete_deposition_file(sandbox, id, filename);
-                }
-                return [2 /*return*/];
-        }
-    });
-}); };
-var validate_in_collection_value = function (sandbox, collection_id) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, deposition;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log("checking that the collection_id value resolves to a concept, not a version...");
-                id = (parseInt(collection_id) + 1).toString();
-                return [4 /*yield*/, get_deposition_details(sandbox, id)];
-            case 1:
-                deposition = _a.sent();
-                if (deposition.conceptrecid !== collection_id) {
-                    throw new Error('Deposition id should be a concept id.');
                 }
                 return [2 /*return*/];
         }
