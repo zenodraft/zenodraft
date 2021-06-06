@@ -8,17 +8,17 @@ CLI to manage depositions on Zenodo or Zenodo Sandbox.
 zenodraft
 ├── deposition
 │   ├── create
-│   │   ├── in-existing-collection
+│   │   ├── in-existing-collection <collection_id>
 │   │   └── in-new-collection
-│   ├── delete
-│   ├── get-details
-│   └── publish
+│   ├── delete <id>
+│   ├── get-details <id>
+│   └── publish <id>
 ├── file
-│   ├── add
-│   └── delete
+│   ├── add <id> <filename>
+│   └── delete <id> <filename>
 └── metadata
-    └── update
-```        
+    └── update <id>
+```
 
 ## Examples
 
