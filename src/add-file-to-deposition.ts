@@ -1,13 +1,15 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
-import { get_deposition_details } from './get-deposition-details'
+import { get_deposition_details } from './get-deposition-details.js'
 import * as mime from 'mime-types'
+import { get_access_token_from_environment } from './get-access-token-from-environment.js'
 
 
-export const add_file_to_deposition = async (api: string, access_token: string, id: string, filename: string): Promise<void> => {
+export const add_file_to_deposition = async (sandbox: boolean, id: string, filename: string): Promise<void> => {
     console.log(`adding file ${filename} to deposition with id ${id}...`)
-    const deposition = await get_deposition_details(api, access_token, id)
+    const access_token = get_access_token_from_environment()
+    const deposition = await get_deposition_details(sandbox, id)
     const bucket = deposition.links.bucket
     const content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'
     const stream = fs.createReadStream(filename);
@@ -26,6 +28,6 @@ export const add_file_to_deposition = async (api: string, access_token: string, 
         }
     } catch (e) {
         console.debug(response)
-        throw new Error(`Something went wrong on PUT to ${bucket}/${filename}: ${response.status} - ${response.statusText} `)
+        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText} `)
     }
 }

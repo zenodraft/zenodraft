@@ -1,10 +1,14 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
-import { DepositionsResponse } from './zenodo-response-types'
+import { DepositionsResponse } from './zenodo-response-types.js'
+import { get_access_token_from_environment } from './get-access-token-from-environment.js'
+import { get_api } from './get-api.js'
 
 
-export const create_empty_deposition_in_new_collection = async (api: string, access_token: string): Promise<string> => {
+export const create_empty_deposition_in_new_collection = async (sandbox: boolean): Promise<string> => {
     console.log(`creating a new, empty deposition in a new collection...`)
+    const access_token = get_access_token_from_environment()
+    const api = get_api(sandbox)
     const endpoint = '/deposit/depositions'
     const method = 'POST'
     const headers = {

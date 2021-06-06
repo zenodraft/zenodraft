@@ -1,0 +1,20 @@
+# YAML 1.2
+---
+abstract: "CLI to manage depositions on Zenodo or Zenodo Sandbox."
+authors: 
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Spaaks
+    given-names: "Jurriaan H."
+    orcid: "https://orcid.org/0000-0002-7064-4069"
+cff-version: "1.1.0"
+date-released: 2021-06-06
+keywords: 
+  - zenodo
+  - cli
+license: "Apache-2.0"
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/jspaaks/zenodraft"
+title: zenodraft
+version: "0.1.0"
+...

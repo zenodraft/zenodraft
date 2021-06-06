@@ -1,10 +1,14 @@
 import { DepositionsResponse } from './zenodo-response-types'
 import fetch from 'node-fetch'
 import {RequestInit} from 'node-fetch'
+import { get_access_token_from_environment } from './get-access-token-from-environment.js'
+import { get_api } from './get-api.js'
 
 
-export const get_deposition_details = async (api: string, access_token: string, id: string): Promise<DepositionsResponse> => {
+export const get_deposition_details = async (sandbox: boolean, id: string): Promise<DepositionsResponse> => {
     console.log(`getting deposition details for deposition with id ${id}...`)
+    const access_token = get_access_token_from_environment()
+    const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'GET'
     const headers = {
@@ -20,7 +24,7 @@ export const get_deposition_details = async (api: string, access_token: string, 
         }
     } catch (e) {
         console.debug(response)
-        throw new Error(`Something went wrong on GET to ${api}${endpoint}: ${response.status} - ${response.statusText} `)
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} `)
     }
 
     try {

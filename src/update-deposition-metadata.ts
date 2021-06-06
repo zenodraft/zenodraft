@@ -1,10 +1,15 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
-import { DepositionsResponse } from './zenodo-response-types'
+import { DepositionsResponse } from './zenodo-response-types.js'
+import { get_access_token_from_environment } from './get-access-token-from-environment.js'
+import { get_api } from './get-api.js'
 
-export const update_deposition_metadata = async (api: string, access_token: string, id: string, filename: string = '.zenodo.json'): Promise<void> => {
+
+export const update_deposition_metadata = async (sandbox: boolean, id: string, filename: string = '.zenodo.json'): Promise<void> => {
     console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
+    const access_token = get_access_token_from_environment()
+    const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'PUT'
     const headers = {

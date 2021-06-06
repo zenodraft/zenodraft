@@ -1,23 +1,45 @@
 {
-  "name": "zenodraft",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "clean": "rm `find build/ -type f -name *.js` 2> /dev/null && rm `find build/ -type f -name *.js.map` 2> /dev/null",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "Apache-2.0",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "mime-types": "^2.1.31",
-    "node-fetch": "^2.6.1"
-  },
-  "devDependencies": {
-    "@types/mime-types": "^2.1.0",
-    "@types/node": "^15.6.1",
-    "@types/node-fetch": "^2.5.10",
-    "typescript": "^4.3.2"
-  }
+    "author": "Jurriaan H. Spaaks",
+    "bin": {
+        "zenodraft": "bin/index.js"
+    },
+    "bugs": {
+        "url": "https://github.com/jspaaks/zenodraft/issues"
+    },
+    "dependencies": {
+        "commander": "^7.2.0",
+        "dotenv": "^10.0.0",
+        "mime-types": "^2.1.31",
+        "node-fetch": "^2.6.1",
+        "yargs": "^17.0.1"
+    },
+    "description": "CLI to manage depositions on Zenodo and Zenodo Sandbox",
+    "devDependencies": {
+        "@types/mime-types": "^2.1.0",
+        "@types/node": "^15.6.1",
+        "@types/node-fetch": "^2.5.10",
+        "@types/yargs": "^17.0.0",
+        "typescript": "^4.3.2"
+    },
+    "engines": {
+        "node": ">=14.17.0",
+        "npm": ">=7.12.1"
+    },
+    "homepage": "https://github.com/jspaaks/zenodraft",
+    "keywords": [
+        "cli",
+        "zenodo"
+    ],
+    "license": "Apache-2.0",
+    "main": "build/zenodraft.js",
+    "name": "zenodraft",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jspaaks/zenodraft.git"
+    },
+    "scripts": {
+        "clean": "rm `find build/ -type f -name *.js` 2> /dev/null && rm `find build/ -type f -name *.js.map` 2> /dev/null"
+    },
+    "type": "module",
+    "version": "0.1.0"
 }
