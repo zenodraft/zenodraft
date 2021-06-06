@@ -40,6 +40,7 @@ import { delete_deposition_file } from './delete-deposition-file.js';
 import { update_deposition_metadata } from './update-deposition-metadata.js';
 import { get_access_token_from_environment } from './get-access-token-from-environment.js';
 import { get_api } from './get-api.js';
+import path from 'path';
 export var create_empty_deposition_in_existing_collection = function (sandbox, collection_id) { return __awaiter(void 0, void 0, void 0, function () {
     var latest_id, new_id;
     return __generator(this, function (_a) {
@@ -58,7 +59,7 @@ export var create_empty_deposition_in_existing_collection = function (sandbox, c
                 return [4 /*yield*/, remove_files_from_draft(sandbox, new_id)];
             case 4:
                 _a.sent();
-                return [4 /*yield*/, update_deposition_metadata(sandbox, new_id, './.zenodo.json.empty')];
+                return [4 /*yield*/, update_deposition_metadata(sandbox, new_id, path.join(__dirname, './.zenodo.json.empty'))];
             case 5:
                 _a.sent();
                 return [2 /*return*/, new_id];
