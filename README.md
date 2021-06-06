@@ -16,6 +16,37 @@
     - `metadata`
         - `update`: _update the metadata for a deposition_
 
+## Examples
+
+```
+CONCEPT_RECORD_ID=123456
+RECORD_ID=123457
+
+zenodraft --sandbox deposition create in-new-collection
+zenodraft deposition create in-new-collection
+
+zenodraft --sandbox deposition create in-existing-collection $CONCEPT_RECORD_ID
+zenodraft deposition create in-existing-collection $CONCEPT_RECORD_ID
+
+zenodraft --sandbox deposition delete $RECORD_ID
+zenodraft deposition delete $RECORD_ID
+
+zenodraft --sandbox deposition get-details $RECORD_ID
+zenodraft deposition get-details $RECORD_ID
+
+zenodraft --sandbox deposition publish $RECORD_ID
+zenodraft deposition publish $RECORD_ID
+
+zenodraft --sandbox file add $RECORD_ID file.txt
+zenodraft file add $RECORD_ID file.txt
+
+zenodraft --sandbox file delete $RECORD_ID file.txt
+zenodraft file delete $RECORD_ID file.txt
+
+zenodraft --sandbox metadata update $RECORD_ID
+zenodraft metadata update $RECORD_ID
+```
+
 
 Create your personal access token at
 
