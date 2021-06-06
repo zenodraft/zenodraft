@@ -1,5 +1,7 @@
 # `zenodraft`
 
+CLI to manage depositions on Zenodo or Zenodo Sandbox.
+
 ## Outline of the CLI structure
 
 - `zenodraft`
