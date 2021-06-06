@@ -65,6 +65,8 @@ npm install -g git+https://github.com/jspaaks/zenodraft
 which zenodraft    # should now point to the program
 ```
 
+## Access tokens
+
 To use `zenodraft`, a personal access token is required. These are stored in a file `.env`. Create it by making
 a copy of the example file, like so
 
