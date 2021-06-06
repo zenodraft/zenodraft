@@ -48,7 +48,6 @@ export var delete_deposition_file = function (sandbox, id, filename) { return __
             case 1:
                 deposition = _a.sent();
                 bucket = deposition.links.bucket;
-                console.log(bucket);
                 method = 'DELETE';
                 headers = {
                     'Authorization': "Bearer " + access_token
