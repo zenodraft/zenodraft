@@ -7,6 +7,7 @@ import { update_deposition_metadata } from './update-deposition-metadata.js'
 import { get_access_token_from_environment } from './get-access-token-from-environment.js'
 import { get_api } from './get-api.js'
 import path  from 'path'
+import { fileURLToPath } from 'url'
 
 
 export const create_empty_deposition_in_existing_collection = async (sandbox: boolean, collection_id: string): Promise<string> => {
@@ -15,7 +16,10 @@ export const create_empty_deposition_in_existing_collection = async (sandbox: bo
     const latest_id = await get_id_for_latest_version_in_collection(sandbox, collection_id)
     const new_id = await create_new_versioned_deposition(sandbox, latest_id)
     await remove_files_from_draft(sandbox, new_id)
-    await update_deposition_metadata(sandbox, new_id, path.join(__dirname, './.zenodo.json.empty'))
+    const here = fileURLToPath(import.meta.url)
+    const parent = path.dirname(here)
+    const package_data_file = path.join(parent, '.zenodo.json.empty')
+    await update_deposition_metadata(sandbox, new_id, package_data_file)
     return new_id
 }
 
