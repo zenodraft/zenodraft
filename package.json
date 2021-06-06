@@ -38,7 +38,7 @@
         "url": "https://github.com/jspaaks/zenodraft.git"
     },
     "scripts": {
-        "clean": "rm `find build/ -type f -name *.js` 2> /dev/null && rm `find build/ -type f -name *.js.map` 2> /dev/null"
+        "clean": "rm `find dist/ -type f -name *.js` 2> /dev/null && rm `find dist/ -type f -name *.js.map` 2> /dev/null"
     },
     "type": "module",
     "version": "0.1.0"
