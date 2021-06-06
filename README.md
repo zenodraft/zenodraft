@@ -49,13 +49,22 @@ zenodraft --sandbox metadata update $RECORD_ID
 zenodraft metadata update $RECORD_ID
 ```
 
+## Install
 
-Create your personal access token at
+Requirements:
 
-- Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
-- Zenodo: https://zenodo.org/account/settings/applications/
+- node (I'm using v14, other versions may work)
+- npm (I'm using v7, other versions may work)
 
-Create a file named `.env` by making a copy of the example file, like so
+Install with
+
+```shell
+npm install -g git+https://github.com/jspaaks/zenodraft
+which zenodraft    # should now point to the program
+```
+
+To use `zenodraft`, a personal access token is required. These are stored in a file `.env`. Create it by making
+a copy of the example file, like so
 
 ```shell
 cp example.env .env
@@ -65,16 +74,12 @@ Then update its contents like so
 
 ```text
 ZENODO_SANDBOX_ACCESS_TOKEN=<your access token for zenodo sandbox>
-ZENODO_ACCESS_TOKEN=
+ZENODO_ACCESS_TOKEN=<your access token for zenodo>
 ```
 
-Requirements:
+Fill in the placeholders with values of your own, which you can get at
 
-- node (I'm using v14, other versions may work)
-- npm (I'm using v7, other versions may work)
+- Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
+- Zenodo: https://zenodo.org/account/settings/applications/
 
-Install the dependencies with
-
-```shell
-npm install -g git+https://github.com/jspaaks/zenodraft
-```
+You only need tokens for the platforms you plan on using.
