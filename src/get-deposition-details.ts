@@ -7,7 +7,7 @@ import { get_api } from './get-api.js'
 
 export const get_deposition_details = async (sandbox: boolean, id: string): Promise<DepositionsResponse> => {
     console.log(`getting deposition details for deposition with id ${id}...`)
-    const access_token = get_access_token_from_environment()
+    const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'GET'

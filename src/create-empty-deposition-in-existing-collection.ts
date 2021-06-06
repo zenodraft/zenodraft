@@ -21,7 +21,7 @@ export const create_empty_deposition_in_existing_collection = async (sandbox: bo
 
 const create_new_versioned_deposition = async (sandbox: boolean, latest_id: string): Promise<string> => {
     console.log(`creating a new version off of latest version in collection...`)
-    const access_token = get_access_token_from_environment()
+    const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`
     const method = 'POST'

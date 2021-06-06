@@ -6,7 +6,7 @@ import { get_access_token_from_environment } from './get-access-token-from-envir
 
 export const delete_deposition_file = async (sandbox: boolean, id: string, filename: string): Promise<void> => {
     console.log(`deleting file ${filename} from deposition with id ${id}...`)
-    const access_token = get_access_token_from_environment()
+    const access_token = get_access_token_from_environment(sandbox)
     const deposition = await get_deposition_details(sandbox, id)
     const bucket = deposition.links.bucket
     console.log(bucket)

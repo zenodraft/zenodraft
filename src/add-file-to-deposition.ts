@@ -8,7 +8,7 @@ import { get_access_token_from_environment } from './get-access-token-from-envir
 
 export const add_file_to_deposition = async (sandbox: boolean, id: string, filename: string): Promise<void> => {
     console.log(`adding file ${filename} to deposition with id ${id}...`)
-    const access_token = get_access_token_from_environment()
+    const access_token = get_access_token_from_environment(sandbox)
     const deposition = await get_deposition_details(sandbox, id)
     const bucket = deposition.links.bucket
     const content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'

@@ -6,7 +6,7 @@ import { get_api } from './get-api.js'
 
 export const delete_draft_deposition = async (sandbox: boolean, id: string): Promise<void> => {
     console.log(`deleting draft deposition with id ${id}...`)
-    const access_token = get_access_token_from_environment()
+    const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'DELETE'

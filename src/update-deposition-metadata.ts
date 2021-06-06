@@ -8,7 +8,7 @@ import { get_api } from './get-api.js'
 
 export const update_deposition_metadata = async (sandbox: boolean, id: string, filename: string = '.zenodo.json'): Promise<void> => {
     console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
-    const access_token = get_access_token_from_environment()
+    const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'PUT'

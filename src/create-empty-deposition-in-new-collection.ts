@@ -7,7 +7,7 @@ import { get_api } from './get-api.js'
 
 export const create_empty_deposition_in_new_collection = async (sandbox: boolean): Promise<string> => {
     console.log(`creating a new, empty deposition in a new collection...`)
-    const access_token = get_access_token_from_environment()
+    const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = '/deposit/depositions'
     const method = 'POST'

@@ -6,7 +6,7 @@ import { get_api } from './get-api.js'
 
 export const publish_draft_deposition = async (sandbox: boolean, id: string): Promise<void> => {
     console.log(`publishing draft deposition with id ${id}...`)
-    const access_token = get_access_token_from_environment()    
+    const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}/actions/publish`
     const method = 'POST'
