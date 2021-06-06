@@ -50,15 +50,16 @@ zenodraft metadata update $RECORD_ID
 
 Create your personal access token at
 
-- https://sandbox.zenodo.org/account/settings/applications/
+- Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
+- Zenodo: https://zenodo.org/account/settings/applications/
 
-Create a file named `.env` by 
+Create a file named `.env` by making a copy of the example file, like so
 
 ```shell
 cp example.env .env
 ```
 
-and update its contents like so:
+Then update its contents like so
 
 ```text
 ZENODO_SANDBOX_ACCESS_TOKEN=<your access token for zenodo sandbox>
@@ -73,17 +74,5 @@ Requirements:
 Install the dependencies with
 
 ```shell
-npm install
-```
-
-Generate the JavaScript from the TypeScript with
-
-```shell
-tsc -p tsconfig.json
-```
-
-Run the tool (note: will generate entries on Zenodo Sandbox https://sandbox.zenodo.org/deposit)
-
-```shell
-node build/index.js
+npm install -g git+https://github.com/jspaaks/zenodraft
 ```
