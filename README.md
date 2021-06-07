@@ -18,7 +18,8 @@ zenodraft [--sandbox]
 │   ├── add <id> <filename>
 │   └── delete <id> <filename>
 └── metadata
-    └── update <id>
+│   ├── clear <id>
+    └── update <id> <filename>
 ```
 
 ## Examples
@@ -86,14 +87,20 @@ RECORD_ID=123457
     zenodraft file delete $RECORD_ID file.txt
     ```
 
+1. Clear a deposition's metadata:
+
+    ```shell
+    zenodraft --sandbox metadata clear $RECORD_ID 
+    zenodraft metadata clear $RECORD_ID
+    ```
+
 1. Update a deposition with metadata from a local file:
 
     ```shell
-    zenodraft --sandbox metadata update $RECORD_ID 
     zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
-    zenodraft metadata update $RECORD_ID
     zenodraft metadata update $RECORD_ID .zenodo.json
     ```
+
 
 ## Install
 
