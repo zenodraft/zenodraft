@@ -156,13 +156,22 @@ var metadata = (function () {
     metadata.description('subcommands for metadata');
     metadata
         .command('update')
-        .arguments('<id> [filename]')
-        .description('update the metadata of existing deposition with id <id> using the metadata from [filename]', {
+        .arguments('<id> <filename>')
+        .description('update the metadata of an existing deposition with id <id> using the metadata from <filename>', {
         id: 'deposition id',
         filename: 'filename of file holding the metadata in Zenodo metadata format'
     })
         .action(function (id, filename) {
         update_deposition_metadata(zenodraft.opts().sandbox, id, filename);
+    });
+    metadata
+        .command('clear')
+        .arguments('<id>')
+        .description('clear the metadata of an existing deposition with id <id>', {
+        id: 'deposition id'
+    })
+        .action(function (id) {
+        update_deposition_metadata(zenodraft.opts().sandbox, id, undefined);
     });
     return metadata;
 })();
