@@ -65,6 +65,13 @@ RECORD_ID=123457
     zenodraft --sandbox deposition latest $CONCEPT_RECORD_ID
     zenodraft deposition latest $CONCEPT_RECORD_ID
     ```
+    
+    Typical usage in automation is to capture the printed value like so:
+    
+    ```shell
+    LATEST_ID=$(zenodraft --sandbox deposition latest $CONCEPT_RECORD_ID)
+    LATEST_ID=$(zenodraft deposition latest $CONCEPT_RECORD_ID)
+    ```
 
 1. Publish a draft deposition:
 
