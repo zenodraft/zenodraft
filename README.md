@@ -119,8 +119,8 @@ Requirements:
 Install with
 
 ```shell
-npm install -g git+https://github.com/jspaaks/zenodraft
-which zenodraft    # should now point to the program
+# npm install -g git+https://github.com/jspaaks/zenodraft
+$ which zenodraft       # should now point to the program
 ```
 
 ## Access tokens
