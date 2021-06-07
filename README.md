@@ -111,7 +111,7 @@ which zenodraft    # should now point to the program
 
 ## Access tokens
 
-To use `zenodraft`, a personal access token is required. `zenodraft` looks for the access token first in the environment variables named `ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called `.env`, which must reside in the directory from which you run `zenodraft`. 
+To use `zenodraft`, a personal access token is required, one for each platform you plan on using. `zenodraft` looks for the access token first in the environment variables named `ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called `.env`, which must reside in the directory from which you run `zenodraft`. 
 
 You can create your own `.env` by copying the example env file, like so
 
@@ -130,5 +130,3 @@ Fill in the placeholders with values of your own, which you can get at
 
 - Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
 - Zenodo: https://zenodo.org/account/settings/applications/
-
-You only need tokens for the platforms you plan on using.
