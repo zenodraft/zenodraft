@@ -119,12 +119,7 @@ You can create your own `.env` by copying the example env file, like so
 cp example.env .env
 ```
 
-Then update its contents like so
-
-```text
-export ZENODO_SANDBOX_ACCESS_TOKEN=<your access token for zenodo sandbox>
-export ZENODO_ACCESS_TOKEN=<your access token for zenodo>
-```
+and subsequently updating its contents.
 
 Fill in the placeholders with values of your own, which you can get at
 
