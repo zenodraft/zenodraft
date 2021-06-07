@@ -23,7 +23,7 @@ zenodraft [--sandbox]
 
 ## Examples
 
-The usage examples below differentiate between an identifier for the concept/collection `CONCEPT_RECORD_ID` and the identifier for a depostion `RECORD_ID`.
+The usage examples below differentiate between an identifier for the concept/collection `CONCEPT_RECORD_ID` and the identifier for a depostion `RECORD_ID`. All commands require an access token, [see below](#access-tokens).
 
 ```shell
 CONCEPT_RECORD_ID=123456
