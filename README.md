@@ -111,8 +111,9 @@ which zenodraft    # should now point to the program
 
 ## Access tokens
 
-To use `zenodraft`, a personal access token is required. These are stored in a file `.env`. Create it by making
-a copy of the example file, like so
+To use `zenodraft`, a personal access token is required. `zenodraft` looks for the access token first in the environment variables named `ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called `.env`, which must reside in the directory from which you run `zenodraft`. 
+
+You can create your own `.env` by copying the example env file, like so
 
 ```shell
 cp example.env .env
