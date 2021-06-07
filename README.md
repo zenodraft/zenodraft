@@ -65,6 +65,8 @@ RECORD_ID=123457
     zenodraft --sandbox deposition latest $CONCEPT_RECORD_ID
     zenodraft deposition latest $CONCEPT_RECORD_ID
     ```
+
+    Either returns the id of the latest draft deposition in the collection, or an empty string in case there are no draft depositions in the collection.
     
     Typical usage in automation is to capture the printed value like so:
     
