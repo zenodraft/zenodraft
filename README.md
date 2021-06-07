@@ -18,7 +18,7 @@ zenodraft [--sandbox]
 │   ├── add <id> <filename>
 │   └── delete <id> <filename>
 └── metadata
-│   ├── clear <id>
+    ├── clear <id>
     └── update <id> <filename>
 ```
 
