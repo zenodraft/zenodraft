@@ -18,7 +18,8 @@ zenodraft [--sandbox]
 │   ├── add <id> <filename>
 │   └── delete <id> <filename>
 └── metadata
-    └── update <id>
+    ├── clear <id>
+    └── update <id> <filename>
 ```
 
 ## Examples
@@ -65,6 +66,15 @@ RECORD_ID=123457
     zenodraft deposition latest $CONCEPT_RECORD_ID
     ```
 
+    Either returns the id of the latest draft deposition in the collection, or an empty string in case there are no draft depositions in the collection.
+    
+    Typical usage in automation is to capture the printed value like so:
+    
+    ```shell
+    LATEST_ID=$(zenodraft --sandbox deposition latest $CONCEPT_RECORD_ID)
+    LATEST_ID=$(zenodraft deposition latest $CONCEPT_RECORD_ID)
+    ```
+
 1. Publish a draft deposition:
 
     ```shell
@@ -86,14 +96,20 @@ RECORD_ID=123457
     zenodraft file delete $RECORD_ID file.txt
     ```
 
+1. Clear a deposition's metadata:
+
+    ```shell
+    zenodraft --sandbox metadata clear $RECORD_ID 
+    zenodraft metadata clear $RECORD_ID
+    ```
+
 1. Update a deposition with metadata from a local file:
 
     ```shell
-    zenodraft --sandbox metadata update $RECORD_ID 
     zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
-    zenodraft metadata update $RECORD_ID
     zenodraft metadata update $RECORD_ID .zenodo.json
     ```
+
 
 ## Install
 
@@ -106,7 +122,7 @@ Install with
 
 ```shell
 npm install -g git+https://github.com/jspaaks/zenodraft
-which zenodraft    # should now point to the program
+which zenodraft       # should now point to the program
 ```
 
 ## Access tokens
