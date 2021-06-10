@@ -35,21 +35,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { get_deposition_details } from './get-deposition-details.js';
-export var validate_in_collection_value = function (sandbox, collection_id) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, deposition;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log("checking that the collection_id value resolves to a concept, not a version...");
-                id = (parseInt(collection_id) + 1).toString();
-                return [4 /*yield*/, get_deposition_details(sandbox, id)];
-            case 1:
-                deposition = _a.sent();
-                if (deposition.conceptrecid !== collection_id) {
-                    throw new Error('Deposition id should be a concept id.');
-                }
-                return [2 /*return*/];
-        }
+export var validate_in_collection_value = function (sandbox, collection_id, verbose) {
+    if (verbose === void 0) { verbose = false; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var id, deposition;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (verbose) {
+                        console.log("checking that the collection_id value resolves to a concept, not a version...");
+                    }
+                    id = (parseInt(collection_id) + 1).toString();
+                    return [4 /*yield*/, get_deposition_details(sandbox, id)];
+                case 1:
+                    deposition = _a.sent();
+                    if (deposition.conceptrecid !== collection_id) {
+                        throw new Error('Deposition id should be a concept id.');
+                    }
+                    return [2 /*return*/];
+            }
+        });
     });
-}); };
+};
 //# sourceMappingURL=validate-in-collection-value.js.map

@@ -51,58 +51,65 @@ import { get_access_token_from_environment } from './get-access-token-from-envir
 import { get_api } from './get-api.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-export var update_deposition_metadata = function (sandbox, id, filename) { return __awaiter(void 0, void 0, void 0, function () {
-    var access_token, api, endpoint, method, headers, here, parent, minimal_metadata_filename, minimal_metadata, user_metadata, metadata, init, response, e_1, deposition, e_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (filename === undefined) {
-                    console.log("clearing metadata from deposition with id " + id + "...");
-                }
-                else {
-                    console.log("adding metadata from " + filename + " to deposition with id " + id + "...");
-                }
-                access_token = get_access_token_from_environment(sandbox);
-                api = get_api(sandbox);
-                endpoint = "/deposit/depositions/" + id;
-                method = 'PUT';
-                headers = {
-                    'Authorization': "Bearer " + access_token,
-                    'Content-Type': 'application/json'
-                };
-                here = fileURLToPath(import.meta.url);
-                parent = path.dirname(here);
-                minimal_metadata_filename = path.join(parent, '.zenodo.json.empty');
-                minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'));
-                user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename, 'utf8'));
-                metadata = __assign(__assign({}, minimal_metadata), user_metadata);
-                init = { method: method, headers: headers, body: JSON.stringify({ metadata: metadata }) };
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, fetch("" + api + endpoint, init)];
-            case 2:
-                response = _a.sent();
-                if (response.ok !== true) {
-                    console.debug(response);
-                    throw new Error('Response was not OK');
-                }
-                return [3 /*break*/, 4];
-            case 3:
-                e_1 = _a.sent();
-                throw new Error("Something went wrong on " + method + " to " + api + endpoint + ": " + response.status + " - " + response.statusText + " \n\n\n " + e_1);
-            case 4:
-                _a.trys.push([4, 6, , 7]);
-                return [4 /*yield*/, response.json()];
-            case 5:
-                deposition = _a.sent();
-                console.log("Updated record " + deposition.record_id + ".");
-                return [3 /*break*/, 7];
-            case 6:
-                e_2 = _a.sent();
-                throw new Error("Something went wrong while retrieving the json. " + e_2);
-            case 7: return [2 /*return*/];
-        }
+export var update_deposition_metadata = function (sandbox, id, filename, verbose) {
+    if (verbose === void 0) { verbose = false; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var access_token, api, endpoint, method, headers, here, parent, minimal_metadata_filename, minimal_metadata, user_metadata, metadata, init, response, e_1, deposition, e_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (verbose) {
+                        if (filename === undefined) {
+                            console.log("clearing metadata from deposition with id " + id + "...");
+                        }
+                        else {
+                            console.log("adding metadata from " + filename + " to deposition with id " + id + "...");
+                        }
+                    }
+                    access_token = get_access_token_from_environment(sandbox);
+                    api = get_api(sandbox);
+                    endpoint = "/deposit/depositions/" + id;
+                    method = 'PUT';
+                    headers = {
+                        'Authorization': "Bearer " + access_token,
+                        'Content-Type': 'application/json'
+                    };
+                    here = fileURLToPath(import.meta.url);
+                    parent = path.dirname(here);
+                    minimal_metadata_filename = path.join(parent, '.zenodo.json.empty');
+                    minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'));
+                    user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename, 'utf8'));
+                    metadata = __assign(__assign({}, minimal_metadata), user_metadata);
+                    init = { method: method, headers: headers, body: JSON.stringify({ metadata: metadata }) };
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, fetch("" + api + endpoint, init)];
+                case 2:
+                    response = _a.sent();
+                    if (response.ok !== true) {
+                        console.debug(response);
+                        throw new Error('Response was not OK');
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_1 = _a.sent();
+                    throw new Error("Something went wrong on " + method + " to " + api + endpoint + ": " + response.status + " - " + response.statusText + " \n\n\n " + e_1);
+                case 4:
+                    _a.trys.push([4, 6, , 7]);
+                    return [4 /*yield*/, response.json()];
+                case 5:
+                    deposition = _a.sent();
+                    if (verbose) {
+                        console.log("Updated record " + deposition.record_id + ".");
+                    }
+                    return [3 /*break*/, 7];
+                case 6:
+                    e_2 = _a.sent();
+                    throw new Error("Something went wrong while retrieving the json. " + e_2);
+                case 7: return [2 /*return*/];
+            }
+        });
     });
-}); };
+};
 //# sourceMappingURL=update-deposition-metadata.js.map

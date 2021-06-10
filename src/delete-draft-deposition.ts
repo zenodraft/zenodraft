@@ -4,8 +4,10 @@ import { get_access_token_from_environment } from './get-access-token-from-envir
 import { get_api } from './get-api.js'
 
 
-export const delete_draft_deposition = async (sandbox: boolean, id: string): Promise<void> => {
-    console.log(`deleting draft deposition with id ${id}...`)
+export const delete_draft_deposition = async (sandbox: boolean, id: string, verbose = false): Promise<void> => {
+    if (verbose) {
+        console.log(`deleting draft deposition with id ${id}...`)
+    }
     const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`

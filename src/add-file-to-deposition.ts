@@ -6,8 +6,10 @@ import * as mime from 'mime-types'
 import { get_access_token_from_environment } from './get-access-token-from-environment.js'
 
 
-export const add_file_to_deposition = async (sandbox: boolean, id: string, filename: string): Promise<void> => {
-    console.log(`adding file ${filename} to deposition with id ${id}...`)
+export const add_file_to_deposition = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
+    if (verbose) {
+        console.log(`adding file ${filename} to deposition with id ${id}...`)
+    }
     const access_token = get_access_token_from_environment(sandbox)
     const deposition = await get_deposition_details(sandbox, id)
     const bucket = deposition.links.bucket

@@ -37,38 +37,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import fetch from 'node-fetch';
 import { get_deposition_details } from './get-deposition-details.js';
 import { get_access_token_from_environment } from './get-access-token-from-environment.js';
-export var delete_deposition_file = function (sandbox, id, filename) { return __awaiter(void 0, void 0, void 0, function () {
-    var access_token, deposition, bucket, method, headers, init, response, e_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log("deleting file " + filename + " from deposition with id " + id + "...");
-                access_token = get_access_token_from_environment(sandbox);
-                return [4 /*yield*/, get_deposition_details(sandbox, id)];
-            case 1:
-                deposition = _a.sent();
-                bucket = deposition.links.bucket;
-                method = 'DELETE';
-                headers = {
-                    'Authorization': "Bearer " + access_token
-                };
-                init = { method: method, headers: headers };
-                _a.label = 2;
-            case 2:
-                _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, fetch(bucket + "/" + filename, init)];
-            case 3:
-                response = _a.sent();
-                if (response.ok !== true) {
-                    throw new Error();
-                }
-                return [3 /*break*/, 5];
-            case 4:
-                e_1 = _a.sent();
-                console.debug(response);
-                throw new Error("Something went wrong on PUT to " + bucket + "/" + filename + ": " + response.status + " - " + response.statusText + " ");
-            case 5: return [2 /*return*/];
-        }
+export var delete_deposition_file = function (sandbox, id, filename, verbose) {
+    if (verbose === void 0) { verbose = false; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var access_token, deposition, bucket, method, headers, init, response, e_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (verbose) {
+                        console.log("deleting file " + filename + " from deposition with id " + id + "...");
+                    }
+                    access_token = get_access_token_from_environment(sandbox);
+                    return [4 /*yield*/, get_deposition_details(sandbox, id)];
+                case 1:
+                    deposition = _a.sent();
+                    bucket = deposition.links.bucket;
+                    method = 'DELETE';
+                    headers = {
+                        'Authorization': "Bearer " + access_token
+                    };
+                    init = { method: method, headers: headers };
+                    _a.label = 2;
+                case 2:
+                    _a.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, fetch(bucket + "/" + filename, init)];
+                case 3:
+                    response = _a.sent();
+                    if (response.ok !== true) {
+                        throw new Error();
+                    }
+                    return [3 /*break*/, 5];
+                case 4:
+                    e_1 = _a.sent();
+                    console.debug(response);
+                    throw new Error("Something went wrong on PUT to " + bucket + "/" + filename + ": " + response.status + " - " + response.statusText + " ");
+                case 5: return [2 /*return*/];
+            }
+        });
     });
-}); };
+};
 //# sourceMappingURL=delete-deposition-file.js.map

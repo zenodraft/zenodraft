@@ -37,46 +37,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import fetch from 'node-fetch';
 import { get_access_token_from_environment } from './get-access-token-from-environment.js';
 import { get_api } from './get-api.js';
-export var get_deposition_details = function (sandbox, id) { return __awaiter(void 0, void 0, void 0, function () {
-    var access_token, api, endpoint, method, headers, init, response, e_1, deposition, e_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log("getting deposition details for deposition with id " + id + "...");
-                access_token = get_access_token_from_environment(sandbox);
-                api = get_api(sandbox);
-                endpoint = "/deposit/depositions/" + id;
-                method = 'GET';
-                headers = {
-                    'Authorization': "Bearer " + access_token,
-                    'Content-Type': 'application/json'
-                };
-                init = { method: method, headers: headers };
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, fetch("" + api + endpoint, init)];
-            case 2:
-                response = _a.sent();
-                if (response.ok !== true) {
-                    throw new Error();
-                }
-                return [3 /*break*/, 4];
-            case 3:
-                e_1 = _a.sent();
-                console.debug(response);
-                throw new Error("Something went wrong on " + method + " to " + api + endpoint + ": " + response.status + " - " + response.statusText + " ");
-            case 4:
-                _a.trys.push([4, 6, , 7]);
-                return [4 /*yield*/, response.json()];
-            case 5:
-                deposition = _a.sent();
-                return [2 /*return*/, deposition];
-            case 6:
-                e_2 = _a.sent();
-                throw new Error("Something went wrong while retrieving the json. " + e_2);
-            case 7: return [2 /*return*/];
-        }
+export var get_deposition_details = function (sandbox, id, verbose) {
+    if (verbose === void 0) { verbose = false; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var access_token, api, endpoint, method, headers, init, response, e_1, deposition, e_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (verbose) {
+                        console.log("getting deposition details for deposition with id " + id + "...");
+                    }
+                    access_token = get_access_token_from_environment(sandbox);
+                    api = get_api(sandbox);
+                    endpoint = "/deposit/depositions/" + id;
+                    method = 'GET';
+                    headers = {
+                        'Authorization': "Bearer " + access_token,
+                        'Content-Type': 'application/json'
+                    };
+                    init = { method: method, headers: headers };
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, fetch("" + api + endpoint, init)];
+                case 2:
+                    response = _a.sent();
+                    if (response.ok !== true) {
+                        throw new Error();
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_1 = _a.sent();
+                    console.debug(response);
+                    throw new Error("Something went wrong on " + method + " to " + api + endpoint + ": " + response.status + " - " + response.statusText + " ");
+                case 4:
+                    _a.trys.push([4, 6, , 7]);
+                    return [4 /*yield*/, response.json()];
+                case 5:
+                    deposition = _a.sent();
+                    return [2 /*return*/, deposition];
+                case 6:
+                    e_2 = _a.sent();
+                    throw new Error("Something went wrong while retrieving the json. " + e_2);
+                case 7: return [2 /*return*/];
+            }
+        });
     });
-}); };
+};
 //# sourceMappingURL=get-deposition-details.js.map

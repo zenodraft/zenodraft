@@ -5,8 +5,10 @@ import { get_access_token_from_environment } from './get-access-token-from-envir
 import { get_api } from './get-api.js'
 
 
-export const get_deposition_details = async (sandbox: boolean, id: string): Promise<DepositionsResponse> => {
-    console.log(`getting deposition details for deposition with id ${id}...`)
+export const get_deposition_details = async (sandbox: boolean, id: string, verbose = false): Promise<DepositionsResponse> => {
+    if (verbose) {
+        console.log(`getting deposition details for deposition with id ${id}...`)
+    }
     const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`

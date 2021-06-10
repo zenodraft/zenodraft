@@ -39,42 +39,47 @@ import * as fs from 'fs';
 import { get_deposition_details } from './get-deposition-details.js';
 import * as mime from 'mime-types';
 import { get_access_token_from_environment } from './get-access-token-from-environment.js';
-export var add_file_to_deposition = function (sandbox, id, filename) { return __awaiter(void 0, void 0, void 0, function () {
-    var access_token, deposition, bucket, content_type, stream, method, headers, init, response, e_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log("adding file " + filename + " to deposition with id " + id + "...");
-                access_token = get_access_token_from_environment(sandbox);
-                return [4 /*yield*/, get_deposition_details(sandbox, id)];
-            case 1:
-                deposition = _a.sent();
-                bucket = deposition.links.bucket;
-                content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';
-                stream = fs.createReadStream(filename);
-                method = 'PUT';
-                headers = {
-                    'Authorization': "Bearer " + access_token,
-                    'Content-Type': content_type,
-                    'Content-Length': (fs.statSync(filename).size).toString()
-                };
-                init = { method: method, headers: headers, body: stream };
-                _a.label = 2;
-            case 2:
-                _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, fetch(bucket + "/" + filename, init)];
-            case 3:
-                response = _a.sent();
-                if (response.ok !== true) {
-                    throw new Error();
-                }
-                return [3 /*break*/, 5];
-            case 4:
-                e_1 = _a.sent();
-                console.debug(response);
-                throw new Error("Something went wrong on " + method + " to " + bucket + "/" + filename + ": " + response.status + " - " + response.statusText + " ");
-            case 5: return [2 /*return*/];
-        }
+export var add_file_to_deposition = function (sandbox, id, filename, verbose) {
+    if (verbose === void 0) { verbose = false; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var access_token, deposition, bucket, content_type, stream, method, headers, init, response, e_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (verbose) {
+                        console.log("adding file " + filename + " to deposition with id " + id + "...");
+                    }
+                    access_token = get_access_token_from_environment(sandbox);
+                    return [4 /*yield*/, get_deposition_details(sandbox, id)];
+                case 1:
+                    deposition = _a.sent();
+                    bucket = deposition.links.bucket;
+                    content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';
+                    stream = fs.createReadStream(filename);
+                    method = 'PUT';
+                    headers = {
+                        'Authorization': "Bearer " + access_token,
+                        'Content-Type': content_type,
+                        'Content-Length': (fs.statSync(filename).size).toString()
+                    };
+                    init = { method: method, headers: headers, body: stream };
+                    _a.label = 2;
+                case 2:
+                    _a.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, fetch(bucket + "/" + filename, init)];
+                case 3:
+                    response = _a.sent();
+                    if (response.ok !== true) {
+                        throw new Error();
+                    }
+                    return [3 /*break*/, 5];
+                case 4:
+                    e_1 = _a.sent();
+                    console.debug(response);
+                    throw new Error("Something went wrong on " + method + " to " + bucket + "/" + filename + ": " + response.status + " - " + response.statusText + " ");
+                case 5: return [2 /*return*/];
+            }
+        });
     });
-}); };
+};
 //# sourceMappingURL=add-file-to-deposition.js.map

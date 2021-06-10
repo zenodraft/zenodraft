@@ -37,47 +37,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import fetch from 'node-fetch';
 import { get_access_token_from_environment } from './get-access-token-from-environment.js';
 import { get_api } from './get-api.js';
-export var create_empty_deposition_in_new_collection = function (sandbox) { return __awaiter(void 0, void 0, void 0, function () {
-    var access_token, api, endpoint, method, headers, init, response, e_1, deposition, e_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                console.log("creating a new, empty deposition in a new collection...");
-                access_token = get_access_token_from_environment(sandbox);
-                api = get_api(sandbox);
-                endpoint = '/deposit/depositions';
-                method = 'POST';
-                headers = {
-                    'Authorization': "Bearer " + access_token,
-                    'Content-Type': 'application/json'
-                };
-                init = { method: method, headers: headers, body: JSON.stringify({}) };
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, fetch("" + api + endpoint, init)];
-            case 2:
-                response = _a.sent();
-                if (response.ok !== true) {
-                    console.debug(response);
-                    throw new Error('Response was not OK');
-                }
-                return [3 /*break*/, 4];
-            case 3:
-                e_1 = _a.sent();
-                throw new Error("Something went wrong on " + method + " to " + api + endpoint + ": " + response.status + " - " + response.statusText + " \n\n\n " + e_1);
-            case 4:
-                _a.trys.push([4, 6, , 7]);
-                return [4 /*yield*/, response.json()];
-            case 5:
-                deposition = _a.sent();
-                console.log("Created new record " + deposition.record_id + ".");
-                return [2 /*return*/, deposition.record_id];
-            case 6:
-                e_2 = _a.sent();
-                throw new Error("Something went wrong while retrieving the json. " + e_2);
-            case 7: return [2 /*return*/];
-        }
+export var create_empty_deposition_in_new_collection = function (sandbox, verbose) {
+    if (verbose === void 0) { verbose = false; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var access_token, api, endpoint, method, headers, init, response, e_1, deposition, e_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (verbose) {
+                        console.log("creating a new, empty deposition in a new collection...");
+                    }
+                    access_token = get_access_token_from_environment(sandbox);
+                    api = get_api(sandbox);
+                    endpoint = '/deposit/depositions';
+                    method = 'POST';
+                    headers = {
+                        'Authorization': "Bearer " + access_token,
+                        'Content-Type': 'application/json'
+                    };
+                    init = { method: method, headers: headers, body: JSON.stringify({}) };
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, fetch("" + api + endpoint, init)];
+                case 2:
+                    response = _a.sent();
+                    if (response.ok !== true) {
+                        console.debug(response);
+                        throw new Error('Response was not OK');
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_1 = _a.sent();
+                    throw new Error("Something went wrong on " + method + " to " + api + endpoint + ": " + response.status + " - " + response.statusText + " \n\n\n " + e_1);
+                case 4:
+                    _a.trys.push([4, 6, , 7]);
+                    return [4 /*yield*/, response.json()];
+                case 5:
+                    deposition = _a.sent();
+                    if (verbose) {
+                        console.log("Created new record " + deposition.record_id + ".");
+                    }
+                    console.log("" + deposition.record_id);
+                    return [2 /*return*/, deposition.record_id];
+                case 6:
+                    e_2 = _a.sent();
+                    throw new Error("Something went wrong while retrieving the json. " + e_2);
+                case 7: return [2 /*return*/];
+            }
+        });
     });
-}); };
+};
 //# sourceMappingURL=create-empty-deposition-in-new-collection.js.map

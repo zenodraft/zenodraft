@@ -36,29 +36,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { get_deposition_details } from './get-deposition-details.js';
 import { validate_in_collection_value } from './validate-in-collection-value.js';
-export var get_latest_draft = function (sandbox, collection_id) { return __awaiter(void 0, void 0, void 0, function () {
-    var temp, id, deposition, latest_draft_id;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                temp = console.log;
-                console.log = function (s) { };
-                return [4 /*yield*/, validate_in_collection_value(sandbox, collection_id)];
-            case 1:
-                _a.sent();
-                id = (parseInt(collection_id) + 1).toString();
-                return [4 /*yield*/, get_deposition_details(sandbox, id)];
-            case 2:
-                deposition = _a.sent();
-                if ('latest_draft' in deposition.links && deposition.links.latest_draft !== undefined) {
-                    latest_draft_id = deposition.links.latest_draft.split('/').slice(-1)[0];
-                }
-                else {
-                    latest_draft_id = '';
-                }
-                console.log = temp;
-                return [2 /*return*/, latest_draft_id];
-        }
+export var get_latest_draft = function (sandbox, collection_id, verbose) {
+    if (verbose === void 0) { verbose = false; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var id, deposition, latest_draft_id;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, validate_in_collection_value(sandbox, collection_id, verbose)];
+                case 1:
+                    _a.sent();
+                    id = (parseInt(collection_id) + 1).toString();
+                    return [4 /*yield*/, get_deposition_details(sandbox, id, verbose)];
+                case 2:
+                    deposition = _a.sent();
+                    if ('latest_draft' in deposition.links && deposition.links.latest_draft !== undefined) {
+                        latest_draft_id = deposition.links.latest_draft.split('/').slice(-1)[0];
+                    }
+                    else {
+                        latest_draft_id = '';
+                    }
+                    return [2 /*return*/, latest_draft_id];
+            }
+        });
     });
-}); };
+};
 //# sourceMappingURL=get-latest-draft.js.map

@@ -52,7 +52,7 @@ var create = (function () {
         .command('in-new-collection')
         .description('create a new draft deposition in a new collection')
         .action(function () {
-        create_empty_deposition_in_new_collection(zenodraft.opts().sandbox);
+        create_empty_deposition_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
     });
     create
         .command('in-existing-collection')
@@ -61,7 +61,7 @@ var create = (function () {
         collection_id: 'id for the collection that the new deposition will be part of.'
     })
         .action(function (collection_id) {
-        create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id);
+        create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
     });
     return create;
 })();
@@ -77,7 +77,7 @@ var deposition = (function () {
         id: 'deposition id'
     })
         .action(function (id) {
-        delete_draft_deposition(zenodraft.opts().sandbox, id);
+        delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
     });
     deposition
         .command('details')
@@ -89,7 +89,7 @@ var deposition = (function () {
         var details;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, get_deposition_details(zenodraft.opts().sandbox, id)];
+                case 0: return [4 /*yield*/, get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)];
                 case 1:
                     details = _a.sent();
                     console.log(JSON.stringify(details, null, 4));
@@ -107,7 +107,7 @@ var deposition = (function () {
         var latest_draft_id;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, get_latest_draft(zenodraft.opts().sandbox, collection_id)];
+                case 0: return [4 /*yield*/, get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)];
                 case 1:
                     latest_draft_id = _a.sent();
                     console.log(latest_draft_id);
@@ -122,7 +122,7 @@ var deposition = (function () {
         id: 'deposition id'
     })
         .action(function (id) {
-        publish_draft_deposition(zenodraft.opts().sandbox, id);
+        publish_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
     });
     return deposition;
 })();
@@ -137,7 +137,7 @@ var file = (function () {
         filename: 'filename of the local file that is going to be added'
     })
         .action(function (id, filename) {
-        add_file_to_deposition(zenodraft.opts().sandbox, id, filename);
+        add_file_to_deposition(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
     });
     file
         .command('delete')
@@ -147,7 +147,7 @@ var file = (function () {
         filename: 'filename of the deposition file that is going to be deleted.'
     })
         .action(function (id, filename) {
-        delete_deposition_file(zenodraft.opts().sandbox, id, filename);
+        delete_deposition_file(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
     });
     return file;
 })();
@@ -162,7 +162,7 @@ var metadata = (function () {
         filename: 'filename of file holding the metadata in Zenodo metadata format'
     })
         .action(function (id, filename) {
-        update_deposition_metadata(zenodraft.opts().sandbox, id, filename);
+        update_deposition_metadata(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
     });
     metadata
         .command('clear')
@@ -171,7 +171,7 @@ var metadata = (function () {
         id: 'deposition id'
     })
         .action(function (id) {
-        update_deposition_metadata(zenodraft.opts().sandbox, id, undefined);
+        update_deposition_metadata(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
     });
     return metadata;
 })();
@@ -179,7 +179,8 @@ export var zenodraft = new commander.Command('zenodraft');
 zenodraft
     .version('0.3.0')
     .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
-    .option('-s, --sandbox', 'if used, run on Zenodo Sandbox, otherwise run on Zenodo', false)
+    .option('-s, --sandbox', 'run on zenodo sandbox instead of regular zenodo', false)
+    .option('-v, --verbose', 'verbose mode', false)
     .addCommand(deposition)
     .addCommand(file)
     .addCommand(metadata)

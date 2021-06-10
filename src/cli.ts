@@ -19,7 +19,7 @@ const create = (() => {
         .command('in-new-collection')
         .description('create a new draft deposition in a new collection')
         .action(() => {
-            create_empty_deposition_in_new_collection(zenodraft.opts().sandbox)
+            create_empty_deposition_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose)
         })
 
     create
@@ -29,7 +29,7 @@ const create = (() => {
             collection_id: 'id for the collection that the new deposition will be part of.'
         })
         .action((collection_id: string) => {
-            create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id)
+            create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
         })
 
     return create
@@ -52,7 +52,7 @@ const deposition = (() => {
             id: 'deposition id'
         })
         .action((id: string) => {
-            delete_draft_deposition(zenodraft.opts().sandbox, id)
+            delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
         })
 
     deposition
@@ -62,7 +62,7 @@ const deposition = (() => {
             id: 'deposition id'
         })
         .action(async (id: string) => {
-            const details = await get_deposition_details(zenodraft.opts().sandbox, id)
+            const details = await get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
             console.log(JSON.stringify(details, null, 4))
         })
 
@@ -73,7 +73,7 @@ const deposition = (() => {
             collection_id: 'id of the collection whose latest draft we want to retrieve'
         })
         .action(async (collection_id: string) => {
-            const latest_draft_id = await get_latest_draft(zenodraft.opts().sandbox, collection_id)
+            const latest_draft_id = await get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
             console.log(latest_draft_id)
         })
 
@@ -84,7 +84,7 @@ const deposition = (() => {
             id: 'deposition id'
         })
         .action((id: string) => {
-            publish_draft_deposition(zenodraft.opts().sandbox, id)
+            publish_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
         })
 
     return deposition
@@ -104,7 +104,7 @@ const file = (() => {
             filename: 'filename of the local file that is going to be added'
         })
         .action((id: string, filename: string) => {
-            add_file_to_deposition(zenodraft.opts().sandbox, id, filename)
+            add_file_to_deposition(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose)
         })
 
     file
@@ -115,7 +115,7 @@ const file = (() => {
             filename: 'filename of the deposition file that is going to be deleted.'
         })
         .action((id: string, filename: string) => {
-            delete_deposition_file(zenodraft.opts().sandbox, id, filename)
+            delete_deposition_file(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose)
         })
 
     return file
@@ -135,7 +135,7 @@ const metadata = (() => {
             filename: 'filename of file holding the metadata in Zenodo metadata format'
         })
         .action((id: string, filename: string) => {
-            update_deposition_metadata(zenodraft.opts().sandbox, id, filename)
+            update_deposition_metadata(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose)
         })
     metadata
         .command('clear')
@@ -144,7 +144,7 @@ const metadata = (() => {
             id: 'deposition id'
         })
         .action((id: string) => {
-            update_deposition_metadata(zenodraft.opts().sandbox, id, undefined)
+            update_deposition_metadata(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose)
         })
     return metadata
 })()
@@ -154,7 +154,8 @@ export const zenodraft = new commander.Command('zenodraft')
 zenodraft
     .version('0.3.0')
     .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
-    .option('-s, --sandbox', 'if used, run on Zenodo Sandbox, otherwise run on Zenodo', false)
+    .option('-s, --sandbox', 'run on zenodo sandbox instead of regular zenodo', false)
+    .option('-v, --verbose', 'verbose mode', false)
     .addCommand(deposition)
     .addCommand(file)
     .addCommand(metadata)

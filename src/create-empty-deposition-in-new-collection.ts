@@ -5,8 +5,10 @@ import { get_access_token_from_environment } from './get-access-token-from-envir
 import { get_api } from './get-api.js'
 
 
-export const create_empty_deposition_in_new_collection = async (sandbox: boolean): Promise<string> => {
-    console.log(`creating a new, empty deposition in a new collection...`)
+export const create_empty_deposition_in_new_collection = async (sandbox: boolean, verbose = false): Promise<string> => {
+    if (verbose) {
+        console.log(`creating a new, empty deposition in a new collection...`)
+    }
     const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = '/deposit/depositions'
@@ -29,7 +31,10 @@ export const create_empty_deposition_in_new_collection = async (sandbox: boolean
 
     try {
         const deposition: DepositionsResponse = await response.json()
-        console.log(`Created new record ${deposition.record_id}.`)
+        if (verbose) {
+            console.log(`Created new record ${deposition.record_id}.`)
+        }
+        console.log(`${deposition.record_id}`)
         return deposition.record_id
     } catch (e) {
         throw new Error(`Something went wrong while retrieving the json. ${e}`)

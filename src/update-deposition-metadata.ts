@@ -8,11 +8,13 @@ import path  from 'path'
 import { fileURLToPath } from 'url'
 
 
-export const update_deposition_metadata = async (sandbox: boolean, id: string, filename?: string): Promise<void> => {
-    if (filename === undefined) {
-        console.log(`clearing metadata from deposition with id ${id}...`)
-    } else {
-        console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
+export const update_deposition_metadata = async (sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
+    if (verbose) {
+        if (filename === undefined) {
+            console.log(`clearing metadata from deposition with id ${id}...`)
+        } else {
+            console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
+        }
     }
     const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
@@ -42,7 +44,9 @@ export const update_deposition_metadata = async (sandbox: boolean, id: string, f
 
     try {
         const deposition: DepositionsResponse = await response.json()
-        console.log(`Updated record ${deposition.record_id}.`)
+        if (verbose) {
+            console.log(`Updated record ${deposition.record_id}.`)
+        }
     } catch (e) {
         throw new Error(`Something went wrong while retrieving the json. ${e}`)
     }
