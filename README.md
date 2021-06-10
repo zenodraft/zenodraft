@@ -5,7 +5,7 @@ CLI to manage depositions on Zenodo or Zenodo Sandbox.
 ## Outline of the CLI structure
 
 ```plain
-zenodraft [--sandbox]
+zenodraft [--sandbox] [--verbose]
 ├── deposition
 │   ├── create
 │   │   ├── in-existing-collection <collection_id>
