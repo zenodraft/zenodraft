@@ -1,4 +1,8 @@
-# `zenodraft`
+
+<p align="center">
+<img src="https://github.com/zenodraft/branding/blob/main/zenodraft.png" height=200>
+ </p>
+
 
 CLI to manage depositions on Zenodo or Zenodo Sandbox.
 
