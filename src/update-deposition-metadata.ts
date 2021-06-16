@@ -5,7 +5,6 @@ import { DepositionsResponse } from './zenodo-response-types.js'
 import { get_access_token_from_environment } from './get-access-token-from-environment.js'
 import { get_api } from './get-api.js'
 import * as path from 'path'
-import { fileURLToPath } from 'url'
 
 
 export const update_deposition_metadata = async (sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
@@ -24,9 +23,7 @@ export const update_deposition_metadata = async (sandbox: boolean, id: string, f
         'Authorization': `Bearer ${access_token}`,
         'Content-Type': 'application/json'
     }
-    const here = fileURLToPath(import.meta.url)
-    const parent = path.dirname(here)
-    const minimal_metadata_filename = path.join(parent, '.zenodo.json.empty')
+    const minimal_metadata_filename = path.join(__dirname, '.zenodo.json.empty')
     const minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'))
     const user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename as string, 'utf8'))
     const metadata = {...minimal_metadata, ...user_metadata}

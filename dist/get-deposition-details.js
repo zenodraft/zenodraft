@@ -1,12 +1,15 @@
-import fetch from 'node-fetch';
-import { get_access_token_from_environment } from './get-access-token-from-environment.js';
-import { get_api } from './get-api.js';
-export const get_deposition_details = async (sandbox, id, verbose = false) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.get_deposition_details = void 0;
+const node_fetch_1 = require("node-fetch");
+const get_access_token_from_environment_js_1 = require("./get-access-token-from-environment.js");
+const get_api_js_1 = require("./get-api.js");
+const get_deposition_details = async (sandbox, id, verbose = false) => {
     if (verbose) {
         console.log(`getting deposition details for deposition with id ${id}...`);
     }
-    const access_token = get_access_token_from_environment(sandbox);
-    const api = get_api(sandbox);
+    const access_token = get_access_token_from_environment_js_1.get_access_token_from_environment(sandbox);
+    const api = get_api_js_1.get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'GET';
     const headers = {
@@ -16,7 +19,7 @@ export const get_deposition_details = async (sandbox, id, verbose = false) => {
     const init = { method, headers };
     let response;
     try {
-        response = await fetch(`${api}${endpoint}`, init);
+        response = await node_fetch_1.default(`${api}${endpoint}`, init);
         if (response.ok !== true) {
             throw new Error();
         }
@@ -33,3 +36,4 @@ export const get_deposition_details = async (sandbox, id, verbose = false) => {
         throw new Error(`Something went wrong while retrieving the json. ${e}`);
     }
 };
+exports.get_deposition_details = get_deposition_details;
