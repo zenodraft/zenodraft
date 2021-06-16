@@ -1,4 +1,9 @@
-# `zenodraft`
+
+<p align="center">
+<img src="https://github.com/zenodraft/branding/blob/main/zenodraft.png" height=200>
+ </p>
+
+# This project is a work in progress
 
 CLI to manage depositions on Zenodo or Zenodo Sandbox.
 
