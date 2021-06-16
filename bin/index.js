@@ -1,2 +1,4 @@
 #! /usr/bin/env node
-import '../dist/cli.js'
+import zenodraft from '../dist/index.js'
+
+zenodraft.cli()

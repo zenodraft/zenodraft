@@ -4,9 +4,10 @@
         "zenodraft": "bin/index.js"
     },
     "bugs": {
-        "url": "https://github.com/jspaaks/zenodraft/issues"
+        "url": "https://github.com/zenodraft/zenodraft/issues"
     },
     "dependencies": {
+        "@vercel/ncc": "^0.28.6",
         "commander": "^7.2.0",
         "dotenv": "^10.0.0",
         "mime-types": "^2.1.31",
@@ -26,21 +27,23 @@
     "files": [
         "dist"
     ],
-    "homepage": "https://github.com/jspaaks/zenodraft",
+    "homepage": "https://github.com/zenodraft/zenodraft",
     "keywords": [
         "cli",
         "zenodo"
     ],
     "license": "Apache-2.0",
-    "main": "dist/zenodraft.js",
+    "main": "dist/index.js",
     "name": "zenodraft",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jspaaks/zenodraft.git"
+        "url": "https://github.com/zenodraft/zenodraft.git"
     },
     "scripts": {
-        "clean": "rm `find dist/ -type f -name *.js` 2> /dev/null && rm `find dist/ -type f -name *.js.map` 2> /dev/null",
-        "package": "tsc -p tsconfig.json && cp src/.zenodo.json.empty dist/"
+        "all": "npm run clean && npm run transpile && npm pack",
+        "clean": "rm -f dist/* dist/.zenodo.json.empty",
+        "posttranspile": "cp src/.zenodo.json.empty dist/",
+        "transpile": "tsc -p tsconfig.json"
     },
     "type": "module",
     "version": "0.3.0"

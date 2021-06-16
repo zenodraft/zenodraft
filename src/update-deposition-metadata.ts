@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import { DepositionsResponse } from './zenodo-response-types.js'
 import { get_access_token_from_environment } from './get-access-token-from-environment.js'
 import { get_api } from './get-api.js'
-import path  from 'path'
+import * as path from 'path'
 import { fileURLToPath } from 'url'
 
 
