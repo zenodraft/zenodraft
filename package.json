@@ -9,6 +9,7 @@
     "dependencies": {
         "commander": "^7.2.0",
         "dotenv": "^10.0.0",
+        "esm": "^3.2.25",
         "mime-types": "^2.1.31",
         "node-fetch": "^2.6.1"
     },
@@ -20,8 +21,8 @@
         "typescript": "^4.3.2"
     },
     "engines": {
-        "node": ">=14.17.0",
-        "npm": ">=7.12.1"
+        "node": ">=12.16.0",
+        "npm": ">=6.13.4"
     },
     "files": [
         "dist"
@@ -33,6 +34,7 @@
     ],
     "license": "Apache-2.0",
     "main": "dist/index.js",
+    "module": "dist/zenodraft.js",
     "name": "zenodraft",
     "repository": {
         "type": "git",
@@ -40,8 +42,8 @@
     },
     "scripts": {
         "all": "npm run clean && npm run transpile && npm pack",
-        "clean": "rm -f dist/* dist/.zenodo.json.empty",
-        "posttranspile": "cp src/.zenodo.json.empty dist/",
+        "clean": "rm -rf dist/* dist/.zenodo.json.empty",
+        "posttranspile": "cp assets/.zenodo.json.empty dist/",
         "transpile": "tsc -p tsconfig.json"
     },
     "version": "0.4.0"

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import * as commander from 'commander'
-import { add_file_to_deposition } from './add-file-to-deposition.js'
-import { create_empty_deposition_in_existing_collection } from './create-empty-deposition-in-existing-collection.js'
-import { create_empty_deposition_in_new_collection } from './create-empty-deposition-in-new-collection.js'
-import { delete_deposition_file } from './delete-deposition-file.js'
-import { delete_draft_deposition } from './delete-draft-deposition.js'
-import { get_deposition_details } from './get-deposition-details.js'
-import { publish_draft_deposition } from './publish-draft-deposition.js'
-import { update_deposition_metadata } from './update-deposition-metadata.js'
-import { get_latest_draft } from './get-latest-draft.js'
+import { add_file_to_deposition } from 'file/add.js'
+import { create_empty_deposition_in_existing_collection } from 'deposition/create/in-existing-collection.js'
+import { create_empty_deposition_in_new_collection } from 'deposition/create/in-new-collection.js'
+import { delete_deposition_file } from 'file/delete.js'
+import { delete_draft_deposition } from 'deposition/delete.js'
+import { get_deposition_details } from 'deposition/show/details.js'
+import { publish_draft_deposition } from 'deposition/publish.js'
+import { update_deposition_metadata } from 'metadata/update.js'
+import { get_latest_draft } from 'deposition/show/latest.js'
 
 
 export const cli = () => {

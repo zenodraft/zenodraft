@@ -1,17 +1,17 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
-import { get_access_token_from_environment } from './get-access-token-from-environment.js'
-import { get_api } from './get-api.js'
+import { get_access_token_from_environment } from 'helpers/get-access-token-from-environment'
+import { get_api } from 'helpers/get-api'
 
 
-export const publish_draft_deposition = async (sandbox: boolean, id: string, verbose = false): Promise<void> => {
+export const delete_draft_deposition = async (sandbox: boolean, id: string, verbose = false): Promise<void> => {
     if (verbose) {
-        console.log(`publishing draft deposition with id ${id}...`)
+        console.log(`deleting draft deposition with id ${id}...`)
     }
     const access_token = get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
-    const endpoint = `/deposit/depositions/${id}/actions/publish`
-    const method = 'POST'
+    const endpoint = `/deposit/depositions/${id}`
+    const method = 'DELETE'
     const headers = {
         'Authorization': `Bearer ${access_token}`
     }
