@@ -170,6 +170,37 @@ node_modules/.bin/zenodraft --version
 node_modules/.bin/zenodraft --help
 ```
 
+## `zenodraft` as a library, using CommonJS `require`
+
+Make a file e.g. `index.js` with the following contents:
+
+```javascript
+// file: index.js
+const zenodraft = require('zenodraft').default;
+console.info(zenodraft);
+```
+
+```shell
+node index.js
+```
+
+## `zenodraft` as a library, using ES6 `import`
+
+Make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
+
+```javascript
+// file: index.mjs
+import zenodraft from 'zenodraft';
+console.info(zenodraft.default);
+```
+
+```shell
+# node v14
+node index.mjs
+
+# node v12
+node --experimental-modules index.mjs
+```
 
 ## Access tokens
 
