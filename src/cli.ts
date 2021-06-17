@@ -151,7 +151,7 @@ export const cli = () => {
     })()
 
     const zenodraft = new commander.Command('zenodraft')
-        .version('0.4.0')
+        .version('0.5.0')
         .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
         .option('-s, --sandbox', 'run on zenodo sandbox instead of regular zenodo', false)
         .option('-v, --verbose', 'verbose mode', false)
