@@ -33,6 +33,7 @@
     ],
     "license": "Apache-2.0",
     "main": "dist/zenodraft.js",
+    "module": "dist/zenodraft.mjs",
     "name": "zenodraft",
     "repository": {
         "type": "git",

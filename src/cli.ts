@@ -158,6 +158,12 @@ export const cli = () => {
         .addCommand(deposition)
         .addCommand(file)
         .addCommand(metadata)
+        .addHelpText('afterAll', '\n\n' +
+        'All commands require an access token, which you can get here:' +
+        '\n' +
+        '\n- Zenodo Sandbox (testing): https://sandbox.zenodo.org/account/settings/applications/tokens/new/' +
+        '\n- Zenodo (production): https://zenodo.org/account/settings/applications/tokens/new/' +
+        '\n\nYou only need access tokens for the platforms you plan on using.\n\n')
         .parse(process.argv)
 
     return zenodraft

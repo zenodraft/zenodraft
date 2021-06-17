@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.zenodraft = void 0;
 const add_1 = require("./file/add");
 const cli_1 = require("./cli");
 const in_existing_collection_1 = require("./deposition/create/in-existing-collection");
@@ -14,7 +13,7 @@ const latest_1 = require("./deposition/show/latest");
 const publish_1 = require("./deposition/publish");
 const update_1 = require("./metadata/update");
 const validate_in_collection_value_1 = require("./helpers/validate-in-collection-value");
-exports.zenodraft = {
+exports.default = {
     add_file_to_deposition: add_1.add_file_to_deposition,
     cli: cli_1.cli,
     create_empty_deposition_in_existing_collection: in_existing_collection_1.create_empty_deposition_in_existing_collection,

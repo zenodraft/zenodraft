@@ -11,7 +11,7 @@ import { get_latest_draft } from './deposition/show/latest';
 import { publish_draft_deposition } from './deposition/publish';
 import { update_deposition_metadata } from './metadata/update';
 import { validate_in_collection_value } from './helpers/validate-in-collection-value';
-export const zenodraft = {
+export default {
     add_file_to_deposition,
     cli,
     create_empty_deposition_in_existing_collection,

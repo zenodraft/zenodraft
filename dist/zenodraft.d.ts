@@ -1,4 +1,4 @@
-export declare const zenodraft: {
+declare const _default: {
     add_file_to_deposition: (sandbox: boolean, id: string, filename: string, verbose?: boolean) => Promise<void>;
     cli: () => import("commander").Command;
     create_empty_deposition_in_existing_collection: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<string>;
@@ -13,3 +13,4 @@ export declare const zenodraft: {
     update_deposition_metadata: (sandbox: boolean, id: string, filename?: string, verbose?: boolean) => Promise<void>;
     validate_in_collection_value: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<void>;
 };
+export default _default;
