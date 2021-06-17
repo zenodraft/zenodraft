@@ -49,5 +49,5 @@
         "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name *.js`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done"
     },
     "types": "dist/zenodraft.d.ts",
-    "version": "0.5.0"
+    "version": "0.6.0"
 }

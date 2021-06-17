@@ -10,5 +10,10 @@ export declare type DepositionsResponse = {
         latest: string;
         latest_draft?: string;
     };
+    metadata: {
+        prereserve_doi: {
+            doi: string;
+        };
+    };
     record_id: string;
 };

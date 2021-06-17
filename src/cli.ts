@@ -8,6 +8,7 @@ import { get_deposition_details } from './deposition/show/details'
 import { publish_draft_deposition } from './deposition/publish'
 import { update_deposition_metadata } from './metadata/update'
 import { get_latest_draft } from './deposition/show/latest'
+import { get_prereserved } from './deposition/show/prereserved'
 
 
 export const cli = () => {
@@ -38,25 +39,11 @@ export const cli = () => {
     })()
 
 
-    const deposition = (() => {
-        const deposition = new commander.Command('deposition')
-        
-        deposition.description('subcommands for depositions')
+    const show = (() => {
+        const show = new commander.Command('show')
+        show.description('subcommands for showing information about a deposition')
 
-        deposition
-            .addCommand(create)
-
-        deposition
-            .command('delete')
-            .arguments('<id>')
-            .description('delete draft deposition with id <id>', {
-                id: 'deposition id'
-            })
-            .action((id: string) => {
-                delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
-            })
-
-        deposition
+        show
             .command('details')
             .arguments('<id>')
             .description('get details pertaining to deposition with id <id>', {
@@ -67,7 +54,7 @@ export const cli = () => {
                 console.log(JSON.stringify(details, null, 4))
             })
 
-        deposition
+        show
             .command('latest')
             .arguments('<collection_id>')
             .description('get the latest draft deposition id of the collection with id <collection_id>', {
@@ -75,7 +62,47 @@ export const cli = () => {
             })
             .action(async (collection_id: string) => {
                 const latest_draft_id = await get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
-                console.log(latest_draft_id)
+                if (latest_draft_id === '') {
+                    if (zenodraft.opts().verbose) {
+                        console.log(`There are no drafts in collection ${collection_id}.`)
+                    }
+                } else {
+                    console.log(latest_draft_id)
+                }
+            })
+
+        show
+            .command('prereserved')
+            .arguments('<latest_id>')
+            .description('get the prereserved doi of the draft deposition with id <latest_id>', {
+                latest_id: 'id of the deposition whose prereserved doi we want to retrieve'
+            })
+            .action(async (latest_id: string) => {
+                const prereserved = await get_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose)
+                console.log(prereserved)
+            })
+
+        return show
+
+    })()
+
+    const deposition = (() => {
+        const deposition = new commander.Command('deposition')
+        
+        deposition.description('subcommands for depositions')
+
+        deposition
+            .addCommand(create)
+            .addCommand(show)
+
+        deposition
+            .command('delete')
+            .arguments('<id>')
+            .description('delete draft deposition with id <id>', {
+                id: 'deposition id'
+            })
+            .action((id: string) => {
+                delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
             })
 
         deposition
@@ -150,11 +177,14 @@ export const cli = () => {
         return metadata
     })()
 
+
     const zenodraft = new commander.Command('zenodraft')
-        .version('0.5.0')
+        .version('0.6.0')
         .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
         .option('-s, --sandbox', 'run on zenodo sandbox instead of regular zenodo', false)
         .option('-v, --verbose', 'verbose mode', false)
+
+    zenodraft
         .addCommand(deposition)
         .addCommand(file)
         .addCommand(metadata)

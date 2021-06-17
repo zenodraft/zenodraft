@@ -20,6 +20,7 @@ const details_1 = require("./deposition/show/details");
 const publish_1 = require("./deposition/publish");
 const update_1 = require("./metadata/update");
 const latest_1 = require("./deposition/show/latest");
+const prereserved_1 = require("./deposition/show/prereserved");
 const cli = () => {
     const create = (() => {
         const create = new commander.Command('create');
@@ -41,21 +42,10 @@ const cli = () => {
         });
         return create;
     })();
-    const deposition = (() => {
-        const deposition = new commander.Command('deposition');
-        deposition.description('subcommands for depositions');
-        deposition
-            .addCommand(create);
-        deposition
-            .command('delete')
-            .arguments('<id>')
-            .description('delete draft deposition with id <id>', {
-            id: 'deposition id'
-        })
-            .action((id) => {
-            delete_2.delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
-        });
-        deposition
+    const show = (() => {
+        const show = new commander.Command('show');
+        show.description('subcommands for showing information about a deposition');
+        show
             .command('details')
             .arguments('<id>')
             .description('get details pertaining to deposition with id <id>', {
@@ -65,7 +55,7 @@ const cli = () => {
             const details = yield details_1.get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
             console.log(JSON.stringify(details, null, 4));
         }));
-        deposition
+        show
             .command('latest')
             .arguments('<collection_id>')
             .description('get the latest draft deposition id of the collection with id <collection_id>', {
@@ -73,8 +63,42 @@ const cli = () => {
         })
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
             const latest_draft_id = yield latest_1.get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
-            console.log(latest_draft_id);
+            if (latest_draft_id === '') {
+                if (zenodraft.opts().verbose) {
+                    console.log(`There are no drafts in collection ${collection_id}.`);
+                }
+            }
+            else {
+                console.log(latest_draft_id);
+            }
         }));
+        show
+            .command('prereserved')
+            .arguments('<latest_id>')
+            .description('get the prereserved doi of the draft deposition with id <latest_id>', {
+            latest_id: 'id of the deposition whose prereserved doi we want to retrieve'
+        })
+            .action((latest_id) => __awaiter(void 0, void 0, void 0, function* () {
+            const prereserved = yield prereserved_1.get_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
+            console.log(prereserved);
+        }));
+        return show;
+    })();
+    const deposition = (() => {
+        const deposition = new commander.Command('deposition');
+        deposition.description('subcommands for depositions');
+        deposition
+            .addCommand(create)
+            .addCommand(show);
+        deposition
+            .command('delete')
+            .arguments('<id>')
+            .description('delete draft deposition with id <id>', {
+            id: 'deposition id'
+        })
+            .action((id) => {
+            delete_2.delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+        });
         deposition
             .command('publish')
             .arguments('<id>')
@@ -136,10 +160,11 @@ const cli = () => {
         return metadata;
     })();
     const zenodraft = new commander.Command('zenodraft')
-        .version('0.5.0')
+        .version('0.6.0')
         .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
         .option('-s, --sandbox', 'run on zenodo sandbox instead of regular zenodo', false)
-        .option('-v, --verbose', 'verbose mode', false)
+        .option('-v, --verbose', 'verbose mode', false);
+    zenodraft
         .addCommand(deposition)
         .addCommand(file)
         .addCommand(metadata)
