@@ -16,14 +16,16 @@ zenodraft [--sandbox] [--verbose]
 │   │   ├── in-existing-collection <collection_id>
 │   │   └── in-new-collection
 │   ├── delete <id>
-│   ├── details <id>
-│   ├── latest <collection_id>
-│   └── publish <id>
+│   ├── publish <id>
+│   └── show
+│       ├── details <id>
+│       ├── latest <collection_id>
+│       └── prereserved <id>
 ├── file
 │   ├── add <id> <filename>
 │   └── delete <id> <filename>
 └── metadata
-    ├── clear <id>
+    ├── clear <id>
     └── update <id> <filename>
 ```
 
@@ -57,18 +59,25 @@ RECORD_ID=123457
     zenodraft deposition delete $RECORD_ID
     ```
 
+1. Publish a draft deposition:
+
+    ```shell
+    zenodraft --sandbox deposition publish $RECORD_ID
+    zenodraft deposition publish $RECORD_ID
+    ```
+
 1. Get the details of a deposition:
 
     ```shell
-    zenodraft --sandbox deposition details $RECORD_ID
-    zenodraft deposition details $RECORD_ID
+    zenodraft --sandbox deposition show details $RECORD_ID
+    zenodraft deposition show details $RECORD_ID
     ```
 
 1. Get the deposition id for the latest draft:
 
     ```shell
-    zenodraft --sandbox deposition latest $CONCEPT_RECORD_ID
-    zenodraft deposition latest $CONCEPT_RECORD_ID
+    zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID
+    zenodraft deposition show latest $CONCEPT_RECORD_ID
     ```
 
     Either returns the id of the latest draft deposition in the collection, or an empty string in case there are no draft depositions in the collection.
@@ -80,11 +89,20 @@ RECORD_ID=123457
     LATEST_ID=$(zenodraft deposition latest $CONCEPT_RECORD_ID)
     ```
 
-1. Publish a draft deposition:
+1. Get the prereserved doi for the latest draft:
 
     ```shell
-    zenodraft --sandbox deposition publish $RECORD_ID
-    zenodraft deposition publish $RECORD_ID
+    zenodraft --sandbox deposition show prereserved $RECORD_ID
+    zenodraft deposition show prereserved $RECORD_ID
+    ```
+
+    Returns the prereserved doi of the draft deposition with id $RECORD_ID.
+    
+    Typical usage in automation is to capture the printed value like so:
+    
+    ```shell
+    PRERESERVED=$(zenodraft --sandbox deposition show prereserved $RECORD_ID)
+    PRERESERVED=$(zenodraft deposition show prereserved $RECORD_ID)
     ```
 
 1. Add a local file to an existing draft deposition:
@@ -123,16 +141,42 @@ Requirements:
 - node (I'm using v14, other versions may work)
 - npm (I'm using v7, other versions may work)
 
-Install with
+Install globally with `-g` flag:
 
 ```shell
+# global install
 npm install -g git+https://github.com/jspaaks/zenodraft
-which zenodraft       # should now point to the program
+
+# this next command should now point to the program location
+which zenodraft
+
+# use the zenodraft cli like so
+zenodraft --version
+zenodraft --help
 ```
+
+
+Or install locally without `-g` flag:
+
+```shell
+# local install
+npm install git+https://github.com/jspaaks/zenodraft
+
+# this next command doesn't work for local installs
+which zenodraft
+
+# but you can still use the cli by explicitly pointing to it
+node_modules/.bin/zenodraft --version
+node_modules/.bin/zenodraft --help
+```
+
 
 ## Access tokens
 
-To use `zenodraft`, a personal access token is required, one for each platform you plan on using. `zenodraft` looks for the access token first in the environment variables named `ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called `.env`, which must reside in the directory from which you run `zenodraft`. 
+To use `zenodraft`, a personal access token is required, one for each platform you plan on using.
+`zenodraft` looks for the access token first in the environment variables named
+`ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called
+`.env`, which must reside in the directory from which you run `zenodraft`. 
 
 You can create your own `.env` by copying the example env file, like so
 
