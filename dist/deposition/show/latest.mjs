@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,17 +7,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_in_collection_value = void 0;
-const details_1 = require("../deposition/show/details");
-const validate_in_collection_value = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    if (verbose) {
-        console.log(`checking that the collection_id value resolves to a concept, not a version...`);
-    }
+import { get_deposition_details } from './details';
+import { validate_in_collection_value } from '../../helpers/validate-in-collection-value';
+export const get_latest_draft = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+    yield validate_in_collection_value(sandbox, collection_id, verbose);
     const id = (parseInt(collection_id) + 1).toString();
-    const deposition = yield details_1.get_deposition_details(sandbox, id);
-    if (deposition.conceptrecid !== collection_id) {
-        throw new Error('Deposition id should be a concept id.');
+    const deposition = yield get_deposition_details(sandbox, id, verbose);
+    let latest_draft_id;
+    if ('latest_draft' in deposition.links && deposition.links.latest_draft !== undefined) {
+        latest_draft_id = deposition.links.latest_draft.split('/').slice(-1)[0];
     }
+    else {
+        latest_draft_id = '';
+    }
+    return latest_draft_id;
 });
-exports.validate_in_collection_value = validate_in_collection_value;

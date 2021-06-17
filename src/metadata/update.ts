@@ -1,9 +1,9 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
-import { DepositionsResponse } from 'helpers/zenodo-response-types'
-import { get_access_token_from_environment } from 'helpers/get-access-token-from-environment'
-import { get_api } from 'helpers/get-api'
+import { DepositionsResponse } from '../helpers/zenodo-response-types'
+import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
+import { get_api } from '../helpers/get-api'
 import * as path from 'path'
 
 

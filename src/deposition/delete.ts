@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
-import { get_access_token_from_environment } from 'helpers/get-access-token-from-environment'
-import { get_api } from 'helpers/get-api'
+import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
+import { get_api } from '../helpers/get-api'
 
 
 export const delete_draft_deposition = async (sandbox: boolean, id: string, verbose = false): Promise<void> => {

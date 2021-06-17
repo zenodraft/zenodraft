@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,19 +7,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.cli = void 0;
-const commander = require("commander");
-const add_1 = require("./file/add");
-const in_existing_collection_1 = require("./deposition/create/in-existing-collection");
-const in_new_collection_1 = require("./deposition/create/in-new-collection");
-const delete_1 = require("./file/delete");
-const delete_2 = require("./deposition/delete");
-const details_1 = require("./deposition/show/details");
-const publish_1 = require("./deposition/publish");
-const update_1 = require("./metadata/update");
-const latest_1 = require("./deposition/show/latest");
-const cli = () => {
+import * as commander from 'commander';
+import { add_file_to_deposition } from './file/add';
+import { create_empty_deposition_in_existing_collection } from './deposition/create/in-existing-collection';
+import { create_empty_deposition_in_new_collection } from './deposition/create/in-new-collection';
+import { delete_deposition_file } from './file/delete';
+import { delete_draft_deposition } from './deposition/delete';
+import { get_deposition_details } from './deposition/show/details';
+import { publish_draft_deposition } from './deposition/publish';
+import { update_deposition_metadata } from './metadata/update';
+import { get_latest_draft } from './deposition/show/latest';
+export const cli = () => {
     const create = (() => {
         const create = new commander.Command('create');
         create.description('subcommands for creating a deposition');
@@ -28,7 +25,7 @@ const cli = () => {
             .command('in-new-collection')
             .description('create a new draft deposition in a new collection')
             .action(() => {
-            in_new_collection_1.create_empty_deposition_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
+            create_empty_deposition_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
         });
         create
             .command('in-existing-collection')
@@ -37,7 +34,7 @@ const cli = () => {
             collection_id: 'id for the collection that the new deposition will be part of.'
         })
             .action((collection_id) => {
-            in_existing_collection_1.create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+            create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
         });
         return create;
     })();
@@ -53,7 +50,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => {
-            delete_2.delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
         });
         deposition
             .command('details')
@@ -62,7 +59,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
-            const details = yield details_1.get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            const details = yield get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
             console.log(JSON.stringify(details, null, 4));
         }));
         deposition
@@ -72,7 +69,7 @@ const cli = () => {
             collection_id: 'id of the collection whose latest draft we want to retrieve'
         })
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
-            const latest_draft_id = yield latest_1.get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+            const latest_draft_id = yield get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
             console.log(latest_draft_id);
         }));
         deposition
@@ -82,7 +79,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => {
-            publish_1.publish_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            publish_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
         });
         return deposition;
     })();
@@ -97,7 +94,7 @@ const cli = () => {
             filename: 'filename of the local file that is going to be added'
         })
             .action((id, filename) => {
-            add_1.add_file_to_deposition(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            add_file_to_deposition(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
         });
         file
             .command('delete')
@@ -107,7 +104,7 @@ const cli = () => {
             filename: 'filename of the deposition file that is going to be deleted.'
         })
             .action((id, filename) => {
-            delete_1.delete_deposition_file(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            delete_deposition_file(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
         });
         return file;
     })();
@@ -122,7 +119,7 @@ const cli = () => {
             filename: 'filename of file holding the metadata in Zenodo metadata format'
         })
             .action((id, filename) => {
-            update_1.update_deposition_metadata(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            update_deposition_metadata(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
         });
         metadata
             .command('clear')
@@ -131,7 +128,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => {
-            update_1.update_deposition_metadata(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
+            update_deposition_metadata(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
         });
         return metadata;
     })();
@@ -146,4 +143,3 @@ const cli = () => {
         .parse(process.argv);
     return zenodraft;
 };
-exports.cli = cli;

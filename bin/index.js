@@ -1,4 +1,3 @@
 #! /usr/bin/env node
-import { zenodraft } from '../dist/index.js'
-
-zenodraft.cli()
+const zenodraft = require('zenodraft');
+zenodraft.cli();

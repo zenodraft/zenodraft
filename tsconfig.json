@@ -1,20 +1,8 @@
 {
     "compilerOptions": {
-        "allowJs": true,
-        "baseUrl": "./",
-        "declaration": true, 
-        "module": "CommonJS",
         "moduleResolution": "Node",
         "outDir": "dist",
-        "paths": {
-            "*": ["src/*"]
-        },
+        "rootDir": "src",
         "target": "ES6"
-    },
-    "exclude": [
-        "./node_modules"
-    ],
-    "include": [
-        "./src/**/*.ts"
-    ]
+    }
 }

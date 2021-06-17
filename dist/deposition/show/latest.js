@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_latest_draft = void 0;
 const details_1 = require("./details");
-const validate_in_collection_value_1 = require("helpers/validate-in-collection-value");
+const validate_in_collection_value_1 = require("../../helpers/validate-in-collection-value");
 const get_latest_draft = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     yield validate_in_collection_value_1.validate_in_collection_value(sandbox, collection_id, verbose);
     const id = (parseInt(collection_id) + 1).toString();

@@ -1,4 +1,4 @@
-import { get_deposition_details } from 'deposition/show/details'
+import { get_deposition_details } from '../deposition/show/details'
 
 
 export const validate_in_collection_value = async (sandbox: boolean, collection_id: string, verbose = false): Promise<void> => {

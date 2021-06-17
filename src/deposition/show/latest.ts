@@ -1,5 +1,5 @@
 import { get_deposition_details } from './details'
-import { validate_in_collection_value } from 'helpers/validate-in-collection-value'
+import { validate_in_collection_value } from '../../helpers/validate-in-collection-value'
 
 
 export const get_latest_draft = async (sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {

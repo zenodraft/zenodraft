@@ -9,7 +9,6 @@
     "dependencies": {
         "commander": "^7.2.0",
         "dotenv": "^10.0.0",
-        "esm": "^3.2.25",
         "mime-types": "^2.1.31",
         "node-fetch": "^2.6.1"
     },
@@ -33,18 +32,21 @@
         "zenodo"
     ],
     "license": "Apache-2.0",
-    "main": "dist/index.js",
-    "module": "dist/zenodraft.js",
+    "main": "dist/zenodraft.js",
     "name": "zenodraft",
     "repository": {
         "type": "git",
         "url": "https://github.com/zenodraft/zenodraft.git"
     },
     "scripts": {
-        "all": "npm run clean && npm run transpile && npm pack",
+        "all": "npm run clean && npm run build && npm pack",
+        "build": "npm run mjs && npm run cjs",
+        "cjs": "tsc --module commonjs -p tsconfig.json",
         "clean": "rm -rf dist/* dist/.zenodo.json.empty",
-        "posttranspile": "cp assets/.zenodo.json.empty dist/",
-        "transpile": "tsc -p tsconfig.json"
+        "copy-assets": "cp assets/.zenodo.json.empty dist/",
+        "postbuild": "npm run copy-assets",
+        "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name *.js`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done"
     },
+    "types": "dist/zenodraft.d.ts",
     "version": "0.4.0"
 }

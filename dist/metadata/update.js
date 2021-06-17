@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.update_deposition_metadata = void 0;
 const node_fetch_1 = require("node-fetch");
 const fs = require("fs");
-const get_access_token_from_environment_1 = require("helpers/get-access-token-from-environment");
-const get_api_1 = require("helpers/get-api");
+const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
+const get_api_1 = require("../helpers/get-api");
 const path = require("path");
 const update_deposition_metadata = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {

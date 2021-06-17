@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
-import { get_deposition_details } from 'deposition/show/details'
-import { get_access_token_from_environment } from 'helpers/get-access-token-from-environment'
+import { get_deposition_details } from '../deposition/show/details'
+import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 
 
 export const delete_deposition_file = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {

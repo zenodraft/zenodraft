@@ -1,9 +1,9 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
-import { get_deposition_details } from 'deposition/show/details'
+import { get_deposition_details } from '../deposition/show/details'
 import * as mime from 'mime-types'
-import { get_access_token_from_environment } from 'helpers/get-access-token-from-environment'
+import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 
 
 export const add_file_to_deposition = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {

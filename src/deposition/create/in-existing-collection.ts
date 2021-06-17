@@ -1,12 +1,12 @@
-import { get_deposition_details } from 'deposition/show/details'
+import { get_deposition_details } from '../../deposition/show/details'
 import { RequestInit } from 'node-fetch'
 import fetch from 'node-fetch'
-import { DepositionsResponse } from 'helpers/zenodo-response-types'
-import { delete_deposition_file } from 'file/delete'
-import { update_deposition_metadata } from 'metadata/update'
-import { get_access_token_from_environment } from 'helpers/get-access-token-from-environment'
-import { get_api } from 'helpers/get-api'
-import { validate_in_collection_value } from 'helpers/validate-in-collection-value'
+import { DepositionsResponse } from '../../helpers/zenodo-response-types'
+import { delete_deposition_file } from '../../file/delete'
+import { update_deposition_metadata } from '../../metadata/update'
+import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
+import { get_api } from '../../helpers/get-api'
+import { validate_in_collection_value } from '../../helpers/validate-in-collection-value'
 
 
 export const create_empty_deposition_in_existing_collection = async (sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {

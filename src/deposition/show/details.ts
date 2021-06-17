@@ -1,8 +1,8 @@
-import { DepositionsResponse } from 'helpers/zenodo-response-types'
+import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import fetch from 'node-fetch'
 import {RequestInit} from 'node-fetch'
-import { get_access_token_from_environment } from 'helpers/get-access-token-from-environment'
-import { get_api } from 'helpers/get-api'
+import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
+import { get_api } from '../../helpers/get-api'
 
 
 export const get_deposition_details = async (sandbox: boolean, id: string, verbose = false): Promise<DepositionsResponse> => {
