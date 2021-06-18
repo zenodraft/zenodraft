@@ -191,11 +191,12 @@ complete -F _zenodraft_completions zenodraft
 
 Source this script to add autocomplete powers to the zenodraft binary, using something like:
 ```
+# Add autocomplete powers to zenodraft: 
 TMPFILE=$(mktemp)
 zenodraft-autocomplete > $TMPFILE
 source $TMPFILE
 ```
-
+You can make the change permanent by copying those 4 lines to the bottom of your `~/.bashrc`.
 
 ## `zenodraft` as a library, using CommonJS `require`
 
