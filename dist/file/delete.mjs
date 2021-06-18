@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import fetch from 'node-fetch';
 import { get_deposition_details } from '../deposition/show/details';
 import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
-export const delete_deposition_file = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const file_delete = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`);
     }

@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.delete_deposition_file = void 0;
+exports.file_delete = void 0;
 const node_fetch_1 = require("node-fetch");
 const details_1 = require("../deposition/show/details");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
-const delete_deposition_file = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const file_delete = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`);
     }
@@ -37,4 +37,4 @@ const delete_deposition_file = (sandbox, id, filename, verbose = false) => __awa
         throw new Error(`Something went wrong on PUT to ${bucket}/${filename}: ${response.status} - ${response.statusText} `);
     }
 });
-exports.delete_deposition_file = delete_deposition_file;
+exports.file_delete = file_delete;

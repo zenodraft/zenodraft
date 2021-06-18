@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { get_deposition_details } from '../../deposition/show/details';
 import fetch from 'node-fetch';
-import { delete_deposition_file } from '../../file/delete';
+import { file_delete } from '../../file/delete';
 import { update_deposition_metadata } from '../../metadata/update';
 import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment';
 import { get_api } from '../../helpers/get-api';
@@ -77,6 +77,6 @@ const remove_files_from_draft = (sandbox, id, verbose = false) => __awaiter(void
     const deposition = yield get_deposition_details(sandbox, id);
     const filenames = deposition.files.map((file) => { return file.filename; });
     for (const filename of filenames) {
-        delete_deposition_file(sandbox, id, filename);
+        file_delete(sandbox, id, filename);
     }
 });

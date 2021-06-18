@@ -131,7 +131,7 @@ const cli = () => {
             filename: 'filename of the deposition file that is going to be deleted.'
         })
             .action((id, filename) => {
-            delete_1.delete_deposition_file(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            delete_1.file_delete(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
         });
         return file;
     })();

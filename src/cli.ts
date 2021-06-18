@@ -2,7 +2,7 @@ import * as commander from 'commander'
 import { file_add } from './file/add'
 import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection'
 import { deposition_create_in_new_collection } from './deposition/create/in-new-collection'
-import { delete_deposition_file } from './file/delete'
+import { file_delete } from './file/delete'
 import { delete_draft_deposition } from './deposition/delete'
 import { get_deposition_details } from './deposition/show/details'
 import { publish_draft_deposition } from './deposition/publish'
@@ -143,7 +143,7 @@ export const cli = () => {
                 filename: 'filename of the deposition file that is going to be deleted.'
             })
             .action((id: string, filename: string) => {
-                delete_deposition_file(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose)
+                file_delete(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose)
             })
 
         return file

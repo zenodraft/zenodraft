@@ -4,7 +4,7 @@ import { get_deposition_details } from '../deposition/show/details'
 import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 
 
-export const delete_deposition_file = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
+export const file_delete = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`)
     }

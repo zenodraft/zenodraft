@@ -81,6 +81,6 @@ const remove_files_from_draft = (sandbox, id, verbose = false) => __awaiter(void
     const deposition = yield details_1.get_deposition_details(sandbox, id);
     const filenames = deposition.files.map((file) => { return file.filename; });
     for (const filename of filenames) {
-        delete_1.delete_deposition_file(sandbox, id, filename);
+        delete_1.file_delete(sandbox, id, filename);
     }
 });
