@@ -4,7 +4,7 @@ import { get_access_token_from_environment } from '../helpers/get-access-token-f
 import { get_api } from '../helpers/get-api'
 
 
-export const delete_draft_deposition = async (sandbox: boolean, id: string, verbose = false): Promise<void> => {
+export const deposition_delete = async (sandbox: boolean, id: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`deleting draft deposition with id ${id}...`)
     }

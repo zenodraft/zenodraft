@@ -3,7 +3,7 @@ import { cli } from './cli'
 import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection'
 import { deposition_create_in_new_collection } from './deposition/create/in-new-collection'
 import { file_delete } from './file/delete'
-import { delete_draft_deposition } from './deposition/delete'
+import { deposition_delete } from './deposition/delete'
 import { get_access_token_from_environment } from './helpers/get-access-token-from-environment'
 import { get_api } from './helpers/get-api'
 import { get_deposition_details } from './deposition/show/details'
@@ -20,7 +20,7 @@ export default {
     deposition_create_in_existing_collection,
     deposition_create_in_new_collection,
     file_delete,
-    delete_draft_deposition,
+    deposition_delete,
     get_access_token_from_environment,
     get_api,
     get_deposition_details,

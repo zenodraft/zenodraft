@@ -3,7 +3,7 @@ import { file_add } from './file/add'
 import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection'
 import { deposition_create_in_new_collection } from './deposition/create/in-new-collection'
 import { file_delete } from './file/delete'
-import { delete_draft_deposition } from './deposition/delete'
+import { deposition_delete } from './deposition/delete'
 import { get_deposition_details } from './deposition/show/details'
 import { publish_draft_deposition } from './deposition/publish'
 import { update_deposition_metadata } from './metadata/update'
@@ -102,7 +102,7 @@ export const cli = () => {
                 id: 'deposition id'
             })
             .action((id: string) => {
-                delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
+                deposition_delete(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
             })
 
         deposition

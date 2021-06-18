@@ -97,7 +97,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => {
-            delete_2.delete_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            delete_2.deposition_delete(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
         });
         deposition
             .command('publish')
