@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
-import { get_deposition_details } from '../deposition/show/details'
+import { deposition_show_details } from '../deposition/show/details'
 import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 
 
@@ -9,7 +9,7 @@ export const file_delete = async (sandbox: boolean, id: string, filename: string
         console.log(`deleting file ${filename} from deposition with id ${id}...`)
     }
     const access_token = get_access_token_from_environment(sandbox)
-    const deposition = await get_deposition_details(sandbox, id)
+    const deposition = await deposition_show_details(sandbox, id)
     const bucket = deposition.links.bucket
     const method = 'DELETE'
     const headers = {

@@ -4,7 +4,7 @@ import { deposition_create_in_existing_collection } from './deposition/create/in
 import { deposition_create_in_new_collection } from './deposition/create/in-new-collection'
 import { file_delete } from './file/delete'
 import { deposition_delete } from './deposition/delete'
-import { get_deposition_details } from './deposition/show/details'
+import { deposition_show_details } from './deposition/show/details'
 import { publish_draft_deposition } from './deposition/publish'
 import { update_deposition_metadata } from './metadata/update'
 import { get_latest_draft } from './deposition/show/latest'
@@ -50,7 +50,7 @@ export const cli = () => {
                 id: 'deposition id'
             })
             .action(async (id: string) => {
-                const details = await get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
+                const details = await deposition_show_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
                 console.log(JSON.stringify(details, null, 4))
             })
 

@@ -15,7 +15,7 @@ const validate_in_collection_value_1 = require("../../helpers/validate-in-collec
 const get_latest_draft = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     yield validate_in_collection_value_1.validate_in_collection_value(sandbox, collection_id, verbose);
     const id = (parseInt(collection_id) + 1).toString();
-    const deposition = yield details_1.get_deposition_details(sandbox, id, verbose);
+    const deposition = yield details_1.deposition_show_details(sandbox, id, verbose);
     let latest_draft_id;
     if ('latest_draft' in deposition.links && deposition.links.latest_draft !== undefined) {
         latest_draft_id = deposition.links.latest_draft.split('/').slice(-1)[0];

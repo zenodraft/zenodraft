@@ -1,4 +1,4 @@
-import { get_deposition_details } from '../../deposition/show/details'
+import { deposition_show_details } from '../../deposition/show/details'
 import { RequestInit } from 'node-fetch'
 import fetch from 'node-fetch'
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
@@ -63,7 +63,7 @@ const get_id_for_latest_version_in_collection = async (sandbox: boolean, collect
         console.log(`getting id of the latest version in the collection...`)
     }
     const id = (parseInt(collection_id) + 1).toString()
-    const deposition = await get_deposition_details(sandbox, id)
+    const deposition = await deposition_show_details(sandbox, id)
     const latest_id = deposition.links.latest.split('/').slice(-1)[0]
     return latest_id
 }
@@ -73,7 +73,7 @@ const remove_files_from_draft = async (sandbox: boolean, id: string, verbose = f
     if (verbose) {
         console.log(`removing any files from the newly drafted version...`)
     }
-    const deposition = await get_deposition_details(sandbox, id)
+    const deposition = await deposition_show_details(sandbox, id)
     const filenames = deposition.files.map((file) => {return file.filename})
     for (const filename of filenames) {
         file_delete(sandbox, id, filename)

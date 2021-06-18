@@ -70,7 +70,7 @@ const get_id_for_latest_version_in_collection = (sandbox, collection_id, verbose
         console.log(`getting id of the latest version in the collection...`);
     }
     const id = (parseInt(collection_id) + 1).toString();
-    const deposition = yield details_1.get_deposition_details(sandbox, id);
+    const deposition = yield details_1.deposition_show_details(sandbox, id);
     const latest_id = deposition.links.latest.split('/').slice(-1)[0];
     return latest_id;
 });
@@ -78,7 +78,7 @@ const remove_files_from_draft = (sandbox, id, verbose = false) => __awaiter(void
     if (verbose) {
         console.log(`removing any files from the newly drafted version...`);
     }
-    const deposition = yield details_1.get_deposition_details(sandbox, id);
+    const deposition = yield details_1.deposition_show_details(sandbox, id);
     const filenames = deposition.files.map((file) => { return file.filename; });
     for (const filename of filenames) {
         delete_1.file_delete(sandbox, id, filename);

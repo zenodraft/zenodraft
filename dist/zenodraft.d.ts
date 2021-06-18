@@ -7,7 +7,7 @@ declare const _default: {
     deposition_delete: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;
     get_access_token_from_environment: (sandbox: boolean) => string;
     get_api: (sandbox: boolean) => string;
-    get_deposition_details: (sandbox: boolean, id: string, verbose?: boolean) => Promise<import("./helpers/zenodo-response-types").DepositionsResponse>;
+    deposition_show_details: (sandbox: boolean, id: string, verbose?: boolean) => Promise<import("./helpers/zenodo-response-types").DepositionsResponse>;
     get_latest_draft: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<string>;
     get_prereserved: (sandbox: boolean, latest_id: string, verbose?: boolean) => Promise<string>;
     publish_draft_deposition: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;

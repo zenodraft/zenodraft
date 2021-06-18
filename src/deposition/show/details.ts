@@ -5,7 +5,7 @@ import { get_access_token_from_environment } from '../../helpers/get-access-toke
 import { get_api } from '../../helpers/get-api'
 
 
-export const get_deposition_details = async (sandbox: boolean, id: string, verbose = false): Promise<DepositionsResponse> => {
+export const deposition_show_details = async (sandbox: boolean, id: string, verbose = false): Promise<DepositionsResponse> => {
     if (verbose) {
         console.log(`getting deposition details for deposition with id ${id}...`)
     }

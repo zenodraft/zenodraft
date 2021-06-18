@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
-import { get_deposition_details } from '../deposition/show/details'
+import { deposition_show_details } from '../deposition/show/details'
 import * as mime from 'mime-types'
 import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 
@@ -11,7 +11,7 @@ export const file_add = async (sandbox: boolean, id: string, filename: string, v
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }
     const access_token = get_access_token_from_environment(sandbox)
-    const deposition = await get_deposition_details(sandbox, id)
+    const deposition = await deposition_show_details(sandbox, id)
     const bucket = deposition.links.bucket
     const content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'
     const stream = fs.createReadStream(filename);

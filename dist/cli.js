@@ -52,7 +52,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
-            const details = yield details_1.get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            const details = yield details_1.deposition_show_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
             console.log(JSON.stringify(details, null, 4));
         }));
         show

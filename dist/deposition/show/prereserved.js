@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_prereserved = void 0;
 const details_1 = require("./details");
 const get_prereserved = (sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    const deposition = yield details_1.get_deposition_details(sandbox, latest_id, verbose);
+    const deposition = yield details_1.deposition_show_details(sandbox, latest_id, verbose);
     return deposition.metadata.prereserve_doi.doi;
 });
 exports.get_prereserved = get_prereserved;

@@ -13,7 +13,7 @@ import { deposition_create_in_existing_collection } from './deposition/create/in
 import { deposition_create_in_new_collection } from './deposition/create/in-new-collection';
 import { file_delete } from './file/delete';
 import { deposition_delete } from './deposition/delete';
-import { get_deposition_details } from './deposition/show/details';
+import { deposition_show_details } from './deposition/show/details';
 import { publish_draft_deposition } from './deposition/publish';
 import { update_deposition_metadata } from './metadata/update';
 import { get_latest_draft } from './deposition/show/latest';
@@ -49,7 +49,7 @@ export const cli = () => {
             id: 'deposition id'
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
-            const details = yield get_deposition_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            const details = yield deposition_show_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
             console.log(JSON.stringify(details, null, 4));
         }));
         show
