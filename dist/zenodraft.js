@@ -25,7 +25,7 @@ exports.default = {
     get_api: get_api_1.get_api,
     deposition_show_details: details_1.deposition_show_details,
     deposition_show_latest: latest_1.deposition_show_latest,
-    get_prereserved: prereserved_1.get_prereserved,
+    deposition_show_prereserved: prereserved_1.deposition_show_prereserved,
     publish_draft_deposition: publish_1.publish_draft_deposition,
     update_deposition_metadata: update_1.update_deposition_metadata,
     validate_in_collection_value: validate_in_collection_value_1.validate_in_collection_value

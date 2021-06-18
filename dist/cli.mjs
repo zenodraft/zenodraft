@@ -17,7 +17,7 @@ import { deposition_show_details } from './deposition/show/details';
 import { publish_draft_deposition } from './deposition/publish';
 import { update_deposition_metadata } from './metadata/update';
 import { deposition_show_latest } from './deposition/show/latest';
-import { get_prereserved } from './deposition/show/prereserved';
+import { deposition_show_prereserved } from './deposition/show/prereserved';
 export const cli = () => {
     const create = (() => {
         const create = new commander.Command('create');
@@ -76,7 +76,7 @@ export const cli = () => {
             latest_id: 'id of the deposition whose prereserved doi we want to retrieve'
         })
             .action((latest_id) => __awaiter(void 0, void 0, void 0, function* () {
-            const prereserved = yield get_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
+            const prereserved = yield deposition_show_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
             console.log(prereserved);
         }));
         return show;

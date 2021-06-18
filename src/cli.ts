@@ -8,7 +8,7 @@ import { deposition_show_details } from './deposition/show/details'
 import { publish_draft_deposition } from './deposition/publish'
 import { update_deposition_metadata } from './metadata/update'
 import { deposition_show_latest } from './deposition/show/latest'
-import { get_prereserved } from './deposition/show/prereserved'
+import { deposition_show_prereserved } from './deposition/show/prereserved'
 
 
 export const cli = () => {
@@ -78,7 +78,7 @@ export const cli = () => {
                 latest_id: 'id of the deposition whose prereserved doi we want to retrieve'
             })
             .action(async (latest_id: string) => {
-                const prereserved = await get_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose)
+                const prereserved = await deposition_show_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose)
                 console.log(prereserved)
             })
 

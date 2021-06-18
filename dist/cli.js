@@ -79,7 +79,7 @@ const cli = () => {
             latest_id: 'id of the deposition whose prereserved doi we want to retrieve'
         })
             .action((latest_id) => __awaiter(void 0, void 0, void 0, function* () {
-            const prereserved = yield prereserved_1.get_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
+            const prereserved = yield prereserved_1.deposition_show_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
             console.log(prereserved);
         }));
         return show;

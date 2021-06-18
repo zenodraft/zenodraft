@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from './details';
-export const get_prereserved = (sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const deposition_show_prereserved = (sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     const deposition = yield deposition_show_details(sandbox, latest_id, verbose);
     return deposition.metadata.prereserve_doi.doi;
 });
