@@ -24,6 +24,7 @@
         "npm": ">=6.13.4"
     },
     "files": [
+        "assets",
         "dist"
     ],
     "homepage": "https://github.com/zenodraft/zenodraft",
@@ -43,9 +44,7 @@
         "all": "npm run clean && npm run build && npm pack",
         "build": "npm run mjs && npm run cjs",
         "cjs": "tsc --module commonjs -p tsconfig.json",
-        "clean": "rm -rf dist/* dist/.zenodo.json.empty",
-        "copy-assets": "cp assets/.zenodo.json.empty dist/",
-        "postbuild": "npm run copy-assets",
+        "clean": "rm -rf dist/*",
         "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name *.js`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done"
     },
     "types": "dist/zenodraft.d.ts",

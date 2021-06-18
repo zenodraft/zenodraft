@@ -23,7 +23,7 @@ export const update_deposition_metadata = async (sandbox: boolean, id: string, f
         'Authorization': `Bearer ${access_token}`,
         'Content-Type': 'application/json'
     }
-    const minimal_metadata_filename = path.join(__dirname, '..', '.zenodo.json.empty')
+    const minimal_metadata_filename = path.join(__dirname, '..', '..', 'assets', '.zenodo.json.empty')
     const minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'))
     const user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename as string, 'utf8'))
     const metadata = {...minimal_metadata, ...user_metadata}

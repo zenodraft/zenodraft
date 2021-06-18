@@ -145,7 +145,7 @@ Install globally with `-g` flag:
 
 ```shell
 # global install
-npm install -g git+https://github.com/jspaaks/zenodraft
+npm install -g git+https://github.com/zenodraft/zenodraft
 
 # this next command should now point to the program location
 which zenodraft
@@ -160,7 +160,7 @@ Or install locally without `-g` flag:
 
 ```shell
 # local install
-npm install git+https://github.com/jspaaks/zenodraft
+npm install git+https://github.com/zenodraft/zenodraft
 
 # this next command doesn't work for local installs
 which zenodraft
