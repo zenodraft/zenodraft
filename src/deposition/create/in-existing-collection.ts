@@ -9,7 +9,7 @@ import { get_api } from '../../helpers/get-api'
 import { validate_in_collection_value } from '../../helpers/validate-in-collection-value'
 
 
-export const create_empty_deposition_in_existing_collection = async (sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
+export const deposition_create_in_existing_collection = async (sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`)
     }

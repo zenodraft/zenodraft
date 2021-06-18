@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as commander from 'commander';
 import { file_add } from './file/add';
-import { create_empty_deposition_in_existing_collection } from './deposition/create/in-existing-collection';
+import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection';
 import { create_empty_deposition_in_new_collection } from './deposition/create/in-new-collection';
 import { delete_deposition_file } from './file/delete';
 import { delete_draft_deposition } from './deposition/delete';
@@ -35,7 +35,7 @@ export const cli = () => {
             collection_id: 'id for the collection that the new deposition will be part of.'
         })
             .action((collection_id) => {
-            create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+            deposition_create_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
         });
         return create;
     })();

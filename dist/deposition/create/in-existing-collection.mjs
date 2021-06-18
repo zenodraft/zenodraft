@@ -14,7 +14,7 @@ import { update_deposition_metadata } from '../../metadata/update';
 import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment';
 import { get_api } from '../../helpers/get-api';
 import { validate_in_collection_value } from '../../helpers/validate-in-collection-value';
-export const create_empty_deposition_in_existing_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const deposition_create_in_existing_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);
     }

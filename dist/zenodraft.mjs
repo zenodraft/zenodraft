@@ -1,6 +1,6 @@
 import { file_add } from './file/add';
 import { cli } from './cli';
-import { create_empty_deposition_in_existing_collection } from './deposition/create/in-existing-collection';
+import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection';
 import { create_empty_deposition_in_new_collection } from './deposition/create/in-new-collection';
 import { delete_deposition_file } from './file/delete';
 import { delete_draft_deposition } from './deposition/delete';
@@ -15,7 +15,7 @@ import { validate_in_collection_value } from './helpers/validate-in-collection-v
 export default {
     file_add,
     cli,
-    create_empty_deposition_in_existing_collection,
+    deposition_create_in_existing_collection,
     create_empty_deposition_in_new_collection,
     delete_deposition_file,
     delete_draft_deposition,

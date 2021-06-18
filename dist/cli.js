@@ -38,7 +38,7 @@ const cli = () => {
             collection_id: 'id for the collection that the new deposition will be part of.'
         })
             .action((collection_id) => {
-            in_existing_collection_1.create_empty_deposition_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+            in_existing_collection_1.deposition_create_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
         });
         return create;
     })();

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create_empty_deposition_in_existing_collection = void 0;
+exports.deposition_create_in_existing_collection = void 0;
 const details_1 = require("../../deposition/show/details");
 const node_fetch_1 = require("node-fetch");
 const delete_1 = require("../../file/delete");
@@ -17,7 +17,7 @@ const update_1 = require("../../metadata/update");
 const get_access_token_from_environment_1 = require("../../helpers/get-access-token-from-environment");
 const get_api_1 = require("../../helpers/get-api");
 const validate_in_collection_value_1 = require("../../helpers/validate-in-collection-value");
-const create_empty_deposition_in_existing_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const deposition_create_in_existing_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);
     }
@@ -28,7 +28,7 @@ const create_empty_deposition_in_existing_collection = (sandbox, collection_id, 
     yield update_1.update_deposition_metadata(sandbox, new_id, undefined, verbose);
     return new_id;
 });
-exports.create_empty_deposition_in_existing_collection = create_empty_deposition_in_existing_collection;
+exports.deposition_create_in_existing_collection = deposition_create_in_existing_collection;
 const create_new_versioned_deposition = (sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new version off of latest version in collection...`);

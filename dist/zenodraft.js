@@ -17,7 +17,7 @@ const validate_in_collection_value_1 = require("./helpers/validate-in-collection
 exports.default = {
     file_add: add_1.file_add,
     cli: cli_1.cli,
-    create_empty_deposition_in_existing_collection: in_existing_collection_1.create_empty_deposition_in_existing_collection,
+    deposition_create_in_existing_collection: in_existing_collection_1.deposition_create_in_existing_collection,
     create_empty_deposition_in_new_collection: in_new_collection_1.create_empty_deposition_in_new_collection,
     delete_deposition_file: delete_1.delete_deposition_file,
     delete_draft_deposition: delete_2.delete_draft_deposition,
