@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as commander from 'commander';
-import { add_file_to_deposition } from './file/add';
+import { file_add } from './file/add';
 import { create_empty_deposition_in_existing_collection } from './deposition/create/in-existing-collection';
 import { create_empty_deposition_in_new_collection } from './deposition/create/in-new-collection';
 import { delete_deposition_file } from './file/delete';
@@ -118,7 +118,7 @@ export const cli = () => {
             filename: 'filename of the local file that is going to be added'
         })
             .action((id, filename) => {
-            add_file_to_deposition(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            file_add(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
         });
         file
             .command('delete')

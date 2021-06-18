@@ -12,7 +12,7 @@ import * as fs from 'fs';
 import { get_deposition_details } from '../deposition/show/details';
 import * as mime from 'mime-types';
 import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
-export const add_file_to_deposition = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const file_add = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);
     }

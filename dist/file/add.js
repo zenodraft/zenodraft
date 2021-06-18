@@ -9,13 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.add_file_to_deposition = void 0;
+exports.file_add = void 0;
 const node_fetch_1 = require("node-fetch");
 const fs = require("fs");
 const details_1 = require("../deposition/show/details");
 const mime = require("mime-types");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
-const add_file_to_deposition = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const file_add = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);
     }
@@ -43,4 +43,4 @@ const add_file_to_deposition = (sandbox, id, filename, verbose = false) => __awa
         throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText} `);
     }
 });
-exports.add_file_to_deposition = add_file_to_deposition;
+exports.file_add = file_add;

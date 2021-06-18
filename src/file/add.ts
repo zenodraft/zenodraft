@@ -6,7 +6,7 @@ import * as mime from 'mime-types'
 import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 
 
-export const add_file_to_deposition = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
+export const file_add = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }

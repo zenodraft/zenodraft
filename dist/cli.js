@@ -121,7 +121,7 @@ const cli = () => {
             filename: 'filename of the local file that is going to be added'
         })
             .action((id, filename) => {
-            add_1.add_file_to_deposition(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            add_1.file_add(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
         });
         file
             .command('delete')
