@@ -4,7 +4,7 @@ import { deposition_create_in_existing_collection } from './deposition/create/in
 import { deposition_create_in_new_collection } from './deposition/create/in-new-collection'
 import { file_delete } from './file/delete'
 import { deposition_delete } from './deposition/delete'
-import { get_access_token_from_environment } from './helpers/get-access-token-from-environment'
+import { helpers_get_access_token_from_environment } from './helpers/get-access-token-from-environment'
 import { get_api } from './helpers/get-api'
 import { deposition_show_details } from './deposition/show/details'
 import { deposition_show_latest } from './deposition/show/latest'
@@ -21,7 +21,7 @@ export default {
     deposition_create_in_new_collection,
     file_delete,
     deposition_delete,
-    get_access_token_from_environment,
+    helpers_get_access_token_from_environment,
     get_api,
     deposition_show_details,
     deposition_show_latest,

@@ -1,7 +1,7 @@
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import fetch from 'node-fetch'
 import {RequestInit} from 'node-fetch'
-import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
+import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
 import { get_api } from '../../helpers/get-api'
 
 
@@ -9,7 +9,7 @@ export const deposition_show_details = async (sandbox: boolean, id: string, verb
     if (verbose) {
         console.log(`getting deposition details for deposition with id ${id}...`)
     }
-    const access_token = get_access_token_from_environment(sandbox)
+    const access_token = helpers_get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'GET'

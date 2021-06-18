@@ -17,7 +17,7 @@ const deposition_publish = (sandbox, id, verbose = false) => __awaiter(void 0, v
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);
     }
-    const access_token = get_access_token_from_environment_1.get_access_token_from_environment(sandbox);
+    const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
     const api = get_api_1.get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}/actions/publish`;
     const method = 'POST';

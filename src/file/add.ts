@@ -3,14 +3,14 @@ import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
 import { deposition_show_details } from '../deposition/show/details'
 import * as mime from 'mime-types'
-import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
+import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 
 
 export const file_add = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }
-    const access_token = get_access_token_from_environment(sandbox)
+    const access_token = helpers_get_access_token_from_environment(sandbox)
     const deposition = await deposition_show_details(sandbox, id)
     const bucket = deposition.links.bucket
     const content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'

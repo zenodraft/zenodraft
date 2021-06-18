@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import { file_delete } from '../../file/delete'
 import { metadata_update } from '../../metadata/update'
-import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
+import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
 import { get_api } from '../../helpers/get-api'
 import { validate_in_collection_value } from '../../helpers/validate-in-collection-value'
 
@@ -26,7 +26,7 @@ const create_new_versioned_deposition = async (sandbox: boolean, latest_id: stri
     if (verbose) {
         console.log(`creating a new version off of latest version in collection...`)
     }
-    const access_token = get_access_token_from_environment(sandbox)
+    const access_token = helpers_get_access_token_from_environment(sandbox)
     const api = get_api(sandbox)
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`
     const method = 'POST'

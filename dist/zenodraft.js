@@ -21,7 +21,7 @@ exports.default = {
     deposition_create_in_new_collection: in_new_collection_1.deposition_create_in_new_collection,
     file_delete: delete_1.file_delete,
     deposition_delete: delete_2.deposition_delete,
-    get_access_token_from_environment: get_access_token_from_environment_1.get_access_token_from_environment,
+    helpers_get_access_token_from_environment: get_access_token_from_environment_1.helpers_get_access_token_from_environment,
     get_api: get_api_1.get_api,
     deposition_show_details: details_1.deposition_show_details,
     deposition_show_latest: latest_1.deposition_show_latest,

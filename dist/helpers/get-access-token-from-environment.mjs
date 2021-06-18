@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-export const get_access_token_from_environment = (sandbox) => {
+export const helpers_get_access_token_from_environment = (sandbox) => {
     if (sandbox) {
         const token = process.env.ZENODO_SANDBOX_ACCESS_TOKEN;
         if (token !== undefined) {

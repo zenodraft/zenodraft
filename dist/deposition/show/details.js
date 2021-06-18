@@ -17,7 +17,7 @@ const deposition_show_details = (sandbox, id, verbose = false) => __awaiter(void
     if (verbose) {
         console.log(`getting deposition details for deposition with id ${id}...`);
     }
-    const access_token = get_access_token_from_environment_1.get_access_token_from_environment(sandbox);
+    const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
     const api = get_api_1.get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'GET';

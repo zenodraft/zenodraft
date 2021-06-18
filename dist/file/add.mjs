@@ -11,12 +11,12 @@ import fetch from 'node-fetch';
 import * as fs from 'fs';
 import { deposition_show_details } from '../deposition/show/details';
 import * as mime from 'mime-types';
-import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
+import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
 export const file_add = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);
     }
-    const access_token = get_access_token_from_environment(sandbox);
+    const access_token = helpers_get_access_token_from_environment(sandbox);
     const deposition = yield deposition_show_details(sandbox, id);
     const bucket = deposition.links.bucket;
     const content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';

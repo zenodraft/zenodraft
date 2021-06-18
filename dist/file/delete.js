@@ -17,7 +17,7 @@ const file_delete = (sandbox, id, filename, verbose = false) => __awaiter(void 0
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`);
     }
-    const access_token = get_access_token_from_environment_1.get_access_token_from_environment(sandbox);
+    const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
     const deposition = yield details_1.deposition_show_details(sandbox, id);
     const bucket = deposition.links.bucket;
     const method = 'DELETE';
