@@ -189,7 +189,7 @@ _zenodraft_completions()
 complete -F _zenodraft_completions zenodraft
 ```
 
-Source this script to add autocomplete powers to the zenodraft binary, using something like:
+Source this script to add autocomplete powers to the zenodraft program, using something like:
 ```
 # Add autocomplete powers to zenodraft: 
 TMPFILE=$(mktemp)
