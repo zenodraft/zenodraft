@@ -13,12 +13,12 @@ import { file_delete } from '../../file/delete';
 import { metadata_update } from '../../metadata/update';
 import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment';
 import { helpers_get_api } from '../../helpers/get-api';
-import { validate_in_collection_value } from '../../helpers/validate-in-collection-value';
+import { helpers_validate_in_collection_value } from '../../helpers/validate-in-collection-value';
 export const deposition_create_in_existing_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);
     }
-    yield validate_in_collection_value(sandbox, collection_id, verbose);
+    yield helpers_validate_in_collection_value(sandbox, collection_id, verbose);
     const latest_id = yield get_id_for_latest_version_in_collection(sandbox, collection_id, verbose);
     const new_id = yield create_new_versioned_deposition(sandbox, latest_id, verbose);
     yield remove_files_from_draft(sandbox, new_id, verbose);

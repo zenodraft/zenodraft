@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from '../deposition/show/details';
-export const validate_in_collection_value = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const helpers_validate_in_collection_value = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`checking that the collection_id value resolves to a concept, not a version...`);
     }

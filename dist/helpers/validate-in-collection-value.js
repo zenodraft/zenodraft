@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_in_collection_value = void 0;
+exports.helpers_validate_in_collection_value = void 0;
 const details_1 = require("../deposition/show/details");
-const validate_in_collection_value = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const helpers_validate_in_collection_value = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`checking that the collection_id value resolves to a concept, not a version...`);
     }
@@ -21,4 +21,4 @@ const validate_in_collection_value = (sandbox, collection_id, verbose = false) =
         throw new Error('Deposition id should be a concept id.');
     }
 });
-exports.validate_in_collection_value = validate_in_collection_value;
+exports.helpers_validate_in_collection_value = helpers_validate_in_collection_value;

@@ -1,7 +1,7 @@
 import { deposition_show_details } from '../deposition/show/details'
 
 
-export const validate_in_collection_value = async (sandbox: boolean, collection_id: string, verbose = false): Promise<void> => {
+export const helpers_validate_in_collection_value = async (sandbox: boolean, collection_id: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`checking that the collection_id value resolves to a concept, not a version...`)
     }

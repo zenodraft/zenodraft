@@ -21,7 +21,7 @@ const deposition_create_in_existing_collection = (sandbox, collection_id, verbos
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);
     }
-    yield validate_in_collection_value_1.validate_in_collection_value(sandbox, collection_id, verbose);
+    yield validate_in_collection_value_1.helpers_validate_in_collection_value(sandbox, collection_id, verbose);
     const latest_id = yield get_id_for_latest_version_in_collection(sandbox, collection_id, verbose);
     const new_id = yield create_new_versioned_deposition(sandbox, latest_id, verbose);
     yield remove_files_from_draft(sandbox, new_id, verbose);
