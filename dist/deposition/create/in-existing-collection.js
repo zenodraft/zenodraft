@@ -25,7 +25,7 @@ const deposition_create_in_existing_collection = (sandbox, collection_id, verbos
     const latest_id = yield get_id_for_latest_version_in_collection(sandbox, collection_id, verbose);
     const new_id = yield create_new_versioned_deposition(sandbox, latest_id, verbose);
     yield remove_files_from_draft(sandbox, new_id, verbose);
-    yield update_1.update_deposition_metadata(sandbox, new_id, undefined, verbose);
+    yield update_1.metadata_update(sandbox, new_id, undefined, verbose);
     return new_id;
 });
 exports.deposition_create_in_existing_collection = deposition_create_in_existing_collection;

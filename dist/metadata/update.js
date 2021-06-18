@@ -9,13 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.update_deposition_metadata = void 0;
+exports.metadata_update = void 0;
 const node_fetch_1 = require("node-fetch");
 const fs = require("fs");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
 const get_api_1 = require("../helpers/get-api");
 const path = require("path");
-const update_deposition_metadata = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`);
@@ -58,4 +58,4 @@ const update_deposition_metadata = (sandbox, id, filename, verbose = false) => _
         throw new Error(`Something went wrong while retrieving the json. ${e}`);
     }
 });
-exports.update_deposition_metadata = update_deposition_metadata;
+exports.metadata_update = metadata_update;

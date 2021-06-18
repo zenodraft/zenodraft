@@ -11,7 +11,7 @@ declare const _default: {
     deposition_show_latest: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<string>;
     deposition_show_prereserved: (sandbox: boolean, latest_id: string, verbose?: boolean) => Promise<string>;
     deposition_publish: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;
-    update_deposition_metadata: (sandbox: boolean, id: string, filename?: string, verbose?: boolean) => Promise<void>;
+    metadata_update: (sandbox: boolean, id: string, filename?: string, verbose?: boolean) => Promise<void>;
     validate_in_collection_value: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<void>;
 };
 export default _default;

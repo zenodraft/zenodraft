@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { deposition_show_details } from '../../deposition/show/details';
 import fetch from 'node-fetch';
 import { file_delete } from '../../file/delete';
-import { update_deposition_metadata } from '../../metadata/update';
+import { metadata_update } from '../../metadata/update';
 import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment';
 import { get_api } from '../../helpers/get-api';
 import { validate_in_collection_value } from '../../helpers/validate-in-collection-value';
@@ -22,7 +22,7 @@ export const deposition_create_in_existing_collection = (sandbox, collection_id,
     const latest_id = yield get_id_for_latest_version_in_collection(sandbox, collection_id, verbose);
     const new_id = yield create_new_versioned_deposition(sandbox, latest_id, verbose);
     yield remove_files_from_draft(sandbox, new_id, verbose);
-    yield update_deposition_metadata(sandbox, new_id, undefined, verbose);
+    yield metadata_update(sandbox, new_id, undefined, verbose);
     return new_id;
 });
 const create_new_versioned_deposition = (sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {

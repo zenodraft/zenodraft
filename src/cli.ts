@@ -6,7 +6,7 @@ import { file_delete } from './file/delete'
 import { deposition_delete } from './deposition/delete'
 import { deposition_show_details } from './deposition/show/details'
 import { deposition_publish } from './deposition/publish'
-import { update_deposition_metadata } from './metadata/update'
+import { metadata_update } from './metadata/update'
 import { deposition_show_latest } from './deposition/show/latest'
 import { deposition_show_prereserved } from './deposition/show/prereserved'
 
@@ -163,7 +163,7 @@ export const cli = () => {
                 filename: 'filename of file holding the metadata in Zenodo metadata format'
             })
             .action((id: string, filename: string) => {
-                update_deposition_metadata(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose)
+                metadata_update(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose)
             })
         metadata
             .command('clear')
@@ -172,7 +172,7 @@ export const cli = () => {
                 id: 'deposition id'
             })
             .action((id: string) => {
-                update_deposition_metadata(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose)
+                metadata_update(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose)
             })
         return metadata
     })()

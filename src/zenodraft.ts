@@ -10,7 +10,7 @@ import { deposition_show_details } from './deposition/show/details'
 import { deposition_show_latest } from './deposition/show/latest'
 import { deposition_show_prereserved } from './deposition/show/prereserved'
 import { deposition_publish } from './deposition/publish'
-import { update_deposition_metadata } from './metadata/update'
+import { metadata_update } from './metadata/update'
 import { validate_in_collection_value } from './helpers/validate-in-collection-value'
 
 
@@ -27,6 +27,6 @@ export default {
     deposition_show_latest,
     deposition_show_prereserved,
     deposition_publish,
-    update_deposition_metadata,
+    metadata_update,
     validate_in_collection_value
 }

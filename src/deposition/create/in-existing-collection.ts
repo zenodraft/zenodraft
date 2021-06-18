@@ -3,7 +3,7 @@ import { RequestInit } from 'node-fetch'
 import fetch from 'node-fetch'
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import { file_delete } from '../../file/delete'
-import { update_deposition_metadata } from '../../metadata/update'
+import { metadata_update } from '../../metadata/update'
 import { get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
 import { get_api } from '../../helpers/get-api'
 import { validate_in_collection_value } from '../../helpers/validate-in-collection-value'
@@ -17,7 +17,7 @@ export const deposition_create_in_existing_collection = async (sandbox: boolean,
     const latest_id = await get_id_for_latest_version_in_collection(sandbox, collection_id, verbose)
     const new_id = await create_new_versioned_deposition(sandbox, latest_id, verbose)
     await remove_files_from_draft(sandbox, new_id, verbose)
-    await update_deposition_metadata(sandbox, new_id, undefined, verbose)
+    await metadata_update(sandbox, new_id, undefined, verbose)
     return new_id
 }
 

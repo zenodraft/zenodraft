@@ -146,7 +146,7 @@ const cli = () => {
             filename: 'filename of file holding the metadata in Zenodo metadata format'
         })
             .action((id, filename) => {
-            update_1.update_deposition_metadata(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            update_1.metadata_update(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
         });
         metadata
             .command('clear')
@@ -155,7 +155,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => {
-            update_1.update_deposition_metadata(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
+            update_1.metadata_update(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
         });
         return metadata;
     })();

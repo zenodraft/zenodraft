@@ -12,7 +12,7 @@ import * as fs from 'fs';
 import { get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
 import { get_api } from '../helpers/get-api';
 import * as path from 'path';
-export const update_deposition_metadata = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`);

@@ -7,7 +7,7 @@ import { get_api } from '../helpers/get-api'
 import * as path from 'path'
 
 
-export const update_deposition_metadata = async (sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
+export const metadata_update = async (sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`)
