@@ -6,9 +6,6 @@
 git clone https://github.com/zenodraft/zenodraft
 git checkout -b <new branch>
 npm install
-
-# do development
-
 ```
 
 ## npm run scripts
@@ -19,16 +16,16 @@ Clean up generated code from previous builds:
 npm run clean
 ```
 
-Transpile the TypeScript code from src to dist as CommonJS modules (`dist/**/*.js`) and as ES6 modules (`dist/**/*.mjs`):
+Transpile the TypeScript code from `src/` to `dist/` as CommonJS modules (`dist/**/*.js`) and as ES6 modules (`dist/**/*.mjs`):
 
 ```
 npm run build
 ```
 
-Package the contents from dist into a distributable tarball:
+Package the contents from `dist/` into a distributable tarball:
 
 ```
-npm run pack
+npm pack
 ```
 
 All of the above (clean, build, pack):
@@ -40,7 +37,7 @@ npm run all
 
 ## Local testing of the cli from the package
 
-Assert tarball zenodraft-x.y.z.tgz has been created with `npm run pack`.
+Assert tarball `zenodraft-x.y.z.tgz` has been created with `npm pack`.
 
 ```
 cd $(mktemp -d --tmpdir zenodraft.XXXXXX)
@@ -55,7 +52,7 @@ node_modules/.bin/zenodraft --help
 
 ### Using CommonJS `require`
 
-Make a file e.g. `index.js` with the following contents:
+In a new directory, make a file e.g. `index.js` with the following contents:
 
 ```javascript
 // file: index.js
@@ -91,7 +88,7 @@ Should show something like:
 ### Using ES6 `import`
 
 
-Make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
+In a new directory, make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
 
 ```javascript
 // file: index.mjs
