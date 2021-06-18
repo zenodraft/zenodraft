@@ -29,7 +29,7 @@ export const update_deposition_metadata = (sandbox, id, filename, verbose = fals
         'Authorization': `Bearer ${access_token}`,
         'Content-Type': 'application/json'
     };
-    const minimal_metadata_filename = path.join(__dirname, '.zenodo.json.empty');
+    const minimal_metadata_filename = path.join(__dirname, '..', '.zenodo.json.empty');
     const minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'));
     const user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename, 'utf8'));
     const metadata = Object.assign(Object.assign({}, minimal_metadata), user_metadata);
