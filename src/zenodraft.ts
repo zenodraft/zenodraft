@@ -7,7 +7,7 @@ import { deposition_delete } from './deposition/delete'
 import { get_access_token_from_environment } from './helpers/get-access-token-from-environment'
 import { get_api } from './helpers/get-api'
 import { deposition_show_details } from './deposition/show/details'
-import { get_latest_draft } from './deposition/show/latest'
+import { deposition_show_latest } from './deposition/show/latest'
 import { get_prereserved } from './deposition/show/prereserved'
 import { publish_draft_deposition } from './deposition/publish'
 import { update_deposition_metadata } from './metadata/update'
@@ -24,7 +24,7 @@ export default {
     get_access_token_from_environment,
     get_api,
     deposition_show_details,
-    get_latest_draft,
+    deposition_show_latest,
     get_prereserved,
     publish_draft_deposition,
     update_deposition_metadata,

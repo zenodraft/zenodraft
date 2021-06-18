@@ -7,7 +7,7 @@ import { deposition_delete } from './deposition/delete'
 import { deposition_show_details } from './deposition/show/details'
 import { publish_draft_deposition } from './deposition/publish'
 import { update_deposition_metadata } from './metadata/update'
-import { get_latest_draft } from './deposition/show/latest'
+import { deposition_show_latest } from './deposition/show/latest'
 import { get_prereserved } from './deposition/show/prereserved'
 
 
@@ -61,7 +61,7 @@ export const cli = () => {
                 collection_id: 'id of the collection whose latest draft we want to retrieve'
             })
             .action(async (collection_id: string) => {
-                const latest_draft_id = await get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
+                const latest_draft_id = await deposition_show_latest(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
                 if (latest_draft_id === '') {
                     if (zenodraft.opts().verbose) {
                         console.log(`There are no drafts in collection ${collection_id}.`)

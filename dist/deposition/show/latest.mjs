@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { deposition_show_details } from './details';
 import { validate_in_collection_value } from '../../helpers/validate-in-collection-value';
-export const get_latest_draft = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const deposition_show_latest = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     yield validate_in_collection_value(sandbox, collection_id, verbose);
     const id = (parseInt(collection_id) + 1).toString();
     const deposition = yield deposition_show_details(sandbox, id, verbose);

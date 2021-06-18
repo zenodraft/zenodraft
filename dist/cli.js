@@ -62,7 +62,7 @@ const cli = () => {
             collection_id: 'id of the collection whose latest draft we want to retrieve'
         })
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
-            const latest_draft_id = yield latest_1.get_latest_draft(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+            const latest_draft_id = yield latest_1.deposition_show_latest(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
             if (latest_draft_id === '') {
                 if (zenodraft.opts().verbose) {
                     console.log(`There are no drafts in collection ${collection_id}.`);

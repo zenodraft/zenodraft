@@ -24,7 +24,7 @@ exports.default = {
     get_access_token_from_environment: get_access_token_from_environment_1.get_access_token_from_environment,
     get_api: get_api_1.get_api,
     deposition_show_details: details_1.deposition_show_details,
-    get_latest_draft: latest_1.get_latest_draft,
+    deposition_show_latest: latest_1.deposition_show_latest,
     get_prereserved: prereserved_1.get_prereserved,
     publish_draft_deposition: publish_1.publish_draft_deposition,
     update_deposition_metadata: update_1.update_deposition_metadata,

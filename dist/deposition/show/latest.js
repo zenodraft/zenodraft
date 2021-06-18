@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_latest_draft = void 0;
+exports.deposition_show_latest = void 0;
 const details_1 = require("./details");
 const validate_in_collection_value_1 = require("../../helpers/validate-in-collection-value");
-const get_latest_draft = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const deposition_show_latest = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     yield validate_in_collection_value_1.validate_in_collection_value(sandbox, collection_id, verbose);
     const id = (parseInt(collection_id) + 1).toString();
     const deposition = yield details_1.deposition_show_details(sandbox, id, verbose);
@@ -25,4 +25,4 @@ const get_latest_draft = (sandbox, collection_id, verbose = false) => __awaiter(
     }
     return latest_draft_id;
 });
-exports.get_latest_draft = get_latest_draft;
+exports.deposition_show_latest = deposition_show_latest;
