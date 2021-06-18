@@ -1,7 +1,8 @@
 {
     "author": "Jurriaan H. Spaaks",
     "bin": {
-        "zenodraft": "bin/index.js"
+        "zenodraft": "bin/index.js",
+        "zenodraft-autocomplete": "bin/autocomplete.js"
     },
     "bugs": {
         "url": "https://github.com/zenodraft/zenodraft/issues"

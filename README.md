@@ -170,6 +170,33 @@ node_modules/.bin/zenodraft --version
 node_modules/.bin/zenodraft --help
 ```
 
+## Autocomplete
+
+An autocomplete script is bundled with the package as `assets/autocomplete.sh`. You can print it to the terminal as follows:
+
+```
+zenodraft-autocomplete
+```
+
+Which will print something like:
+
+```shell
+#/usr/bin/env bash
+_zenodraft_completions()
+{
+    ...
+}
+complete -F _zenodraft_completions zenodraft
+```
+
+Source this script to add autocomplete powers to the zenodraft binary, using something like:
+```
+TMPFILE=$(mktemp)
+zenodraft-autocomplete > $TMPFILE
+source $TMPFILE
+```
+
+
 ## `zenodraft` as a library, using CommonJS `require`
 
 Make a file e.g. `index.js` with the following contents:
