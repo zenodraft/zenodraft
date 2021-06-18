@@ -12,7 +12,7 @@ import fetch from 'node-fetch';
 import { file_delete } from '../../file/delete';
 import { metadata_update } from '../../metadata/update';
 import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment';
-import { get_api } from '../../helpers/get-api';
+import { helpers_get_api } from '../../helpers/get-api';
 import { validate_in_collection_value } from '../../helpers/validate-in-collection-value';
 export const deposition_create_in_existing_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
@@ -30,7 +30,7 @@ const create_new_versioned_deposition = (sandbox, latest_id, verbose = false) =>
         console.log(`creating a new version off of latest version in collection...`);
     }
     const access_token = helpers_get_access_token_from_environment(sandbox);
-    const api = get_api(sandbox);
+    const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`;
     const method = 'POST';
     const headers = {

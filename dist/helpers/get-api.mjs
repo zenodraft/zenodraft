@@ -1,3 +1,3 @@
-export const get_api = (sandbox) => {
+export const helpers_get_api = (sandbox) => {
     return `https://${sandbox ? 'sandbox.' : ''}zenodo.org/api`;
 };

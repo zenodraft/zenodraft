@@ -22,7 +22,7 @@ exports.default = {
     file_delete: delete_1.file_delete,
     deposition_delete: delete_2.deposition_delete,
     helpers_get_access_token_from_environment: get_access_token_from_environment_1.helpers_get_access_token_from_environment,
-    get_api: get_api_1.get_api,
+    helpers_get_api: get_api_1.helpers_get_api,
     deposition_show_details: details_1.deposition_show_details,
     deposition_show_latest: latest_1.deposition_show_latest,
     deposition_show_prereserved: prereserved_1.deposition_show_prereserved,

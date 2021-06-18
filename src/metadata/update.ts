@@ -3,7 +3,7 @@ import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
 import { DepositionsResponse } from '../helpers/zenodo-response-types'
 import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
-import { get_api } from '../helpers/get-api'
+import { helpers_get_api } from '../helpers/get-api'
 import * as path from 'path'
 
 
@@ -16,7 +16,7 @@ export const metadata_update = async (sandbox: boolean, id: string, filename?: s
         }
     }
     const access_token = helpers_get_access_token_from_environment(sandbox)
-    const api = get_api(sandbox)
+    const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'PUT'
     const headers = {

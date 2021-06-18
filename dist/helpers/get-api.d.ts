@@ -1,1 +1,1 @@
-export declare const get_api: (sandbox: boolean) => string;
+export declare const helpers_get_api: (sandbox: boolean) => string;

@@ -18,7 +18,7 @@ const deposition_create_in_new_collection = (sandbox, verbose = false) => __awai
         console.log(`creating a new, empty deposition in a new collection...`);
     }
     const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
-    const api = get_api_1.get_api(sandbox);
+    const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = '/deposit/depositions';
     const method = 'POST';
     const headers = {

@@ -25,7 +25,7 @@ const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(vo
         }
     }
     const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
-    const api = get_api_1.get_api(sandbox);
+    const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'PUT';
     const headers = {

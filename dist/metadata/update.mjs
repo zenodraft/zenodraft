@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
-import { get_api } from '../helpers/get-api';
+import { helpers_get_api } from '../helpers/get-api';
 import * as path from 'path';
 export const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
@@ -22,7 +22,7 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
         }
     }
     const access_token = helpers_get_access_token_from_environment(sandbox);
-    const api = get_api(sandbox);
+    const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'PUT';
     const headers = {

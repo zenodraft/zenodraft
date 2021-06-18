@@ -34,7 +34,7 @@ const create_new_versioned_deposition = (sandbox, latest_id, verbose = false) =>
         console.log(`creating a new version off of latest version in collection...`);
     }
     const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
-    const api = get_api_1.get_api(sandbox);
+    const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`;
     const method = 'POST';
     const headers = {

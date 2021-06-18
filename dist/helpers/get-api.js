@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_api = void 0;
-const get_api = (sandbox) => {
+exports.helpers_get_api = void 0;
+const helpers_get_api = (sandbox) => {
     return `https://${sandbox ? 'sandbox.' : ''}zenodo.org/api`;
 };
-exports.get_api = get_api;
+exports.helpers_get_api = helpers_get_api;
