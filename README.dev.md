@@ -68,19 +68,20 @@ Should show something like:
 
 ```shell
 {
-  add_file_to_deposition: [Function: add_file_to_deposition],
   cli: [Function: cli],
-  create_empty_deposition_in_existing_collection: [Function: create_empty_deposition_in_existing_collection],
-  create_empty_deposition_in_new_collection: [Function: create_empty_deposition_in_new_collection],
-  delete_deposition_file: [Function: delete_deposition_file],
-  delete_draft_deposition: [Function: delete_draft_deposition],
-  get_access_token_from_environment: [Function: get_access_token_from_environment],
-  get_api: [Function: get_api],
-  get_deposition_details: [Function: get_deposition_details],
-  get_latest_draft: [Function: get_latest_draft],
-  publish_draft_deposition: [Function: publish_draft_deposition],
-  update_deposition_metadata: [Function: update_deposition_metadata],
-  validate_in_collection_value: [Function: validate_in_collection_value]
+  deposition_create_in_existing_collection: [Function: deposition_create_in_existing_collection],
+  deposition_create_in_new_collection: [Function: deposition_create_in_new_collection],
+  deposition_delete: [Function: deposition_delete],
+  deposition_publish: [Function: deposition_publish],
+  deposition_show_details: [Function: deposition_show_details],
+  deposition_show_latest: [Function: deposition_show_latest],
+  deposition_show_prereserved: [Function: deposition_show_prereserved],
+  file_add: [Function: file_add],
+  file_delete: [Function: file_delete],
+  helpers_get_access_token_from_environment: [Function: helpers_get_access_token_from_environment],
+  helpers_get_api: [Function: helpers_get_api],
+  helpers_validate_in_collection_value: [Function: helpers_validate_in_collection_value],
+  metadata_update: [Function: metadata_update]
 }
 ```
 
@@ -108,18 +109,19 @@ Should show something like:
 
 ```shell
 {
-  add_file_to_deposition: [Function: add_file_to_deposition],
   cli: [Function: cli],
-  create_empty_deposition_in_existing_collection: [Function: create_empty_deposition_in_existing_collection],
-  create_empty_deposition_in_new_collection: [Function: create_empty_deposition_in_new_collection],
-  delete_deposition_file: [Function: delete_deposition_file],
-  delete_draft_deposition: [Function: delete_draft_deposition],
-  get_access_token_from_environment: [Function: get_access_token_from_environment],
-  get_api: [Function: get_api],
-  get_deposition_details: [Function: get_deposition_details],
-  get_latest_draft: [Function: get_latest_draft],
-  publish_draft_deposition: [Function: publish_draft_deposition],
-  update_deposition_metadata: [Function: update_deposition_metadata],
-  validate_in_collection_value: [Function: validate_in_collection_value]
+  deposition_create_in_existing_collection: [Function: deposition_create_in_existing_collection],
+  deposition_create_in_new_collection: [Function: deposition_create_in_new_collection],
+  deposition_delete: [Function: deposition_delete],
+  deposition_publish: [Function: deposition_publish],
+  deposition_show_details: [Function: deposition_show_details],
+  deposition_show_latest: [Function: deposition_show_latest],
+  deposition_show_prereserved: [Function: deposition_show_prereserved],
+  file_add: [Function: file_add],
+  file_delete: [Function: file_delete],
+  helpers_get_access_token_from_environment: [Function: helpers_get_access_token_from_environment],
+  helpers_get_api: [Function: helpers_get_api],
+  helpers_validate_in_collection_value: [Function: helpers_validate_in_collection_value],
+  metadata_update: [Function: metadata_update]
 }
 ```
