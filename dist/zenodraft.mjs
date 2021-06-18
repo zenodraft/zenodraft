@@ -1,7 +1,7 @@
 import { file_add } from './file/add';
 import { cli } from './cli';
 import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection';
-import { create_empty_deposition_in_new_collection } from './deposition/create/in-new-collection';
+import { deposition_create_in_new_collection } from './deposition/create/in-new-collection';
 import { delete_deposition_file } from './file/delete';
 import { delete_draft_deposition } from './deposition/delete';
 import { get_access_token_from_environment } from './helpers/get-access-token-from-environment';
@@ -16,7 +16,7 @@ export default {
     file_add,
     cli,
     deposition_create_in_existing_collection,
-    create_empty_deposition_in_new_collection,
+    deposition_create_in_new_collection,
     delete_deposition_file,
     delete_draft_deposition,
     get_access_token_from_environment,

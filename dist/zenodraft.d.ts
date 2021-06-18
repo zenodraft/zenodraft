@@ -2,7 +2,7 @@ declare const _default: {
     file_add: (sandbox: boolean, id: string, filename: string, verbose?: boolean) => Promise<void>;
     cli: () => import("commander").Command;
     deposition_create_in_existing_collection: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<string>;
-    create_empty_deposition_in_new_collection: (sandbox: boolean, verbose?: boolean) => Promise<string>;
+    deposition_create_in_new_collection: (sandbox: boolean, verbose?: boolean) => Promise<string>;
     delete_deposition_file: (sandbox: boolean, id: string, filename: string, verbose?: boolean) => Promise<void>;
     delete_draft_deposition: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;
     get_access_token_from_environment: (sandbox: boolean) => string;

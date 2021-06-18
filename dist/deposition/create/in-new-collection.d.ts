@@ -1,1 +1,1 @@
-export declare const create_empty_deposition_in_new_collection: (sandbox: boolean, verbose?: boolean) => Promise<string>;
+export declare const deposition_create_in_new_collection: (sandbox: boolean, verbose?: boolean) => Promise<string>;

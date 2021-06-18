@@ -5,7 +5,7 @@ import { get_access_token_from_environment } from '../../helpers/get-access-toke
 import { get_api } from '../../helpers/get-api'
 
 
-export const create_empty_deposition_in_new_collection = async (sandbox: boolean, verbose = false): Promise<string> => {
+export const deposition_create_in_new_collection = async (sandbox: boolean, verbose = false): Promise<string> => {
     if (verbose) {
         console.log(`creating a new, empty deposition in a new collection...`)
     }

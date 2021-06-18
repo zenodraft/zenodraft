@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as commander from 'commander';
 import { file_add } from './file/add';
 import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection';
-import { create_empty_deposition_in_new_collection } from './deposition/create/in-new-collection';
+import { deposition_create_in_new_collection } from './deposition/create/in-new-collection';
 import { delete_deposition_file } from './file/delete';
 import { delete_draft_deposition } from './deposition/delete';
 import { get_deposition_details } from './deposition/show/details';
@@ -26,7 +26,7 @@ export const cli = () => {
             .command('in-new-collection')
             .description('create a new draft deposition in a new collection')
             .action(() => {
-            create_empty_deposition_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
+            deposition_create_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
         });
         create
             .command('in-existing-collection')

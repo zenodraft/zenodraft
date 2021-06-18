@@ -29,7 +29,7 @@ const cli = () => {
             .command('in-new-collection')
             .description('create a new draft deposition in a new collection')
             .action(() => {
-            in_new_collection_1.create_empty_deposition_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
+            in_new_collection_1.deposition_create_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
         });
         create
             .command('in-existing-collection')

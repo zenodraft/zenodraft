@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create_empty_deposition_in_new_collection = void 0;
+exports.deposition_create_in_new_collection = void 0;
 const node_fetch_1 = require("node-fetch");
 const get_access_token_from_environment_1 = require("../../helpers/get-access-token-from-environment");
 const get_api_1 = require("../../helpers/get-api");
-const create_empty_deposition_in_new_collection = (sandbox, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const deposition_create_in_new_collection = (sandbox, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty deposition in a new collection...`);
     }
@@ -49,4 +49,4 @@ const create_empty_deposition_in_new_collection = (sandbox, verbose = false) => 
         throw new Error(`Something went wrong while retrieving the json. ${e}`);
     }
 });
-exports.create_empty_deposition_in_new_collection = create_empty_deposition_in_new_collection;
+exports.deposition_create_in_new_collection = deposition_create_in_new_collection;
