@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.publish_draft_deposition = void 0;
+exports.deposition_publish = void 0;
 const node_fetch_1 = require("node-fetch");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
 const get_api_1 = require("../helpers/get-api");
-const publish_draft_deposition = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const deposition_publish = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);
     }
@@ -37,4 +37,4 @@ const publish_draft_deposition = (sandbox, id, verbose = false) => __awaiter(voi
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
     }
 });
-exports.publish_draft_deposition = publish_draft_deposition;
+exports.deposition_publish = deposition_publish;

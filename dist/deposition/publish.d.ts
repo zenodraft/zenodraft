@@ -1,1 +1,1 @@
-export declare const publish_draft_deposition: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;
+export declare const deposition_publish: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;

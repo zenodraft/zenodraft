@@ -10,7 +10,7 @@ declare const _default: {
     deposition_show_details: (sandbox: boolean, id: string, verbose?: boolean) => Promise<import("./helpers/zenodo-response-types").DepositionsResponse>;
     deposition_show_latest: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<string>;
     deposition_show_prereserved: (sandbox: boolean, latest_id: string, verbose?: boolean) => Promise<string>;
-    publish_draft_deposition: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;
+    deposition_publish: (sandbox: boolean, id: string, verbose?: boolean) => Promise<void>;
     update_deposition_metadata: (sandbox: boolean, id: string, filename?: string, verbose?: boolean) => Promise<void>;
     validate_in_collection_value: (sandbox: boolean, collection_id: string, verbose?: boolean) => Promise<void>;
 };

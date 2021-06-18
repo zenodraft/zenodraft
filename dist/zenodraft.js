@@ -26,7 +26,7 @@ exports.default = {
     deposition_show_details: details_1.deposition_show_details,
     deposition_show_latest: latest_1.deposition_show_latest,
     deposition_show_prereserved: prereserved_1.deposition_show_prereserved,
-    publish_draft_deposition: publish_1.publish_draft_deposition,
+    deposition_publish: publish_1.deposition_publish,
     update_deposition_metadata: update_1.update_deposition_metadata,
     validate_in_collection_value: validate_in_collection_value_1.validate_in_collection_value
 };

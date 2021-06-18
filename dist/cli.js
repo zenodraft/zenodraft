@@ -106,7 +106,7 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => {
-            publish_1.publish_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            publish_1.deposition_publish(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
         });
         return deposition;
     })();

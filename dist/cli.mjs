@@ -14,7 +14,7 @@ import { deposition_create_in_new_collection } from './deposition/create/in-new-
 import { file_delete } from './file/delete';
 import { deposition_delete } from './deposition/delete';
 import { deposition_show_details } from './deposition/show/details';
-import { publish_draft_deposition } from './deposition/publish';
+import { deposition_publish } from './deposition/publish';
 import { update_deposition_metadata } from './metadata/update';
 import { deposition_show_latest } from './deposition/show/latest';
 import { deposition_show_prereserved } from './deposition/show/prereserved';
@@ -103,7 +103,7 @@ export const cli = () => {
             id: 'deposition id'
         })
             .action((id) => {
-            publish_draft_deposition(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            deposition_publish(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
         });
         return deposition;
     })();

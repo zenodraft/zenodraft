@@ -9,7 +9,7 @@ import { get_api } from './helpers/get-api';
 import { deposition_show_details } from './deposition/show/details';
 import { deposition_show_latest } from './deposition/show/latest';
 import { deposition_show_prereserved } from './deposition/show/prereserved';
-import { publish_draft_deposition } from './deposition/publish';
+import { deposition_publish } from './deposition/publish';
 import { update_deposition_metadata } from './metadata/update';
 import { validate_in_collection_value } from './helpers/validate-in-collection-value';
 export default {
@@ -24,7 +24,7 @@ export default {
     deposition_show_details,
     deposition_show_latest,
     deposition_show_prereserved,
-    publish_draft_deposition,
+    deposition_publish,
     update_deposition_metadata,
     validate_in_collection_value
 };
