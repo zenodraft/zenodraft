@@ -85,8 +85,8 @@ RECORD_ID=123457
     Typical usage in automation is to capture the printed value like so:
     
     ```shell
-    LATEST_ID=$(zenodraft --sandbox deposition latest $CONCEPT_RECORD_ID)
-    LATEST_ID=$(zenodraft deposition latest $CONCEPT_RECORD_ID)
+    LATEST_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID)
+    LATEST_ID=$(zenodraft deposition show latest $CONCEPT_RECORD_ID)
     ```
 
 1. Get the prereserved doi for the latest draft:
