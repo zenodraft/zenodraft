@@ -10,20 +10,25 @@ jobs:
         uses: actions/checkout@v2
 
 
+
       - name: install the project's dependencies
         run: npm install
+
 
 
       - name: generate a distributable tarball
         run: npm run all
 
 
+
       - name: install the cli from the tarball
         run: sudo npm install -g zenodraft-*.tgz
 
 
+
       - name: create a new directory to do the testing in
         run: mkdir testing && cd testing
+
 
 
       - name: test creating a new draft deposition in a new collection on zenodo sandbox
@@ -35,11 +40,25 @@ jobs:
           echo "::set-output name=record_id::$RECORD_ID"
 
 
+
       - name: test showing the complete details for the draft deposition
+        id: get_concept_record_id
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft --sandbox deposition show details $RECORD_ID
+        run: |
+          zenodraft --sandbox deposition show details $RECORD_ID > deposition.json
+          CONCEPT_RECORD_ID=$(cat deposition.json | jq '.conceptrecid' --raw-output)
+          echo "::set-output name=concept_record_id::$CONCEPT_RECORD_ID"
+
+
+
+      - name: test showing the id of the latest draft in the newly created collection
+        env:
+          CONCEPT_RECORD_ID: ${{ steps.get_concept_record_id.outputs.concept_record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID
+
 
 
       - name: test showing the prereserved doi for the draft deposition
@@ -47,6 +66,7 @@ jobs:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: zenodraft --sandbox deposition show prereserved $RECORD_ID
+
 
 
       - name: test adding a file to the draft deposition
@@ -58,12 +78,14 @@ jobs:
           zenodraft --sandbox file add $RECORD_ID thefile.txt
 
 
+
       - name: test removing a file from the draft deposition
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
           zenodraft --sandbox file delete $RECORD_ID thefile.txt
+
 
 
       - name: test updating the deposition metadata with information from a local file
@@ -75,8 +97,17 @@ jobs:
           zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
 
 
+
       - name: test clearing the deposition metadata
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: zenodraft --sandbox metadata clear $RECORD_ID
+
+
+
+      - name: test deleting a draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: zenodraft --sandbox deposition delete $RECORD_ID
