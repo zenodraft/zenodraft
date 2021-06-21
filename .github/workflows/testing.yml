@@ -71,5 +71,5 @@ jobs:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
-          echo "{"creators":[{"affiliation":"Netherlands eScience Center","name":"Spaaks, Jurriaan H.","orcid":"0000-0002-7064-4069"}],"description":"Auto-generated draft deposition for CI testing of zenodraft's CLI","keywords":["zenodo","cli"],"license":{"id":"Apache-2.0"},"title":"Auto-generated deposition for testing purposes"}" > .zenodo.json
+          echo "{\"creators\":[{\"affiliation\":\"Netherlands eScience Center\",\"name\":\"Spaaks, Jurriaan H.\",\"orcid\":\"0000-0002-7064-4069\"}],\"description\":\"Auto-generated draft deposition for CI testing of zenodraft's CLI\",\"keywords\":[\"zenodo\",\"cli\"],\"license\":{\"id\":\"Apache-2.0\"},\"title\":\"Auto-generated deposition for testing purposes\"}" > .zenodo.json
           zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
