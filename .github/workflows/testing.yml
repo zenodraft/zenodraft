@@ -33,21 +33,20 @@ jobs:
       - name: test echo
         run: echo "${{ steps.get_record_id.outputs.record_id }}"
 
-#       - name: test env vars
-#         run: |
-#           echo $RECORD_ID
-#           echo ${RECORD_ID}
-#           echo ${{RECORD_ID}}
-#           echo ${{env.RECORD_ID}}
+      - name: show the complete details for the draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+        run: zenodraft --sandbox deposition show details $RECORD_ID
 
-#       - name: show the complete details for the draft deposition
-#         run: zenodraft --sandbox deposition show details ${RECORD_ID}
+      - name: show the deposition id for the draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+        run: zenodraft --sandbox deposition show latest ${RECORD_ID}
 
-#       - name: show the deposition id for the draft deposition
-#         run: zenodraft --sandbox deposition show latest ${RECORD_ID}
-
-#       - name: show the prereserved doi for the draft deposition
-#         run: zenodraft --sandbox deposition show prereserved ${RECORD_ID}
+      - name: show the prereserved doi for the draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+        run: zenodraft --sandbox deposition show prereserved ${RECORD_ID}
       # - name: 
       #   run: 
       # - name: 
