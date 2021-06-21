@@ -17,8 +17,10 @@ jobs:
         run: sudo npm install -g zenodraft-*.tgz
       - name: create a new directory to do the testing in
         run: mkdir testing && cd testing
-      # - name: 
-      #   run: 
+      - name: test creating a new draft deposition in a new collection on zenodo sandbox
+        env:
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: zenodraft --sandbox --verbose deposition create in-new-collection
       # - name: 
       #   run: 
       # - name: 
