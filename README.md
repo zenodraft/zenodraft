@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="https://github.com/zenodraft/branding/blob/main/zenodraft.png" height=200>
+<img src="https://raw.githubusercontent.com/zenodraft/branding/main/zenodraft.png" height=200>
  </p>
 
 # This project is a work in progress
