@@ -1,0 +1,44 @@
+name: testing
+on:
+  pull_request:
+  push:
+
+jobs:
+  cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get a copy of the repo contents
+        uses: actions/checkout@v2
+      - name: install the project's dependencies
+        run: npm install
+      - name: generate a distributable tarball
+        run: npm run all
+      - name: install the cli from the tarball
+        run: npm install -g zenodraft-*.tgz
+      - name: create a new directory to do the testing in
+        run: mkdir testing && cd testing
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # - name: 
+      #   run: 
+      # 
