@@ -3,7 +3,7 @@ on:
   pull_request:
 
 jobs:
-  cli:
+  live-sandbox-cli:
     runs-on: ubuntu-latest
     steps:
       - name: get a copy of the repo contents
