@@ -5,11 +5,9 @@ on:
 
 jobs:
   cli:
+    runs-on: ubuntu-latest
     env:
       ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-      RECORD_ID: hello
-  
-    runs-on: ubuntu-latest
     steps:
       - name: get a copy of the repo contents
         uses: actions/checkout@v2
@@ -27,10 +25,13 @@ jobs:
         run: mkdir testing && cd testing
 
       - name: test creating a new draft deposition in a new collection on zenodo sandbox
-        run: RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
+        id: get_record_id
+        run: |
+          RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
+          echo "::set-output name=record_id::$RECORD_ID"
         
       - name: test echo
-        run: echo $RECORD_ID
+        run: echo "${{ steps.get_record_id.outputs.record_id }}"
 
 #       - name: test env vars
 #         run: |
