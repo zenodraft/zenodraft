@@ -1,0 +1,113 @@
+name: testing
+on:
+  pull_request:
+
+jobs:
+  live-sandbox-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get a copy of the repo contents
+        uses: actions/checkout@v2
+
+
+
+      - name: install the project's dependencies
+        run: npm install
+
+
+
+      - name: generate a distributable tarball
+        run: npm run all
+
+
+
+      - name: install the cli from the tarball
+        run: sudo npm install -g zenodraft-*.tgz
+
+
+
+      - name: create a new directory to do the testing in
+        run: mkdir testing && cd testing
+
+
+
+      - name: test creating a new draft deposition in a new collection on zenodo sandbox
+        id: get_record_id
+        env:
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: |
+          RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
+          echo "::set-output name=record_id::$RECORD_ID"
+
+
+
+      - name: test showing the complete details for the draft deposition
+        id: get_concept_record_id
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: |
+          zenodraft --sandbox deposition show details $RECORD_ID > deposition.json
+          CONCEPT_RECORD_ID=$(cat deposition.json | jq '.conceptrecid' --raw-output)
+          echo "::set-output name=concept_record_id::$CONCEPT_RECORD_ID"
+
+
+
+      - name: test showing the id of the latest draft in the newly created collection
+        env:
+          CONCEPT_RECORD_ID: ${{ steps.get_concept_record_id.outputs.concept_record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID
+
+
+
+      - name: test showing the prereserved doi for the draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: zenodraft --sandbox deposition show prereserved $RECORD_ID
+
+
+
+      - name: test adding a file to the draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: |
+          echo "these are the file contents" > thefile.txt
+          zenodraft --sandbox file add $RECORD_ID thefile.txt
+
+
+
+      - name: test removing a file from the draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: |
+          zenodraft --sandbox file delete $RECORD_ID thefile.txt
+
+
+
+      - name: test updating the deposition metadata with information from a local file
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: |
+          echo "{\"creators\":[{\"affiliation\":\"Netherlands eScience Center\",\"name\":\"Spaaks, Jurriaan H.\",\"orcid\":\"0000-0002-7064-4069\"}],\"description\":\"Auto-generated draft deposition for CI testing of zenodraft's CLI\",\"keywords\":[\"zenodo\",\"cli\"],\"license\":{\"id\":\"Apache-2.0\"},\"title\":\"Auto-generated deposition for testing purposes\"}" > .zenodo.json
+          zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
+
+
+
+      - name: test clearing the deposition metadata
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: zenodraft --sandbox metadata clear $RECORD_ID
+
+
+
+      - name: test deleting a draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: zenodraft --sandbox deposition delete $RECORD_ID
