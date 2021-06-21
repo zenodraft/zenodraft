@@ -9,24 +9,32 @@ jobs:
     steps:
       - name: get a copy of the repo contents
         uses: actions/checkout@v2
+
       - name: install the project's dependencies
         run: npm install
+
       - name: generate a distributable tarball
         run: npm run all
+
       - name: install the cli from the tarball
         run: sudo npm install -g zenodraft-*.tgz
+
       - name: create a new directory to do the testing in
         run: mkdir testing && cd testing
+
       - name: test creating a new draft deposition in a new collection on zenodo sandbox
         env:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft --sandbox --verbose deposition create in-new-collection
-      # - name: 
-      #   run: 
-      # - name: 
-      #   run: 
-      # - name: 
-      #   run: 
+        run: RECORD_ID=zenodraft --sandbox deposition create in-new-collection
+
+      - name: show the complete details for the draft deposition
+        run: zenodraft --sandbox deposition show details ${RECORD_ID}
+
+      - name: show the deposition id for the draft deposition
+        run: zenodraft --sandbox deposition show latest ${RECORD_ID}
+
+      - name: show the prereserved doi for the draft deposition
+        run: zenodraft --sandbox deposition show prereserved ${RECORD_ID}
       # - name: 
       #   run: 
       # - name: 
