@@ -6,8 +6,6 @@ on:
 jobs:
   cli:
     runs-on: ubuntu-latest
-    env:
-      ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
     steps:
       - name: get a copy of the repo contents
         uses: actions/checkout@v2
@@ -26,6 +24,8 @@ jobs:
 
       - name: test creating a new draft deposition in a new collection on zenodo sandbox
         id: get_record_id
+        env:
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
           RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
           echo "::set-output name=record_id::$RECORD_ID"
@@ -33,19 +33,22 @@ jobs:
       - name: test showing the complete details for the draft deposition
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: zenodraft --sandbox deposition show details $RECORD_ID
 
       - name: test showing the prereserved doi for the draft deposition
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: zenodraft --sandbox deposition show prereserved $RECORD_ID
 
       - name: test adding a file to the draft deposition
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
           echo "these are the file contents" > thefile.txt
-          zenodraft --sandbox file add thefile.txt $RECORD_ID
+          zenodraft --sandbox file add $RECORD_ID thefile.txt
 
       # - name: 
       #   run: 
