@@ -1,7 +1,6 @@
 name: testing
 on:
   pull_request:
-  push:
 
 jobs:
   cli:
@@ -10,17 +9,22 @@ jobs:
       - name: get a copy of the repo contents
         uses: actions/checkout@v2
 
+
       - name: install the project's dependencies
         run: npm install
+
 
       - name: generate a distributable tarball
         run: npm run all
 
+
       - name: install the cli from the tarball
         run: sudo npm install -g zenodraft-*.tgz
 
+
       - name: create a new directory to do the testing in
         run: mkdir testing && cd testing
+
 
       - name: test creating a new draft deposition in a new collection on zenodo sandbox
         id: get_record_id
@@ -29,18 +33,21 @@ jobs:
         run: |
           RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
           echo "::set-output name=record_id::$RECORD_ID"
-        
+
+
       - name: test showing the complete details for the draft deposition
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: zenodraft --sandbox deposition show details $RECORD_ID
 
+
       - name: test showing the prereserved doi for the draft deposition
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: zenodraft --sandbox deposition show prereserved $RECORD_ID
+
 
       - name: test adding a file to the draft deposition
         env:
@@ -49,6 +56,14 @@ jobs:
         run: |
           echo "these are the file contents" > thefile.txt
           zenodraft --sandbox file add $RECORD_ID thefile.txt
+
+
+      - name: test removing a file from the draft deposition
+        env:
+          RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        run: |
+          zenodraft --sandbox file delete $RECORD_ID thefile.txt
 
       # - name: 
       #   run: 
