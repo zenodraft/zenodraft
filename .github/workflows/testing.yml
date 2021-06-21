@@ -14,7 +14,7 @@ jobs:
       - name: generate a distributable tarball
         run: npm run all
       - name: install the cli from the tarball
-        run: npm install -g zenodraft-*.tgz
+        run: sudo npm install -g zenodraft-*.tgz
       - name: create a new directory to do the testing in
         run: mkdir testing && cd testing
       # - name: 
