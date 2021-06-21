@@ -27,6 +27,13 @@ jobs:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
 
+      - name: test env vars
+        run: |
+          echo $RECORD_ID
+          echo ${RECORD_ID}
+          echo ${{RECORD_ID}}
+          echo ${{env.RECORD_ID}}
+
       - name: show the complete details for the draft deposition
         run: zenodraft --sandbox deposition show details ${RECORD_ID}
 
