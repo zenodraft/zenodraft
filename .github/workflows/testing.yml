@@ -43,7 +43,7 @@ jobs:
       - name: test adding a file to the draft deposition
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
-        run:
+        run: |
           echo "these are the file contents" > thefile.txt
           zenodraft --sandbox file add thefile.txt $RECORD_ID
 
