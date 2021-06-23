@@ -125,3 +125,27 @@ Should show something like:
   metadata_update: [Function: metadata_update]
 }
 ```
+
+## For maintainers
+
+### Bumping version string
+
+```shell
+python3 -m venv env
+source env/bin/activate
+python3 -m pip install --upgrade pip setuptools wheel
+python3 -m pip install -r requirements-dev.txt
+```
+
+Bump the version in all relevant files simultaneously using `bumpversion` and `.bumpversion.cfg`:
+
+```shell
+bumpversion major|minor|patch
+```
+
+Then update the `package-lock.json` and `dist/` directory by
+
+```
+npm install
+npm run all
+```
