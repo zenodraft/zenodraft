@@ -159,6 +159,6 @@ git status
 then
 
 ```shell
-git add src/cli.ts CITATION.cff package.json package-lock.json .bumpversion.cfg dist
+git add src/cli.ts CITATION.cff package.json package-lock.json .bumpversion.cfg dist README.md
 git commit -m "bumped version"
 ```
