@@ -170,6 +170,22 @@ node_modules/.bin/zenodraft --version
 node_modules/.bin/zenodraft --help
 ```
 
+## Docker 
+
+Building the docker container:
+
+```shell
+docker build -t zenodraft:0.7.0 https://raw.githubusercontent.com/zenodraft/action/main/Dockerfile
+```
+
+Running the docker container:
+```shell
+docker run --rm zenodraft --help
+docker run --rm zenodraft --version
+docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN zenodraft --sandbox deposition create in-new-collection
+# etc
+```
+
 ## Autocomplete
 
 An autocomplete script is bundled with the package as `assets/autocomplete.sh`. You can print it to the terminal as follows:
