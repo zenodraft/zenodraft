@@ -145,7 +145,20 @@ bumpversion major|minor|patch
 
 Then update the `package-lock.json` and `dist/` directory by
 
-```
+```shell
 npm install
 npm run all
+```
+
+Check the changes with 
+
+```shell
+git status
+```
+
+then
+
+```shell
+git add src/cli.ts CITATION.cff package.json package-lock.json .bumpversion.cfg dist
+git commit -m "bumped version"
 ```

@@ -7,6 +7,14 @@
 
 CLI to manage depositions on Zenodo or Zenodo Sandbox.
 
+## Features
+
+1. Choose which platform you want to draft your deposition on (Zenodo or Zenodo Sandbox), and easily switch between them.
+2. Choose to create your draft deposition as a new version in an existing collection, or as a new deposition in a new collection.
+3. Upload local files to the draft deposition.
+4. Attach metadata such as title, authors, and contributors to your deposition using information from a local file.
+5. Choose to finalize the deposition, or leave the deposition as draft for you to inspect and publish manually by clicking the button on Zenodo or Zenodo Sandbox.
+
 ## Outline of the CLI structure
 
 ```plain
