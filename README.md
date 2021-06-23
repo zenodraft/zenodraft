@@ -183,7 +183,7 @@ node_modules/.bin/zenodraft --help
 Building the docker container:
 
 ```shell
-docker build -t zenodraft:0.7.0 https://raw.githubusercontent.com/zenodraft/zenodraft/main/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/main/Dockerfile
 ```
 
 Running the docker container:
