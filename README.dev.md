@@ -149,3 +149,10 @@ Then update the `package-lock.json` and `dist/` directory by
 npm install
 npm run all
 ```
+
+Check the changes with 
+```
+git status
+git add src/cli.ts CITATION.cff package.json package-lock.json .bumpversion.cfg
+git commit -m "bumped version"
+```
