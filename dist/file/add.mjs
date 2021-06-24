@@ -19,7 +19,12 @@ export const file_add = (sandbox, id, filename, verbose = false) => __awaiter(vo
     const access_token = helpers_get_access_token_from_environment(sandbox);
     const deposition = yield deposition_show_details(sandbox, id);
     const bucket = deposition.links.bucket;
-    const content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';
+    let content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';
+    if (content_type.includes('application/json')) {
+        // zenodo declines json uploads with a 400 - BAD REQUEST,  
+        // avoiding error by setting content type to plain text
+        content_type = 'text/plain';
+    }
     const stream = fs.createReadStream(filename);
     const method = 'PUT';
     const headers = {

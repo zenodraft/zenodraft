@@ -160,7 +160,7 @@ const cli = () => {
         return metadata;
     })();
     const zenodraft = new commander.Command('zenodraft')
-        .version('0.7.0')
+        .version('0.7.1')
         .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
         .option('-s, --sandbox', 'run on zenodo sandbox instead of regular zenodo', false)
         .option('-v, --verbose', 'verbose mode', false);
