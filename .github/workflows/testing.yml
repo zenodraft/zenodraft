@@ -119,5 +119,8 @@ jobs:
       - name: get a copy of the repo contents
         uses: actions/checkout@v2
 
+      - name: install the dependencies
+        run: npm install
+
       - name: run the unit tests using jest
         run: npm run test
