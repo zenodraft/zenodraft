@@ -120,4 +120,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: run the unit tests using jest
-        uses: npm run test
+        run: npm run test
