@@ -16,5 +16,5 @@ license: "Apache-2.0"
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/zenodraft/zenodraft"
 title: zenodraft
-version: "0.7.1"
+version: "0.8.0"
 ...
