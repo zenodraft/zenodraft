@@ -8,8 +8,10 @@ Note: This project is a work in progress.
 <p align="center">
 You are welcome to try it out and leave feedback at https://github.com/zenodraft/zenodraft/issues though.
 </p>
+<br>
+<br>
 
-# CLI to manage depositions on Zenodo or Zenodo Sandbox
+## CLI to manage depositions on Zenodo or Zenodo Sandbox
 
 
 ## Features
@@ -109,7 +111,7 @@ RECORD_ID=123457
     zenodraft deposition show prereserved $RECORD_ID
     ```
 
-    Returns the prereserved doi of the draft deposition with id $RECORD_ID.
+    Returns the prereserved doi of the draft deposition with id `$RECORD_ID`.
     
     Typical usage in automation is to capture the printed value like so:
     
