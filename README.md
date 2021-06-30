@@ -10,6 +10,7 @@ You are welcome to try it out and leave feedback at https://github.com/zenodraft
 </p>
 <br>
 <br>
+[![npm version](https://badge.fury.io/js/zenodraft.svg)](https://badge.fury.io/js/zenodraft)
 
 ## CLI to manage depositions on Zenodo or Zenodo Sandbox
 
