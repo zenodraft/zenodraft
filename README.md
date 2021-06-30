@@ -1,11 +1,16 @@
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/zenodraft/branding/main/zenodraft.png" height=200>
- </p>
+</p> 
+<p align="center">
+Note: This project is a work in progress.
+</p> 
+<p align="center">
+You are welcome to try it out and leave feedback at https://github.com/zenodraft/zenodraft/issues though.
+</p>
 
-# This project is a work in progress
+# CLI to manage depositions on Zenodo or Zenodo Sandbox
 
-CLI to manage depositions on Zenodo or Zenodo Sandbox.
 
 ## Features
 
