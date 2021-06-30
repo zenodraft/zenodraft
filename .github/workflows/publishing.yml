@@ -15,7 +15,7 @@ jobs:
                 from repository file .zenodo.json
           env:
             ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
-          uses: zenodraft/action@0.9.0
+          uses: zenodraft/action@0.9.1
           with:
             collection: 5046392
             metadata: .zenodo.json
