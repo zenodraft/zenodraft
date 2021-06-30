@@ -15,5 +15,6 @@
         "id": "Apache-2.0"
     },
     "title": "zenodraft",
-    "upload_type": "software"
+    "upload_type": "software",
+    "version": "0.9.0"
 }
