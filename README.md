@@ -190,7 +190,7 @@ node_modules/.bin/zenodraft --help
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.8.0/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.9.0/Dockerfile
 ```
 
 Running the docker container:
