@@ -1,0 +1,23 @@
+name: zenodraft
+on:
+  workflow_dispatch:
+  # workflow-dispatch allows for triggering the workflow
+  # manually via the Actions tab
+
+jobs:
+
+  publish:
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout
+          uses: actions/checkout@v2      
+        - name: Create a draft snapshot of your repository contents as a new
+                version in collection 1234567 on Zenodo Sandbox using metadata
+                from repository file .zenodo.json
+          env:
+            ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+          uses: zenodraft/action@0.9.0
+          with:
+            metadata: .zenodo.json
+            publish: false
+            sandbox: true
