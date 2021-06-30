@@ -51,7 +51,7 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -W "<id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/add/${draft_id}/)
-            COMPREPLY=($(compgen -W "<filename>"))
+            COMPREPLY=($(compgen -o filenames -A file -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/delete/)
             COMPREPLY=($(compgen -W "<id>" -- ${cur}))
