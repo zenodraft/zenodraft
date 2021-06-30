@@ -14,7 +14,7 @@ You are welcome to try it out and leave feedback at https://github.com/zenodraft
 ## CLI to manage depositions on Zenodo or Zenodo Sandbox
 
 
-## Features
+### Features
 
 1. Choose which platform you want to draft your deposition on (Zenodo or Zenodo Sandbox), and easily switch between them.
 2. Choose to create your draft deposition as a new version in an existing collection, or as a new deposition in a new collection.
@@ -22,7 +22,7 @@ You are welcome to try it out and leave feedback at https://github.com/zenodraft
 4. Attach metadata such as title, authors, and contributors to your deposition using information from a local file.
 5. Choose to finalize the deposition, or leave the deposition as draft for you to inspect and publish manually by clicking the button on Zenodo or Zenodo Sandbox.
 
-## Outline of the CLI structure
+### Outline of the CLI structure
 
 ```plain
 zenodraft [--sandbox] [--verbose]
@@ -44,7 +44,7 @@ zenodraft [--sandbox] [--verbose]
     └── update <id> <filename>
 ```
 
-## Examples
+### Examples
 
 The usage examples below differentiate between an identifier for the concept/collection `CONCEPT_RECORD_ID` and the identifier for a depostion `RECORD_ID`. All commands require an access token, [see below](#access-tokens).
 
@@ -149,7 +149,7 @@ RECORD_ID=123457
     ```
 
 
-## Install
+### Install
 
 Requirements:
 
@@ -185,7 +185,7 @@ node_modules/.bin/zenodraft --version
 node_modules/.bin/zenodraft --help
 ```
 
-## Docker 
+### Docker 
 
 Building the docker container:
 
@@ -201,7 +201,7 @@ docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN zenodraft --sandbox deposition cr
 # etc
 ```
 
-## Autocomplete
+### Autocomplete
 
 An autocomplete script is bundled with the package as `assets/autocomplete.sh`. You can print it to the terminal as follows:
 
@@ -229,7 +229,7 @@ source $TMPFILE
 ```
 You can make the change permanent by copying those 4 lines to the bottom of your `~/.bashrc`.
 
-## `zenodraft` as a library, using CommonJS `require`
+### `zenodraft` as a library, using CommonJS `require`
 
 Make a file e.g. `index.js` with the following contents:
 
@@ -243,7 +243,7 @@ console.info(zenodraft);
 node index.js
 ```
 
-## `zenodraft` as a library, using ES6 `import`
+### `zenodraft` as a library, using ES6 `import`
 
 Make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
 
@@ -261,7 +261,7 @@ node index.mjs
 node --experimental-modules index.mjs
 ```
 
-## Access tokens
+### Access tokens
 
 To use `zenodraft`, a personal access token is required, one for each platform you plan on using.
 `zenodraft` looks for the access token first in the environment variables named
