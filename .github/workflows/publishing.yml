@@ -14,6 +14,7 @@ jobs:
         - name: Create a draft snapshot of the repository contents on Zenodo using metadata
                 from repository file .zenodo.json
           env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
           uses: zenodraft/action@0.10.0
           with:
