@@ -6,6 +6,9 @@ authors:
     orcid: https://orcid.org/0000-0002-7064-4069
 cff-version: 1.1.0
 date-released: 2021-06-06
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.5070958
 keywords:
   - zenodo
   - cli
@@ -14,6 +17,3 @@ message: If you use this software, please cite it using these metadata.
 repository-code: https://github.com/zenodraft/zenodraft
 title: zenodraft
 version: 0.10.0
-identifiers:
-  - value: 10.5281/zenodo.5070958
-    type: doi
