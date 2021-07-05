@@ -1,8 +1,8 @@
 name: zenodraft
 on:
-  workflow_dispatch:
-  # workflow-dispatch allows for triggering the workflow
-  # manually via the Actions tab
+  release:
+    types:
+      - published
 
 jobs:
 
@@ -15,7 +15,7 @@ jobs:
                 from repository file .zenodo.json
           env:
             ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
-          uses: zenodraft/action@0.9.1
+          uses: zenodraft/action@0.10.0
           with:
             collection: 5046392
             metadata: .zenodo.json
