@@ -1,4 +1,5 @@
-const zenodraft = require('zenodraft').default;
+import { test, expect } from '@jest/globals'
+import zenodraft from '../dist/zenodraft'
 
 
 test('zenodraft exports', () => {
