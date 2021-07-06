@@ -49,7 +49,7 @@
         "build": "npm run mjs && npm run cjs",
         "cjs": "tsc --module commonjs -p tsconfig.json",
         "clean": "rm -rf dist/*",
-        "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name *.js`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done",
+        "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name '*\\.js'`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done",
         "test": "jest --config jest.config.js"
     },
     "types": "dist/zenodraft.d.ts",
