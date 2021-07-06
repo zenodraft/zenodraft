@@ -5,6 +5,7 @@ import { helpers_get_access_token_from_environment } from '../../helpers/get-acc
 import { helpers_get_api } from '../../helpers/get-api'
 
 
+
 export const deposition_show_details = async (sandbox: boolean, id: string, verbose = false): Promise<DepositionsResponse> => {
     if (verbose) {
         console.log(`getting deposition details for deposition with id ${id}...`)
@@ -33,6 +34,6 @@ export const deposition_show_details = async (sandbox: boolean, id: string, verb
         const deposition: DepositionsResponse = await response.json()
         return deposition
     } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`)
+        throw new Error(`Something went wrong while retrieving the json.`)
     }    
 }
