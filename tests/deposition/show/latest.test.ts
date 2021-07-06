@@ -19,7 +19,7 @@ describe('deposition show latest', () => {
             links: {
                 bucket: 'unused',
                 latest: 'unused',
-                latest_draft: `https://zenodo.org/api/records/${record_id}`
+                latest_draft: `https://sandbox.zenodo.org/api/records/${record_id}`
             },
             metadata: {
                 prereserve_doi: {
