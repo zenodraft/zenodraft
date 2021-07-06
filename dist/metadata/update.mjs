@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.metadata_update = void 0;
-const node_fetch_1 = require("node-fetch");
-const fs = require("fs");
-const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
-const get_api_1 = require("../helpers/get-api");
-const path = require("path");
-const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+import fetch from 'node-fetch';
+import * as fs from 'fs';
+import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
+import { helpers_get_api } from '../helpers/get-api';
+import * as path from 'path';
+export const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`);
@@ -24,8 +21,8 @@ const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(vo
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`);
         }
     }
-    const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
-    const api = get_api_1.helpers_get_api(sandbox);
+    const access_token = helpers_get_access_token_from_environment(sandbox);
+    const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'PUT';
     const headers = {
@@ -39,7 +36,7 @@ const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(vo
     const init = { method, headers, body: JSON.stringify({ metadata }) };
     let response;
     try {
-        response = yield node_fetch_1.default(`${api}${endpoint}`, init);
+        response = yield fetch(`${api}${endpoint}`, init);
         if (response.ok !== true) {
             console.debug(response);
             throw new Error('Response was not OK');
@@ -58,5 +55,4 @@ const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(vo
         throw new Error(`Something went wrong while retrieving the json. ${e}`);
     }
 });
-exports.metadata_update = metadata_update;
 //# sourceMappingURL=update.js.map

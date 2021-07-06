@@ -8,12 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_publish = void 0;
-const node_fetch_1 = __importDefault(require("node-fetch"));
+const node_fetch_1 = require("node-fetch");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
 const get_api_1 = require("../helpers/get-api");
 const deposition_publish = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {

@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.helpers_get_access_token_from_environment = void 0;
-const dotenv = require("dotenv");
-const helpers_get_access_token_from_environment = (sandbox) => {
+import * as dotenv from 'dotenv';
+export const helpers_get_access_token_from_environment = (sandbox) => {
     if (sandbox) {
         const token = process.env.ZENODO_SANDBOX_ACCESS_TOKEN;
         if (token !== undefined) {
@@ -32,5 +29,4 @@ const helpers_get_access_token_from_environment = (sandbox) => {
         }
     }
 };
-exports.helpers_get_access_token_from_environment = helpers_get_access_token_from_environment;
 //# sourceMappingURL=get-access-token-from-environment.js.map
