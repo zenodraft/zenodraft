@@ -30,3 +30,4 @@ exports.default = {
     helpers_validate_in_collection_value: validate_in_collection_value_1.helpers_validate_in_collection_value,
     metadata_update: update_1.metadata_update
 };
+//# sourceMappingURL=zenodraft.js.map

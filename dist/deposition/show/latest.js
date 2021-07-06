@@ -26,3 +26,4 @@ const deposition_show_latest = (sandbox, collection_id, verbose = false) => __aw
     return latest_draft_id;
 });
 exports.deposition_show_latest = deposition_show_latest;
+//# sourceMappingURL=latest.js.map

@@ -8,9 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.file_delete = void 0;
-const node_fetch_1 = require("node-fetch");
+const node_fetch_1 = __importDefault(require("node-fetch"));
 const details_1 = require("../deposition/show/details");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
 const file_delete = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,3 +41,4 @@ const file_delete = (sandbox, id, filename, verbose = false) => __awaiter(void 0
     }
 });
 exports.file_delete = file_delete;
+//# sourceMappingURL=delete.js.map

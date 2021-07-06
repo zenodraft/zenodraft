@@ -16,3 +16,4 @@ const deposition_show_prereserved = (sandbox, latest_id, verbose = false) => __a
     return deposition.metadata.prereserve_doi.doi;
 });
 exports.deposition_show_prereserved = deposition_show_prereserved;
+//# sourceMappingURL=prereserved.js.map
