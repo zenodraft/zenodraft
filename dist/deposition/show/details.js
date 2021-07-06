@@ -42,7 +42,7 @@ const deposition_show_details = (sandbox, id, verbose = false) => __awaiter(void
         return deposition;
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
 exports.deposition_show_details = deposition_show_details;

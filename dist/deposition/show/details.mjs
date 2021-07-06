@@ -39,7 +39,7 @@ export const deposition_show_details = (sandbox, id, verbose = false) => __await
         return deposition;
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
 //# sourceMappingURL=details.js.map
