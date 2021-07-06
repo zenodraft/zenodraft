@@ -37,11 +37,12 @@ describe('deposition show latest', () => {
 })
 
 
-const access_token = process.env.ZENODO_SANDBOX_ACCESS_TOKEN || 'faux_zenodo_sandbox_token'
+if (process.env.ZENODO_SANDBOX_ACCESS_TOKEN === undefined) {
+    process.env.ZENODO_SANDBOX_ACCESS_TOKEN = 'faux_zenodo_sandbox_token'
+}
 const concept_record_id = '123456'
 const record_id = '123457'
 const reqheaders = {
-    'Authorization': `Bearer ${access_token}`,
+    'Authorization': `Bearer ${process.env.ZENODO_SANDBOX_ACCESS_TOKEN}`,
     'Content-Type': 'application/json'
 }
-process.env.ZENODO_SANDBOX_ACCESS_TOKEN=`${access_token}`

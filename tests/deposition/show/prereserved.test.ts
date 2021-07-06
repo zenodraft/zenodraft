@@ -18,8 +18,7 @@ describe('deposition show latest', () => {
             ],
             links: {
                 bucket: 'unused',
-                latest: 'unused',
-                latest_draft: 'unused'
+                latest: 'unused'
             },
             metadata: {
                 prereserve_doi: {
@@ -37,11 +36,12 @@ describe('deposition show latest', () => {
 })
 
 
-const access_token = process.env.ZENODO_SANDBOX_ACCESS_TOKEN || 'faux_zenodo_sandbox_token'
+if (process.env.ZENODO_SANDBOX_ACCESS_TOKEN === undefined) {
+    process.env.ZENODO_SANDBOX_ACCESS_TOKEN = 'faux_zenodo_sandbox_token'
+}
 const prereserved_doi = '10.5281/zenodo.123456'
 const record_id = '123457'
 const reqheaders = {
-    'Authorization': `Bearer ${access_token}`,
+    'Authorization': `Bearer ${process.env.ZENODO_SANDBOX_ACCESS_TOKEN}`,
     'Content-Type': 'application/json'
 }
-process.env.ZENODO_SANDBOX_ACCESS_TOKEN=`${access_token}`
