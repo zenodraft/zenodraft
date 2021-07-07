@@ -11,7 +11,7 @@ afterAll(nock.restore)
 afterEach(nock.cleanAll)
 
 describe('deposition show prereserved', () => {
-    test('shows latest draft id for depositions in collection with id 123456', async () => {
+    test(`shows prereserved doi for deposition with id ${record_id}`, async () => {
         const mocked_data: DepositionsResponse = {
             conceptrecid: 'unused',
             files: [

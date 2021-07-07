@@ -10,7 +10,7 @@ afterAll(nock.restore)
 afterEach(nock.cleanAll)
 
 describe('deposition show latest', () => {
-    test('shows latest draft id for depositions in collection with id 123456', async () => {
+    test(`shows latest draft id for depositions in collection with id ${concept_record_id}`, async () => {
         const mocked_data = mock_deposition({
             conceptrecid: concept_record_id,
             latest_draft: `https://sandbox.zenodo.org/api/records/${record_id}`
