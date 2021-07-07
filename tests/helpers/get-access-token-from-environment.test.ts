@@ -25,7 +25,7 @@ describe('zenodo sandbox access token tests', () => {
     test('should throw if zenodo sandbox access token can\'t be determined', () => {
         const sandbox = true
         const throwfun = () => {
-            zenodraft.helpers_get_access_token_from_environment(sandbox)
+            helpers_get_access_token_from_environment(sandbox)
         }
         expect(throwfun).toThrow()
         try {

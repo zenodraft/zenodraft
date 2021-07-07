@@ -11,7 +11,7 @@ describe('deposition show details', () => {
     test('shows details for deposition with id 123457', async () => {
         const sandbox = true
         nock('https://sandbox.zenodo.org/api', { reqheaders }).get(`/deposit/depositions/${record_id}`).reply(200, mocked_data)
-        const details = await zenodraft.deposition_show_details(sandbox, record_id)
+        const details = await deposition_show_details(sandbox, record_id)
         expect(details.conceptrecid).toEqual(concept_record_id)
     })
 })

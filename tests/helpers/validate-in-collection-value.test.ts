@@ -29,7 +29,7 @@ describe('helpers validate in collection value', () => {
         }
         const sandbox = true
         nock('https://sandbox.zenodo.org/api', { reqheaders }).get(`/deposit/depositions/${record_id}`).reply(200, mocked_data).persist()
-        await zenodraft.helpers_validate_in_collection_value(sandbox, concept_record_id)
+        await helpers_validate_in_collection_value(sandbox, concept_record_id)
     })
 })
 

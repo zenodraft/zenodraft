@@ -29,7 +29,7 @@ describe('deposition show latest', () => {
         }
         const sandbox = true
         nock('https://sandbox.zenodo.org/api', { reqheaders }).get(`/deposit/depositions/${record_id}`).reply(200, mocked_data).persist()
-        const actual = await zenodraft.deposition_show_prereserved(sandbox, record_id)
+        const actual = await deposition_show_prereserved(sandbox, record_id)
         const expected = prereserved_doi
         expect(actual).toEqual(expected)
     })
