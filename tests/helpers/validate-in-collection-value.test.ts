@@ -2,6 +2,9 @@ import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
 import { helpers_validate_in_collection_value } from '../../dist/index'
 import * as nock from 'nock'
 import { DepositionsResponse } from '../../src/helpers/zenodo-response-types'
+import { define_sandbox_token, define_reqheaders } from '../test-helpers'
+
+
 
 afterAll(nock.restore)
 
@@ -33,13 +36,7 @@ describe('helpers validate in collection value', () => {
     })
 })
 
-
-if (process.env.ZENODO_SANDBOX_ACCESS_TOKEN === undefined) {
-    process.env.ZENODO_SANDBOX_ACCESS_TOKEN = 'faux_zenodo_sandbox_token'
-}
+define_sandbox_token()
+const reqheaders = define_reqheaders()
 const concept_record_id = '123456'
 const record_id = '123457'
-const reqheaders = {
-    'Authorization': `Bearer ${process.env.ZENODO_SANDBOX_ACCESS_TOKEN}`,
-    'Content-Type': 'application/json'
-}

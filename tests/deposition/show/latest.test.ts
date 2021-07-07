@@ -2,6 +2,9 @@ import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
 import { deposition_show_latest } from '../../../dist/index'
 import * as nock from 'nock'
 import { DepositionsResponse } from '../../../src/helpers/zenodo-response-types'
+import { define_sandbox_token, define_reqheaders } from '../../test-helpers'
+
+
 
 afterAll(nock.restore)
 
@@ -37,12 +40,7 @@ describe('deposition show latest', () => {
 })
 
 
-if (process.env.ZENODO_SANDBOX_ACCESS_TOKEN === undefined) {
-    process.env.ZENODO_SANDBOX_ACCESS_TOKEN = 'faux_zenodo_sandbox_token'
-}
+define_sandbox_token()
 const concept_record_id = '123456'
 const record_id = '123457'
-const reqheaders = {
-    'Authorization': `Bearer ${process.env.ZENODO_SANDBOX_ACCESS_TOKEN}`,
-    'Content-Type': 'application/json'
-}
+const reqheaders = define_reqheaders()

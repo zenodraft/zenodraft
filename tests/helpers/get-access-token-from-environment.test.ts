@@ -3,6 +3,7 @@ import { helpers_get_access_token_from_environment } from '../../dist/index'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
+import { define_sandbox_token, define_token } from '../test-helpers'
 
 
 
@@ -45,8 +46,8 @@ describe('zenodo sandbox access token tests', () => {
 
     test('should return zenodo sandbox access token from environment variable', () => {
         const sandbox = true
-        process.env.ZENODO_SANDBOX_ACCESS_TOKEN='faux_zenodo_sandbox_token'
-        const actual = zenodraft.helpers_get_access_token_from_environment(sandbox)
+        define_sandbox_token()
+        const actual = helpers_get_access_token_from_environment(sandbox)
         const expected = 'faux_zenodo_sandbox_token'
         expect(actual).toBe(expected)
     })
@@ -81,8 +82,8 @@ describe('zenodo access token tests', () => {
 
     test('should return zenodo access token from environment variable', () => {
         const sandbox = false
-        process.env.ZENODO_ACCESS_TOKEN='faux_zenodo_token'
-        const actual = zenodraft.helpers_get_access_token_from_environment(sandbox)
+        define_token()
+        const actual = helpers_get_access_token_from_environment(sandbox)
         const expected = 'faux_zenodo_token'
         expect(actual).toBe(expected)
     })
