@@ -204,7 +204,10 @@ Running the docker container:
 ```shell
 docker run --rm zenodraft --help
 docker run --rm zenodraft --version
-docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN zenodraft --sandbox deposition create in-new-collection
+docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
+   zenodraft --sandbox deposition create in-new-collection
+docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
+   zenodraft --sandbox deposition show details 123456
 # etc
 ```
 
