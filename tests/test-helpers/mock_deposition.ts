@@ -3,7 +3,7 @@ import { DepositionsResponse } from '../../src/helpers/zenodo-response-types'
 interface NamedParameters {
     conceptrecid?: string | undefined
     record_id?: string | undefined
-    prereserve_doi?: string | undefined
+    prereserved_doi?: string | undefined
     latest_id?: string | undefined
     latest_draft?: string | undefined
 }
@@ -11,7 +11,7 @@ interface NamedParameters {
 
 export const mock_deposition = ({conceptrecid=undefined,
                                  record_id=undefined,
-                                 prereserve_doi=undefined,
+                                 prereserved_doi=undefined,
                                  latest_id=undefined,
                                  latest_draft=undefined}: NamedParameters): DepositionsResponse => {
     return  {
@@ -28,7 +28,7 @@ export const mock_deposition = ({conceptrecid=undefined,
             },
             metadata: {
                 prereserve_doi: {
-                    doi: prereserve_doi
+                    doi: prereserved_doi
                 }
             },
             record_id
