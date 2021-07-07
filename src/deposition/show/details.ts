@@ -1,6 +1,6 @@
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import fetch from 'node-fetch'
-import {RequestInit} from 'node-fetch'
+import { RequestInit, Response } from 'node-fetch'
 import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
 import { helpers_get_api } from '../../helpers/get-api'
 
@@ -19,14 +19,13 @@ export const deposition_show_details = async (sandbox: boolean, id: string, verb
         'Content-Type': 'application/json'
     }
     const init: RequestInit = { method, headers }
-    let response: any
+    let response: Response
     try {
         response = await fetch(`${api}${endpoint}`, init)
         if (response.ok !== true) {
-            throw new Error()
+            throw new Error('Response was not 200')
         }
     } catch (e) {
-        console.debug(response)
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} `)
     }
 

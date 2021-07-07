@@ -8,17 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from '../../deposition/show/details';
-import fetch from 'node-fetch';
 import { file_delete } from '../../file/delete';
-import { metadata_update } from '../../metadata/update';
 import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment';
 import { helpers_get_api } from '../../helpers/get-api';
-import { helpers_validate_in_collection_value } from '../../helpers/validate-in-collection-value';
+import { helpers_get_record_type } from '../../helpers/get-record-type';
+import { metadata_update } from '../../metadata/update';
+import * as assert from 'assert';
+import fetch from 'node-fetch';
 export const deposition_create_in_existing_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);
     }
-    yield helpers_validate_in_collection_value(sandbox, collection_id, verbose);
+    const record_type = yield helpers_get_record_type(sandbox, collection_id, verbose);
+    assert(record_type === 'collection', 'Input id is not a collection.');
     const latest_id = yield get_id_for_latest_version_in_collection(sandbox, collection_id, verbose);
     const new_id = yield create_new_versioned_deposition(sandbox, latest_id, verbose);
     yield remove_files_from_draft(sandbox, new_id, verbose);

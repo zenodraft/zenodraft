@@ -30,11 +30,10 @@ const deposition_show_details = (sandbox, id, verbose = false) => __awaiter(void
     try {
         response = yield node_fetch_1.default(`${api}${endpoint}`, init);
         if (response.ok !== true) {
-            throw new Error();
+            throw new Error('Response was not 200');
         }
     }
     catch (e) {
-        console.debug(response);
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} `);
     }
     try {

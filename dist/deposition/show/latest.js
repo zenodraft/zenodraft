@@ -11,9 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_show_latest = void 0;
 const details_1 = require("./details");
-const validate_in_collection_value_1 = require("../../helpers/validate-in-collection-value");
+const get_record_type_1 = require("../../helpers/get-record-type");
+const assert = require("assert");
 const deposition_show_latest = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    yield validate_in_collection_value_1.helpers_validate_in_collection_value(sandbox, collection_id, verbose);
+    const record_type = yield get_record_type_1.helpers_get_record_type(sandbox, collection_id, verbose);
+    assert(record_type === 'collection', 'Input id is not a collection.');
     const id = (parseInt(collection_id) + 1).toString();
     const deposition = yield details_1.deposition_show_details(sandbox, id, verbose);
     let latest_draft_id;

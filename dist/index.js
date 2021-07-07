@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.metadata_update = exports.helpers_validate_in_collection_value = exports.helpers_get_api = exports.helpers_get_access_token_from_environment = exports.file_delete = exports.file_add = exports.deposition_show_prereserved = exports.deposition_show_latest = exports.deposition_show_details = exports.deposition_publish = exports.deposition_delete = exports.deposition_create_in_new_collection = exports.deposition_create_in_existing_collection = exports.cli = void 0;
+exports.metadata_update = exports.helpers_get_record_type = exports.helpers_get_api = exports.helpers_get_access_token_from_environment = exports.file_delete = exports.file_add = exports.deposition_show_prereserved = exports.deposition_show_latest = exports.deposition_show_details = exports.deposition_publish = exports.deposition_delete = exports.deposition_create_in_new_collection = exports.deposition_create_in_existing_collection = exports.cli = void 0;
 var cli_1 = require("./cli");
 Object.defineProperty(exports, "cli", { enumerable: true, get: function () { return cli_1.cli; } });
 var in_existing_collection_1 = require("./deposition/create/in-existing-collection");
@@ -25,8 +25,8 @@ var get_access_token_from_environment_1 = require("./helpers/get-access-token-fr
 Object.defineProperty(exports, "helpers_get_access_token_from_environment", { enumerable: true, get: function () { return get_access_token_from_environment_1.helpers_get_access_token_from_environment; } });
 var get_api_1 = require("./helpers/get-api");
 Object.defineProperty(exports, "helpers_get_api", { enumerable: true, get: function () { return get_api_1.helpers_get_api; } });
-var validate_in_collection_value_1 = require("./helpers/validate-in-collection-value");
-Object.defineProperty(exports, "helpers_validate_in_collection_value", { enumerable: true, get: function () { return validate_in_collection_value_1.helpers_validate_in_collection_value; } });
+var get_record_type_1 = require("./helpers/get-record-type");
+Object.defineProperty(exports, "helpers_get_record_type", { enumerable: true, get: function () { return get_record_type_1.helpers_get_record_type; } });
 var update_1 = require("./metadata/update");
 Object.defineProperty(exports, "metadata_update", { enumerable: true, get: function () { return update_1.metadata_update; } });
 //# sourceMappingURL=index.js.map

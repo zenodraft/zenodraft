@@ -18,6 +18,6 @@ test('zenodraft exports', () => {
   expect(functions.includes('file_delete')).toBe(true)
   expect(functions.includes('helpers_get_access_token_from_environment')).toBe(true)
   expect(functions.includes('helpers_get_api')).toBe(true)
-  expect(functions.includes('helpers_validate_in_collection_value')).toBe(true)
+  expect(functions.includes('helpers_get_record_type')).toBe(true)
   expect(functions.includes('metadata_update')).toBe(true)
 })

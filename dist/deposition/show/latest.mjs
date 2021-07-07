@@ -8,9 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from './details';
-import { helpers_validate_in_collection_value } from '../../helpers/validate-in-collection-value';
+import { helpers_get_record_type } from '../../helpers/get-record-type';
+import * as assert from 'assert';
 export const deposition_show_latest = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    yield helpers_validate_in_collection_value(sandbox, collection_id, verbose);
+    const record_type = yield helpers_get_record_type(sandbox, collection_id, verbose);
+    assert(record_type === 'collection', 'Input id is not a collection.');
     const id = (parseInt(collection_id) + 1).toString();
     const deposition = yield deposition_show_details(sandbox, id, verbose);
     let latest_draft_id;
