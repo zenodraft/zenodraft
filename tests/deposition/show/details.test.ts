@@ -1,8 +1,7 @@
 import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
 import { deposition_show_details } from '../../../dist/index'
 import * as nock from 'nock'
-import { DepositionsResponse } from '../../../src/helpers/zenodo-response-types'
-import { define_sandbox_token, define_reqheaders } from '../../test-helpers'
+import { define_sandbox_token, define_reqheaders, mock_deposition } from '../../test-helpers'
 
 
 
@@ -23,22 +22,5 @@ describe('deposition show details', () => {
 define_sandbox_token()
 const concept_record_id = '123456'
 const record_id = '123457'
-const mocked_data: DepositionsResponse = {
-    conceptrecid: concept_record_id,
-    files: [
-        {
-            filename: 'unused'
-        }
-    ],
-    links: {
-        bucket: 'unused',
-        latest: 'unused'
-    },
-    metadata: {
-        prereserve_doi: {
-            doi: 'unused'
-        }
-    },
-    record_id
-}
+const mocked_data = mock_deposition({conceptrecid: concept_record_id})
 const reqheaders = define_reqheaders()

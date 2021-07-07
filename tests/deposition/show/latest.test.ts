@@ -1,8 +1,7 @@
 import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
 import { deposition_show_latest } from '../../../dist/index'
 import * as nock from 'nock'
-import { DepositionsResponse } from '../../../src/helpers/zenodo-response-types'
-import { define_sandbox_token, define_reqheaders } from '../../test-helpers'
+import { define_sandbox_token, define_reqheaders, mock_deposition } from '../../test-helpers'
 
 
 
@@ -12,25 +11,10 @@ afterEach(nock.cleanAll)
 
 describe('deposition show latest', () => {
     test('shows latest draft id for depositions in collection with id 123456', async () => {
-        const mocked_data: DepositionsResponse = {
+        const mocked_data = mock_deposition({
             conceptrecid: concept_record_id,
-            files: [
-                {
-                    filename: 'unused'
-                }
-            ],
-            links: {
-                bucket: 'unused',
-                latest: 'unused',
-                latest_draft: `https://sandbox.zenodo.org/api/records/${record_id}`
-            },
-            metadata: {
-                prereserve_doi: {
-                    doi: 'unused'
-                }
-            },
-            record_id
-        }
+            latest_draft: `https://sandbox.zenodo.org/api/records/${record_id}`
+        })
         const sandbox = true
         nock('https://sandbox.zenodo.org/api', { reqheaders }).get(`/deposit/depositions/${record_id}`).reply(200, mocked_data).persist()
         const actual = await deposition_show_latest(sandbox, concept_record_id)
