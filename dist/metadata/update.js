@@ -10,11 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.metadata_update = void 0;
-const node_fetch_1 = require("node-fetch");
-const fs = require("fs");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
 const get_api_1 = require("../helpers/get-api");
+const get_record_type_1 = require("../helpers/get-record-type");
+const assert = require("assert");
+const fs = require("fs");
 const path = require("path");
+const node_fetch_1 = require("node-fetch");
 const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {
@@ -24,6 +26,8 @@ const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(vo
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`);
         }
     }
+    const record_type = yield get_record_type_1.helpers_get_record_type(sandbox, id, verbose);
+    assert(record_type === 'deposition', 'Input id is not a deposition.');
     const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
     const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
@@ -41,12 +45,11 @@ const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(vo
     try {
         response = yield node_fetch_1.default(`${api}${endpoint}`, init);
         if (response.ok !== true) {
-            console.debug(response);
             throw new Error('Response was not OK');
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
     try {
         const deposition = yield response.json();
@@ -55,7 +58,7 @@ const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(vo
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
 exports.metadata_update = metadata_update;

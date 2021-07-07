@@ -32,7 +32,7 @@ export const deposition_create_in_new_collection = (sandbox, verbose = false) =>
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
     try {
         const deposition = yield response.json();
@@ -43,7 +43,7 @@ export const deposition_create_in_new_collection = (sandbox, verbose = false) =>
         return deposition.record_id;
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
 //# sourceMappingURL=in-new-collection.js.map

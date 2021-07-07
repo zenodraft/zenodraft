@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from './details';
+import { helpers_get_record_type } from '../../helpers/get-record-type';
+import * as assert from 'assert';
 export const deposition_show_prereserved = (sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+    const record_type = yield helpers_get_record_type(sandbox, latest_id, verbose);
+    assert(record_type === 'deposition', 'Input id is not a deposition.');
     const deposition = yield deposition_show_details(sandbox, latest_id, verbose);
     return deposition.metadata.prereserve_doi.doi;
 });

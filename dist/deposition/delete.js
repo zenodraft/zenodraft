@@ -13,10 +13,14 @@ exports.deposition_delete = void 0;
 const node_fetch_1 = require("node-fetch");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
 const get_api_1 = require("../helpers/get-api");
+const get_record_type_1 = require("../helpers/get-record-type");
+const assert = require("assert");
 const deposition_delete = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`deleting draft deposition with id ${id}...`);
     }
+    const record_type = yield get_record_type_1.helpers_get_record_type(sandbox, id, verbose);
+    assert(record_type === 'deposition', 'Input id is not a deposition.');
     const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
     const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
@@ -33,8 +37,7 @@ const deposition_delete = (sandbox, id, verbose = false) => __awaiter(void 0, vo
         }
     }
     catch (e) {
-        console.debug(response);
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
 });
 exports.deposition_delete = deposition_delete;

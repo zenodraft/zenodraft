@@ -26,7 +26,7 @@ export const deposition_create_in_new_collection = async (sandbox: boolean, verb
             throw new Error('Response was not OK')
         }
     } catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
 
     try {
@@ -37,6 +37,6 @@ export const deposition_create_in_new_collection = async (sandbox: boolean, verb
         console.log(`${deposition.record_id}`)
         return deposition.record_id
     } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`)
+        throw new Error(`Something went wrong while retrieving the json.`)
     }
 }

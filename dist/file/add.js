@@ -10,15 +10,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.file_add = void 0;
-const node_fetch_1 = require("node-fetch");
-const fs = require("fs");
 const details_1 = require("../deposition/show/details");
-const mime = require("mime-types");
 const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
+const get_record_type_1 = require("../helpers/get-record-type");
+const assert = require("assert");
+const fs = require("fs");
+const mime = require("mime-types");
+const node_fetch_1 = require("node-fetch");
 const file_add = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);
     }
+    const record_type = yield get_record_type_1.helpers_get_record_type(sandbox, id, verbose);
+    assert(record_type === 'deposition', 'Input id is not a deposition.');
     const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
     const deposition = yield details_1.deposition_show_details(sandbox, id);
     const bucket = deposition.links.bucket;
@@ -44,8 +48,7 @@ const file_add = (sandbox, id, filename, verbose = false) => __awaiter(void 0, v
         }
     }
     catch (e) {
-        console.debug(response);
-        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText} `);
+        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText}`);
     }
 });
 exports.file_add = file_add;

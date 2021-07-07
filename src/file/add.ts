@@ -1,15 +1,20 @@
-import fetch from 'node-fetch'
-import { RequestInit } from 'node-fetch'
-import * as fs from 'fs'
 import { deposition_show_details } from '../deposition/show/details'
-import * as mime from 'mime-types'
 import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
+import { helpers_get_record_type } from '../helpers/get-record-type'
+import { RequestInit } from 'node-fetch'
+import * as assert from 'assert'
+import * as fs from 'fs'
+import * as mime from 'mime-types'
+import fetch from 'node-fetch'
+
 
 
 export const file_add = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }
+    const record_type = await helpers_get_record_type(sandbox, id, verbose)
+    assert(record_type === 'deposition', 'Input id is not a deposition.')
     const access_token = helpers_get_access_token_from_environment(sandbox)
     const deposition = await deposition_show_details(sandbox, id)
     const bucket = deposition.links.bucket
@@ -34,7 +39,6 @@ export const file_add = async (sandbox: boolean, id: string, filename: string, v
             throw new Error()
         }
     } catch (e) {
-        console.debug(response)
-        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText} `)
+        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText}`)
     }
 }

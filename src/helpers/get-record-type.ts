@@ -1,5 +1,4 @@
 import { deposition_show_details } from '../deposition/show/details'
-import { DepositionsResponse } from './zenodo-response-types'
 import * as assert from 'assert'
 
 

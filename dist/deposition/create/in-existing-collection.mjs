@@ -48,7 +48,7 @@ const create_new_versioned_deposition = (sandbox, latest_id, verbose = false) =>
     }
     catch (e) {
         console.debug(response);
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
     try {
         const deposition = yield response.json();
@@ -60,7 +60,7 @@ const create_new_versioned_deposition = (sandbox, latest_id, verbose = false) =>
         return new_id;
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
 const get_id_for_latest_version_in_collection = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {

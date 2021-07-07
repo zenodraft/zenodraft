@@ -7,11 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import fetch from 'node-fetch';
-import * as fs from 'fs';
 import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
 import { helpers_get_api } from '../helpers/get-api';
+import { helpers_get_record_type } from '../helpers/get-record-type';
+import * as assert from 'assert';
+import * as fs from 'fs';
 import * as path from 'path';
+import fetch from 'node-fetch';
 export const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {
@@ -21,6 +23,8 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`);
         }
     }
+    const record_type = yield helpers_get_record_type(sandbox, id, verbose);
+    assert(record_type === 'deposition', 'Input id is not a deposition.');
     const access_token = helpers_get_access_token_from_environment(sandbox);
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
@@ -38,12 +42,11 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
     try {
         response = yield fetch(`${api}${endpoint}`, init);
         if (response.ok !== true) {
-            console.debug(response);
             throw new Error('Response was not OK');
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
     try {
         const deposition = yield response.json();
@@ -52,7 +55,7 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
 //# sourceMappingURL=update.js.map

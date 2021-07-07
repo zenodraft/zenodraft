@@ -35,7 +35,7 @@ const deposition_create_in_new_collection = (sandbox, verbose = false) => __awai
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
     try {
         const deposition = yield response.json();
@@ -46,7 +46,7 @@ const deposition_create_in_new_collection = (sandbox, verbose = false) => __awai
         return deposition.record_id;
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
 exports.deposition_create_in_new_collection = deposition_create_in_new_collection;

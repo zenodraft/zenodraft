@@ -45,7 +45,7 @@ const create_new_versioned_deposition = async (sandbox: boolean, latest_id: stri
         }
     } catch (e) {
         console.debug(response)
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
     try {
         const deposition: DepositionsResponse = await response.json()
@@ -56,7 +56,7 @@ const create_new_versioned_deposition = async (sandbox: boolean, latest_id: stri
         console.log(`${new_id}`)
         return new_id
     } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`)
+        throw new Error(`Something went wrong while retrieving the json.`)
     }
 }
 
