@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import zenodraft from '../../dist/zenodraft'
+import { helpers_get_access_token_from_environment } from '../../dist/index'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'

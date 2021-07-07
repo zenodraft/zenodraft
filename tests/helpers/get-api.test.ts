@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import zenodraft from '../../dist/zenodraft'
+import { helpers_get_api } from '../../dist/index'
 
 describe('get-api tests', () => {
     test('should return zenodo sandbox api', () => {

@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import zenodraft from '../dist/zenodraft'
+import * as zenodraft from '../dist/index'
 
 
 test('zenodraft exports', () => {

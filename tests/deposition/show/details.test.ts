@@ -1,5 +1,5 @@
 import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
-import zenodraft from '../../../dist/zenodraft'
+import { deposition_show_details } from '../../../dist/index'
 import * as nock from 'nock'
 import { DepositionsResponse } from '../../../src/helpers/zenodo-response-types'
 
