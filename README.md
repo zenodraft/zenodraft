@@ -236,29 +236,56 @@ source $TMPFILE
 ```
 You can make the change permanent by copying those 4 lines to the bottom of your `~/.bashrc`.
 
-### `zenodraft` as a library, using CommonJS `require`
+### `zenodraft` as a library
+
+#### Using CommonJS `require`
 
 Make a file e.g. `index.js` with the following contents:
 
 ```javascript
 // file: index.js
-const zenodraft = require('zenodraft').default;
+const zenodraft = require('zenodraft');
 console.info(zenodraft);
 ```
 
+Running
+
 ```shell
-node index.js
+$ node index.js
 ```
 
-### `zenodraft` as a library, using ES6 `import`
+should output
+
+```shell
+{
+  cli: [Getter],
+  deposition_create_in_existing_collection: [Getter],
+  deposition_create_in_new_collection: [Getter],
+  deposition_delete: [Getter],
+  deposition_publish: [Getter],
+  deposition_show_details: [Getter],
+  deposition_show_latest: [Getter],
+  deposition_show_prereserved: [Getter],
+  file_add: [Getter],
+  file_delete: [Getter],
+  helpers_get_access_token_from_environment: [Getter],
+  helpers_get_api: [Getter],
+  helpers_validate_in_collection_value: [Getter],
+  metadata_update: [Getter]
+}
+```
+
+#### Using ES6 `import`
 
 Make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
 
 ```javascript
 // file: index.mjs
 import zenodraft from 'zenodraft';
-console.info(zenodraft.default);
+console.info(zenodraft);
 ```
+
+Running
 
 ```shell
 # node v14
@@ -267,6 +294,9 @@ node index.mjs
 # node v12
 node --experimental-modules index.mjs
 ```
+
+should output the same as listed above for `require`.
+
 
 ### Access tokens
 

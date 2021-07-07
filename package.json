@@ -38,8 +38,8 @@
         "zenodo"
     ],
     "license": "Apache-2.0",
-    "main": "dist/zenodraft.js",
-    "module": "dist/zenodraft.mjs",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
     "name": "zenodraft",
     "repository": {
         "type": "git",

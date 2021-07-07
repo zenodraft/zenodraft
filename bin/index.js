@@ -1,3 +1,3 @@
 #! /usr/bin/env node
-const zenodraft = require('zenodraft').default;
-zenodraft.cli();
+const { cli } = require('zenodraft');
+cli();
