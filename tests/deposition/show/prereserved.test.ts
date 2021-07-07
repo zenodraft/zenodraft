@@ -10,7 +10,7 @@ afterAll(nock.restore)
 
 afterEach(nock.cleanAll)
 
-describe('deposition show latest', () => {
+describe('deposition show prereserved', () => {
     test('shows latest draft id for depositions in collection with id 123456', async () => {
         const mocked_data: DepositionsResponse = {
             conceptrecid: 'unused',
