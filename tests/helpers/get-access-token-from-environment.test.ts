@@ -39,7 +39,7 @@ describe('zenodo sandbox access token tests', () => {
     test('should return zenodo sandbox access token from env file', () => {
         fs.writeFileSync('.env', 'ZENODO_SANDBOX_ACCESS_TOKEN=faux_zenodo_sandbox_token', 'utf8')
         const sandbox = true
-        const actual = zenodraft.helpers_get_access_token_from_environment(sandbox)
+        const actual = helpers_get_access_token_from_environment(sandbox)
         const expected = 'faux_zenodo_sandbox_token'
         expect(actual).toBe(expected)
     })
@@ -60,7 +60,7 @@ describe('zenodo access token tests', () => {
     test('should throw if zenodo access token can\'t be determined', () => {
         const sandbox = false
         const throwfun = () => {
-            zenodraft.helpers_get_access_token_from_environment(sandbox)
+            helpers_get_access_token_from_environment(sandbox)
         }
         expect(throwfun).toThrow()
         try {
@@ -74,7 +74,7 @@ describe('zenodo access token tests', () => {
     test('should return zenodo access token from env file', () => {
         fs.writeFileSync('.env', 'ZENODO_ACCESS_TOKEN=faux_zenodo_token', 'utf8')
         const sandbox = false
-        const actual = zenodraft.helpers_get_access_token_from_environment(sandbox)
+        const actual = helpers_get_access_token_from_environment(sandbox)
         const expected = 'faux_zenodo_token'
         expect(actual).toBe(expected)
     })
