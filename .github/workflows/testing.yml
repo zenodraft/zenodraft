@@ -123,4 +123,4 @@ jobs:
         run: npm install
 
       - name: run the unit tests using jest
-        run: npm run test
+        run: cd src && cd .. && npm run test
