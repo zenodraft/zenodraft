@@ -33,7 +33,7 @@ const fetch_details = (token, sandbox, id) => __awaiter(void 0, void 0, void 0, 
         throw new Error(`Response was ${response.status} - ${response.statusText}`);
     }
     try {
-        return yield response.json();
+        return response.json();
     }
     catch (e) {
         throw new Error(`Something went wrong while retrieving the json.`);
