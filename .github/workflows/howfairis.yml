@@ -6,10 +6,12 @@ on:
       - main
     paths:
       - README.md
+      - .howfairis.yml
 
   pull_request:
     paths:
       - README.md
+      - .howfairis.yml
 
 jobs:
   verify:
