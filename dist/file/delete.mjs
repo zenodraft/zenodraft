@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { default as fetch } from 'node-fetch';
 import { deposition_show_details } from '../deposition/show/details';
-import fetch from 'node-fetch';
 export const file_delete = (token, sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`);

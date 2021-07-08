@@ -1,10 +1,9 @@
+import { default as fetch, RequestInit } from 'node-fetch'
 import { deposition_show_details } from '../deposition/show/details'
 import { DepositionsResponse } from '../helpers/zenodo-response-types'
 import { helpers_get_api } from '../helpers/get-api'
-import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
 import * as path from 'path'
-import fetch from 'node-fetch'
 
 
 
@@ -27,7 +26,7 @@ export const metadata_update = async (token: string, sandbox: boolean, id: strin
     }
     const minimal_metadata_filename = path.join(__dirname, '..', '..', 'assets', '.zenodo.json.empty')
     const minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'))
-    const user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename as string, 'utf8'))
+    const user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename, 'utf8'))
     const metadata = {...minimal_metadata, ...user_metadata}
     const init: RequestInit = { method, headers, body: JSON.stringify({metadata}) }
     let response: any

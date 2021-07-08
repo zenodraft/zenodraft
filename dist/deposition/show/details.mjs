@@ -7,9 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { default as fetch } from 'node-fetch';
 import { helpers_get_api } from './../../helpers/get-api';
 import * as assert from 'assert';
-import fetch from 'node-fetch';
 const fetch_details = (token, sandbox, id) => __awaiter(void 0, void 0, void 0, function* () {
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
@@ -30,8 +30,7 @@ const fetch_details = (token, sandbox, id) => __awaiter(void 0, void 0, void 0, 
         throw new Error(`Response was ${response.status} - ${response.statusText}`);
     }
     try {
-        const deposition = yield response.json();
-        return deposition;
+        return yield response.json();
     }
     catch (e) {
         throw new Error(`Something went wrong while retrieving the json.`);
@@ -44,22 +43,12 @@ export const deposition_show_details = (token, sandbox, id, expected_type, verbo
     const regex = new RegExp('^[0-9]+$');
     assert(regex.test(id) === true, 'id has invalid format.');
     if (expected_type === 'deposition') {
-        try {
-            return yield fetch_details(token, sandbox, id);
-        }
-        catch (e) {
-            throw e;
-        }
+        return yield fetch_details(token, sandbox, id);
     }
     else if (expected_type === 'collection') {
         const id_next = (parseInt(id) + 1).toString();
         let details_next;
-        try {
-            details_next = yield fetch_details(token, sandbox, id_next);
-        }
-        catch (e) {
-            throw e;
-        }
+        details_next = yield fetch_details(token, sandbox, id_next);
         if (details_next.conceptrecid === id) {
             return details_next;
         }

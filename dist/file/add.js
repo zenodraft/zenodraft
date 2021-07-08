@@ -10,10 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.file_add = void 0;
+const node_fetch_1 = require("node-fetch");
 const details_1 = require("../deposition/show/details");
 const fs = require("fs");
 const mime = require("mime-types");
-const node_fetch_1 = require("node-fetch");
 const file_add = (token, sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);

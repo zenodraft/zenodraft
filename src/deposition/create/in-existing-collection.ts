@@ -1,10 +1,9 @@
+import { default as fetch, RequestInit } from 'node-fetch'
 import { deposition_show_details } from '../../deposition/show/details'
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import { file_delete } from '../../file/delete'
 import { helpers_get_api } from '../../helpers/get-api'
 import { metadata_update } from '../../metadata/update'
-import { RequestInit } from 'node-fetch'
-import fetch from 'node-fetch'
 
 
 
@@ -44,7 +43,7 @@ const create_new_versioned_deposition = async (token: string, sandbox: boolean, 
     }
     try {
         const deposition: DepositionsResponse = await response.json()
-        const new_id = deposition.links.latest_draft!.split('/').slice(-1)[0]
+        const new_id = deposition.links.latest_draft.split('/').slice(-1)[0]
         if (verbose) {
             console.log(`created new record ${new_id}`)
         }

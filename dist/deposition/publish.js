@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_publish = void 0;
+const node_fetch_1 = require("node-fetch");
 const details_1 = require("../deposition/show/details");
 const get_api_1 = require("../helpers/get-api");
-const node_fetch_1 = require("node-fetch");
 const deposition_publish = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);

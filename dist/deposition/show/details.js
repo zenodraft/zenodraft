@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_show_details = void 0;
+const node_fetch_1 = require("node-fetch");
 const get_api_1 = require("./../../helpers/get-api");
 const assert = require("assert");
-const node_fetch_1 = require("node-fetch");
 const fetch_details = (token, sandbox, id) => __awaiter(void 0, void 0, void 0, function* () {
     const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
@@ -33,8 +33,7 @@ const fetch_details = (token, sandbox, id) => __awaiter(void 0, void 0, void 0, 
         throw new Error(`Response was ${response.status} - ${response.statusText}`);
     }
     try {
-        const deposition = yield response.json();
-        return deposition;
+        return yield response.json();
     }
     catch (e) {
         throw new Error(`Something went wrong while retrieving the json.`);
@@ -47,22 +46,12 @@ const deposition_show_details = (token, sandbox, id, expected_type, verbose = fa
     const regex = new RegExp('^[0-9]+$');
     assert(regex.test(id) === true, 'id has invalid format.');
     if (expected_type === 'deposition') {
-        try {
-            return yield fetch_details(token, sandbox, id);
-        }
-        catch (e) {
-            throw e;
-        }
+        return yield fetch_details(token, sandbox, id);
     }
     else if (expected_type === 'collection') {
         const id_next = (parseInt(id) + 1).toString();
         let details_next;
-        try {
-            details_next = yield fetch_details(token, sandbox, id_next);
-        }
-        catch (e) {
-            throw e;
-        }
+        details_next = yield fetch_details(token, sandbox, id_next);
         if (details_next.conceptrecid === id) {
             return details_next;
         }
