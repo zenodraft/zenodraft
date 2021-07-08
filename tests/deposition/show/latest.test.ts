@@ -1,5 +1,6 @@
 import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
-import { deposition_show_latest, helpers_get_access_token_from_environment } from '../../../dist/index'
+import { deposition_show_latest } from '../../../src/deposition/show/latest'
+import { helpers_get_access_token_from_environment } from '../../../src/helpers/get-access-token-from-environment'
 import * as nock from 'nock'
 import { define_token, define_reqheaders, mock_deposition } from '../../test-helpers'
 

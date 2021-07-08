@@ -1,4 +1,9 @@
 module.exports = {
+    collectCoverage: true,
+    collectCoverageFrom: [
+        "src/**/*.ts"
+    ],
+    coverageReporters: ["text", "html"],
     globals: {
         'ts-jest': {
             diagnostics: {

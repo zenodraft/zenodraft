@@ -2,7 +2,6 @@ import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
 import { define_token, define_reqheaders, mock_deposition } from '../../test-helpers'
 import { deposition_show_details } from '../../../src/deposition/show/details'
 import { helpers_get_access_token_from_environment } from '../../../src/helpers/get-access-token-from-environment'
-import { DepositionsResponse } from './../../../src/helpers/zenodo-response-types'
 import * as nock from 'nock'
 
 const sandbox = true
