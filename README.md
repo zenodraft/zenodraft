@@ -175,10 +175,10 @@ which zenodraft
 # use the zenodraft cli like so
 zenodraft --version
 zenodraft --help
+
 ```
 
-
-Or install locally without `-g` flag:
+Or install locally without `-g` flag (but note that [autocomplete](#Autocomplete) only works when `zenodraft` is installed globally):
 
 ```shell
 # local install
@@ -230,7 +230,7 @@ _zenodraft_completions()
 complete -F _zenodraft_completions zenodraft
 ```
 
-Source this script to add autocomplete powers to the zenodraft program, using something like:
+Source this script to add autocomplete powers to the `zenodraft` program, using something like:
 ```
 # Add autocomplete powers to zenodraft: 
 TMPFILE=$(mktemp)
