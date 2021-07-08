@@ -21,6 +21,7 @@ const publish_1 = require("./deposition/publish");
 const update_1 = require("./metadata/update");
 const latest_1 = require("./deposition/show/latest");
 const prereserved_1 = require("./deposition/show/prereserved");
+const get_access_token_from_environment_1 = require("./helpers/get-access-token-from-environment");
 const cli = () => {
     const create = (() => {
         const create = new commander.Command('create');
@@ -28,18 +29,30 @@ const cli = () => {
         create
             .command('in-new-collection')
             .description('create a new draft deposition in a new collection')
-            .action(() => {
-            in_new_collection_1.deposition_create_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
-        });
+            .action(() => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield in_new_collection_1.deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         create
             .command('in-existing-collection')
             .arguments('<collection_id>')
             .description('create a new draft deposition as a new version in an existing collection', {
             collection_id: 'id for the collection that the new deposition will be part of.'
         })
-            .action((collection_id) => {
-            in_existing_collection_1.deposition_create_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
-        });
+            .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield in_existing_collection_1.deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         return create;
     })();
     const show = (() => {
@@ -52,8 +65,14 @@ const cli = () => {
             id: 'deposition id'
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
-            const details = yield details_1.deposition_show_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
-            console.log(JSON.stringify(details, null, 4));
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const details = yield details_1.deposition_show_details(access_token, zenodraft.opts().sandbox, id, 'deposition', zenodraft.opts().verbose);
+                console.log(JSON.stringify(details, null, 4));
+            }
+            catch (e) {
+                console.error(e.message);
+            }
         }));
         show
             .command('latest')
@@ -62,14 +81,20 @@ const cli = () => {
             collection_id: 'id of the collection whose latest draft we want to retrieve'
         })
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
-            const latest_draft_id = yield latest_1.deposition_show_latest(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
-            if (latest_draft_id === '') {
-                if (zenodraft.opts().verbose) {
-                    console.log(`There are no drafts in collection ${collection_id}.`);
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const latest_draft_id = yield latest_1.deposition_show_latest(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                if (latest_draft_id === '') {
+                    if (zenodraft.opts().verbose) {
+                        console.log(`There are no drafts in collection ${collection_id}.`);
+                    }
+                }
+                else {
+                    console.log(latest_draft_id);
                 }
             }
-            else {
-                console.log(latest_draft_id);
+            catch (e) {
+                console.error(e.message);
             }
         }));
         show
@@ -79,8 +104,14 @@ const cli = () => {
             latest_id: 'id of the deposition whose prereserved doi we want to retrieve'
         })
             .action((latest_id) => __awaiter(void 0, void 0, void 0, function* () {
-            const prereserved = yield prereserved_1.deposition_show_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
-            console.log(prereserved);
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const prereserved = yield prereserved_1.deposition_show_prereserved(access_token, zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
+                console.log(prereserved);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
         }));
         return show;
     })();
@@ -96,18 +127,30 @@ const cli = () => {
             .description('delete draft deposition with id <id>', {
             id: 'deposition id'
         })
-            .action((id) => {
-            delete_2.deposition_delete(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
-        });
+            .action((id) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield delete_2.deposition_delete(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         deposition
             .command('publish')
             .arguments('<id>')
             .description('publish draft deposition with id <id>', {
             id: 'deposition id'
         })
-            .action((id) => {
-            publish_1.deposition_publish(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
-        });
+            .action((id) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield publish_1.deposition_publish(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         return deposition;
     })();
     const file = (() => {
@@ -120,9 +163,15 @@ const cli = () => {
             id: 'deposition id',
             filename: 'filename of the local file that is going to be added'
         })
-            .action((id, filename) => {
-            add_1.file_add(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
-        });
+            .action((id, filename) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield add_1.file_add(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         file
             .command('delete')
             .arguments('<id> <filename>')
@@ -130,9 +179,15 @@ const cli = () => {
             id: 'deposition id',
             filename: 'filename of the deposition file that is going to be deleted.'
         })
-            .action((id, filename) => {
-            delete_1.file_delete(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
-        });
+            .action((id, filename) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield delete_1.file_delete(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         return file;
     })();
     const metadata = (() => {
@@ -145,18 +200,30 @@ const cli = () => {
             id: 'deposition id',
             filename: 'filename of file holding the metadata in Zenodo metadata format'
         })
-            .action((id, filename) => {
-            update_1.metadata_update(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
-        });
+            .action((id, filename) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield update_1.metadata_update(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         metadata
             .command('clear')
             .arguments('<id>')
             .description('clear the metadata of an existing deposition with id <id>', {
             id: 'deposition id'
         })
-            .action((id) => {
-            update_1.metadata_update(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
-        });
+            .action((id) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield update_1.metadata_update(access_token, zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
         return metadata;
     })();
     const zenodraft = new commander.Command('zenodraft')
@@ -178,3 +245,4 @@ const cli = () => {
     return zenodraft;
 };
 exports.cli = cli;
+//# sourceMappingURL=cli.js.map

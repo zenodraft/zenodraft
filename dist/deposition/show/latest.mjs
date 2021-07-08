@@ -7,12 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { deposition_show_details } from './details';
-import { helpers_validate_in_collection_value } from '../../helpers/validate-in-collection-value';
-export const deposition_show_latest = (sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    yield helpers_validate_in_collection_value(sandbox, collection_id, verbose);
-    const id = (parseInt(collection_id) + 1).toString();
-    const deposition = yield deposition_show_details(sandbox, id, verbose);
+import { deposition_show_details } from './../../deposition/show/details';
+export const deposition_show_latest = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+    const deposition = yield deposition_show_details(token, sandbox, collection_id, 'collection', verbose);
     let latest_draft_id;
     if ('latest_draft' in deposition.links && deposition.links.latest_draft !== undefined) {
         latest_draft_id = deposition.links.latest_draft.split('/').slice(-1)[0];
@@ -22,3 +19,4 @@ export const deposition_show_latest = (sandbox, collection_id, verbose = false) 
     }
     return latest_draft_id;
 });
+//# sourceMappingURL=latest.js.map

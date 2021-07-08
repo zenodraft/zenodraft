@@ -7,12 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import fetch from 'node-fetch';
-import * as fs from 'fs';
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
+import { deposition_show_details } from '../deposition/show/details';
 import { helpers_get_api } from '../helpers/get-api';
+import * as fs from 'fs';
 import * as path from 'path';
-export const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+import fetch from 'node-fetch';
+export const metadata_update = (token, sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`);
@@ -21,12 +21,12 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`);
         }
     }
-    const access_token = helpers_get_access_token_from_environment(sandbox);
+    yield deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'PUT';
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
     };
     const minimal_metadata_filename = path.join(__dirname, '..', '..', 'assets', '.zenodo.json.empty');
@@ -38,12 +38,11 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
     try {
         response = yield fetch(`${api}${endpoint}`, init);
         if (response.ok !== true) {
-            console.debug(response);
             throw new Error('Response was not OK');
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
     try {
         const deposition = yield response.json();
@@ -52,6 +51,7 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
         }
     }
     catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`);
+        throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
+//# sourceMappingURL=update.js.map

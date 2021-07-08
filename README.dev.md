@@ -147,6 +147,10 @@ Then update the `package-lock.json` and `dist/` directory by
 
 ```shell
 npm install
+```
+
+Disable source maps in `tsconfig.json`, then
+```
 npm run all
 ```
 

@@ -1,19 +1,18 @@
-import fetch from 'node-fetch'
-import { RequestInit } from 'node-fetch'
 import { deposition_show_details } from '../deposition/show/details'
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
+import { RequestInit } from 'node-fetch'
+import fetch from 'node-fetch'
 
 
-export const file_delete = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
+
+export const file_delete = async (token: string, sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`)
     }
-    const access_token = helpers_get_access_token_from_environment(sandbox)
-    const deposition = await deposition_show_details(sandbox, id)
+    const deposition = await deposition_show_details(token, sandbox, id, 'deposition', verbose)
     const bucket = deposition.links.bucket
     const method = 'DELETE'
     const headers = {
-        'Authorization': `Bearer ${access_token}`
+        'Authorization': `Bearer ${token}`
     }
     const init: RequestInit = { method, headers }
     let response: any
@@ -23,7 +22,6 @@ export const file_delete = async (sandbox: boolean, id: string, filename: string
             throw new Error()
         }
     } catch (e) {
-        console.debug(response)
-        throw new Error(`Something went wrong on PUT to ${bucket}/${filename}: ${response.status} - ${response.statusText} `)
+        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText} `)
     }
 }

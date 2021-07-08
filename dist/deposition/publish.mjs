@@ -7,19 +7,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import fetch from 'node-fetch';
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
+import { deposition_show_details } from '../deposition/show/details';
 import { helpers_get_api } from '../helpers/get-api';
-export const deposition_publish = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+import fetch from 'node-fetch';
+export const deposition_publish = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);
     }
-    const access_token = helpers_get_access_token_from_environment(sandbox);
+    yield deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}/actions/publish`;
     const method = 'POST';
     const headers = {
-        'Authorization': `Bearer ${access_token}`
+        'Authorization': `Bearer ${token}`
     };
     const init = { method, headers };
     let response;
@@ -30,7 +30,7 @@ export const deposition_publish = (sandbox, id, verbose = false) => __awaiter(vo
         }
     }
     catch (e) {
-        console.debug(response);
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
 });
+//# sourceMappingURL=publish.js.map

@@ -10,19 +10,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_publish = void 0;
-const node_fetch_1 = require("node-fetch");
-const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
+const details_1 = require("../deposition/show/details");
 const get_api_1 = require("../helpers/get-api");
-const deposition_publish = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const node_fetch_1 = require("node-fetch");
+const deposition_publish = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);
     }
-    const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
+    yield details_1.deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}/actions/publish`;
     const method = 'POST';
     const headers = {
-        'Authorization': `Bearer ${access_token}`
+        'Authorization': `Bearer ${token}`
     };
     const init = { method, headers };
     let response;
@@ -33,8 +33,8 @@ const deposition_publish = (sandbox, id, verbose = false) => __awaiter(void 0, v
         }
     }
     catch (e) {
-        console.debug(response);
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
 });
 exports.deposition_publish = deposition_publish;
+//# sourceMappingURL=publish.js.map

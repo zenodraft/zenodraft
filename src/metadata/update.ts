@@ -1,13 +1,14 @@
-import fetch from 'node-fetch'
+import { deposition_show_details } from '../deposition/show/details'
+import { DepositionsResponse } from '../helpers/zenodo-response-types'
+import { helpers_get_api } from '../helpers/get-api'
 import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
-import { DepositionsResponse } from '../helpers/zenodo-response-types'
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
-import { helpers_get_api } from '../helpers/get-api'
 import * as path from 'path'
+import fetch from 'node-fetch'
 
 
-export const metadata_update = async (sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
+
+export const metadata_update = async (token: string, sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`)
@@ -15,12 +16,13 @@ export const metadata_update = async (sandbox: boolean, id: string, filename?: s
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
         }
     }
-    const access_token = helpers_get_access_token_from_environment(sandbox)
+    await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'PUT'
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
     }
     const minimal_metadata_filename = path.join(__dirname, '..', '..', 'assets', '.zenodo.json.empty')
@@ -32,11 +34,10 @@ export const metadata_update = async (sandbox: boolean, id: string, filename?: s
     try {
         response = await fetch(`${api}${endpoint}`, init)
         if (response.ok !== true) {
-            console.debug(response)
             throw new Error('Response was not OK')
         }
     } catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} \n\n\n ${e}`)
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
 
     try {
@@ -45,6 +46,6 @@ export const metadata_update = async (sandbox: boolean, id: string, filename?: s
             console.log(`Updated record ${deposition.record_id}.`)
         }
     } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json. ${e}`)
+        throw new Error(`Something went wrong while retrieving the json.`)
     }
 }

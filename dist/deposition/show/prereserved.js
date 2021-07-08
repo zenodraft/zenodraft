@@ -10,9 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_show_prereserved = void 0;
-const details_1 = require("./details");
-const deposition_show_prereserved = (sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    const deposition = yield details_1.deposition_show_details(sandbox, latest_id, verbose);
+const details_1 = require("./../../deposition/show/details");
+const deposition_show_prereserved = (token, sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+    const deposition = yield details_1.deposition_show_details(token, sandbox, latest_id, 'deposition', verbose);
     return deposition.metadata.prereserve_doi.doi;
 });
 exports.deposition_show_prereserved = deposition_show_prereserved;
+//# sourceMappingURL=prereserved.js.map

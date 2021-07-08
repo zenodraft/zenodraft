@@ -15,10 +15,13 @@
     },
     "description": "CLI to manage depositions on Zenodo and Zenodo Sandbox",
     "devDependencies": {
+        "@types/jest": "^26.0.23",
         "@types/mime-types": "^2.1.0",
         "@types/node": "^15.6.1",
         "@types/node-fetch": "^2.5.10",
         "jest": "^27.0.5",
+        "nock": "^13.1.1",
+        "ts-jest": "^27.0.3",
         "typescript": "^4.3.2"
     },
     "engines": {
@@ -35,8 +38,8 @@
         "zenodo"
     ],
     "license": "Apache-2.0",
-    "main": "dist/zenodraft.js",
-    "module": "dist/zenodraft.mjs",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
     "name": "zenodraft",
     "repository": {
         "type": "git",
@@ -47,9 +50,10 @@
         "build": "npm run mjs && npm run cjs",
         "cjs": "tsc --module commonjs -p tsconfig.json",
         "clean": "rm -rf dist/*",
-        "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name *.js`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done",
-        "test": "jest tests"
+        "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name '*\\.js'`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done",
+        "test": "jest --config jest.config.js",
+        "tests": "npm run test"
     },
-    "types": "dist/zenodraft.d.ts",
+    "types": "dist/index.d.ts",
     "version": "0.10.0"
 }

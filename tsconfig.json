@@ -3,6 +3,10 @@
         "moduleResolution": "Node",
         "outDir": "dist",
         "rootDir": "src",
+        "sourceMap": true,
         "target": "ES6"
-    }
+    },
+    "include": [
+        "src/**/*"
+    ]
 }

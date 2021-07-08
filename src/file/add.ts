@@ -1,17 +1,16 @@
-import fetch from 'node-fetch'
+import { deposition_show_details } from '../deposition/show/details'
 import { RequestInit } from 'node-fetch'
 import * as fs from 'fs'
-import { deposition_show_details } from '../deposition/show/details'
 import * as mime from 'mime-types'
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
+import fetch from 'node-fetch'
 
 
-export const file_add = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
+
+export const file_add = async (token: string, sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }
-    const access_token = helpers_get_access_token_from_environment(sandbox)
-    const deposition = await deposition_show_details(sandbox, id)
+    const deposition = await deposition_show_details(token, sandbox, id, 'deposition', verbose)
     const bucket = deposition.links.bucket
     let content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'
     if (content_type.includes('application/json')) {
@@ -22,7 +21,7 @@ export const file_add = async (sandbox: boolean, id: string, filename: string, v
     const stream = fs.createReadStream(filename);
     const method = 'PUT'
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': content_type,
         'Content-Length': (fs.statSync(filename).size).toString()
     }
@@ -34,7 +33,6 @@ export const file_add = async (sandbox: boolean, id: string, filename: string, v
             throw new Error()
         }
     } catch (e) {
-        console.debug(response)
-        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText} `)
+        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText}`)
     }
 }
