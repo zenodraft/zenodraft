@@ -11,18 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_show_details = void 0;
 const node_fetch_1 = require("node-fetch");
-const get_access_token_from_environment_1 = require("../../helpers/get-access-token-from-environment");
 const get_api_1 = require("../../helpers/get-api");
-const deposition_show_details = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const deposition_show_details = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`getting deposition details for deposition with id ${id}...`);
     }
-    const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
     const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'GET';
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
     };
     const init = { method, headers };

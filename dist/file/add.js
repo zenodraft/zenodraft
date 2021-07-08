@@ -11,20 +11,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.file_add = void 0;
 const details_1 = require("../deposition/show/details");
-const get_access_token_from_environment_1 = require("../helpers/get-access-token-from-environment");
 const get_record_type_1 = require("../helpers/get-record-type");
 const assert = require("assert");
 const fs = require("fs");
 const mime = require("mime-types");
 const node_fetch_1 = require("node-fetch");
-const file_add = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const file_add = (token, sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);
     }
-    const record_type = yield get_record_type_1.helpers_get_record_type(sandbox, id, verbose);
+    const record_type = yield get_record_type_1.helpers_get_record_type(token, sandbox, id, verbose);
     assert(record_type === 'deposition', 'Input id is not a deposition.');
-    const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
-    const deposition = yield details_1.deposition_show_details(sandbox, id);
+    const deposition = yield details_1.deposition_show_details(token, sandbox, id);
     const bucket = deposition.links.bucket;
     let content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';
     if (content_type.includes('application/json')) {
@@ -35,7 +33,7 @@ const file_add = (sandbox, id, filename, verbose = false) => __awaiter(void 0, v
     const stream = fs.createReadStream(filename);
     const method = 'PUT';
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': content_type,
         'Content-Length': (fs.statSync(filename).size).toString()
     };

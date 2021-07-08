@@ -3,7 +3,7 @@ import { helpers_get_access_token_from_environment } from '../../dist/index'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-import { define_sandbox_token, define_token } from '../test-helpers'
+import { define_token } from '../test-helpers'
 
 
 
@@ -23,8 +23,9 @@ beforeEach(() => {
 
 describe('zenodo sandbox access token tests', () => {
 
+    const sandbox = true
+
     test('should throw if zenodo sandbox access token can\'t be determined', () => {
-        const sandbox = true
         const throwfun = () => {
             helpers_get_access_token_from_environment(sandbox)
         }
@@ -37,18 +38,18 @@ describe('zenodo sandbox access token tests', () => {
     })
 
     test('should return zenodo sandbox access token from env file', () => {
-        fs.writeFileSync('.env', 'ZENODO_SANDBOX_ACCESS_TOKEN=faux_zenodo_sandbox_token', 'utf8')
-        const sandbox = true
+        const token = 'faux_zenodo_sandbox_token'
+        fs.writeFileSync('.env', `ZENODO_SANDBOX_ACCESS_TOKEN=${token}`, 'utf8')
         const actual = helpers_get_access_token_from_environment(sandbox)
-        const expected = 'faux_zenodo_sandbox_token'
+        const expected = token
         expect(actual).toBe(expected)
     })
 
     test('should return zenodo sandbox access token from environment variable', () => {
-        const sandbox = true
-        define_sandbox_token()
+        const token = 'faux_zenodo_sandbox_token'
+        define_token(sandbox, token)
         const actual = helpers_get_access_token_from_environment(sandbox)
-        const expected = 'faux_zenodo_sandbox_token'
+        const expected = token
         expect(actual).toBe(expected)
     })
 
@@ -57,8 +58,10 @@ describe('zenodo sandbox access token tests', () => {
 
 describe('zenodo access token tests', () => {
 
+    const sandbox = false
+
     test('should throw if zenodo access token can\'t be determined', () => {
-        const sandbox = false
+
         const throwfun = () => {
             helpers_get_access_token_from_environment(sandbox)
         }
@@ -72,19 +75,19 @@ describe('zenodo access token tests', () => {
 
 
     test('should return zenodo access token from env file', () => {
-        fs.writeFileSync('.env', 'ZENODO_ACCESS_TOKEN=faux_zenodo_token', 'utf8')
-        const sandbox = false
+        const token = 'faux_zenodo_token'
+        fs.writeFileSync('.env', `ZENODO_ACCESS_TOKEN=${token}`, 'utf8')
         const actual = helpers_get_access_token_from_environment(sandbox)
-        const expected = 'faux_zenodo_token'
+        const expected = token
         expect(actual).toBe(expected)
     })
 
 
     test('should return zenodo access token from environment variable', () => {
-        const sandbox = false
-        define_token()
+        const token = 'faux_zenodo_token'
+        define_token(sandbox, token)
         const actual = helpers_get_access_token_from_environment(sandbox)
-        const expected = 'faux_zenodo_token'
+        const expected = token
         expect(actual).toBe(expected)
     })
 

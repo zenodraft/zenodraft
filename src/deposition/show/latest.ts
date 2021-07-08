@@ -3,11 +3,11 @@ import { helpers_get_record_type } from '../../helpers/get-record-type'
 import * as assert from 'assert'
 
 
-export const deposition_show_latest = async (sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
-    const record_type = await helpers_get_record_type(sandbox, collection_id, verbose)
+export const deposition_show_latest = async (token: string, sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
+    const record_type = await helpers_get_record_type(token, sandbox, collection_id, verbose)
     assert(record_type === 'collection', 'Input id is not a collection.')
     const id = (parseInt(collection_id) + 1).toString()
-    const deposition = await deposition_show_details(sandbox, id, verbose)
+    const deposition = await deposition_show_details(token, sandbox, id, verbose)
     let latest_draft_id: string
     if ('latest_draft' in deposition.links && deposition.links.latest_draft !== undefined) {
         latest_draft_id = deposition.links.latest_draft.split('/').slice(-1)[0]

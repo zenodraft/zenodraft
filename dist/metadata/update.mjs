@@ -7,14 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
 import { helpers_get_api } from '../helpers/get-api';
 import { helpers_get_record_type } from '../helpers/get-record-type';
 import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 import fetch from 'node-fetch';
-export const metadata_update = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const metadata_update = (token, sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`);
@@ -23,14 +22,13 @@ export const metadata_update = (sandbox, id, filename, verbose = false) => __awa
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`);
         }
     }
-    const record_type = yield helpers_get_record_type(sandbox, id, verbose);
+    const record_type = yield helpers_get_record_type(token, sandbox, id, verbose);
     assert(record_type === 'deposition', 'Input id is not a deposition.');
-    const access_token = helpers_get_access_token_from_environment(sandbox);
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'PUT';
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
     };
     const minimal_metadata_filename = path.join(__dirname, '..', '..', 'assets', '.zenodo.json.empty');

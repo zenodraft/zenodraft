@@ -8,22 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from '../deposition/show/details';
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
 import { helpers_get_record_type } from '../helpers/get-record-type';
 import * as assert from 'assert';
 import fetch from 'node-fetch';
-export const file_delete = (sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const file_delete = (token, sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`);
     }
-    const record_type = yield helpers_get_record_type(sandbox, id, verbose);
+    const record_type = yield helpers_get_record_type(token, sandbox, id, verbose);
     assert(record_type === 'deposition', 'Input id is not a deposition.');
-    const access_token = helpers_get_access_token_from_environment(sandbox);
-    const deposition = yield deposition_show_details(sandbox, id);
+    const deposition = yield deposition_show_details(token, sandbox, id);
     const bucket = deposition.links.bucket;
     const method = 'DELETE';
     const headers = {
-        'Authorization': `Bearer ${access_token}`
+        'Authorization': `Bearer ${token}`
     };
     const init = { method, headers };
     let response;

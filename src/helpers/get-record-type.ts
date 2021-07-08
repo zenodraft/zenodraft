@@ -5,7 +5,7 @@ import * as assert from 'assert'
 
 type RecordType = 'collection' | 'deposition'
 
-export const helpers_get_record_type = async (sandbox: boolean, id: string, verbose = false): Promise<RecordType> => {
+export const helpers_get_record_type = async (token: string, sandbox: boolean, id: string, verbose = false): Promise<RecordType> => {
     if (verbose) {
         console.log(`getting the deposition type...`)
     }
@@ -13,7 +13,7 @@ export const helpers_get_record_type = async (sandbox: boolean, id: string, verb
     assert(regex.test(id) === true, 'Deposition id has invalid format.')
 
     try {
-        await deposition_show_details(sandbox, id)
+        await deposition_show_details(token, sandbox, id)
         return 'deposition'
     } catch (e) {
         // no problem
@@ -21,7 +21,7 @@ export const helpers_get_record_type = async (sandbox: boolean, id: string, verb
 
     try {
         const id_next = (parseInt(id) + 1).toString()        
-        const details_next = await deposition_show_details(sandbox, id_next)
+        const details_next = await deposition_show_details(token, sandbox, id_next)
         if (details_next.conceptrecid === id) {
             return 'collection'
         }

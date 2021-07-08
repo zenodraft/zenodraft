@@ -21,6 +21,7 @@ const publish_1 = require("./deposition/publish");
 const update_1 = require("./metadata/update");
 const latest_1 = require("./deposition/show/latest");
 const prereserved_1 = require("./deposition/show/prereserved");
+const get_access_token_from_environment_1 = require("./helpers/get-access-token-from-environment");
 const cli = () => {
     const create = (() => {
         const create = new commander.Command('create');
@@ -30,7 +31,8 @@ const cli = () => {
             .description('create a new draft deposition in a new collection')
             .action(() => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield in_new_collection_1.deposition_create_in_new_collection(zenodraft.opts().sandbox, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield in_new_collection_1.deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -44,7 +46,8 @@ const cli = () => {
         })
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield in_existing_collection_1.deposition_create_in_existing_collection(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield in_existing_collection_1.deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -63,7 +66,8 @@ const cli = () => {
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                const details = yield details_1.deposition_show_details(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const details = yield details_1.deposition_show_details(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
                 console.log(JSON.stringify(details, null, 4));
             }
             catch (e) {
@@ -78,7 +82,8 @@ const cli = () => {
         })
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                const latest_draft_id = yield latest_1.deposition_show_latest(zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const latest_draft_id = yield latest_1.deposition_show_latest(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
                 if (latest_draft_id === '') {
                     if (zenodraft.opts().verbose) {
                         console.log(`There are no drafts in collection ${collection_id}.`);
@@ -100,7 +105,8 @@ const cli = () => {
         })
             .action((latest_id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                const prereserved = yield prereserved_1.deposition_show_prereserved(zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const prereserved = yield prereserved_1.deposition_show_prereserved(access_token, zenodraft.opts().sandbox, latest_id, zenodraft.opts().verbose);
                 console.log(prereserved);
             }
             catch (e) {
@@ -123,7 +129,8 @@ const cli = () => {
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield delete_2.deposition_delete(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield delete_2.deposition_delete(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -137,7 +144,8 @@ const cli = () => {
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield publish_1.deposition_publish(zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield publish_1.deposition_publish(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -157,7 +165,8 @@ const cli = () => {
         })
             .action((id, filename) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield add_1.file_add(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield add_1.file_add(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -172,7 +181,8 @@ const cli = () => {
         })
             .action((id, filename) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield delete_1.file_delete(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield delete_1.file_delete(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -192,7 +202,8 @@ const cli = () => {
         })
             .action((id, filename) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield update_1.metadata_update(zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield update_1.metadata_update(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -206,7 +217,8 @@ const cli = () => {
         })
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                yield update_1.metadata_update(zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                yield update_1.metadata_update(access_token, zenodraft.opts().sandbox, id, undefined, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);

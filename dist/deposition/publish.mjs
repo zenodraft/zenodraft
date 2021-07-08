@@ -8,22 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import fetch from 'node-fetch';
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment';
 import { helpers_get_api } from '../helpers/get-api';
 import { helpers_get_record_type } from '../helpers/get-record-type';
 import * as assert from 'assert';
-export const deposition_publish = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const deposition_publish = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);
     }
-    const record_type = yield helpers_get_record_type(sandbox, id, verbose);
+    const record_type = yield helpers_get_record_type(token, sandbox, id, verbose);
     assert(record_type === 'deposition', 'Input id is not a deposition.');
-    const access_token = helpers_get_access_token_from_environment(sandbox);
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}/actions/publish`;
     const method = 'POST';
     const headers = {
-        'Authorization': `Bearer ${access_token}`
+        'Authorization': `Bearer ${token}`
     };
     const init = { method, headers };
     let response;

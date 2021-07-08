@@ -1,6 +1,5 @@
 
 import { DepositionsResponse } from '../helpers/zenodo-response-types'
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 import { helpers_get_api } from '../helpers/get-api'
 import { helpers_get_record_type } from '../helpers/get-record-type'
 import { RequestInit } from 'node-fetch'
@@ -11,7 +10,7 @@ import fetch from 'node-fetch'
 
 
 
-export const metadata_update = async (sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
+export const metadata_update = async (token: string, sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
     if (verbose) {
         if (filename === undefined) {
             console.log(`clearing metadata from deposition with id ${id}...`)
@@ -19,14 +18,13 @@ export const metadata_update = async (sandbox: boolean, id: string, filename?: s
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
         }
     }
-    const record_type = await helpers_get_record_type(sandbox, id, verbose)
+    const record_type = await helpers_get_record_type(token, sandbox, id, verbose)
     assert(record_type === 'deposition', 'Input id is not a deposition.')
-    const access_token = helpers_get_access_token_from_environment(sandbox)
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'PUT'
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
     }
     const minimal_metadata_filename = path.join(__dirname, '..', '..', 'assets', '.zenodo.json.empty')

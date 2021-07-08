@@ -1,7 +1,6 @@
 import { deposition_show_details } from '../../deposition/show/details'
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import { file_delete } from '../../file/delete'
-import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
 import { helpers_get_api } from '../../helpers/get-api'
 import { helpers_get_record_type } from '../../helpers/get-record-type'
 import { metadata_update } from '../../metadata/update'
@@ -11,30 +10,29 @@ import fetch from 'node-fetch'
 
 
 
-export const deposition_create_in_existing_collection = async (sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
+export const deposition_create_in_existing_collection = async (token: string, sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`)
     }
-    const record_type = await helpers_get_record_type(sandbox, collection_id, verbose)
+    const record_type = await helpers_get_record_type(token, sandbox, collection_id, verbose)
     assert(record_type === 'collection', 'Input id is not a collection.')
-    const latest_id = await get_id_for_latest_version_in_collection(sandbox, collection_id, verbose)
-    const new_id = await create_new_versioned_deposition(sandbox, latest_id, verbose)
-    await remove_files_from_draft(sandbox, new_id, verbose)
-    await metadata_update(sandbox, new_id, undefined, verbose)
+    const latest_id = await get_id_for_latest_version_in_collection(token, sandbox, collection_id, verbose)
+    const new_id = await create_new_versioned_deposition(token, sandbox, latest_id, verbose)
+    await remove_files_from_draft(token, sandbox, new_id, verbose)
+    await metadata_update(token, sandbox, new_id, undefined, verbose)
     return new_id
 }
 
 
-const create_new_versioned_deposition = async (sandbox: boolean, latest_id: string, verbose = false): Promise<string> => {
+const create_new_versioned_deposition = async (token: string, sandbox: boolean, latest_id: string, verbose = false): Promise<string> => {
     if (verbose) {
         console.log(`creating a new version off of latest version in collection...`)
     }
-    const access_token = helpers_get_access_token_from_environment(sandbox)
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`
     const method = 'POST'
     const headers = {
-        'Authorization': `Bearer ${access_token}`
+        'Authorization': `Bearer ${token}`
     }
     const init: RequestInit = { method, headers }
     let response: any
@@ -61,24 +59,24 @@ const create_new_versioned_deposition = async (sandbox: boolean, latest_id: stri
 }
 
 
-const get_id_for_latest_version_in_collection = async (sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
+const get_id_for_latest_version_in_collection = async (token: string, sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
     if (verbose) {
         console.log(`getting id of the latest version in the collection...`)
     }
     const id = (parseInt(collection_id) + 1).toString()
-    const deposition = await deposition_show_details(sandbox, id)
+    const deposition = await deposition_show_details(token, sandbox, id)
     const latest_id = deposition.links.latest.split('/').slice(-1)[0]
     return latest_id
 }
 
 
-const remove_files_from_draft = async (sandbox: boolean, id: string, verbose = false): Promise<void> => {
+const remove_files_from_draft = async (token: string, sandbox: boolean, id: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`removing any files from the newly drafted version...`)
     }
-    const deposition = await deposition_show_details(sandbox, id)
+    const deposition = await deposition_show_details(token, sandbox, id)
     const filenames = deposition.files.map((file) => {return file.filename})
     for (const filename of filenames) {
-        file_delete(sandbox, id, filename)
+        file_delete(token, sandbox, id, filename)
     }
 }

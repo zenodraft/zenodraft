@@ -9,14 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { deposition_show_details } from '../deposition/show/details';
 import * as assert from 'assert';
-export const helpers_get_record_type = (sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+export const helpers_get_record_type = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`getting the deposition type...`);
     }
     const regex = new RegExp('^[0-9]+$');
     assert(regex.test(id) === true, 'Deposition id has invalid format.');
     try {
-        yield deposition_show_details(sandbox, id);
+        yield deposition_show_details(token, sandbox, id);
         return 'deposition';
     }
     catch (e) {
@@ -24,7 +24,7 @@ export const helpers_get_record_type = (sandbox, id, verbose = false) => __await
     }
     try {
         const id_next = (parseInt(id) + 1).toString();
-        const details_next = yield deposition_show_details(sandbox, id_next);
+        const details_next = yield deposition_show_details(token, sandbox, id_next);
         if (details_next.conceptrecid === id) {
             return 'collection';
         }

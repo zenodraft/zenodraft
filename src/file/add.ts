@@ -1,5 +1,4 @@
 import { deposition_show_details } from '../deposition/show/details'
-import { helpers_get_access_token_from_environment } from '../helpers/get-access-token-from-environment'
 import { helpers_get_record_type } from '../helpers/get-record-type'
 import { RequestInit } from 'node-fetch'
 import * as assert from 'assert'
@@ -9,14 +8,13 @@ import fetch from 'node-fetch'
 
 
 
-export const file_add = async (sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
+export const file_add = async (token: string, sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }
-    const record_type = await helpers_get_record_type(sandbox, id, verbose)
+    const record_type = await helpers_get_record_type(token, sandbox, id, verbose)
     assert(record_type === 'deposition', 'Input id is not a deposition.')
-    const access_token = helpers_get_access_token_from_environment(sandbox)
-    const deposition = await deposition_show_details(sandbox, id)
+    const deposition = await deposition_show_details(token, sandbox, id)
     const bucket = deposition.links.bucket
     let content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'
     if (content_type.includes('application/json')) {
@@ -27,7 +25,7 @@ export const file_add = async (sandbox: boolean, id: string, filename: string, v
     const stream = fs.createReadStream(filename);
     const method = 'PUT'
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': content_type,
         'Content-Length': (fs.statSync(filename).size).toString()
     }

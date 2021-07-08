@@ -1,21 +1,19 @@
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import fetch from 'node-fetch'
 import { RequestInit, Response } from 'node-fetch'
-import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
 import { helpers_get_api } from '../../helpers/get-api'
 
 
 
-export const deposition_show_details = async (sandbox: boolean, id: string, verbose = false): Promise<DepositionsResponse> => {
+export const deposition_show_details = async (token: string, sandbox: boolean, id: string, verbose = false): Promise<DepositionsResponse> => {
     if (verbose) {
         console.log(`getting deposition details for deposition with id ${id}...`)
     }
-    const access_token = helpers_get_access_token_from_environment(sandbox)
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'GET'
     const headers = {
-        'Authorization': `Bearer ${access_token}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
     }
     const init: RequestInit = { method, headers }

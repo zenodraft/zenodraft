@@ -1,7 +1,7 @@
 import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
-import { deposition_show_latest } from '../../../dist/index'
+import { deposition_show_latest, helpers_get_access_token_from_environment } from '../../../dist/index'
 import * as nock from 'nock'
-import { define_sandbox_token, define_reqheaders, mock_deposition } from '../../test-helpers'
+import { define_token, define_reqheaders, mock_deposition } from '../../test-helpers'
 
 
 
@@ -11,11 +11,12 @@ afterEach(nock.cleanAll)
 
 describe('deposition show latest', () => {
 
-    define_sandbox_token()
+    const sandbox = true
+    define_token(sandbox, 'faux_zenodo_sandbox_token')
+    const access_token = helpers_get_access_token_from_environment(sandbox)
     const concept_record_id = '123456'
     const record_id = '123457'
     const reqheaders = define_reqheaders()
-    const sandbox = true
     const mocked_data = mock_deposition({
         conceptrecid: concept_record_id,
         latest_draft: `https://sandbox.zenodo.org/api/records/${record_id}`
@@ -23,7 +24,7 @@ describe('deposition show latest', () => {
     nock('https://sandbox.zenodo.org/api', { reqheaders }).get(`/deposit/depositions/${record_id}`).reply(200, mocked_data).persist()
 
     test(`shows latest draft id for depositions in collection with id ${concept_record_id}`, async () => {
-        const actual = await deposition_show_latest(sandbox, concept_record_id)
+        const actual = await deposition_show_latest(access_token, sandbox, concept_record_id)
         const expected = record_id
         expect(actual).toEqual(expected)
     })
