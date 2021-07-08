@@ -1,9 +1,7 @@
-
+import { deposition_show_details } from '../deposition/show/details'
 import { DepositionsResponse } from '../helpers/zenodo-response-types'
 import { helpers_get_api } from '../helpers/get-api'
-import { helpers_get_record_type } from '../helpers/get-record-type'
 import { RequestInit } from 'node-fetch'
-import * as assert from 'assert'
 import * as fs from 'fs'
 import * as path from 'path'
 import fetch from 'node-fetch'
@@ -18,8 +16,8 @@ export const metadata_update = async (token: string, sandbox: boolean, id: strin
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
         }
     }
-    const record_type = await helpers_get_record_type(token, sandbox, id, verbose)
-    assert(record_type === 'deposition', 'Input id is not a deposition.')
+    await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'PUT'

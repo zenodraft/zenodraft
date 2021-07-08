@@ -7,16 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import fetch from 'node-fetch';
+import { deposition_show_details } from '../deposition/show/details';
 import { helpers_get_api } from '../helpers/get-api';
-import { helpers_get_record_type } from '../helpers/get-record-type';
-import * as assert from 'assert';
+import fetch from 'node-fetch';
 export const deposition_delete = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`deleting draft deposition with id ${id}...`);
     }
-    const record_type = yield helpers_get_record_type(token, sandbox, id, verbose);
-    assert(record_type === 'deposition', 'Input id is not a deposition.');
+    yield deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'DELETE';

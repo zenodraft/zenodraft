@@ -13,17 +13,14 @@ exports.deposition_create_in_existing_collection = void 0;
 const details_1 = require("../../deposition/show/details");
 const delete_1 = require("../../file/delete");
 const get_api_1 = require("../../helpers/get-api");
-const get_record_type_1 = require("../../helpers/get-record-type");
 const update_1 = require("../../metadata/update");
-const assert = require("assert");
 const node_fetch_1 = require("node-fetch");
 const deposition_create_in_existing_collection = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);
     }
-    const record_type = yield get_record_type_1.helpers_get_record_type(token, sandbox, collection_id, verbose);
-    assert(record_type === 'collection', 'Input id is not a collection.');
-    const latest_id = yield get_id_for_latest_version_in_collection(token, sandbox, collection_id, verbose);
+    const deposition = yield details_1.deposition_show_details(token, sandbox, collection_id, 'collection', verbose);
+    const latest_id = deposition.links.latest.split('/').slice(-1)[0];
     const new_id = yield create_new_versioned_deposition(token, sandbox, latest_id, verbose);
     yield remove_files_from_draft(token, sandbox, new_id, verbose);
     yield update_1.metadata_update(token, sandbox, new_id, undefined, verbose);
@@ -65,20 +62,11 @@ const create_new_versioned_deposition = (token, sandbox, latest_id, verbose = fa
         throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
-const get_id_for_latest_version_in_collection = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    if (verbose) {
-        console.log(`getting id of the latest version in the collection...`);
-    }
-    const id = (parseInt(collection_id) + 1).toString();
-    const deposition = yield details_1.deposition_show_details(token, sandbox, id);
-    const latest_id = deposition.links.latest.split('/').slice(-1)[0];
-    return latest_id;
-});
 const remove_files_from_draft = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`removing any files from the newly drafted version...`);
     }
-    const deposition = yield details_1.deposition_show_details(token, sandbox, id);
+    const deposition = yield details_1.deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const filenames = deposition.files.map((file) => { return file.filename; });
     for (const filename of filenames) {
         delete_1.file_delete(token, sandbox, id, filename);

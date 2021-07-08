@@ -10,13 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_show_prereserved = void 0;
-const details_1 = require("./details");
-const get_record_type_1 = require("../../helpers/get-record-type");
-const assert = require("assert");
+const details_1 = require("./../../deposition/show/details");
 const deposition_show_prereserved = (token, sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    const record_type = yield get_record_type_1.helpers_get_record_type(token, sandbox, latest_id, verbose);
-    assert(record_type === 'deposition', 'Input id is not a deposition.');
-    const deposition = yield details_1.deposition_show_details(token, sandbox, latest_id, verbose);
+    const deposition = yield details_1.deposition_show_details(token, sandbox, latest_id, 'deposition', verbose);
     return deposition.metadata.prereserve_doi.doi;
 });
 exports.deposition_show_prereserved = deposition_show_prereserved;

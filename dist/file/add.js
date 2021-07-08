@@ -11,8 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.file_add = void 0;
 const details_1 = require("../deposition/show/details");
-const get_record_type_1 = require("../helpers/get-record-type");
-const assert = require("assert");
 const fs = require("fs");
 const mime = require("mime-types");
 const node_fetch_1 = require("node-fetch");
@@ -20,9 +18,7 @@ const file_add = (token, sandbox, id, filename, verbose = false) => __awaiter(vo
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);
     }
-    const record_type = yield get_record_type_1.helpers_get_record_type(token, sandbox, id, verbose);
-    assert(record_type === 'deposition', 'Input id is not a deposition.');
-    const deposition = yield details_1.deposition_show_details(token, sandbox, id);
+    const deposition = yield details_1.deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const bucket = deposition.links.bucket;
     let content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';
     if (content_type.includes('application/json')) {

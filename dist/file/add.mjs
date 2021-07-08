@@ -8,8 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from '../deposition/show/details';
-import { helpers_get_record_type } from '../helpers/get-record-type';
-import * as assert from 'assert';
 import * as fs from 'fs';
 import * as mime from 'mime-types';
 import fetch from 'node-fetch';
@@ -17,9 +15,7 @@ export const file_add = (token, sandbox, id, filename, verbose = false) => __awa
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`);
     }
-    const record_type = yield helpers_get_record_type(token, sandbox, id, verbose);
-    assert(record_type === 'deposition', 'Input id is not a deposition.');
-    const deposition = yield deposition_show_details(token, sandbox, id);
+    const deposition = yield deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const bucket = deposition.links.bucket;
     let content_type = mime.contentType(filename) ? mime.contentType(filename) : 'text/plain';
     if (content_type.includes('application/json')) {

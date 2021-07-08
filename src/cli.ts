@@ -63,7 +63,7 @@ export const cli = () => {
             .action(async (id: string) => {
                 try {
                     const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
-                    const details = await deposition_show_details(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
+                    const details = await deposition_show_details(access_token, zenodraft.opts().sandbox, id, 'deposition', zenodraft.opts().verbose)
                     console.log(JSON.stringify(details, null, 4))
                 } catch (e) {
                     console.error(e.message)

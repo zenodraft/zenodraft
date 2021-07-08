@@ -1,7 +1,5 @@
 import { deposition_show_details } from '../deposition/show/details'
-import { helpers_get_record_type } from '../helpers/get-record-type'
 import { RequestInit } from 'node-fetch'
-import * as assert from 'assert'
 import * as fs from 'fs'
 import * as mime from 'mime-types'
 import fetch from 'node-fetch'
@@ -12,9 +10,7 @@ export const file_add = async (token: string, sandbox: boolean, id: string, file
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }
-    const record_type = await helpers_get_record_type(token, sandbox, id, verbose)
-    assert(record_type === 'deposition', 'Input id is not a deposition.')
-    const deposition = await deposition_show_details(token, sandbox, id)
+    const deposition = await deposition_show_details(token, sandbox, id, 'deposition', verbose)
     const bucket = deposition.links.bucket
     let content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'
     if (content_type.includes('application/json')) {

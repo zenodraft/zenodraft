@@ -1,8 +1,7 @@
-import fetch from 'node-fetch'
-import { RequestInit } from 'node-fetch'
+import { deposition_show_details } from '../deposition/show/details'
 import { helpers_get_api } from '../helpers/get-api'
-import { helpers_get_record_type } from '../helpers/get-record-type'
-import * as assert from 'assert'
+import { RequestInit } from 'node-fetch'
+import fetch from 'node-fetch'
 
 
 
@@ -10,8 +9,9 @@ export const deposition_publish = async (token: string, sandbox: boolean, id: st
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`)
     }
-    const record_type = await helpers_get_record_type(token, sandbox, id, verbose)
-    assert(record_type === 'deposition', 'Input id is not a deposition.')
+
+    await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}/actions/publish`
     const method = 'POST'

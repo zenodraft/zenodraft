@@ -10,9 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.metadata_update = void 0;
+const details_1 = require("../deposition/show/details");
 const get_api_1 = require("../helpers/get-api");
-const get_record_type_1 = require("../helpers/get-record-type");
-const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 const node_fetch_1 = require("node-fetch");
@@ -25,8 +24,7 @@ const metadata_update = (token, sandbox, id, filename, verbose = false) => __awa
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`);
         }
     }
-    const record_type = yield get_record_type_1.helpers_get_record_type(token, sandbox, id, verbose);
-    assert(record_type === 'deposition', 'Input id is not a deposition.');
+    yield details_1.deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;
     const method = 'PUT';
