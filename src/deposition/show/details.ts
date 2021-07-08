@@ -28,7 +28,7 @@ const fetch_details = async (token: string, sandbox: boolean, id: string): Promi
         throw new Error(`Response was ${response.status} - ${response.statusText}`)
     }
     try {
-        return await response.json()
+        return response.json()
     } catch (e) {
         throw new Error(`Something went wrong while retrieving the json.`)
     }    
