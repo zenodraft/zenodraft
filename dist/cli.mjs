@@ -21,10 +21,9 @@ import { deposition_show_prereserved } from './deposition/show/prereserved';
 import { helpers_get_access_token_from_environment } from './helpers/get-access-token-from-environment';
 export const cli = () => {
     const create = (() => {
-        const create = new commander.Command('create');
-        create.description('subcommands for creating a deposition');
-        create
-            .command('in-new-collection')
+        const cmd = new commander.Command('create');
+        cmd.description('subcommands for creating a deposition');
+        cmd.command('in-new-collection')
             .description('create a new draft deposition in a new collection')
             .action(() => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -35,8 +34,7 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        create
-            .command('in-existing-collection')
+        cmd.command('in-existing-collection')
             .arguments('<collection_id>')
             .description('create a new draft deposition as a new version in an existing collection', {
             collection_id: 'id for the collection that the new deposition will be part of.'
@@ -50,13 +48,12 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        return create;
+        return cmd;
     })();
     const show = (() => {
-        const show = new commander.Command('show');
-        show.description('subcommands for showing information about a deposition');
-        show
-            .command('details')
+        const cmd = new commander.Command('show');
+        cmd.description('subcommands for showing information about a deposition');
+        cmd.command('details')
             .arguments('<id>')
             .description('get details pertaining to deposition with id <id>', {
             id: 'deposition id'
@@ -71,8 +68,7 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        show
-            .command('latest')
+        cmd.command('latest')
             .arguments('<collection_id>')
             .description('get the latest draft deposition id of the collection with id <collection_id>', {
             collection_id: 'id of the collection whose latest draft we want to retrieve'
@@ -94,8 +90,7 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        show
-            .command('prereserved')
+        cmd.command('prereserved')
             .arguments('<latest_id>')
             .description('get the prereserved doi of the draft deposition with id <latest_id>', {
             latest_id: 'id of the deposition whose prereserved doi we want to retrieve'
@@ -110,15 +105,14 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        return show;
+        return cmd;
     })();
     const deposition = (() => {
-        const deposition = new commander.Command('deposition');
-        deposition.description('subcommands for depositions');
-        deposition
-            .addCommand(create)
+        const cmd = new commander.Command('deposition');
+        cmd.description('subcommands for depositions');
+        cmd.addCommand(create)
             .addCommand(show);
-        deposition
+        cmd
             .command('delete')
             .arguments('<id>')
             .description('delete draft deposition with id <id>', {
@@ -133,8 +127,7 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        deposition
-            .command('publish')
+        cmd.command('publish')
             .arguments('<id>')
             .description('publish draft deposition with id <id>', {
             id: 'deposition id'
@@ -148,13 +141,12 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        return deposition;
+        return cmd;
     })();
     const file = (() => {
-        const file = new commander.Command('file');
-        file.description('subcommands for files');
-        file
-            .command('add')
+        const cmd = new commander.Command('file');
+        cmd.description('subcommands for files');
+        cmd.command('add')
             .arguments('<id> <filename>')
             .description('add a local file with filename <filename> to existing deposition with id <id>', {
             id: 'deposition id',
@@ -169,8 +161,7 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        file
-            .command('delete')
+        cmd.command('delete')
             .arguments('<id> <filename>')
             .description('delete a file with filename <filename> from draft deposition with id <id>', {
             id: 'deposition id',
@@ -185,13 +176,12 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        return file;
+        return cmd;
     })();
     const metadata = (() => {
-        const metadata = new commander.Command('metadata');
-        metadata.description('subcommands for metadata');
-        metadata
-            .command('update')
+        const cmd = new commander.Command('metadata');
+        cmd.description('subcommands for metadata');
+        cmd.command('update')
             .arguments('<id> <filename>')
             .description('update the metadata of an existing deposition with id <id> using the metadata from <filename>', {
             id: 'deposition id',
@@ -206,8 +196,7 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        metadata
-            .command('clear')
+        cmd.command('clear')
             .arguments('<id>')
             .description('clear the metadata of an existing deposition with id <id>', {
             id: 'deposition id'
@@ -221,7 +210,7 @@ export const cli = () => {
                 console.error(e.message);
             }
         }));
-        return metadata;
+        return cmd;
     })();
     const zenodraft = new commander.Command('zenodraft')
         .version('0.10.0')
