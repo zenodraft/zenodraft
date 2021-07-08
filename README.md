@@ -20,7 +20,6 @@ You are welcome to try it out and leave feedback at https://github.com/zenodraft
     
 ## CLI to manage depositions on Zenodo or Zenodo Sandbox
 
-
 ### Features
 
 1. Choose which platform you want to draft your deposition on (Zenodo or Zenodo Sandbox), and easily switch between them.
