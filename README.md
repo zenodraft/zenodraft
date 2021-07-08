@@ -23,7 +23,6 @@ You are welcome to try it out and leave feedback at https://github.com/zenodraft
 
 ### Features
 
-
 1. Choose which platform you want to draft your deposition on (Zenodo or Zenodo Sandbox), and easily switch between them.
 2. Choose to create your draft deposition as a new version in an existing collection, or as a new deposition in a new collection.
 3. Upload local files to the draft deposition.
