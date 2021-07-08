@@ -1,7 +1,6 @@
+import { default as fetch, RequestInit } from 'node-fetch'
 import { deposition_show_details } from '../deposition/show/details'
 import { helpers_get_api } from '../helpers/get-api'
-import { RequestInit } from 'node-fetch'
-import fetch from 'node-fetch'
 
 
 

@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.metadata_update = void 0;
+const node_fetch_1 = require("node-fetch");
 const details_1 = require("../deposition/show/details");
 const get_api_1 = require("../helpers/get-api");
 const fs = require("fs");
 const path = require("path");
-const node_fetch_1 = require("node-fetch");
 const metadata_update = (token, sandbox, id, filename, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         if (filename === undefined) {

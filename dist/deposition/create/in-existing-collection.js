@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_create_in_existing_collection = void 0;
+const node_fetch_1 = require("node-fetch");
 const details_1 = require("../../deposition/show/details");
 const delete_1 = require("../../file/delete");
 const get_api_1 = require("../../helpers/get-api");
 const update_1 = require("../../metadata/update");
-const node_fetch_1 = require("node-fetch");
 const deposition_create_in_existing_collection = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);

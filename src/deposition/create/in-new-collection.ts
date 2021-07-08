@@ -1,5 +1,4 @@
-import fetch from 'node-fetch'
-import { RequestInit } from 'node-fetch'
+import { default as fetch, RequestInit } from 'node-fetch'
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import { helpers_get_api } from '../../helpers/get-api'
 

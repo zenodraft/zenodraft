@@ -7,11 +7,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { default as fetch } from 'node-fetch';
 import { deposition_show_details } from '../../deposition/show/details';
 import { file_delete } from '../../file/delete';
 import { helpers_get_api } from '../../helpers/get-api';
 import { metadata_update } from '../../metadata/update';
-import fetch from 'node-fetch';
 export const deposition_create_in_existing_collection = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`creating a new, empty versioned deposition in existing collection...`);

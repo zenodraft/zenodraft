@@ -7,9 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { default as fetch } from 'node-fetch';
 import { deposition_show_details } from '../deposition/show/details';
 import { helpers_get_api } from '../helpers/get-api';
-import fetch from 'node-fetch';
 export const deposition_publish = (token, sandbox, id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);

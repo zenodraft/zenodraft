@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import fetch from 'node-fetch';
+import { default as fetch } from 'node-fetch';
 import { helpers_get_api } from '../../helpers/get-api';
 export const deposition_create_in_new_collection = (token, sandbox, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
