@@ -27,10 +27,10 @@ const fetch_details = (token, sandbox, id) => __awaiter(void 0, void 0, void 0, 
         response = yield node_fetch_1.default(`${api}${endpoint}`, init);
     }
     catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText} `);
+        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
     if (response.ok !== true) {
-        throw new Error('Response was not 200');
+        throw new Error(`Response was ${response.status} - ${response.statusText}`);
     }
     try {
         const deposition = yield response.json();
@@ -51,7 +51,7 @@ const deposition_show_details = (token, sandbox, id, expected_type, verbose = fa
             return yield fetch_details(token, sandbox, id);
         }
         catch (e) {
-            throw new Error(`Encountered a problem with deposition record ${id}.`);
+            throw e;
         }
     }
     else if (expected_type === 'collection') {
@@ -61,7 +61,7 @@ const deposition_show_details = (token, sandbox, id, expected_type, verbose = fa
             details_next = yield fetch_details(token, sandbox, id_next);
         }
         catch (e) {
-            throw new Error(`Encountered a problem fetching collection record ${id}.`);
+            throw e;
         }
         if (details_next.conceptrecid === id) {
             return details_next;

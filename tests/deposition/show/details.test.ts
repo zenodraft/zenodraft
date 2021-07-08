@@ -48,7 +48,7 @@ describe('deposition show details with expected type \'deposition\'', () => {
         const id = '999'
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
             .get(`/deposit/depositions/${id}`)
-            .times(1)
+            .times(2)
             .reply(404)
         const throwfun = async () => {
             await deposition_show_details(access_token, sandbox, id, 'deposition')
@@ -57,7 +57,7 @@ describe('deposition show details with expected type \'deposition\'', () => {
         try {
             await throwfun()
         } catch (e) {
-            expect(e.message).toBe(`Encountered a problem with deposition record ${id}.`)
+            expect(e.message).toBe(`Response was 404 - Not Found`)
         }
     })
 
@@ -70,13 +70,30 @@ describe('deposition show details with expected type \'deposition\'', () => {
         const expected = record_id
         expect(actual).toBe(expected)
     })
+
+    test(`should throw because record is not a deposition`, async () => {
+        const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
+            .get(`/deposit/depositions/${concept_record_id}`)
+            .times(2)
+            .reply(404)
+        const throwfun = async () => {
+            await deposition_show_details(access_token, sandbox, concept_record_id, 'deposition')
+        }
+        await expect(throwfun).rejects.toThrow()
+        try {
+            await throwfun()
+        } catch (e) {
+            expect(e.message).toBe('Response was 404 - Not Found')
+        }
+    })
+
 })
 
 
 
 describe('deposition show details with expected type \'collection\'', () => {
 
-    test('should return deposition details for the deposition immediately following the collection record \'', async () => {
+    test('should return deposition details for the deposition immediately following the collection record', async () => {
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
             .get(`/deposit/depositions/${record_id}`)
             .times(1)
