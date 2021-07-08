@@ -1,8 +1,9 @@
 name: fair-software
 
 on:
-  branches:    
-    - main
+  push:
+    branches:
+      - main
     paths:
       - README.md
 
