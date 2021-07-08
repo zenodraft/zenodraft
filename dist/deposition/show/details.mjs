@@ -42,7 +42,7 @@ export const deposition_show_details = (token, sandbox, id, expected_type, verbo
         console.log(`getting ${expected_type} details for record with id ${id}...`);
     }
     const regex = new RegExp('^[0-9]+$');
-    assert(regex.test(id) === true, 'Deposition id has invalid format.');
+    assert(regex.test(id) === true, 'id has invalid format.');
     if (expected_type === 'deposition') {
         try {
             return yield fetch_details(token, sandbox, id);

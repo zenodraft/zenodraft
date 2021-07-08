@@ -45,7 +45,7 @@ export const deposition_show_details = async (token: string, sandbox: boolean, i
     }
 
     const regex = new RegExp('^[0-9]+$')
-    assert(regex.test(id) === true, 'Deposition id has invalid format.')
+    assert(regex.test(id) === true, 'id has invalid format.')
 
 
     if (expected_type === 'deposition') {

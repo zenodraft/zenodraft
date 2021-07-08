@@ -23,15 +23,6 @@ afterEach(nock.cleanAll)
 
 describe('deposition show details with expected type \'deposition\'', () => {
 
-    test(`shows details for deposition with id ${record_id}`, async () => {
-        const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
-            .get(`/deposit/depositions/${record_id}`)
-            .times(1)
-            .reply(200, mocked_data)
-        const details = await deposition_show_details(access_token, sandbox, record_id, 'deposition')
-        expect(details.conceptrecid).toEqual(concept_record_id)
-    })
-
     test('should throw because id uses invalid format', async () => {
         const throwfun = async () => {
             await deposition_show_details(access_token, sandbox, 'mumbojumbo123', 'deposition')
@@ -40,7 +31,7 @@ describe('deposition show details with expected type \'deposition\'', () => {
         try {
             await throwfun()
         } catch (e) {
-            expect(e.message).toBe('Deposition id has invalid format.')
+            expect(e.message).toBe('id has invalid format.')
         }
     })
 
@@ -61,16 +52,6 @@ describe('deposition show details with expected type \'deposition\'', () => {
         }
     })
 
-    test('should return deposition details for record_id', async () => {
-        const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
-            .get(`/deposit/depositions/${record_id}`)
-            .times(1)
-            .reply(200, mocked_data)
-        const actual = (await deposition_show_details(access_token, sandbox, record_id, 'deposition')).record_id
-        const expected = record_id
-        expect(actual).toBe(expected)
-    })
-
     test(`should throw because record is not a deposition`, async () => {
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
             .get(`/deposit/depositions/${concept_record_id}`)
@@ -87,11 +68,69 @@ describe('deposition show details with expected type \'deposition\'', () => {
         }
     })
 
+    test('should return deposition details for record_id', async () => {
+        const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
+            .get(`/deposit/depositions/${record_id}`)
+            .times(1)
+            .reply(200, mocked_data)
+        const actual = (await deposition_show_details(access_token, sandbox, record_id, 'deposition')).record_id
+        const expected = record_id
+        expect(actual).toBe(expected)
+    })
+
 })
 
 
 
 describe('deposition show details with expected type \'collection\'', () => {
+
+    test('should throw because id uses invalid format', async () => {
+        const throwfun = async () => {
+            await deposition_show_details(access_token, sandbox, 'mumbojumbo123', 'collection')
+        }
+        await expect(throwfun).rejects.toThrow()
+        try {
+            await throwfun()
+        } catch (e) {
+            expect(e.message).toBe('id has invalid format.')
+        }
+    })
+
+    test('should throw because id can\'t be resolved', async () => {
+        const id = '999'
+        const id_next = (parseInt(id) + 1).toString()
+        const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
+            .get(`/deposit/depositions/${id_next}`)
+            .times(2)
+            .reply(404)
+        const throwfun = async () => {
+            await deposition_show_details(access_token, sandbox, id, 'collection')
+        }
+        await expect(throwfun).rejects.toThrow()
+        try {
+            await throwfun()
+        } catch (e) {
+            expect(e.message).toBe(`Response was 404 - Not Found`)
+        }
+    })
+
+    test(`should throw because record is not a collection`, async () => {
+        const id_next = (parseInt(record_id) + 1).toString()
+        const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
+            .get(`/deposit/depositions/${id_next}`)
+            .times(2)
+            .reply(404)
+        const throwfun = async () => {
+            await deposition_show_details(access_token, sandbox, record_id, 'collection')
+        }
+        await expect(throwfun).rejects.toThrow()
+        try {
+            await throwfun()
+        } catch (e) {
+            expect(e.message).toBe('Response was 404 - Not Found')
+        }
+    })
+
 
     test('should return deposition details for the deposition immediately following the collection record', async () => {
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
