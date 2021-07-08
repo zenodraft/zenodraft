@@ -273,7 +273,6 @@ should output
   file_delete: [Getter],
   helpers_get_access_token_from_environment: [Getter],
   helpers_get_api: [Getter],
-  helpers_validate_in_collection_value: [Getter],
   metadata_update: [Getter]
 }
 ```
