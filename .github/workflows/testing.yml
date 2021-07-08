@@ -124,4 +124,4 @@ jobs:
 
       - name: run the unit tests using jest
         # not collecting coverage for the moment to avoid weird bug having to do with 'uv_cwd'
-        run: node_modules/.bin/jest --config jest.config.js --collectCoverage=false
+        run: npm run test
