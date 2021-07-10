@@ -14,9 +14,16 @@ afterEach(() => {
 })
 
 
-beforeEach(() => {
+beforeEach( async () => {
+    function sleep(ms: number) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms)
+        })
+    }
     temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
     process.chdir(temporary_directory)
+    // added this to see if it resolves my problems with spurious uv_cwd errors
+    await sleep(500)
 })
 
 
