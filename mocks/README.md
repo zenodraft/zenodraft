@@ -17,7 +17,7 @@
 | &nbsp;          | &nbsp;     | &nbsp;            | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | 150             | collection | draft             | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | [151](151.json) | deposition | &nbsp;            | done              | yes      | yes         | _131_  | &nbsp; |
-| [152](152.json) | deposition | &nbsp;            | unsubmitted       | yes      | no          | 151    | 151.newversion(), with minimal metadata and files removed |
+| [152](152.json) | deposition | &nbsp;            | unsubmitted       | yes      | no          | 151    | 151.newversion(), with minimal metadata, and files removed |
 | &nbsp;          | &nbsp;     | &nbsp;            | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | 160             | collection | draft             | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | [161](161.json) | deposition | &nbsp;            | done              | yes      | yes         | _131_  | &nbsp; |
