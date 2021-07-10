@@ -1,0 +1,53 @@
+{
+    "conceptdoi": "10.5072/zenodo.160",
+    "conceptrecid": "160",
+    "created": "2021-07-10T10:45:13.206989+00:00",
+    "doi": "10.5072/zenodo.162",
+    "doi_url": "https://doi.org/10.5072/zenodo.162",
+    "files": [],
+    "id": 162,
+    "links": {
+        "badge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.162.svg",
+        "bucket": "https://sandbox.zenodo.org/api/files/6df0abbd-bf21-491a-aabd-ef0b4e367846",
+        "conceptbadge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.160.svg",
+        "conceptdoi": "https://doi.org/10.5072/zenodo.160",
+        "discard": "https://sandbox.zenodo.org/api/deposit/depositions/162/actions/discard",
+        "doi": "https://doi.org/10.5072/zenodo.162",
+        "edit": "https://sandbox.zenodo.org/api/deposit/depositions/162/actions/edit",
+        "files": "https://sandbox.zenodo.org/api/deposit/depositions/162/files",
+        "html": "https://sandbox.zenodo.org/deposit/162",
+        "latest": "https://sandbox.zenodo.org/api/records/161",
+        "latest_draft": "https://sandbox.zenodo.org/api/deposit/depositions/162",
+        "latest_draft_html": "https://sandbox.zenodo.org/deposit/162",
+        "latest_html": "https://sandbox.zenodo.org/record/161",
+        "newversion": "https://sandbox.zenodo.org/api/deposit/depositions/162/actions/newversion",
+        "publish": "https://sandbox.zenodo.org/api/deposit/depositions/162/actions/publish",
+        "registerconceptdoi": "https://sandbox.zenodo.org/api/deposit/depositions/162/actions/registerconceptdoi",
+        "self": "https://sandbox.zenodo.org/api/deposit/depositions/162"
+    },
+    "metadata": {
+        "access_right": "open",
+        "creators": [
+            {
+                "name": "Family name, Given names"
+            }
+        ],
+        "description": "<p>This is the description.</p>",
+        "doi": "10.5072/zenodo.162",
+        "license": "CC-BY-4.0",
+        "prereserve_doi": {
+            "doi": "10.5072/zenodo.162",
+            "recid": 162
+        },
+        "publication_date": "2021-07-10",
+        "publication_type": "article",
+        "title": "The title",
+        "upload_type": "publication"
+    },
+    "modified": "2021-07-10T10:51:32.756261+00:00",
+    "owner": 12345,
+    "record_id": 162,
+    "state": "unsubmitted",
+    "submitted": false,
+    "title": "The title"
+}

@@ -1,0 +1,66 @@
+{
+    "conceptdoi": "10.5072/zenodo.160",
+    "conceptrecid": "160",
+    "created": "2021-07-10T10:26:04.962769+00:00",
+    "doi": "10.5072/zenodo.161",
+    "doi_url": "https://doi.org/10.5072/zenodo.161",
+    "files": [
+        {
+            "checksum": "081404b3d2ae5bf599add15b7445ac07",
+            "filename": "README.md",
+            "filesize": 14,
+            "id": "986841cc-25f4-4b05-a75c-9f3dda7c2f12",
+            "links": {
+                "download": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637/README.md",
+                "self": "https://sandbox.zenodo.org/api/deposit/depositions/161/files/986841cc-25f4-4b05-a75c-9f3dda7c2f12"
+            }
+        }
+    ],
+    "id": 161,
+    "links": {
+        "badge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.161.svg",
+        "bucket": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637",
+        "conceptbadge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.160.svg",
+        "conceptdoi": "https://doi.org/10.5072/zenodo.160",
+        "discard": "https://sandbox.zenodo.org/api/deposit/depositions/161/actions/discard",
+        "doi": "https://doi.org/10.5072/zenodo.161",
+        "edit": "https://sandbox.zenodo.org/api/deposit/depositions/161/actions/edit",
+        "files": "https://sandbox.zenodo.org/api/deposit/depositions/161/files",
+        "html": "https://sandbox.zenodo.org/deposit/161",
+        "latest": "https://sandbox.zenodo.org/api/records/161",
+        "latest_draft": "https://sandbox.zenodo.org/api/deposit/depositions/162",
+        "latest_draft_html": "https://sandbox.zenodo.org/deposit/162",
+        "latest_html": "https://sandbox.zenodo.org/record/161",
+        "newversion": "https://sandbox.zenodo.org/api/deposit/depositions/161/actions/newversion",
+        "publish": "https://sandbox.zenodo.org/api/deposit/depositions/161/actions/publish",
+        "record": "https://sandbox.zenodo.org/api/records/161",
+        "record_html": "https://sandbox.zenodo.org/record/161",
+        "registerconceptdoi": "https://sandbox.zenodo.org/api/deposit/depositions/161/actions/registerconceptdoi",
+        "self": "https://sandbox.zenodo.org/api/deposit/depositions/161"
+    },
+    "metadata": {
+        "access_right": "open",
+        "creators": [
+            {
+                "name": "Family name, Given names"
+            }
+        ],
+        "description": "<p>This is the description.</p>",
+        "doi": "10.5072/zenodo.161",
+        "license": "CC-BY-4.0",
+        "prereserve_doi": {
+            "doi": "10.5072/zenodo.161",
+            "recid": 161
+        },
+        "publication_date": "2021-07-10",
+        "publication_type": "article",
+        "title": "The title",
+        "upload_type": "publication"
+    },
+    "modified": "2021-07-10T10:42:17.999647+00:00",
+    "owner": 12345,
+    "record_id": 161,
+    "state": "done",
+    "submitted": true,
+    "title": "The title"
+}
