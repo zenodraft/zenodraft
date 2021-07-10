@@ -12,12 +12,12 @@
 | 130             | collection | no draft          | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | [131](131.json) | deposition | &nbsp;            | done              | yes      | yes         | 121    | 121 but published |
 | &nbsp;          | &nbsp;     | &nbsp;            | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
-| 140             | collection | draft             | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
+| 140             | collection | no draft          | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | [141](141.json) | deposition | &nbsp;            | inprogress        | yes      | yes         | 131    | 131 but editing |
 | &nbsp;          | &nbsp;     | &nbsp;            | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | 150             | collection | draft             | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | [151](151.json) | deposition | &nbsp;            | done              | yes      | yes         | _131_  | &nbsp; |
-| [152](152.json) | deposition | &nbsp;            | unsubmitted       | yes      | no          | 151    | 151.newversion(), with minimal metadata and files removed |
+| [152](152.json) | deposition | &nbsp;            | unsubmitted       | yes      | no          | 151    | 151.newversion(), with minimal metadata, and files removed |
 | &nbsp;          | &nbsp;     | &nbsp;            | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | 160             | collection | draft             | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | [161](161.json) | deposition | &nbsp;            | done              | yes      | yes         | _131_  | &nbsp; |
@@ -27,7 +27,7 @@
 | [171](171.json) | deposition | &nbsp;            | done              | yes      | yes         | _131_  | &nbsp; |
 | [172](172.json) | deposition | &nbsp;            | done              | yes      | yes         | 162    | 162 but published |
 | &nbsp;          | &nbsp;     | &nbsp;            | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
-| 180             | collection | draft             | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
+| 180             | collection | no draft          | &nbsp;            | &nbsp;   | &nbsp;      | &nbsp; | &nbsp; |
 | [181](181.json) | deposition | &nbsp;            | done              | yes      | yes         | _131_  | &nbsp; |
 | [182](182.json) | deposition | &nbsp;            | inprogress        | yes      | yes         | 172    | 172 but editing |
 
