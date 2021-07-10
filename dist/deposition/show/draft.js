@@ -9,18 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deposition_show_latest = void 0;
+exports.deposition_show_draft = void 0;
 const details_1 = require("./../../deposition/show/details");
-const deposition_show_latest = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+const deposition_show_draft = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     const deposition = yield details_1.deposition_show_details(token, sandbox, collection_id, 'collection', verbose);
-    let latest_id;
-    if ('latest' in deposition.links && deposition.links.latest !== undefined) {
-        latest_id = deposition.links.latest.split('/').slice(-1)[0];
+    let latest_draft_id;
+    if ('latest_draft' in deposition.links && deposition.links.latest_draft !== undefined) {
+        latest_draft_id = deposition.links.latest_draft.split('/').slice(-1)[0];
     }
     else {
-        throw new Error(`There are published versions in collection ${collection_id}.`);
+        throw new Error(`There are no draft depositions in collection ${collection_id}.`);
     }
-    return latest_id;
+    return latest_draft_id;
 });
-exports.deposition_show_latest = deposition_show_latest;
-//# sourceMappingURL=latest.js.map
+exports.deposition_show_draft = deposition_show_draft;
+//# sourceMappingURL=draft.js.map

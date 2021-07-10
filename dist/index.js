@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.metadata_update = exports.helpers_get_api = exports.helpers_get_access_token_from_environment = exports.file_delete = exports.file_add = exports.deposition_show_prereserved = exports.deposition_show_latest = exports.deposition_show_details = exports.deposition_publish = exports.deposition_delete = exports.deposition_create_in_new_collection = exports.deposition_create_in_existing_collection = exports.cli = void 0;
+exports.metadata_update = exports.helpers_get_api = exports.helpers_get_access_token_from_environment = exports.file_delete = exports.file_add = exports.deposition_show_prereserved = exports.deposition_show_latest = exports.deposition_show_files = exports.deposition_show_draft = exports.deposition_show_details = exports.deposition_publish = exports.deposition_delete = exports.deposition_create_in_new_collection = exports.deposition_create_in_existing_collection = exports.cli = void 0;
 var cli_1 = require("./cli");
 Object.defineProperty(exports, "cli", { enumerable: true, get: function () { return cli_1.cli; } });
 var in_existing_collection_1 = require("./deposition/create/in-existing-collection");
@@ -13,6 +13,10 @@ var publish_1 = require("./deposition/publish");
 Object.defineProperty(exports, "deposition_publish", { enumerable: true, get: function () { return publish_1.deposition_publish; } });
 var details_1 = require("./deposition/show/details");
 Object.defineProperty(exports, "deposition_show_details", { enumerable: true, get: function () { return details_1.deposition_show_details; } });
+var draft_1 = require("./deposition/show/draft");
+Object.defineProperty(exports, "deposition_show_draft", { enumerable: true, get: function () { return draft_1.deposition_show_draft; } });
+var files_1 = require("./deposition/show/files");
+Object.defineProperty(exports, "deposition_show_files", { enumerable: true, get: function () { return files_1.deposition_show_files; } });
 var latest_1 = require("./deposition/show/latest");
 Object.defineProperty(exports, "deposition_show_latest", { enumerable: true, get: function () { return latest_1.deposition_show_latest; } });
 var prereserved_1 = require("./deposition/show/prereserved");

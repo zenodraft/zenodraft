@@ -8,15 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { deposition_show_details } from './../../deposition/show/details';
-export const deposition_show_latest = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    const deposition = yield deposition_show_details(token, sandbox, collection_id, 'collection', verbose);
-    let latest_id;
-    if ('latest' in deposition.links && deposition.links.latest !== undefined) {
-        latest_id = deposition.links.latest.split('/').slice(-1)[0];
-    }
-    else {
-        throw new Error(`There are published versions in collection ${collection_id}.`);
-    }
-    return latest_id;
+export const deposition_show_files = (token, sandbox, record_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+    const deposition = yield deposition_show_details(token, sandbox, record_id, 'deposition', verbose);
+    return deposition.files.map((file) => {
+        return file.filename;
+    });
 });
-//# sourceMappingURL=latest.js.map
+//# sourceMappingURL=files.js.map

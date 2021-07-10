@@ -37,8 +37,7 @@ export const deposition_create_in_new_collection = (token, sandbox, verbose = fa
         if (verbose) {
             console.log(`Created new record ${deposition.record_id}.`);
         }
-        console.log(`${deposition.record_id}`);
-        return deposition.record_id;
+        return deposition.record_id.toString();
     }
     catch (e) {
         throw new Error(`Something went wrong while retrieving the json.`);

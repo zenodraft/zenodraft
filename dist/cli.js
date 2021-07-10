@@ -31,7 +31,8 @@ const cli = () => {
             .action(() => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
-                yield in_new_collection_1.deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose);
+                const id = yield in_new_collection_1.deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose);
+                console.log(id);
             }
             catch (e) {
                 console.error(e.message);
@@ -45,7 +46,8 @@ const cli = () => {
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
-                yield in_existing_collection_1.deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                const id = yield in_existing_collection_1.deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                console.log(id);
             }
             catch (e) {
                 console.error(e.message);
