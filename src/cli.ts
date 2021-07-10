@@ -25,7 +25,8 @@ export const cli = () => {
             .action(async () => {
                 try {
                     const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
-                    await deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose)
+                    const id = await deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose)
+                    console.log(id)
                 } catch (e) {
                     console.error(e.message)
                 }
@@ -39,7 +40,8 @@ export const cli = () => {
             .action(async (collection_id: string) => {
                 try {
                     const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
-                    await deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
+                    const id = await deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
+                    console.log(id)
                 } catch (e) {
                     console.error(e.message)
                 }
