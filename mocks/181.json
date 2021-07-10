@@ -1,0 +1,69 @@
+{
+    "conceptdoi": "10.5072/zenodo.180",
+    "conceptrecid": "180",
+    "created": "2021-07-10T10:26:04.962769+00:00",
+    "doi": "10.5072/zenodo.181",
+    "doi_url": "https://doi.org/10.5072/zenodo.181",
+    "files": [
+        {
+            "checksum": "081404b3d2ae5bf599add15b7445ac07",
+            "filename": "README.md",
+            "filesize": 14,
+            "id": "986841cc-25f4-4b05-a75c-9f3dda7c2f12",
+            "links": {
+                "download": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637/README.md",
+                "self": "https://sandbox.zenodo.org/api/deposit/depositions/181/files/986841cc-25f4-4b05-a75c-9f3dda7c2f12"
+            }
+        }
+    ],
+    "id": 181,
+    "links": {
+        "badge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.181.svg",
+        "bucket": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637",
+        "conceptbadge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.180.svg",
+        "conceptdoi": "https://doi.org/10.5072/zenodo.180",
+        "discard": "https://sandbox.zenodo.org/api/deposit/depositions/181/actions/discard",
+        "doi": "https://doi.org/10.5072/zenodo.181",
+        "edit": "https://sandbox.zenodo.org/api/deposit/depositions/181/actions/edit",
+        "files": "https://sandbox.zenodo.org/api/deposit/depositions/181/files",
+        "html": "https://sandbox.zenodo.org/deposit/181",
+        "latest": "https://sandbox.zenodo.org/api/records/182",
+        "latest_html": "https://sandbox.zenodo.org/record/182",
+        "newversion": "https://sandbox.zenodo.org/api/deposit/depositions/181/actions/newversion",
+        "publish": "https://sandbox.zenodo.org/api/deposit/depositions/181/actions/publish",
+        "record": "https://sandbox.zenodo.org/api/records/181",
+        "record_html": "https://sandbox.zenodo.org/record/181",
+        "registerconceptdoi": "https://sandbox.zenodo.org/api/deposit/depositions/181/actions/registerconceptdoi",
+        "self": "https://sandbox.zenodo.org/api/deposit/depositions/181"
+    },
+    "metadata": {
+        "access_right": "open",
+        "communities": [
+            {
+                "identifier": "zenodo"
+            }
+        ],
+        "creators": [
+            {
+                "name": "Family name, Given names"
+            }
+        ],
+        "description": "<p>This is the description.</p>",
+        "doi": "10.5072/zenodo.181",
+        "license": "CC-BY-4.0",
+        "prereserve_doi": {
+            "doi": "10.5072/zenodo.181",
+            "recid": 181
+        },
+        "publication_date": "2021-07-10",
+        "publication_type": "article",
+        "title": "The title",
+        "upload_type": "publication"
+    },
+    "modified": "2021-07-10T11:02:30.340010+00:00",
+    "owner": 12345,
+    "record_id": 181,
+    "state": "done",
+    "submitted": true,
+    "title": "The title"
+}
