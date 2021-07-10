@@ -1,0 +1,31 @@
+{
+    "conceptrecid": "100",
+    "created": "2021-07-10T10:26:04.962769+00:00",
+    "files": [],
+    "id": 101,
+    "links": {
+        "bucket": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637",
+        "discard": "https://sandbox.zenodo.org/api/deposit/depositions/101/actions/discard",
+        "edit": "https://sandbox.zenodo.org/api/deposit/depositions/101/actions/edit",
+        "files": "https://sandbox.zenodo.org/api/deposit/depositions/101/files",
+        "html": "https://sandbox.zenodo.org/deposit/101",
+        "latest_draft": "https://sandbox.zenodo.org/api/deposit/depositions/101",
+        "latest_draft_html": "https://sandbox.zenodo.org/deposit/101",
+        "newversion": "https://sandbox.zenodo.org/api/deposit/depositions/101/actions/newversion",
+        "publish": "https://sandbox.zenodo.org/api/deposit/depositions/101/actions/publish",
+        "registerconceptdoi": "https://sandbox.zenodo.org/api/deposit/depositions/101/actions/registerconceptdoi",
+        "self": "https://sandbox.zenodo.org/api/deposit/depositions/101"
+    },
+    "metadata": {
+        "prereserve_doi": {
+            "doi": "10.5072/zenodo.101",
+            "recid": 101
+        }
+    },
+    "modified": "2021-07-10T10:26:04.962778+00:00",
+    "owner": 12345,
+    "record_id": 101,
+    "state": "unsubmitted",
+    "submitted": false,
+    "title": ""
+}
