@@ -1,5 +1,5 @@
 import { default as fetch, Response, RequestInit } from 'node-fetch'
-import { DepositionsResponse } from './../../helpers/zenodo-response-types'
+import { AnyDeposition } from './../../helpers/deposition-types'
 import { helpers_get_api } from './../../helpers/get-api'
 import * as assert from 'assert'
 
@@ -9,7 +9,7 @@ type RecordType = 'collection' | 'deposition'
 
 
 
-const fetch_details = async (token: string, sandbox: boolean, id: string): Promise<DepositionsResponse> => {
+const fetch_details = async (token: string, sandbox: boolean, id: string): Promise<AnyDeposition> => {
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'GET'
@@ -36,7 +36,7 @@ const fetch_details = async (token: string, sandbox: boolean, id: string): Promi
 
 
 export const deposition_show_details = async (token: string, sandbox: boolean, id: string,
-                                              expected_type: RecordType, verbose = false): Promise<DepositionsResponse> => {
+                                              expected_type: RecordType, verbose = false): Promise<AnyDeposition> => {
 
     if (verbose) {
         console.log(`getting ${expected_type} details for record with id ${id}...`)
@@ -50,7 +50,7 @@ export const deposition_show_details = async (token: string, sandbox: boolean, i
         return fetch_details(token, sandbox, id)
     } else if (expected_type === 'collection') {
         const id_next = (parseInt(id) + 1).toString()
-        let details_next: DepositionsResponse
+        let details_next: AnyDeposition
         details_next = await fetch_details(token, sandbox, id_next)
         if (details_next.conceptrecid === id) {
             return details_next
