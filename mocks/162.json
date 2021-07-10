@@ -4,7 +4,18 @@
     "created": "2021-07-10T10:45:13.206989+00:00",
     "doi": "10.5072/zenodo.162",
     "doi_url": "https://doi.org/10.5072/zenodo.162",
-    "files": [],
+    "files": [
+        {
+            "checksum": "312a46f03b85ab837551e7838c3bce1c",
+            "filename": "README.md",
+            "filesize": 22,
+            "id": "b564ffa2-4398-4fe7-b00f-22420a36d2ae",
+            "links": {
+                "download": "https://sandbox.zenodo.org/api/files/6df0abbd-bf21-491a-aabd-ef0b4e367846/README.md",
+                "self": "https://sandbox.zenodo.org/api/deposit/depositions/162/files/b564ffa2-4398-4fe7-b00f-22420a36d2ae"
+            }
+        }
+    ],
     "id": 162,
     "links": {
         "badge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.162.svg",
@@ -44,7 +55,7 @@
         "title": "The title",
         "upload_type": "publication"
     },
-    "modified": "2021-07-10T10:51:32.756261+00:00",
+    "modified": "2021-07-10T10:59:58.351286+00:00",
     "owner": 12345,
     "record_id": 162,
     "state": "unsubmitted",
