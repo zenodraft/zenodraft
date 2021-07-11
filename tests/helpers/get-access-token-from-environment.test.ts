@@ -3,7 +3,7 @@ import { helpers_get_access_token_from_environment } from '../../src/helpers/get
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-import { define_token } from '../test-helpers'
+import { define_token, sleep } from '../test-helpers'
 
 
 
@@ -15,11 +15,6 @@ afterEach(() => {
 
 
 beforeEach( async () => {
-    function sleep(ms: number) {
-        return new Promise((resolve) => {
-            setTimeout(resolve, ms)
-        })
-    }
     if (process.env.CI === 'true') {
         // RUNNER_TEMP: The path to a temporary directory on the runner. This
         // directory is emptied at the beginning and end of each job. Note
@@ -28,12 +23,11 @@ beforeEach( async () => {
         //
         // From: https://docs.github.com/en/actions/reference/environment-variables
         temporary_directory = fs.mkdtempSync(`${process.env.RUNNER_TEMP}${path.sep}zenodraft-testing.`)
-        console.log(`Using temporary directory (${temporary_directory})`)        
     } else {
         temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
     }
     process.chdir(temporary_directory)
-    // added this to see if it resolves my problems with spurious uv_cwd errors
+    // added the sleep to see if it resolves my problems with spurious uv_cwd errors
     await sleep(500)
 })
 
