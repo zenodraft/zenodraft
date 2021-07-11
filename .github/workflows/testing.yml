@@ -1,6 +1,9 @@
 name: testing
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   live-sandbox-cli:
