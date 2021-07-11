@@ -12,7 +12,7 @@ afterEach(nock.cleanAll)
 
 describe('deposition show prereserved', () => {
 
-    test('shows prereserved doi for deposition with id \'123457\'', async () => {
+    test('shows prereserved doi for deposition with id \'101\'', async () => {
         const sandbox = true
         define_token(sandbox, 'faux_zenodo_sandbox_token')
         const access_token = helpers_get_access_token_from_environment(sandbox)
