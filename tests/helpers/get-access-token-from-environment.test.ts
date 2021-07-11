@@ -3,7 +3,7 @@ import { helpers_get_access_token_from_environment } from '../../src/helpers/get
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-import { define_token, sleep } from '../test-helpers'
+import { define_token } from '../test-helpers'
 
 
 
@@ -32,8 +32,6 @@ beforeEach( async () => {
         temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
     }
     process.chdir(temporary_directory)
-    // // added the sleep to see if it resolves my problems with spurious uv_cwd errors
-    // await sleep(500)
 })
 
 
