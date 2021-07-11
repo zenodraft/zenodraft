@@ -10,7 +10,11 @@ import { define_token, sleep } from '../test-helpers'
 let temporary_directory: string
 
 afterEach(() => {
-    fs.rmdirSync(temporary_directory, { recursive: true })
+    if (process.env.CI === 'true') {
+        // leave the temp dir
+    } else {
+        fs.rmdirSync(temporary_directory, { recursive: true })
+    }
 })
 
 
