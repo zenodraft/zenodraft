@@ -123,10 +123,10 @@ jobs:
         run: npm install
 
       - name: run the unit tests using jest and calculate coverage
-        run: npm run test
+        run: npm run test && cat coverage.lcov.info
 
-      - name: make paths in lcov.info absolute
-        run: sed -i "s*SF:*SF:${PWD}/*g" coverage/lcov.info
+      - name: make paths in lcov.info relative so they work inside the sonarscan docker container in the next step
+        run: sed -i 's*SF:../../zenodraft/zenodraft/*SF:/*g' coverage/lcov.info
 
       - name: trigger sonarcloud analysis and upload the results
         uses: sonarsource/sonarcloud-github-action@v1.6
