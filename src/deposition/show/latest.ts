@@ -8,7 +8,7 @@ export const deposition_show_latest = async (token: string, sandbox: boolean, co
     if ('latest' in deposition.links && deposition.links.latest !== undefined) {
         latest_id = deposition.links.latest.split('/').slice(-1)[0]
     } else {
-        throw new Error(`There are published versions in collection ${collection_id}.`)
+        throw new Error(`There are no published versions in collection ${collection_id}.`)
     }
     return latest_id
 }
