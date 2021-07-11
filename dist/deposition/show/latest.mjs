@@ -15,7 +15,7 @@ export const deposition_show_latest = (token, sandbox, collection_id, verbose = 
         latest_id = deposition.links.latest.split('/').slice(-1)[0];
     }
     else {
-        throw new Error(`There are published versions in collection ${collection_id}.`);
+        throw new Error(`There are no published versions in collection ${collection_id}.`);
     }
     return latest_id;
 });
