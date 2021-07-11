@@ -33,9 +33,15 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -W "<id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/)
-            COMPREPLY=($(compgen -W "details latest prereserved" -- ${cur}))
+            COMPREPLY=($(compgen -W "details draft files latest prereserved" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/details/)
+            COMPREPLY=($(compgen -W "<id>" -- ${cur}))
+            ;;
+        ${COMP_WORDS[0]}/deposition/show/draft/)
+            COMPREPLY=($(compgen -W "<collection_id>" -- ${cur}))
+            ;;
+        ${COMP_WORDS[0]}/deposition/show/files/)
             COMPREPLY=($(compgen -W "<id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/latest/)

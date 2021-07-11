@@ -41,6 +41,8 @@ zenodraft [--sandbox] [--verbose]
 │   ├── publish <id>
 │   └── show
 │       ├── details <id>
+│       ├── draft <collection_id>
+│       ├── files <id>
 │       ├── latest <collection_id>
 │       └── prereserved <id>
 ├── file
@@ -95,7 +97,22 @@ RECORD_ID=123457
     zenodraft deposition show details $RECORD_ID
     ```
 
-1. Get the deposition id for the latest draft:
+1. Get the id of a draft deposition in the collection:
+
+    ```shell
+    zenodraft --sandbox deposition show draft $CONCEPT_RECORD_ID
+    zenodraft deposition show draft $CONCEPT_RECORD_ID
+    ```
+
+
+1. Get the list of filenames of a deposition:
+
+    ```shell
+    zenodraft --sandbox deposition show draft $RECORD_ID
+    zenodraft deposition show draft $RECORD_ID
+    ```
+
+1. Get the deposition id for the latest published version in the collection:
 
     ```shell
     zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID
@@ -267,6 +284,8 @@ should output
   deposition_delete: [Getter],
   deposition_publish: [Getter],
   deposition_show_details: [Getter],
+  deposition_show_draft: [Getter],
+  deposition_show_files: [Getter],
   deposition_show_latest: [Getter],
   deposition_show_prereserved: [Getter],
   file_add: [Getter],
