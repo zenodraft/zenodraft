@@ -11,7 +11,8 @@ let temporary_directory: string
 
 afterEach(() => {
     if (process.env.CI === 'true') {
-        // leave the temp dir
+        // leave the temporary directory on the file system to
+        // avoid problems related to uv_cwd
     } else {
         fs.rmdirSync(temporary_directory, { recursive: true })
     }
@@ -31,9 +32,8 @@ beforeEach( async () => {
         temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
     }
     process.chdir(temporary_directory)
-    console.log(`os.tmpdir() = ${os.tmpdir()}`)
-    // added the sleep to see if it resolves my problems with spurious uv_cwd errors
-    await sleep(500)
+    // // added the sleep to see if it resolves my problems with spurious uv_cwd errors
+    // await sleep(500)
 })
 
 
