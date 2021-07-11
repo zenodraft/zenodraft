@@ -52,7 +52,7 @@
         "clean": "rm -rf dist/*",
         "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name '*\\.js'`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done",
         "pretest": "unset ZENODO_SANDBOX_ACCESS_TOKEN && unset ZENODO_ACCESS_TOKEN",
-        "test": "jest --config jest.config.js tests/deposition/create/in-existing-collection.test.ts tests/deposition/create/in-new-collection.test.ts tests/deposition/show/details.test.ts tests/deposition/show/latest.test.ts tests/deposition/show/prereserved.test.ts tests/helpers/get-api.test.ts index.test.ts tests/helpers/get-access-token-from-environment.test.ts",
+        "test": "jest --config jest.config.js",
         "tests": "npm run test"
     },
     "types": "dist/index.d.ts",
