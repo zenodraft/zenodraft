@@ -22,8 +22,10 @@ describe('deposition create in-existing-collection', () => {
         const reqheaders = define_reqheaders({token: access_token})
         const filename_mock_latest = get_mocked_data(latest_id)
         const filename_mock_draft = get_mocked_data(draft_id)
-        // 152 doesnt contain the list of filesnames, hence we use 162
-        const filename_mock_162 = get_mocked_data('162')
+        // 152 doesn't contain the list of filenames, hence we use 151
+        // (even though the file list in 152 initially the same immediately
+        //  after .newversion(), 152 would be using a different bucket than 151)
+        const filename_mock_files = get_mocked_data(latest_id)
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
         mocked_server
             .get(`/deposit/depositions/${latest_id}`)
@@ -36,9 +38,9 @@ describe('deposition create in-existing-collection', () => {
         mocked_server
             .get(`/deposit/depositions/${draft_id}`)
             .times(3)
-            .replyWithFile(200, filename_mock_162)
+            .replyWithFile(200, filename_mock_files)
         mocked_server
-            .delete('/files/6df0abbd-bf21-491a-aabd-ef0b4e367846/README.md')
+            .delete('/files/f8ca0657-db78-4b19-a50a-1b23125d4637/README.md')
             .times(1)
             .reply(200)
         mocked_server
