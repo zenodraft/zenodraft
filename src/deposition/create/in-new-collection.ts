@@ -1,5 +1,5 @@
 import { default as fetch, RequestInit } from 'node-fetch'
-import { AnyDeposition } from '../../helpers/deposition-types'
+import { AnyDeposition, HasDraft } from '../../helpers/deposition-types'
 import { helpers_get_api } from '../../helpers/get-api'
 
 
@@ -28,7 +28,7 @@ export const deposition_create_in_new_collection = async (token: string, sandbox
     }
 
     try {
-        const deposition: AnyDeposition = await response.json()
+        const deposition: AnyDeposition & HasDraft = await response.json()
         if (verbose) {
             console.log(`Created new record ${deposition.record_id}.`)
         }
