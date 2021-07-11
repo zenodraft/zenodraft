@@ -12,7 +12,7 @@ afterEach(nock.cleanAll)
 
 describe('deposition show latest', () => {
 
-    test('shows latest id for depositions in collection with id \'100\'.', async () => {
+    test('shows latest id for depositions in collection with id \'150\'.', async () => {
         const sandbox = true
         define_token(sandbox, 'faux_zenodo_sandbox_token')
         const access_token = helpers_get_access_token_from_environment(sandbox)
