@@ -23,7 +23,7 @@ describe('deposition create in-existing-collection', () => {
         const filename_mock_latest = get_mocked_data(latest_id)
         const filename_mock_draft = get_mocked_data(draft_id)
         // 152 doesn't contain the list of filenames, hence we use 151
-        // (even though the file list in 152 initially the same immediately
+        // (even though the file list in 152 is initially the same immediately
         //  after .newversion(), 152 would be using a different bucket than 151)
         const filename_mock_files = get_mocked_data(latest_id)
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
