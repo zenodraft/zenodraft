@@ -108,8 +108,8 @@ RECORD_ID=123457
 1. Get the list of filenames of a deposition:
 
     ```shell
-    zenodraft --sandbox deposition show draft $RECORD_ID
-    zenodraft deposition show draft $RECORD_ID
+    zenodraft --sandbox deposition show files $RECORD_ID
+    zenodraft deposition show files $RECORD_ID
     ```
 
 1. Get the deposition id for the latest published version in the collection:
@@ -119,7 +119,7 @@ RECORD_ID=123457
     zenodraft deposition show latest $CONCEPT_RECORD_ID
     ```
 
-    Either returns the id of the latest draft deposition in the collection, or an empty string in case there are no draft depositions in the collection.
+    Either returns the id of the latest published deposition in the collection, or an empty string in case there are no published depositions in the collection.
     
     Typical usage in automation is to capture the printed value like so:
     
