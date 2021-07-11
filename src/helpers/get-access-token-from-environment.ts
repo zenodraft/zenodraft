@@ -8,7 +8,7 @@ export const helpers_get_access_token_from_environment = (sandbox: boolean): str
             return token
         } else {
             try {
-                return dotenv.config().parsed!.ZENODO_SANDBOX_ACCESS_TOKEN
+                return dotenv.config().parsed.ZENODO_SANDBOX_ACCESS_TOKEN
             } catch (e) {
                 throw new Error(`Could not read ZENODO_SANDBOX_ACCESS_TOKEN from file named .env nor from environment variables.`)
             }
@@ -19,7 +19,7 @@ export const helpers_get_access_token_from_environment = (sandbox: boolean): str
             return token
         } else {
             try {
-                return dotenv.config().parsed!.ZENODO_ACCESS_TOKEN
+                return dotenv.config().parsed.ZENODO_ACCESS_TOKEN
             } catch (e) {
                 throw new Error(`Could not read ZENODO_ACCESS_TOKEN from file named .env nor from environment variables.`)
             }
