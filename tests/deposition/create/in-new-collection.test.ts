@@ -28,4 +28,3 @@ describe('deposition create in-new-collection', () => {
         expect(actual).toEqual(expected)
     })
 })
-
