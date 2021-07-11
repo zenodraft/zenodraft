@@ -20,7 +20,6 @@ beforeEach( async () => {
             setTimeout(resolve, ms)
         })
     }
-    let temporary_directory: string
     if (process.env.CI === 'true') {
         // RUNNER_TEMP: The path to a temporary directory on the runner. This
         // directory is emptied at the beginning and end of each job. Note
@@ -28,8 +27,8 @@ beforeEach( async () => {
         // not have permission to delete them.
         //
         // From: https://docs.github.com/en/actions/reference/environment-variables
-        console.log(`Using process.env.RUNNER_TEMP (${process.env.RUNNER_TEMP})`)
         temporary_directory = fs.mkdtempSync(`${process.env.RUNNER_TEMP}${path.sep}zenodraft-testing.`)
+        console.log(`Using temporary directory (${temporary_directory})`)        
     } else {
         temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
     }
