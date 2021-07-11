@@ -122,6 +122,5 @@ jobs:
       - name: install the dependencies
         run: npm install
 
-      - name: run the unit tests using jest
-        # not collecting coverage for the moment to avoid weird bug having to do with 'uv_cwd'
+      - name: run the unit tests using jest and calculate coverage
         run: npm run test
