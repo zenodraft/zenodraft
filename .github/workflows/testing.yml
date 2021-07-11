@@ -125,7 +125,7 @@ jobs:
       - name: run the unit tests using jest and calculate coverage
         run: npm run test
 
-      - name: SonarCloud Scan
+      - name: trigger sonarcloud analysis and upload the results
         uses: sonarsource/sonarcloud-github-action@v1.6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
