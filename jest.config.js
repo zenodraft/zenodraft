@@ -3,7 +3,7 @@ module.exports = {
     collectCoverageFrom: [
         "src/**/*.ts"
     ],
-    coverageReporters: ["text", "html"],
+    coverageReporters: ["text", "html", "lcov"],
     globals: {
         'ts-jest': {
             diagnostics: {
