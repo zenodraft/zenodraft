@@ -31,6 +31,7 @@ beforeEach( async () => {
         temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
     }
     process.chdir(temporary_directory)
+    console.log(`os.tmpdir() = ${os.tmpdir()}`)
     // added the sleep to see if it resolves my problems with spurious uv_cwd errors
     await sleep(500)
 })
