@@ -20,7 +20,19 @@ beforeEach( async () => {
             setTimeout(resolve, ms)
         })
     }
-    temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
+    let temporary_directory: string
+    if (process.env.CI === 'true') {
+        // RUNNER_TEMP: The path to a temporary directory on the runner. This
+        // directory is emptied at the beginning and end of each job. Note
+        // that files will not be removed if the runner's user account does
+        // not have permission to delete them.
+        //
+        // From: https://docs.github.com/en/actions/reference/environment-variables
+        console.log(`Using process.env.RUNNER_TEMP (${process.env.RUNNER_TEMP})`)
+        temporary_directory = fs.mkdtempSync(`${process.env.RUNNER_TEMP}${path.sep}zenodraft-testing.`)
+    } else {
+        temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
+    }
     process.chdir(temporary_directory)
     // added this to see if it resolves my problems with spurious uv_cwd errors
     await sleep(500)
