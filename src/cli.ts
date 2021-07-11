@@ -1,15 +1,19 @@
-import * as commander from 'commander'
-import { file_add } from './file/add'
 import { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection'
 import { deposition_create_in_new_collection } from './deposition/create/in-new-collection'
-import { file_delete } from './file/delete'
 import { deposition_delete } from './deposition/delete'
-import { deposition_show_details } from './deposition/show/details'
 import { deposition_publish } from './deposition/publish'
-import { metadata_update } from './metadata/update'
+import { deposition_show_details } from './deposition/show/details'
+import { deposition_show_draft } from './deposition/show/draft'
+import { deposition_show_files } from './deposition/show/files'
 import { deposition_show_latest } from './deposition/show/latest'
 import { deposition_show_prereserved } from './deposition/show/prereserved'
+import { file_add } from './file/add'
+import { file_delete } from './file/delete'
 import { helpers_get_access_token_from_environment } from './helpers/get-access-token-from-environment'
+import { metadata_update } from './metadata/update'
+import * as commander from 'commander'
+import * as os from 'os'
+
 
 
 export const cli = () => {
@@ -25,7 +29,8 @@ export const cli = () => {
             .action(async () => {
                 try {
                     const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
-                    await deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose)
+                    const id = await deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose)
+                    console.log(id)
                 } catch (e) {
                     console.error(e.message)
                 }
@@ -39,7 +44,8 @@ export const cli = () => {
             .action(async (collection_id: string) => {
                 try {
                     const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
-                    await deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
+                    const id = await deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
+                    console.log(id)
                 } catch (e) {
                     console.error(e.message)
                 }
@@ -71,23 +77,51 @@ export const cli = () => {
                 }
             })
 
-        cmd.command('latest')
+        cmd.command('draft')
             .arguments('<collection_id>')
-            .description('get the latest draft deposition id of the collection with id <collection_id>', {
-                collection_id: 'id of the collection whose latest draft we want to retrieve'
+            .description('get the draft deposition id of the collection with id <collection_id>', {
+                collection_id: 'id of the collection for which we want to retrieve the draft id'
             })
             .action(async (collection_id: string) => {
                 try {
                     const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
-                    const latest_draft_id = await deposition_show_latest(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
-                    if (latest_draft_id === '') {
-                        if (zenodraft.opts().verbose) {
-                            console.log(`There are no drafts in collection ${collection_id}.`)
-                        }
-                    } else {
-                        console.log(latest_draft_id)
-                    }
+                    const draft_id = await deposition_show_draft(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
+                    console.log(draft_id)
                 } catch (e) {
+                    console.log('')
+                    console.error(e.message)
+                }
+            })
+
+
+        cmd.command('files')
+            .arguments('<collection_id>')
+            .description('get the filenames for the files in deposition with id <id>', {
+                id: 'id of the deposition for which we want to retrieve the list of filenames'
+            })
+            .action(async (id: string) => {
+                try {
+                    const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
+                    const filenames = await deposition_show_files(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose)
+                    console.log(filenames.join(os.EOL))
+                } catch (e) {
+                    console.error(e.message)
+                }
+            })
+
+
+        cmd.command('latest')
+            .arguments('<collection_id>')
+            .description('get the deposition id of the latest version in the collection with id <collection_id>', {
+                collection_id: 'id of the collection whose latest version id we want to retrieve'
+            })
+            .action(async (collection_id: string) => {
+                try {
+                    const access_token = helpers_get_access_token_from_environment(zenodraft.opts().sandbox)
+                    const latest_id = await deposition_show_latest(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose)
+                    console.log(latest_id)
+                } catch (e) {
+                    console.log('')
                     console.error(e.message)
                 }
             })

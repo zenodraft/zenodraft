@@ -10,18 +10,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cli = void 0;
-const commander = require("commander");
-const add_1 = require("./file/add");
 const in_existing_collection_1 = require("./deposition/create/in-existing-collection");
 const in_new_collection_1 = require("./deposition/create/in-new-collection");
-const delete_1 = require("./file/delete");
-const delete_2 = require("./deposition/delete");
-const details_1 = require("./deposition/show/details");
+const delete_1 = require("./deposition/delete");
 const publish_1 = require("./deposition/publish");
-const update_1 = require("./metadata/update");
+const details_1 = require("./deposition/show/details");
+const draft_1 = require("./deposition/show/draft");
+const files_1 = require("./deposition/show/files");
 const latest_1 = require("./deposition/show/latest");
 const prereserved_1 = require("./deposition/show/prereserved");
+const add_1 = require("./file/add");
+const delete_2 = require("./file/delete");
 const get_access_token_from_environment_1 = require("./helpers/get-access-token-from-environment");
+const update_1 = require("./metadata/update");
+const commander = require("commander");
+const os = require("os");
 const cli = () => {
     const create = (() => {
         const cmd = new commander.Command('create');
@@ -31,7 +34,8 @@ const cli = () => {
             .action(() => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
-                yield in_new_collection_1.deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose);
+                const id = yield in_new_collection_1.deposition_create_in_new_collection(access_token, zenodraft.opts().sandbox, zenodraft.opts().verbose);
+                console.log(id);
             }
             catch (e) {
                 console.error(e.message);
@@ -45,7 +49,8 @@ const cli = () => {
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
-                yield in_existing_collection_1.deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                const id = yield in_existing_collection_1.deposition_create_in_existing_collection(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                console.log(id);
             }
             catch (e) {
                 console.error(e.message);
@@ -71,25 +76,50 @@ const cli = () => {
                 console.error(e.message);
             }
         }));
-        cmd.command('latest')
+        cmd.command('draft')
             .arguments('<collection_id>')
-            .description('get the latest draft deposition id of the collection with id <collection_id>', {
-            collection_id: 'id of the collection whose latest draft we want to retrieve'
+            .description('get the draft deposition id of the collection with id <collection_id>', {
+            collection_id: 'id of the collection for which we want to retrieve the draft id'
         })
             .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
-                const latest_draft_id = yield latest_1.deposition_show_latest(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
-                if (latest_draft_id === '') {
-                    if (zenodraft.opts().verbose) {
-                        console.log(`There are no drafts in collection ${collection_id}.`);
-                    }
-                }
-                else {
-                    console.log(latest_draft_id);
-                }
+                const draft_id = yield draft_1.deposition_show_draft(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                console.log(draft_id);
             }
             catch (e) {
+                console.log('');
+                console.error(e.message);
+            }
+        }));
+        cmd.command('files')
+            .arguments('<collection_id>')
+            .description('get the filenames for the files in deposition with id <id>', {
+            id: 'id of the deposition for which we want to retrieve the list of filenames'
+        })
+            .action((id) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const filenames = yield files_1.deposition_show_files(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+                console.log(filenames.join(os.EOL));
+            }
+            catch (e) {
+                console.error(e.message);
+            }
+        }));
+        cmd.command('latest')
+            .arguments('<collection_id>')
+            .description('get the deposition id of the latest version in the collection with id <collection_id>', {
+            collection_id: 'id of the collection whose latest version id we want to retrieve'
+        })
+            .action((collection_id) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
+                const latest_id = yield latest_1.deposition_show_latest(access_token, zenodraft.opts().sandbox, collection_id, zenodraft.opts().verbose);
+                console.log(latest_id);
+            }
+            catch (e) {
+                console.log('');
                 console.error(e.message);
             }
         }));
@@ -124,7 +154,7 @@ const cli = () => {
             .action((id) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
-                yield delete_2.deposition_delete(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
+                yield delete_1.deposition_delete(access_token, zenodraft.opts().sandbox, id, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);
@@ -173,7 +203,7 @@ const cli = () => {
             .action((id, filename) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(zenodraft.opts().sandbox);
-                yield delete_1.file_delete(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
+                yield delete_2.file_delete(access_token, zenodraft.opts().sandbox, id, filename, zenodraft.opts().verbose);
             }
             catch (e) {
                 console.error(e.message);

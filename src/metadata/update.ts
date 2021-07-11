@@ -1,6 +1,6 @@
 import { default as fetch, RequestInit } from 'node-fetch'
 import { deposition_show_details } from '../deposition/show/details'
-import { DepositionsResponse } from '../helpers/zenodo-response-types'
+import { AnyDeposition } from '../helpers/deposition-types'
 import { helpers_get_api } from '../helpers/get-api'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -15,6 +15,7 @@ export const metadata_update = async (token: string, sandbox: boolean, id: strin
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
         }
     }
+    // this next call can throw if there is an inconsistency
     await deposition_show_details(token, sandbox, id, 'deposition', verbose)
 
     const api = helpers_get_api(sandbox)
@@ -40,7 +41,7 @@ export const metadata_update = async (token: string, sandbox: boolean, id: strin
     }
 
     try {
-        const deposition: DepositionsResponse = await response.json()
+        const deposition: AnyDeposition = await response.json()
         if (verbose) {
             console.log(`Updated record ${deposition.record_id}.`)
         }

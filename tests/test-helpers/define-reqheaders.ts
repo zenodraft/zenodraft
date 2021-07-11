@@ -1,6 +1,12 @@
-export const define_reqheaders = () => {
-    return {
-        'Authorization': `Bearer ${process.env.ZENODO_SANDBOX_ACCESS_TOKEN}`,
-        'Content-Type': 'application/json'
+interface NamedParameters {
+    json?: boolean,
+    token: string
+}
+
+export const define_reqheaders = ({json, token}: NamedParameters) => {
+
+    let headers = {
+        'Authorization': `Bearer ${token}`
     }
+    return json === true ? {...headers, ...{'Content-Type': 'application/json'}} : headers
 }

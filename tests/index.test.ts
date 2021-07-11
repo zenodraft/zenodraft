@@ -5,13 +5,15 @@ import * as zenodraft from '../src/index'
 test('zenodraft exports', () => {
 
   const functions = Object.keys(zenodraft)
-  expect(functions.length).toBe(13)
+  expect(functions.length).toBe(15)
   expect(functions.includes('cli')).toBe(true)
   expect(functions.includes('deposition_create_in_existing_collection')).toBe(true)
   expect(functions.includes('deposition_create_in_new_collection')).toBe(true)
   expect(functions.includes('deposition_delete')).toBe(true)
   expect(functions.includes('deposition_publish')).toBe(true)
   expect(functions.includes('deposition_show_details')).toBe(true)
+  expect(functions.includes('deposition_show_draft')).toBe(true)
+  expect(functions.includes('deposition_show_files')).toBe(true)
   expect(functions.includes('deposition_show_latest')).toBe(true)
   expect(functions.includes('deposition_show_prereserved')).toBe(true)
   expect(functions.includes('file_add')).toBe(true)

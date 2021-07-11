@@ -21,6 +21,7 @@ export const metadata_update = (token, sandbox, id, filename, verbose = false) =
             console.log(`adding metadata from ${filename} to deposition with id ${id}...`);
         }
     }
+    // this next call can throw if there is an inconsistency
     yield deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}`;

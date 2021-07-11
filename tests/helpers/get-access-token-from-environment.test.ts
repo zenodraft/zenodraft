@@ -10,12 +10,27 @@ import { define_token } from '../test-helpers'
 let temporary_directory: string
 
 afterEach(() => {
-    fs.rmdirSync(temporary_directory, { recursive: true })
+    if (process.env.CI === 'true') {
+        // leave the temporary directory on the file system to
+        // avoid problems related to uv_cwd
+    } else {
+        fs.rmdirSync(temporary_directory, { recursive: true })
+    }
 })
 
 
-beforeEach(() => {
-    temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
+beforeEach( async () => {
+    if (process.env.CI === 'true') {
+        // RUNNER_TEMP: The path to a temporary directory on the runner. This
+        // directory is emptied at the beginning and end of each job. Note
+        // that files will not be removed if the runner's user account does
+        // not have permission to delete them.
+        //
+        // From: https://docs.github.com/en/actions/reference/environment-variables
+        temporary_directory = fs.mkdtempSync(`${process.env.RUNNER_TEMP}${path.sep}zenodraft-testing.`)
+    } else {
+        temporary_directory = fs.mkdtempSync(`${os.tmpdir()}${path.sep}zenodraft-testing.`)
+    }
     process.chdir(temporary_directory)
 })
 
