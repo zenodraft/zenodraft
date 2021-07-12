@@ -2,7 +2,7 @@ import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
 import { deposition_show_latest } from '../../../src/deposition/show/latest'
 import { helpers_get_access_token_from_environment } from '../../../src/helpers/get-access-token-from-environment'
 import * as nock from 'nock'
-import { define_token, define_reqheaders, get_mocked_data } from '../../test-helpers'
+import { define_token, get_mocked_data } from '../../test-helpers'
 
 
 
@@ -18,7 +18,10 @@ describe('deposition show latest', () => {
         const access_token = helpers_get_access_token_from_environment(sandbox)
         const concept_record_id = '150'
         const latest_id = '151'
-        const reqheaders = define_reqheaders({json: true, token: access_token})
+        const reqheaders = {
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json'
+        }
         const filename_mock = get_mocked_data(latest_id)
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
             .get(`/deposit/depositions/${latest_id}`)

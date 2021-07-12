@@ -1,5 +1,5 @@
 import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
-import { define_token, define_reqheaders, get_mocked_data } from '../../test-helpers'
+import { define_token, get_mocked_data } from '../../test-helpers'
 import { deposition_show_details } from '../../../src/deposition/show/details'
 import { helpers_get_access_token_from_environment } from '../../../src/helpers/get-access-token-from-environment'
 import * as nock from 'nock'
@@ -9,7 +9,11 @@ import * as nock from 'nock'
 const sandbox = true
 define_token(sandbox, 'faux_zenodo_sandbox_token')
 const access_token = helpers_get_access_token_from_environment(sandbox)
-const reqheaders = define_reqheaders({json: true, token: access_token})
+const reqheaders = {
+    'Authorization': `Bearer ${access_token}`,
+    'Content-Type': 'application/json'
+}
+
 
 afterAll(nock.restore)
 
