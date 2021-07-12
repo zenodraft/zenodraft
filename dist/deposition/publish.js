@@ -17,6 +17,7 @@ const deposition_publish = (token, sandbox, id, verbose = false) => __awaiter(vo
     if (verbose) {
         console.log(`publishing draft deposition with id ${id}...`);
     }
+    // result of this next function is not used, but there are some checks in it
     yield details_1.deposition_show_details(token, sandbox, id, 'deposition', verbose);
     const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${id}/actions/publish`;

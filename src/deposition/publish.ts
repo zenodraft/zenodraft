@@ -9,6 +9,7 @@ export const deposition_publish = async (token: string, sandbox: boolean, id: st
         console.log(`publishing draft deposition with id ${id}...`)
     }
 
+    // result of this next function is not used, but there are some checks in it
     await deposition_show_details(token, sandbox, id, 'deposition', verbose)
 
     const api = helpers_get_api(sandbox)
