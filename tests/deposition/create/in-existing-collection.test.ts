@@ -2,7 +2,7 @@ import { afterAll, afterEach, describe, test, expect } from '@jest/globals'
 import { deposition_create_in_existing_collection } from '../../../src/deposition/create/in-existing-collection'
 import { helpers_get_access_token_from_environment } from '../../../src/helpers/get-access-token-from-environment'
 import * as nock from 'nock'
-import { define_token, define_reqheaders, get_mocked_data } from '../../test-helpers'
+import { define_token, get_mocked_data } from '../../test-helpers'
 
 
 
@@ -19,7 +19,9 @@ describe('deposition create in-existing-collection', () => {
         const concept_record_id = '150'
         const latest_id = '151'
         const draft_id = '152'
-        const reqheaders = define_reqheaders({token: access_token})
+        const reqheaders = {
+            'Authorization': `Bearer ${access_token}`
+        }
         const filename_mock_latest = get_mocked_data(latest_id)
         const filename_mock_draft = get_mocked_data(draft_id)
         // 152 doesn't contain the list of filenames, hence we use 151
