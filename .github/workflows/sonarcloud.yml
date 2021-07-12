@@ -1,0 +1,29 @@
+name: testing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get a copy of the repo contents
+        uses: actions/checkout@v2
+
+      - name: install the dependencies
+        run: npm install
+
+      - name: run the unit tests using jest and calculate coverage
+        run: npm run test
+
+      - name: make paths in lcov.info absolute so they work inside the sonarscan docker container in the next step
+        run: sed -i 's*SF:../../zenodraft/zenodraft/*SF:/github/workspace/*g' coverage/lcov.info
+
+      - name: trigger sonarcloud analysis and upload the results
+        uses: sonarsource/sonarcloud-github-action@v1.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
