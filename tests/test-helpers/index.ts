@@ -1,4 +1,6 @@
+export { create_tempdir } from './create_tempdir'
 export { define_reqheaders } from './define-reqheaders'
 export { define_token } from './define-token'
 export { get_mocked_data } from './get-mocked-data'
+export { remove_tempdir } from './remove_tempdir'
 export { sleep } from './sleep'
