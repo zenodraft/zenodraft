@@ -54,7 +54,7 @@ describe('deposition file add', () => {
         mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders: reqheaders_put })
             .put('/files/f8ca0657-db78-4b19-a50a-1b23125d4637/thefile.txt')
             .times(1)
-            .replyWithFile(200, with_file_mock)
+            .reply(200)
         await file_add(access_token, sandbox, draft_id, 'thefile.txt')
     })
 
