@@ -1,4 +1,4 @@
-name: testing
+name: sonarcloud
 
 on:
   push:
