@@ -47,30 +47,31 @@ zenodraft [--sandbox] [--verbose]
 │       ├── latest <collection_id>
 │       └── prereserved <id>
 ├── file
-│   ├── add <id> <filename>
-│   └── delete <id> <filename>
+│   ├── add <id> <local filename>
+│   └── delete <id> <remote filename>
 └── metadata
     ├── clear <id>
-    └── update <id> <filename>
+    └── update <id> <local filename>
 ```
 
 ### Examples
 
-The usage examples below differentiate between an identifier for the concept/collection `CONCEPT_RECORD_ID` and the identifier for a depostion `RECORD_ID`. All commands require an access token, [see below](#access-tokens).
+The usage examples below differentiate between an identifier for the concept/collection `CONCEPT_RECORD_ID` and
+the identifier for a depostion `RECORD_ID`. All commands require an access token, [see below](#access-tokens).
 
 ```shell
 CONCEPT_RECORD_ID=123456
 RECORD_ID=123457
 ```
 
-1. Create a new draft depostion as the first version in a new collection:
+1. Create a new draft deposition as the first version in a new collection:
 
     ```shell
     zenodraft --sandbox deposition create in-new-collection
     zenodraft deposition create in-new-collection
     ```
 
-1. Create a new draft deposition as the latest version in an existing collection:
+1. Create a new draft deposition as a new version in an existing collection:
 
     ```shell
     zenodraft --sandbox deposition create in-existing-collection $CONCEPT_RECORD_ID
@@ -105,6 +106,16 @@ RECORD_ID=123457
     zenodraft deposition show draft $CONCEPT_RECORD_ID
     ```
 
+    Either returns the id of the draft deposition, or an empty string in case there is no draft deposition in the collection.
+
+    Typical usage in automation is to capture the printed value like so:
+    
+    ```shell
+    DRAFT_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_RECORD_ID)
+    DRAFT_ID=$(zenodraft deposition show draft $CONCEPT_RECORD_ID)
+    ```
+
+
 
 1. Get the list of filenames of a deposition:
 
@@ -129,14 +140,14 @@ RECORD_ID=123457
     LATEST_ID=$(zenodraft deposition show latest $CONCEPT_RECORD_ID)
     ```
 
-1. Get the prereserved doi for the latest draft:
+1. Get the prereserved doi for a deposition:
 
     ```shell
     zenodraft --sandbox deposition show prereserved $RECORD_ID
     zenodraft deposition show prereserved $RECORD_ID
     ```
 
-    Returns the prereserved doi of the draft deposition with id `$RECORD_ID`.
+    Returns the prereserved doi of the deposition with id `$RECORD_ID`.
     
     Typical usage in automation is to capture the printed value like so:
     
@@ -172,6 +183,8 @@ RECORD_ID=123457
     zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
     zenodraft metadata update $RECORD_ID .zenodo.json
     ```
+
+    The file needs to be a valid JSON file in Zenodo metadata format.
 
 
 ### Install
