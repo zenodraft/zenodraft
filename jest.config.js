@@ -13,8 +13,8 @@ module.exports = {
         }
     },
     testMatch: [
-        "**/tests/cli/**/*.test.ts",
-        "**/tests/lib/**/*.test.ts"        
+        //"**/tests/cli/**/*.test.ts",
+        "**/tests/lib/**/*.test.ts"
     ],
     transform: {
         "^.+\\.(ts|tsx)$": "ts-jest"
