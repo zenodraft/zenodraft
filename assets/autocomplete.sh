@@ -5,7 +5,7 @@ _zenodraft_completions()
     # Join the array elements from COMP_WORDS using forward slashes, 
     # chop off the uncompleted command from the right hand side,
     # remove the sandbox and verbose terms:
-    history=$(echo "${COMP_WORDS[@]}" | sed -e 's# #/#g' | sed -e 's#[^/]*$##g' | sed -e 's#--sandbox/##g' | sed -e 's#--verbose/##g')
+    history=$(echo "${COMP_WORDS[@]}" | sed -e 's# #/#g' | sed -e 's#[^/]*$##g' | sed -e 's#--sandbox/##g' | sed -e 's#-s/##g' | sed -e 's#--verbose/##g' | sed -e 's#-v/##g' | sed -e 's#-sv/##g' | sed -e 's#-vs/##g')
 
     # Set $cur to the subcommand that is currently being typed
     cur=${COMP_WORDS[COMP_CWORD]}

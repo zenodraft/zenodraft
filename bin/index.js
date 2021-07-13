@@ -1,3 +1,6 @@
 #! /usr/bin/env node
-const { cli } = require('zenodraft');
-cli();
+const { zenodraft_command } = require('../dist/cli')
+
+
+
+zenodraft_command().parse(process.argv)
