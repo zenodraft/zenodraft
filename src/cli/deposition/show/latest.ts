@@ -12,7 +12,7 @@ export const deposition_show_latest_command = () => {
             collection_id: 'id of the collection whose latest version id we want to retrieve'
         })
         .action(async (collection_id, opts, self) => {
-            const { sandbox, verbose } = self.parent.parent.parent._optionValues
+            const { sandbox, verbose } = self.parent.parent.parent.opts()
             try {
                 const access_token = helpers_get_access_token_from_environment(sandbox)
                 const latest_id = await deposition_show_latest(access_token, sandbox, collection_id, verbose)
@@ -21,5 +21,6 @@ export const deposition_show_latest_command = () => {
                 console.log('')
                 console.error(e.message)
             }
+            return
         })
 }

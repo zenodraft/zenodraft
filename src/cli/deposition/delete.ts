@@ -12,7 +12,7 @@ export const deposition_delete_command = () => {
             id: 'deposition id'
         })
         .action(async (id, opts, self) => {
-            const {sandbox, verbose} = self.parent.parent._optionValues
+            const {sandbox, verbose} = self.parent.parent.opts()
             try {
                 const access_token = helpers_get_access_token_from_environment(sandbox)
                 await deposition_delete(access_token, sandbox, id, verbose)

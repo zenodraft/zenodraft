@@ -13,7 +13,7 @@ export const deposition_show_files_command = () => {
             id: 'id of the deposition for which we want to retrieve the list of filenames'
         })
         .action(async (id, opts, self) => {
-            const {sandbox, verbose} = self.parent.parent.parent._optionValues
+            const {sandbox, verbose} = self.parent.parent.parent.opts()
             try {
                 const access_token = helpers_get_access_token_from_environment(sandbox)
                 const filenames = await deposition_show_files(access_token, sandbox, id, verbose)
