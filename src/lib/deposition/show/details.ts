@@ -47,7 +47,7 @@ export const deposition_show_details = async (token: string, sandbox: boolean, i
 
 
     if (expected_type === 'deposition') {
-        return await fetch_details(token, sandbox, id)
+        return fetch_details(token, sandbox, id)
     } else if (expected_type === 'collection') {
         const id_next = (parseInt(id) + 1).toString()
         let details_next: AnyDeposition

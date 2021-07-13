@@ -31,7 +31,6 @@ const deposition_show_latest_command = () => {
             console.log('');
             console.error(e.message);
         }
-        return;
     }));
 };
 exports.deposition_show_latest_command = deposition_show_latest_command;

@@ -21,6 +21,5 @@ export const deposition_show_latest_command = () => {
                 console.log('')
                 console.error(e.message)
             }
-            return
         })
 }
