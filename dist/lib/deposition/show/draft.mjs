@@ -19,4 +19,3 @@ export const deposition_show_draft = (token, sandbox, collection_id, verbose = f
     }
     return latest_draft_id;
 });
-//# sourceMappingURL=draft.js.map

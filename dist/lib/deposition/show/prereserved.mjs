@@ -12,4 +12,3 @@ export const deposition_show_prereserved = (token, sandbox, latest_id, verbose =
     const deposition = yield deposition_show_details(token, sandbox, latest_id, 'deposition', verbose);
     return deposition.metadata.prereserve_doi.doi;
 });
-//# sourceMappingURL=prereserved.js.map

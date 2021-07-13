@@ -10,4 +10,3 @@ export const file_command = () => {
         .addCommand(file_add_command())
         .addCommand(file_delete_command());
 };
-//# sourceMappingURL=file.js.map

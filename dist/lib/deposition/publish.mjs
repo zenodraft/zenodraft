@@ -34,4 +34,3 @@ export const deposition_publish = (token, sandbox, id, verbose = false) => __awa
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
 });
-//# sourceMappingURL=publish.js.map

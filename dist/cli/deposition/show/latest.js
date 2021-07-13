@@ -21,7 +21,7 @@ const deposition_show_latest_command = () => {
         collection_id: 'id of the collection whose latest version id we want to retrieve'
     })
         .action((collection_id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
             const latest_id = yield latest_1.deposition_show_latest(access_token, sandbox, collection_id, verbose);
@@ -31,6 +31,7 @@ const deposition_show_latest_command = () => {
             console.log('');
             console.error(e.message);
         }
+        return;
     }));
 };
 exports.deposition_show_latest_command = deposition_show_latest_command;

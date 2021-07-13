@@ -10,4 +10,3 @@ export const deposition_create_command = () => {
         .addCommand(deposition_create_in_existing_collection_command())
         .addCommand(deposition_create_in_new_collection_command());
 };
-//# sourceMappingURL=create.js.map

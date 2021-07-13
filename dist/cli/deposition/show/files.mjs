@@ -19,7 +19,7 @@ export const deposition_show_files_command = () => {
         id: 'id of the deposition for which we want to retrieve the list of filenames'
     })
         .action((id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = helpers_get_access_token_from_environment(sandbox);
             const filenames = yield deposition_show_files(access_token, sandbox, id, verbose);
@@ -30,4 +30,3 @@ export const deposition_show_files_command = () => {
         }
     }));
 };
-//# sourceMappingURL=files.js.map

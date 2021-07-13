@@ -42,4 +42,3 @@ export const file_add = (token, sandbox, id, filename, verbose = false) => __awa
         throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText}`);
     }
 });
-//# sourceMappingURL=add.js.map

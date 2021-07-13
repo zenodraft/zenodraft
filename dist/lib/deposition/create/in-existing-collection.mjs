@@ -65,4 +65,3 @@ const remove_files_from_draft = (token, sandbox, id, verbose = false) => __await
         file_delete(token, sandbox, id, filename);
     }
 });
-//# sourceMappingURL=in-existing-collection.js.map

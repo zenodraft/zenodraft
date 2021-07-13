@@ -19,7 +19,7 @@ export const file_delete_command = () => {
         remote_filename: 'filename of the deposition file that is going to be deleted.'
     })
         .action((id, remote_filename, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.opts();
         try {
             const access_token = helpers_get_access_token_from_environment(sandbox);
             yield file_delete(access_token, sandbox, id, remote_filename, verbose);
@@ -29,4 +29,3 @@ export const file_delete_command = () => {
         }
     }));
 };
-//# sourceMappingURL=delete.js.map

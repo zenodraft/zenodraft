@@ -21,7 +21,7 @@ const deposition_show_prereserved_command = () => {
         id: 'id of the deposition whose prereserved doi we want to retrieve'
     })
         .action((id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
             const prereserved = yield prereserved_1.deposition_show_prereserved(access_token, sandbox, id, verbose);

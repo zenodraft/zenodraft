@@ -15,7 +15,7 @@ export const deposition_create_in_new_collection_command = () => {
         .name('in-new-collection')
         .description('create a new draft deposition in a new collection')
         .action((opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = helpers_get_access_token_from_environment(sandbox);
             const id = yield deposition_create_in_new_collection(access_token, sandbox, verbose);
@@ -26,4 +26,3 @@ export const deposition_create_in_new_collection_command = () => {
         }
     }));
 };
-//# sourceMappingURL=in-new-collection.js.map

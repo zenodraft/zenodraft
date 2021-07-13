@@ -55,4 +55,3 @@ export const metadata_update = (token, sandbox, id, filename, verbose = false) =
         throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
-//# sourceMappingURL=update.js.map

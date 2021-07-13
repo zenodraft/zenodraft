@@ -10,4 +10,3 @@ export const metadata_command = () => {
         .addCommand(metadata_clear_command())
         .addCommand(metadata_update_command());
 };
-//# sourceMappingURL=metadata.js.map

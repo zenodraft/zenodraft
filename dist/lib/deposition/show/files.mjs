@@ -14,4 +14,3 @@ export const deposition_show_files = (token, sandbox, record_id, verbose = false
         return file.filename;
     });
 });
-//# sourceMappingURL=files.js.map

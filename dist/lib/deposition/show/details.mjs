@@ -60,4 +60,3 @@ export const deposition_show_details = (token, sandbox, id, expected_type, verbo
         throw new Error(`Input argument 'expected_type' should be either 'deposition' or 'collection'.`);
     }
 });
-//# sourceMappingURL=details.js.map

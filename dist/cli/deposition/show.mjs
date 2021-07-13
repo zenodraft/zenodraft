@@ -16,4 +16,3 @@ export const deposition_show_command = () => {
         .addCommand(deposition_show_latest_command())
         .addCommand(deposition_show_prereserved_command());
 };
-//# sourceMappingURL=show.js.map

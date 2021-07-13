@@ -19,4 +19,3 @@ export const deposition_show_latest = (token, sandbox, collection_id, verbose = 
     }
     return latest_id;
 });
-//# sourceMappingURL=latest.js.map

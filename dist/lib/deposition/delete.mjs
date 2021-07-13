@@ -33,4 +33,3 @@ export const deposition_delete = (token, sandbox, id, verbose = false) => __awai
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`);
     }
 });
-//# sourceMappingURL=delete.js.map

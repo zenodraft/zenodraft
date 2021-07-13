@@ -14,4 +14,3 @@ export const deposition_command = () => {
         .addCommand(deposition_delete_command())
         .addCommand(deposition_publish_command());
 };
-//# sourceMappingURL=deposition.js.map

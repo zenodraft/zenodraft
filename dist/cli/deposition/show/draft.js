@@ -21,7 +21,7 @@ const deposition_show_draft_command = () => {
         collection_id: 'id of the collection for which we want to retrieve the draft id'
     })
         .action((collection_id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
             const draft_id = yield draft_1.deposition_show_draft(access_token, sandbox, collection_id, verbose);

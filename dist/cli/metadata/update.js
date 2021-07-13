@@ -22,7 +22,7 @@ const metadata_update_command = () => {
         local_filename: 'filename of file holding the metadata in Zenodo metadata format'
     })
         .action((id, local_filename, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.opts();
         try {
             const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
             yield update_1.metadata_update(access_token, sandbox, id, local_filename, verbose);

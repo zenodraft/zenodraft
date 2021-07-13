@@ -21,7 +21,7 @@ const deposition_delete_command = () => {
         id: 'deposition id'
     })
         .action((id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.opts();
         try {
             const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
             yield delete_1.deposition_delete(access_token, sandbox, id, verbose);

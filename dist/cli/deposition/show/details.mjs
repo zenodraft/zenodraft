@@ -18,7 +18,7 @@ export const deposition_show_details_command = () => {
         id: 'deposition id'
     })
         .action((id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
-        const { sandbox, verbose } = self.parent.parent.parent._optionValues;
+        const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = helpers_get_access_token_from_environment(sandbox);
             const details = yield deposition_show_details(access_token, sandbox, id, 'deposition', verbose);
@@ -29,4 +29,3 @@ export const deposition_show_details_command = () => {
         }
     }));
 };
-//# sourceMappingURL=details.js.map

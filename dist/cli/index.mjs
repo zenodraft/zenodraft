@@ -22,4 +22,3 @@ export const zenodraft_command = () => {
         .parse(process.argv);
 };
 zenodraft_command();
-//# sourceMappingURL=index.js.map

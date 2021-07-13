@@ -12,4 +12,3 @@ export { file_delete } from './file/delete';
 export { helpers_get_access_token_from_environment } from './helpers/get-access-token-from-environment';
 export { helpers_get_api } from './helpers/get-api';
 export { metadata_update } from './metadata/update';
-//# sourceMappingURL=index.js.map

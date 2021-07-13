@@ -43,4 +43,3 @@ export const deposition_create_in_new_collection = (token, sandbox, verbose = fa
         throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
-//# sourceMappingURL=in-new-collection.js.map
