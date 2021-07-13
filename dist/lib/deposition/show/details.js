@@ -46,7 +46,7 @@ const deposition_show_details = (token, sandbox, id, expected_type, verbose = fa
     const regex = new RegExp('^[0-9]+$');
     assert(regex.test(id) === true, 'id has invalid format.');
     if (expected_type === 'deposition') {
-        return yield fetch_details(token, sandbox, id);
+        return fetch_details(token, sandbox, id);
     }
     else if (expected_type === 'collection') {
         const id_next = (parseInt(id) + 1).toString();
