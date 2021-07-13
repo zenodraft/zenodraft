@@ -3,7 +3,7 @@
         "moduleResolution": "Node",
         "outDir": "dist",
         "rootDir": "src",
-        "sourceMap": true,
+        "sourceMap": false,
         "target": "ES6"
     },
     "include": [
