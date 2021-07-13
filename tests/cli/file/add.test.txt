@@ -1,0 +1,20 @@
+import { describe, test } from '@jest/globals'
+import { define_token, make_cli_route } from '../../test-helpers'
+import { file_add_command } from '../../../src/cli/file/add'
+
+
+
+
+
+describe('cli file add', () => {
+
+    test('zenodraft --sandbox file add 101 thefile.txt', () => {
+        const cmd = 'zenodraft --sandbox file add 101 thefile.txt'
+        define_token(true, 'faux_zenodo_sandbox_token')
+        const program = make_cli_route('zenodraft file add', file_add_command)
+        program.parse(cmd.split(' ').slice(1), {from: 'user'})
+
+        // I cant figure out how to catch the error
+    })
+
+})
