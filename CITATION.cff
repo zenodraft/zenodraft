@@ -8,7 +8,7 @@ cff-version: 1.1.0
 date-released: 2021-06-06
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.5070983
+    value: 10.5281/zenodo.5113897
 keywords:
   - zenodo
   - cli
