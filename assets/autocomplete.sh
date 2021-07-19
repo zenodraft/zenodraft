@@ -48,7 +48,7 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -W "<collection_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/prereserved/)
-            COMPREPLY=($(compgen -W "<latest_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/)
             COMPREPLY=($(compgen -W "add delete" -- ${cur}))
