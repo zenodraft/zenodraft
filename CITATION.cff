@@ -17,3 +17,17 @@ message: If you use this software, please cite it using these metadata.
 repository-code: https://github.com/zenodraft/zenodraft
 title: zenodraft
 version: 0.11.0
+references:
+  - 
+    authors:
+      - 
+        affiliation: Netherlands eScience Center
+        family-names: Verhoeven
+        given-names: Stefan
+        orcid: "https://orcid.org/0000-0002-5821-2060"
+    collection-doi: 10.5281/zenodo.3726850
+    license: Apache-2.0
+    repository-code: "https://github.com/iomega/zenodo-upload/"
+    title: JS Library to create Zenodo version
+    type: software
+    url: "https://www.npmjs.com/package/@iomeg/zenodo-upload"
