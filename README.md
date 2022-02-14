@@ -34,11 +34,11 @@ Everything also works on Zenodo Sandbox via the `--sandbox` flag. You'll need ac
 # make sure you have the access token available as the
 # environment variable ZENODO_ACCESS_TOKEN
 
-# create a new draft deposition in a new collection:
+# create a new, draft deposition in a new collection:
 zenodraft deposition create in-new-collection
 1234567
 
-# upload a local file
+# upload a local file, e.g. yourfile.zip
 zenodraft file add 1234567 yourfile.zip 
 
 # create some metadata file in Zenodo metadata format, e.g.
@@ -54,14 +54,15 @@ echo -e '{
 # update the metadata of the draft deposition
 zenodraft metadata update 1234567 .zenodo.json
 
-# inspect the draft deposition on https://zenodo.org/deposit.
+# inspect the draft deposition on https://zenodo.org/deposit
 
 # if all looks good, finalize the deposition by publishing it
 zenodraft deposition publish 1234567
 ```
 
 Here is the result when viewed on Zenodo:
-![[tag](img/zenodo-deposition.png)]
+
+![tag](img/zenodo-deposition.png)
 
 For a complete overview of the command line interface, see [here](README.cli-usage.md).
 
