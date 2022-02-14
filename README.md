@@ -61,6 +61,7 @@ zenodraft deposition publish 1234567
 ```
 
 Here is the result when viewed on Zenodo:
+
 ![tag](img/zenodo-deposition.png)
 
 For a complete overview of the command line interface, see [here](README.cli-usage.md).
