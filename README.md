@@ -3,12 +3,6 @@
 <img src="https://raw.githubusercontent.com/zenodraft/branding/main/zenodraft.png" height=200>
 </p> 
 <p align="center">
-Note: This project is a work in progress.
-</p> 
-<p align="center">
-You are welcome to try it out and leave feedback at https://github.com/zenodraft/zenodraft/issues though.
-</p>
-<p align="center">
     <a href="https://github.com/zenodraft/zenodraft"><img src="https://img.shields.io/badge/github-repo-000.svg?logo=github&labelColor=gray&color=blue&style=flat-square" alt="github repo badge"></a>
     <a href="https://github.com/zenodraft/zenodraft"><img src="https://img.shields.io/github/license/zenodraft/zenodraft?style=flat-square" alt="github license badge"></a>
     <a href="https://www.npmjs.com/package/zenodraft"><img src="https://img.shields.io/npm/v/zenodraft?style=flat-square" alt="npm version"></a>
@@ -17,175 +11,79 @@ You are welcome to try it out and leave feedback at https://github.com/zenodraft
     <a href="https://sonarcloud.io/dashboard?id=zenodraft_zenodraft"><img src="https://sonarcloud.io/api/project_badges/measure?project=zenodraft_zenodraft&metric=coverage" alt="coverage"></a>
     <a href="https://fair-software.eu"><img src="https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green?style=flat-square" alt="fair-software badge"></a>
 </p>
+<p align="center">
+You are welcome to leave feedback at https://github.com/zenodraft/zenodraft/issues.
+</p>
 <br>
 <br>
     
-## CLI to manage depositions on Zenodo or Zenodo Sandbox
+## CLI to manage depositions on Zenodo
 
 ### Features
 
-1. Choose which platform you want to draft your deposition on (Zenodo or Zenodo Sandbox), and easily switch between them.
-2. Choose to create your draft deposition as a new version in an existing collection, or as a new deposition in a new collection.
-3. Upload local files to the draft deposition.
-4. Attach metadata such as title, authors, and contributors to your deposition using information from a local file.
-5. Choose to finalize the deposition, or leave the deposition as draft for you to inspect and publish manually by clicking the button on Zenodo or Zenodo Sandbox.
+1. Create depositions on Zenodo
+1. Add files to depositions on Zenodo
+1. Update metadata to depositions on Zenodo
+1. Finalize/publish depositions on Zenodo
 
-### Outline of the CLI structure
+Everything also works on Zenodo Sandbox via the `--sandbox` flag. You'll need access tokens for either platform (see below).
 
-```plain
-zenodraft [--sandbox] [--verbose]
-├── deposition
-│   ├── create
-│   │   ├── in-existing-collection <collection_id>
-│   │   └── in-new-collection
-│   ├── delete <id>
-│   ├── publish <id>
-│   └── show
-│       ├── details <id>
-│       ├── draft <collection_id>
-│       ├── files <id>
-│       ├── latest <collection_id>
-│       └── prereserved <id>
-├── file
-│   ├── add <id> <local filename>
-│   └── delete <id> <remote filename>
-└── metadata
-    ├── clear <id>
-    └── update <id> <local filename>
-```
-
-### Examples
-
-The usage examples below differentiate between an identifier for the concept/collection `CONCEPT_RECORD_ID` and
-the identifier for a depostion `RECORD_ID`. All commands require an access token, [see below](#access-tokens).
+### Usage example
 
 ```shell
-CONCEPT_RECORD_ID=123456
-RECORD_ID=123457
+# make sure you have the access token available as the
+# environment variable ZENODO_ACCESS_TOKEN
+
+# create a new draft deposition in a new collection:
+zenodraft deposition create in-new-collection
+1234567
+
+# upload a local file
+zenodraft file add 1234567 yourfile.zip 
+
+# create some metadata file in Zenodo metadata format, e.g.
+echo -e '{
+  "creators": [
+    {
+      "name": "Lastname, Firstname"
+    }
+  ],
+  "title": "My deposition"
+}' > .zenodo.json
+
+# update the metadata of the draft deposition
+zenodraft metadata update 1234567 .zenodo.json
+
+# inspect the draft deposition on https://zenodo.org/deposit.
+
+# if all looks good, finalize the deposition by publishing it
+zenodraft deposition publish 1234567
 ```
 
-1. Create a new draft deposition as the first version in a new collection:
+Here is the result when viewed on Zenodo:
+![[tag](img/zenodo-deposition.png)]
 
-    ```shell
-    zenodraft --sandbox deposition create in-new-collection
-    zenodraft deposition create in-new-collection
-    ```
+For a complete overview of the command line interface, see [here](README.cli-usage.md).
 
-1. Create a new draft deposition as a new version in an existing collection:
+### Access tokens
 
-    ```shell
-    zenodraft --sandbox deposition create in-existing-collection $CONCEPT_RECORD_ID
-    zenodraft deposition create in-existing-collection $CONCEPT_RECORD_ID
-    ```
+To use `zenodraft`, a personal access token is required, one for each platform you plan on using.
+`zenodraft` looks for the access token first in the environment variables named
+`ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called
+`.env`, which must reside in the directory from which you run `zenodraft`. 
 
-1. Delete a draft deposition:
+You can create your own `.env` by copying the example env file, like so
 
-    ```shell
-    zenodraft --sandbox deposition delete $RECORD_ID
-    zenodraft deposition delete $RECORD_ID
-    ```
+```shell
+cp example.env .env
+```
 
-1. Publish a draft deposition:
+and subsequently updating its contents.
 
-    ```shell
-    zenodraft --sandbox deposition publish $RECORD_ID
-    zenodraft deposition publish $RECORD_ID
-    ```
+Fill in the placeholders with values of your own, which you can get at
 
-1. Get the details of a deposition:
-
-    ```shell
-    zenodraft --sandbox deposition show details $RECORD_ID
-    zenodraft deposition show details $RECORD_ID
-    ```
-
-1. Get the id of a draft deposition in the collection:
-
-    ```shell
-    zenodraft --sandbox deposition show draft $CONCEPT_RECORD_ID
-    zenodraft deposition show draft $CONCEPT_RECORD_ID
-    ```
-
-    Either returns the id of the draft deposition, or an empty string in case there is no draft deposition in the collection.
-
-    Typical usage in automation is to capture the printed value like so:
-    
-    ```shell
-    DRAFT_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_RECORD_ID)
-    DRAFT_ID=$(zenodraft deposition show draft $CONCEPT_RECORD_ID)
-    ```
-
-
-
-1. Get the list of filenames of a deposition:
-
-    ```shell
-    zenodraft --sandbox deposition show files $RECORD_ID
-    zenodraft deposition show files $RECORD_ID
-    ```
-
-1. Get the deposition id for the latest published version in the collection:
-
-    ```shell
-    zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID
-    zenodraft deposition show latest $CONCEPT_RECORD_ID
-    ```
-
-    Either returns the id of the latest published deposition in the collection, or an empty string in case there are no published depositions in the collection.
-    
-    Typical usage in automation is to capture the printed value like so:
-    
-    ```shell
-    LATEST_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID)
-    LATEST_ID=$(zenodraft deposition show latest $CONCEPT_RECORD_ID)
-    ```
-
-1. Get the prereserved doi for a deposition:
-
-    ```shell
-    zenodraft --sandbox deposition show prereserved $RECORD_ID
-    zenodraft deposition show prereserved $RECORD_ID
-    ```
-
-    Returns the prereserved doi of the deposition with id `$RECORD_ID`.
-    
-    Typical usage in automation is to capture the printed value like so:
-    
-    ```shell
-    PRERESERVED=$(zenodraft --sandbox deposition show prereserved $RECORD_ID)
-    PRERESERVED=$(zenodraft deposition show prereserved $RECORD_ID)
-    ```
-
-1. Add a local file to an existing draft deposition:
-
-    ```shell
-    zenodraft --sandbox file add $RECORD_ID file.txt
-    zenodraft file add $RECORD_ID file.txt
-    ```
-
-1. Remove a file from an existing draft deposition:
-
-    ```shell
-    zenodraft --sandbox file delete $RECORD_ID file.txt
-    zenodraft file delete $RECORD_ID file.txt
-    ```
-
-1. Clear a deposition's metadata:
-
-    ```shell
-    zenodraft --sandbox metadata clear $RECORD_ID 
-    zenodraft metadata clear $RECORD_ID
-    ```
-
-1. Update a deposition with metadata from a local file:
-
-    ```shell
-    zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
-    zenodraft metadata update $RECORD_ID .zenodo.json
-    ```
-
-    The file needs to be a valid JSON file in Zenodo metadata format.
-
+- Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
+- Zenodo: https://zenodo.org/account/settings/applications/
 
 ### Install
 
@@ -206,7 +104,6 @@ which zenodraft
 # use the zenodraft cli like so
 zenodraft --version
 zenodraft --help
-
 ```
 
 Or install locally without `-g` flag (but note that [autocomplete](#Autocomplete) only works when `zenodraft` is installed globally):
@@ -269,87 +166,4 @@ zenodraft-autocomplete > $TMPFILE
 source $TMPFILE
 ```
 You can make the change permanent by copying those 4 lines to the bottom of your `~/.bashrc`.
-
-### `zenodraft` as a library
-
-#### Using CommonJS `require`
-
-Make a file e.g. `index.js` with the following contents:
-
-```javascript
-// file: index.js
-const zenodraft = require('zenodraft');
-console.info(zenodraft);
-```
-
-Running
-
-```shell
-$ node index.js
-```
-
-should output
-
-```shell
-{
-  cli: [Getter],
-  deposition_create_in_existing_collection: [Getter],
-  deposition_create_in_new_collection: [Getter],
-  deposition_delete: [Getter],
-  deposition_publish: [Getter],
-  deposition_show_details: [Getter],
-  deposition_show_draft: [Getter],
-  deposition_show_files: [Getter],
-  deposition_show_latest: [Getter],
-  deposition_show_prereserved: [Getter],
-  file_add: [Getter],
-  file_delete: [Getter],
-  helpers_get_access_token_from_environment: [Getter],
-  helpers_get_api: [Getter],
-  metadata_update: [Getter]
-}
-```
-
-#### Using ES6 `import`
-
-Make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
-
-```javascript
-// file: index.mjs
-import zenodraft from 'zenodraft';
-console.info(zenodraft);
-```
-
-Running
-
-```shell
-# node v14
-node index.mjs
-
-# node v12
-node --experimental-modules index.mjs
-```
-
-should output the same as listed above for `require`.
-
-
-### Access tokens
-
-To use `zenodraft`, a personal access token is required, one for each platform you plan on using.
-`zenodraft` looks for the access token first in the environment variables named
-`ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called
-`.env`, which must reside in the directory from which you run `zenodraft`. 
-
-You can create your own `.env` by copying the example env file, like so
-
-```shell
-cp example.env .env
-```
-
-and subsequently updating its contents.
-
-Fill in the placeholders with values of your own, which you can get at
-
-- Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
-- Zenodo: https://zenodo.org/account/settings/applications/
 
