@@ -11,7 +11,7 @@
         "commander": "^7.2.0",
         "dotenv": "^10.0.0",
         "mime-types": "^2.1.31",
-        "node-fetch": "^2.6.1"
+        "node-fetch": "^2.6.7"
     },
     "description": "CLI to manage depositions on Zenodo and Zenodo Sandbox",
     "devDependencies": {
@@ -56,5 +56,5 @@
         "tests": "npm run test"
     },
     "types": "dist/index.d.ts",
-    "version": "0.11.0"
+    "version": "0.11.1"
 }
