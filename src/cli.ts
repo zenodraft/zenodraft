@@ -8,7 +8,7 @@ import { metadata_command } from './cli/metadata'
 export const zenodraft_command = () => {
     return new commander.Command()
         .name('zenodraft')
-        .version('0.11.0')
+        .version('0.11.1')
         .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
         .enablePositionalOptions()
         .passThroughOptions()

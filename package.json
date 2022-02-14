@@ -56,5 +56,5 @@
         "tests": "npm run test"
     },
     "types": "dist/index.d.ts",
-    "version": "0.11.0"
+    "version": "0.11.1"
 }
