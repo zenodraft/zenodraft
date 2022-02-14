@@ -92,8 +92,8 @@ Fill in the placeholders with values of your own, which you can get at
 
 Requirements:
 
-- node (I'm using v14, other versions may work)
-- npm (I'm using v7, other versions may work)
+- node v14 (other versions may work)
+- npm v7 (other versions may work)
 
 Install globally with `-g` flag:
 
