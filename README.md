@@ -21,10 +21,12 @@ You are welcome to leave feedback at https://github.com/zenodraft/zenodraft/issu
 
 ### Features
 
-1. Create depositions on Zenodo
-1. Add files to depositions on Zenodo
-1. Update metadata to depositions on Zenodo
-1. Finalize/publish depositions on Zenodo
+Use the command line to
+
+1. create depositions on Zenodo
+1. add files to depositions on Zenodo
+1. update metadata to depositions on Zenodo
+1. finalize/publish depositions on Zenodo
 
 Everything also works on Zenodo Sandbox via the `--sandbox` flag. You'll need access tokens for either platform (see below).
 
