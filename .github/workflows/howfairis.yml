@@ -7,12 +7,12 @@ on:
     paths:
       - README.md
       - .howfairis.yml
-  workflow_dispatch:
-
   pull_request:
     paths:
       - README.md
       - .howfairis.yml
+  workflow_dispatch:
+
 
 jobs:
   verify:
