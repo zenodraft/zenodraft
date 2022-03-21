@@ -7,7 +7,7 @@ on:
     paths:
       - README.md
       - .howfairis.yml
-    workflow_dispatch:
+  workflow_dispatch:
 
   pull_request:
     paths:
