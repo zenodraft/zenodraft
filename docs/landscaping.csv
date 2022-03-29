@@ -1,0 +1,23 @@
+package,publisher,url,lang,"has cli",license,"doc'ed parts","new in new","new in existing",upload,"finalize optional","prereserved DOI",metadata,sandbox,issues,PRs,"GH forks",stars,"NPM weekly downloads","pypistats weekly downloads","cranlogs monthly"
+zenodraft,NPM,https://www.npmjs.com/package/zenodraft,TypeScript,yes,Apache-2.0,"CLI, --help",yes,yes,yes,yes,yes,"all properties, via .zenodo.json",yes,34,22,0,0,2,-,-
+"GitHub-Zenodo integration",,,-,-,-,,yes,yes,yes,no,no,"either CFF or JSON, not both",yes,-,-,-,-,-,-,-
+@iomeg/zenodo_upload,NPM,https://www.npmjs.com/package/@iomeg/zenodo-upload,TypeScript,yes,Apache-2.0,"CLI, API, --help",no,yes,yes,yes,yes,"all properties, via .zenodo.json",yes,11,18,0,1,3,-,-
+bjohas/zenodo-cli-python,GitHub,https://github.com/bjohas/zenodo-cli-python,Python,yes,Unlicensed,none,yes,yes,yes,yes,yes,"all properties, via .zenodo.json",yes,11,1,2,0,-,-,-
+bjohas/zenodo-cli-ts,GitHub,https://github.com/bjohas/zenodo-cli-ts,TypeScript,yes,Unlicensed,--help,yes,yes,yes,yes,yes,"all properties, via .zenodo.json",yes,0,8,1,0,-,-,-
+zenodo-lib,NPM,https://www.npmjs.com/package/zenodo-lib,TypeScript,yes,ISC,--help,yes,yes,yes,yes,yes,"all properties, via .zenodo.json",yes,1,1,0,1,81,-,-
+bigzenodo,PyPI,https://pypi.org/project/bigzenodo/,Python,yes,MIT,--help,yes,yes,yes,yes,no,limited,yes,0,0,0,0,-,5,-
+datalight,PyPI,https://pypi.org/project/datalight/,Python,no,BSD-3-Clause,CLI,yes,no,yes,yes,?,"all properties, via YAML file; has schema for metadata uploads",yes,30,5,0,1,-,28,-
+zenodo-upload,GitHub,https://github.com/jhpoelen/zenodo-upload,Bash,yes,MIT,CLI,manual,manual,yes,manual,manual,manual,no,5,2,13,77,-,-,-
+zen4R,CRAN,https://cran.r-project.org/package=zen4R,R,no,MIT,extensive,yes,yes,yes,yes,yes,"many (all?) properties supported via separate setter methods",yes,60,8,10,31,-,-,565
+gitlab2zenodo,PyPI,https://pypi.org/project/gitlab2zenodo/,Python,yes,Apache-2.0,--help,yes,yes,yes,yes,yes,"all properties, via .zenodo.json",yes,2,0,-,7,-,12,-
+jupyterlab-zenodo,PyPI,https://pypi.org/project/jupyterlab-zenodo/,Python,no,Apache-2.0,API,yes,yes,yes,yes,no,"all properties via dictionary",yes,0,10,0,0,-,18,-
+odahub-zenodo,PyPI,https://pypi.org/project/odahub-zenodo/,Python,?,GPLv2+,none,?,?,?,?,?,?,?,?,?,?,?,-,2,-
+openscm-zenodo,PyPI,https://pypi.org/project/openscm-zenodo/,Python,yes,BSD-3-Clause,"CLI, API on readthedocs",no,yes,yes,manual,manual,"all properties, via .zenodo.json",yes,0,6,0,0,-,13,-
+pynodo,PyPI,https://pypi.org/project/pynodo/,Python,no,MIT,"some usage examples",yes,no,yes,manual,yes,"all properties via dictionary",yes,0,0,0,3,-,54,-
+pyzenodo,PyPI,https://pypi.org/project/pyzenodo/,Python,no,Apache-2.0,none,no,no,no,no,yes,none,no,0,0,0,0,-,5,-
+pyzenodo3,PyPI,https://pypi.org/project/pyzenodo3/,Python,yes,"Apache-2.0 (intent)","minimal API, --help",yes,no,yes,manual,manual,"all properties, via ini file",yes,6,2,2,27,-,31,-
+zenodio,PyPI,https://pypi.org/project/zenodio/,Python,no,MIT,API,no,no,no,no,yes,none,no,3,3,3,5,-,2,-
+zenodo-client,PyPI,https://pypi.org/project/zenodo-client/,Python,yes,MIT,"API, --help",yes,yes,yes,yes,yes,"many properties, via dict",yes,2,0,1,4,-,211,-
+zenodoclient,PyPI,https://pypi.org/project/zenodoclient/,Python,yes,Apache-2.0,none,yes,yes,yes,yes,yes,"all properties, via .zenodo.json",yes,3,2,0,0,-,126,-
+zenodopy,PyPI,https://pypi.org/project/zenodopy/,Python,no,MIT,API,yes,no,yes,manual,yes,limited,yes,2,0,0,2,-,27,-
+zenpi,PyPI,https://pypi.org/project/zenpi/,Python,?,Apache-2.0,?,?,?,?,?,?,?,?,?,?,?,?,-,2,-
