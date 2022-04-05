@@ -1,27 +1,21 @@
 # CLI Usage
 
-## Outline of the CLI structure
+## Overview
 
-```plain
-zenodraft [--sandbox] [--verbose]
-├── deposition
-│   ├── create
-│   │   ├── in-existing-collection <collection_id>
-│   │   └── in-new-collection
-│   ├── delete <id>
-│   ├── publish <id>
-│   └── show
-│       ├── details <id>
-│       ├── draft <collection_id>
-│       ├── files <id>
-│       ├── latest <collection_id>
-│       └── prereserved <id>
-├── file
-│   ├── add <id> <local filename>
-│   └── delete <id> <remote filename>
-└── metadata
-    ├── clear <id>
-    └── update <id> <local filename>
+```shell
+zenodraft [--sandbox] deposition create in-existing-collection <collection_id>
+zenodraft [--sandbox] deposition create in-new-collection
+zenodraft [--sandbox] deposition delete <id>
+zenodraft [--sandbox] deposition publish <id>
+zenodraft [--sandbox] deposition show details <id>
+zenodraft [--sandbox] deposition show draft <collection_id>
+zenodraft [--sandbox] deposition show files <id>
+zenodraft [--sandbox] deposition show latest <collection_id>
+zenodraft [--sandbox] deposition show prereserved <id>
+zenodraft [--sandbox] file add <id> <local filename>
+zenodraft [--sandbox] file delete <id> <remote filename>
+zenodraft [--sandbox] metadata clear <id>
+zenodraft [--sandbox] metadata update <id> <local filename>
 ```
 
 ## Examples
