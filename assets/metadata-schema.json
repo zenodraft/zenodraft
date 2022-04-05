@@ -1,0 +1,158 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "additionalProperties": false,
+    "allOf": [
+        {
+            "if": {
+                "properties": {
+                    "access_right": {
+                        "const": "embargoed"
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "embargo_date",
+                    "license"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "access_right": {
+                        "const": "closed"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "access_right": {
+                        "const": "open"
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "license"
+                ]
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "access_right": {
+                        "const": "restricted"
+                    }
+                }
+            },
+            "then": {
+                "required": [
+                    "access_conditions"
+                ]
+            }
+        }
+    ],
+    "definitions": {
+    },
+    "properties": {
+        "access_conditions": {
+            "type": "string"
+        },
+        "access_right": {
+            "description": "Open access uploads have considerably higher visibility on Zenodo.",
+            "enum": [
+                "embargoed",
+                "closed",
+                "open",
+                "restricted"
+            ],
+            "type": "string"
+        },
+        "creators": {
+            "minItems": 1,
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "affiliation": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Family name, given names",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "orcid": {
+                        "description": "ORCID identifier",
+                        "examples": [
+                            "0000-0002-1825-0097"
+                        ],
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "description": {
+            "description": "Description",
+            "minLength": 1,
+            "type": "string"
+        },
+        "embargo_date": {
+            "format": "date",
+            "type": "string"
+        },
+        "grants": {
+            "items": {
+                "additionalProperties": false,
+                "examples": [
+                    "10.13039/501100000780::675191"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "type": "object"
+            },
+            "type": [
+                "array"
+            ]
+        },
+        "license": {
+            "enum": [
+                "Apache-2.0"
+            ],
+            "type": "string"
+        },
+        "publication_date": {
+            "description": "Required. Format: YYYY-MM-DD. In case your upload was already published elsewhere, please use the date of first publication.",
+            "examples": [
+                "2013-05-08"
+            ],
+            "format": "date",
+            "type": "string"
+        },
+        "title": {
+            "minLength": 3,
+            "type": "string"
+        }
+    },
+    "type": "object",
+    "required": [
+        "creators",
+        "description",
+        "title"
+    ]
+}
