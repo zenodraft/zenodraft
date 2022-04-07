@@ -83,8 +83,8 @@ Either returns the id of the draft deposition, or an empty string in case there 
 Typical usage in automation is to capture the printed value like so:
 
 ```shell
-DRAFT_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_ID)
-DRAFT_ID=$(zenodraft deposition show draft $CONCEPT_ID)
+RECORD_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_ID)
+RECORD_ID=$(zenodraft deposition show draft $CONCEPT_ID)
 ```
 
 ### Getting the list of filenames of a deposition
@@ -106,8 +106,8 @@ Either returns the id of the latest published deposition in the concept, or an e
 Typical usage in automation is to capture the printed value like so:
 
 ```shell
-LATEST_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_ID)
-LATEST_ID=$(zenodraft deposition show latest $CONCEPT_ID)
+RECORD_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_ID)
+RECORD_ID=$(zenodraft deposition show latest $CONCEPT_ID)
 ```
 
 ### Getting the prereserved doi for a deposition:
@@ -154,4 +154,7 @@ zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
 zenodraft metadata update $RECORD_ID .zenodo.json
 ```
 
-The file needs to be a valid JSON file in Zenodo metadata format.
+The file needs to be a valid JSON file in Zenodo metadata format. A JSONschema for the upload metadata file is available
+here: https://github.com/zenodraft/zenodo-upload-metadata-schema. Use https://jsonlint.com/ to check if your document is
+valid JSON, then use a JSONschema linter like https://jsonschemalint.com to check if the JSON is compliant with the
+aforementioned schema.
