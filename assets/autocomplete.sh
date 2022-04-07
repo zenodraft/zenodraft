@@ -21,7 +21,7 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -W "create delete publish show" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/create/)
-            COMPREPLY=($(compgen -W "version concept" -- ${cur}))
+            COMPREPLY=($(compgen -W "concept version" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/create/version/)
             COMPREPLY=($(compgen -W "<concept_id>" -- ${cur}))
