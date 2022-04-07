@@ -21,12 +21,18 @@ zenodraft [--sandbox] metadata update <record_id> <local filename>
 ## Examples
 
 The usage examples below differentiate between an identifier for the concept `CONCEPT_ID` and
-the identifier for a depostion `RECORD_ID`. All commands require an access token, [see the section in the main README](README.md#access-tokens).
+the identifier for a depostion `RECORD_ID`.
 
 ```shell
 CONCEPT_ID=123456
 RECORD_ID=123457
 ```
+
+You can get these numbers from the Zenodo page of your deposition:
+
+![zenodo-versions-widget](/img/zenodo-versions-widget.png)
+
+All commands require an access token, [see the section in the main README](README.md#access-tokens).
 
 ### Creating new draft depositions
 
