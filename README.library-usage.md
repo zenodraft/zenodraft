@@ -21,8 +21,8 @@ should output
 ```shell
 {
   cli: [Getter],
-  deposition_create_in_existing_collection: [Getter],
-  deposition_create_in_new_collection: [Getter],
+  deposition_create_concept: [Getter],
+  deposition_create_version: [Getter],
   deposition_delete: [Getter],
   deposition_publish: [Getter],
   deposition_show_details: [Getter],

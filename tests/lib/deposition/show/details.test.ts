@@ -19,9 +19,9 @@ afterAll(nock.restore)
 
 afterEach(nock.cleanAll)
 
-describe('deposition show details with expected type \'deposition\' for mock collection 100', () => {
+describe('deposition show details with expected type \'deposition\' for mock concept 100', () => {
 
-    const concept_record_id = '100'
+    const concept_id = '100'
     const draft_id = '101'
     const filename_mock = get_mocked_data(draft_id)
 
@@ -56,11 +56,11 @@ describe('deposition show details with expected type \'deposition\' for mock col
 
     test(`should throw because record is not a deposition`, async () => {
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
-            .get(`/deposit/depositions/${concept_record_id}`)
+            .get(`/deposit/depositions/${concept_id}`)
             .times(2)
             .reply(404)
         const throwfun = async () => {
-            await deposition_show_details(access_token, sandbox, concept_record_id, 'deposition')
+            await deposition_show_details(access_token, sandbox, concept_id, 'deposition')
         }
         await expect(throwfun).rejects.toThrow()
         try {
@@ -84,15 +84,15 @@ describe('deposition show details with expected type \'deposition\' for mock col
 
 
 
-describe('deposition show details with expected type \'collection\' for mock collection 100', () => {
+describe('deposition show details with expected type \'concept\' for mock concept 100', () => {
 
-    const concept_record_id = '100'
+    const concept_id = '100'
     const draft_id = '101'
     const filename_mock = get_mocked_data(draft_id)
 
     test('should throw because id uses invalid format', async () => {
         const throwfun = async () => {
-            await deposition_show_details(access_token, sandbox, 'mumbojumbo123', 'collection')
+            await deposition_show_details(access_token, sandbox, 'mumbojumbo123', 'concept')
         }
         await expect(throwfun).rejects.toThrow()
         try {
@@ -110,7 +110,7 @@ describe('deposition show details with expected type \'collection\' for mock col
             .times(2)
             .reply(404)
         const throwfun = async () => {
-            await deposition_show_details(access_token, sandbox, id, 'collection')
+            await deposition_show_details(access_token, sandbox, id, 'concept')
         }
         await expect(throwfun).rejects.toThrow()
         try {
@@ -120,14 +120,14 @@ describe('deposition show details with expected type \'collection\' for mock col
         }
     })
 
-    test(`should throw because record is not a collection`, async () => {
+    test(`should throw because record is not a concept`, async () => {
         const id_next = (parseInt(draft_id) + 1).toString()
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
             .get(`/deposit/depositions/${id_next}`)
             .times(2)
             .reply(404)
         const throwfun = async () => {
-            await deposition_show_details(access_token, sandbox, draft_id, 'collection')
+            await deposition_show_details(access_token, sandbox, draft_id, 'concept')
         }
         await expect(throwfun).rejects.toThrow()
         try {
@@ -138,12 +138,12 @@ describe('deposition show details with expected type \'collection\' for mock col
     })
 
 
-    test('should return deposition details for the deposition immediately following the collection record', async () => {
+    test('should return deposition details for the deposition immediately following the concept record', async () => {
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
             .get(`/deposit/depositions/${draft_id}`)
             .times(1)
             .replyWithFile(200, filename_mock)
-        const details = await deposition_show_details(access_token, sandbox, concept_record_id, 'collection')
+        const details = await deposition_show_details(access_token, sandbox, concept_id, 'concept')
         const actual = details.record_id.toString()
         const expected = draft_id
         expect(actual).toBe(expected)

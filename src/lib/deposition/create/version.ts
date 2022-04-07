@@ -8,12 +8,12 @@ import { metadata_update } from '../../metadata/update'
 
 
 
-export const deposition_create_in_existing_collection = async (token: string, sandbox: boolean, collection_id: string, verbose = false): Promise<string> => {
+export const deposition_create_version = async (token: string, sandbox: boolean, concept_id: string, verbose = false): Promise<string> => {
     if (verbose) {
-        console.log(`creating a new, empty versioned deposition in existing collection...`)
+        console.log(`creating a new, empty versioned deposition in existing concept...`)
     }
 
-    const latest_id = await deposition_show_latest(token, sandbox, collection_id, verbose)
+    const latest_id = await deposition_show_latest(token, sandbox, concept_id, verbose)
     const new_id = await create_new_versioned_deposition(token, sandbox, latest_id, verbose)
     await remove_files_from_draft(token, sandbox, new_id, verbose)
     await metadata_update(token, sandbox, new_id, undefined, verbose)
@@ -23,7 +23,7 @@ export const deposition_create_in_existing_collection = async (token: string, sa
 
 const create_new_versioned_deposition = async (token: string, sandbox: boolean, latest_id: string, verbose = false): Promise<string> => {
     if (verbose) {
-        console.log(`creating a new version off of latest version in collection...`)
+        console.log(`creating a new version off of latest version in concept...`)
     }
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`

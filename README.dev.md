@@ -69,8 +69,8 @@ Should show something like:
 ```shell
 {
   cli: [Function: cli],
-  deposition_create_in_existing_collection: [Function: deposition_create_in_existing_collection],
-  deposition_create_in_new_collection: [Function: deposition_create_in_new_collection],
+  deposition_create_concept: [Function: deposition_create_concept],
+  deposition_create_version: [Function: deposition_create_version],
   deposition_delete: [Function: deposition_delete],
   deposition_publish: [Function: deposition_publish],
   deposition_show_details: [Function: deposition_show_details],
@@ -80,7 +80,7 @@ Should show something like:
   file_delete: [Function: file_delete],
   helpers_get_access_token_from_environment: [Function: helpers_get_access_token_from_environment],
   helpers_get_api: [Function: helpers_get_api],
-  helpers_validate_in_collection_value: [Function: helpers_validate_in_collection_value],
+  helpers_validate_in_concept_value: [Function: helpers_validate_in_concept_value],
   metadata_update: [Function: metadata_update]
 }
 ```
@@ -110,8 +110,8 @@ Should show something like:
 ```shell
 {
   cli: [Function: cli],
-  deposition_create_in_existing_collection: [Function: deposition_create_in_existing_collection],
-  deposition_create_in_new_collection: [Function: deposition_create_in_new_collection],
+  deposition_create_concept: [Function: deposition_create_concept],
+  deposition_create_version: [Function: deposition_create_version],
   deposition_delete: [Function: deposition_delete],
   deposition_publish: [Function: deposition_publish],
   deposition_show_details: [Function: deposition_show_details],
@@ -121,7 +121,7 @@ Should show something like:
   file_delete: [Function: file_delete],
   helpers_get_access_token_from_environment: [Function: helpers_get_access_token_from_environment],
   helpers_get_api: [Function: helpers_get_api],
-  helpers_validate_in_collection_value: [Function: helpers_validate_in_collection_value],
+  helpers_validate_in_concept_value: [Function: helpers_validate_in_concept_value],
   metadata_update: [Function: metadata_update]
 }
 ```

@@ -4,9 +4,9 @@ import { helpers_get_api } from '../../helpers/get-api'
 
 
 
-export const deposition_create_in_new_collection = async (token: string, sandbox: boolean, verbose = false): Promise<string> => {
+export const deposition_create_concept = async (token: string, sandbox: boolean, verbose = false): Promise<string> => {
     if (verbose) {
-        console.log(`creating a new, empty deposition in a new collection...`)
+        console.log(`creating a new, empty deposition in a new concept...`)
     }
     const api = helpers_get_api(sandbox)
     const endpoint = '/deposit/depositions'
