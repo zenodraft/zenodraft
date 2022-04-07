@@ -36,8 +36,8 @@ Everything also works on Zenodo Sandbox via the `--sandbox` flag. You'll need ac
 # make sure you have the access token available as the
 # environment variable ZENODO_ACCESS_TOKEN
 
-# create a new, draft deposition in a new collection:
-zenodraft deposition create in-new-collection
+# create a new, draft deposition in a new concept:
+zenodraft deposition create concept
 1234567
 
 # upload a local file, e.g. yourfile.zip
@@ -64,8 +64,7 @@ zenodraft deposition publish 1234567
 
 Here is the result when viewed on Zenodo:
 
-![zenodo-result](https://raw.githubusercontent.com/zenodraft/zenodraft/0.11.1/img/zenodo-deposition.png)
-
+![zenodo-result](img/zenodo-deposition.png)
 
 <br>
 <br>
@@ -134,7 +133,7 @@ node_modules/.bin/zenodraft --help
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.11.1/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.12.0/Dockerfile
 ```
 
 Running the docker container:
@@ -142,7 +141,7 @@ Running the docker container:
 docker run --rm zenodraft --help
 docker run --rm zenodraft --version
 docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition create in-new-collection
+   zenodraft --sandbox deposition create concept
 docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
    zenodraft --sandbox deposition show details 123456
 # etc
@@ -175,4 +174,3 @@ zenodraft-autocomplete > $TMPFILE
 source $TMPFILE
 ```
 You can make the change permanent by copying those 4 lines to the bottom of your `~/.bashrc`.
-

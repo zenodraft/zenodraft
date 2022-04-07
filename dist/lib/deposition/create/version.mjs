@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,30 +7,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.deposition_create_in_existing_collection = void 0;
-const node_fetch_1 = require("node-fetch");
-const files_1 = require("../../deposition/show/files");
-const latest_1 = require("../../deposition/show/latest");
-const delete_1 = require("../../file/delete");
-const get_api_1 = require("../../helpers/get-api");
-const update_1 = require("../../metadata/update");
-const deposition_create_in_existing_collection = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+import { default as fetch } from 'node-fetch';
+import { deposition_show_files } from '../../deposition/show/files';
+import { deposition_show_latest } from '../../deposition/show/latest';
+import { file_delete } from '../../file/delete';
+import { helpers_get_api } from '../../helpers/get-api';
+import { metadata_update } from '../../metadata/update';
+export const deposition_create_version = (token, sandbox, concept_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
-        console.log(`creating a new, empty versioned deposition in existing collection...`);
+        console.log(`creating a new, empty versioned deposition in existing concept...`);
     }
-    const latest_id = yield latest_1.deposition_show_latest(token, sandbox, collection_id, verbose);
+    const latest_id = yield deposition_show_latest(token, sandbox, concept_id, verbose);
     const new_id = yield create_new_versioned_deposition(token, sandbox, latest_id, verbose);
     yield remove_files_from_draft(token, sandbox, new_id, verbose);
-    yield update_1.metadata_update(token, sandbox, new_id, undefined, verbose);
+    yield metadata_update(token, sandbox, new_id, undefined, verbose);
     return new_id;
 });
-exports.deposition_create_in_existing_collection = deposition_create_in_existing_collection;
 const create_new_versioned_deposition = (token, sandbox, latest_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
-        console.log(`creating a new version off of latest version in collection...`);
+        console.log(`creating a new version off of latest version in concept...`);
     }
-    const api = get_api_1.helpers_get_api(sandbox);
+    const api = helpers_get_api(sandbox);
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`;
     const method = 'POST';
     const headers = {
@@ -40,7 +36,7 @@ const create_new_versioned_deposition = (token, sandbox, latest_id, verbose = fa
     const init = { method, headers };
     let response;
     try {
-        response = yield node_fetch_1.default(`${api}${endpoint}`, init);
+        response = yield fetch(`${api}${endpoint}`, init);
         if (response.ok !== true) {
             throw new Error();
         }
@@ -64,9 +60,8 @@ const remove_files_from_draft = (token, sandbox, id, verbose = false) => __await
     if (verbose) {
         console.log(`removing any files from the newly drafted version...`);
     }
-    const filenames = yield files_1.deposition_show_files(token, sandbox, id, verbose);
+    const filenames = yield deposition_show_files(token, sandbox, id, verbose);
     for (const filename of filenames) {
-        delete_1.file_delete(token, sandbox, id, filename);
+        file_delete(token, sandbox, id, filename);
     }
 });
-//# sourceMappingURL=in-existing-collection.js.map

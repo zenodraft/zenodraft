@@ -8,7 +8,7 @@ const metadata_1 = require("./cli/metadata");
 const zenodraft_command = () => {
     return new commander.Command()
         .name('zenodraft')
-        .version('0.11.0')
+        .version('0.12.0')
         .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
         .enablePositionalOptions()
         .passThroughOptions()

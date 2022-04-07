@@ -1,5 +1,5 @@
-export { deposition_create_in_existing_collection } from './deposition/create/in-existing-collection'
-export { deposition_create_in_new_collection } from './deposition/create/in-new-collection'
+export { deposition_create_concept } from './deposition/create/concept'
+export { deposition_create_version } from './deposition/create/version'
 export { deposition_delete } from './deposition/delete'
 export { deposition_publish } from './deposition/publish'
 export { deposition_show_details } from './deposition/show/details'

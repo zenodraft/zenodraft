@@ -1,6 +1,6 @@
 import * as commander from 'commander'
-import { deposition_create_in_new_collection_command } from './create/in-new-collection'
-import { deposition_create_in_existing_collection_command } from './create/in-existing-collection'
+import { deposition_create_concept_command } from './create/concept'
+import { deposition_create_version_command } from './create/version'
 
 
 
@@ -10,6 +10,6 @@ export const deposition_create_command = () => {
         .description('subcommands for creating a deposition')
         .enablePositionalOptions()
         .passThroughOptions()
-        .addCommand(deposition_create_in_existing_collection_command())
-        .addCommand(deposition_create_in_new_collection_command())
+        .addCommand(deposition_create_concept_command())
+        .addCommand(deposition_create_version_command())
 }

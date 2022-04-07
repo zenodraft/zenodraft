@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.metadata_update = exports.helpers_get_api = exports.helpers_get_access_token_from_environment = exports.file_delete = exports.file_add = exports.deposition_show_prereserved = exports.deposition_show_latest = exports.deposition_show_files = exports.deposition_show_draft = exports.deposition_show_details = exports.deposition_publish = exports.deposition_delete = exports.deposition_create_in_new_collection = exports.deposition_create_in_existing_collection = void 0;
-var in_existing_collection_1 = require("./deposition/create/in-existing-collection");
-Object.defineProperty(exports, "deposition_create_in_existing_collection", { enumerable: true, get: function () { return in_existing_collection_1.deposition_create_in_existing_collection; } });
-var in_new_collection_1 = require("./deposition/create/in-new-collection");
-Object.defineProperty(exports, "deposition_create_in_new_collection", { enumerable: true, get: function () { return in_new_collection_1.deposition_create_in_new_collection; } });
+exports.metadata_update = exports.helpers_get_api = exports.helpers_get_access_token_from_environment = exports.file_delete = exports.file_add = exports.deposition_show_prereserved = exports.deposition_show_latest = exports.deposition_show_files = exports.deposition_show_draft = exports.deposition_show_details = exports.deposition_publish = exports.deposition_delete = exports.deposition_create_version = exports.deposition_create_concept = void 0;
+var concept_1 = require("./deposition/create/concept");
+Object.defineProperty(exports, "deposition_create_concept", { enumerable: true, get: function () { return concept_1.deposition_create_concept; } });
+var version_1 = require("./deposition/create/version");
+Object.defineProperty(exports, "deposition_create_version", { enumerable: true, get: function () { return version_1.deposition_create_version; } });
 var delete_1 = require("./deposition/delete");
 Object.defineProperty(exports, "deposition_delete", { enumerable: true, get: function () { return delete_1.deposition_delete; } });
 var publish_1 = require("./deposition/publish");

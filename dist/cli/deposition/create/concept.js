@@ -9,19 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deposition_create_in_new_collection_command = void 0;
-const in_new_collection_1 = require("../../../lib/deposition/create/in-new-collection");
+exports.deposition_create_concept_command = void 0;
+const concept_1 = require("../../../lib/deposition/create/concept");
 const get_access_token_from_environment_1 = require("../../../lib/helpers/get-access-token-from-environment");
 const commander = require("commander");
-const deposition_create_in_new_collection_command = () => {
+const deposition_create_concept_command = () => {
     return new commander.Command()
-        .name('in-new-collection')
-        .description('create a new draft deposition in a new collection')
+        .name('concept')
+        .description('create a new draft deposition in a new concept')
         .action((opts, self) => __awaiter(void 0, void 0, void 0, function* () {
         const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
-            const id = yield in_new_collection_1.deposition_create_in_new_collection(access_token, sandbox, verbose);
+            const id = yield concept_1.deposition_create_concept(access_token, sandbox, verbose);
             console.log(id);
         }
         catch (e) {
@@ -29,5 +29,5 @@ const deposition_create_in_new_collection_command = () => {
         }
     }));
 };
-exports.deposition_create_in_new_collection_command = deposition_create_in_new_collection_command;
-//# sourceMappingURL=in-new-collection.js.map
+exports.deposition_create_concept_command = deposition_create_concept_command;
+//# sourceMappingURL=concept.js.map

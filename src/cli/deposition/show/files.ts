@@ -8,7 +8,7 @@ import * as os from 'os'
 export const deposition_show_files_command = () => {
     return new commander.Command()
         .name('files')
-        .arguments('<collection_id>')
+        .arguments('<concept_id>')
         .description('get the filenames for the files in deposition with id <id>', {
             id: 'id of the deposition for which we want to retrieve the list of filenames'
         })

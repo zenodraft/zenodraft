@@ -9,22 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deposition_create_in_existing_collection_command = void 0;
-const in_existing_collection_1 = require("../../../lib/deposition/create/in-existing-collection");
+exports.deposition_create_version_command = void 0;
+const version_1 = require("../../../lib/deposition/create/version");
 const get_access_token_from_environment_1 = require("../../../lib/helpers/get-access-token-from-environment");
 const commander = require("commander");
-const deposition_create_in_existing_collection_command = () => {
+const deposition_create_version_command = () => {
     return new commander.Command()
-        .name('in-existing-collection')
-        .arguments('<collection_id>')
-        .description('create a new draft deposition as a new version in an existing collection', {
-        collection_id: 'id for the collection that the new deposition will be part of.'
+        .name('version')
+        .arguments('<concept_id>')
+        .description('create a new draft deposition as a new version in an existing concept', {
+        concept_id: 'id for the concept that the new deposition will be part of.'
     })
-        .action((collection_id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
+        .action((concept_id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
         const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = get_access_token_from_environment_1.helpers_get_access_token_from_environment(sandbox);
-            const id = yield in_existing_collection_1.deposition_create_in_existing_collection(access_token, sandbox, collection_id, verbose);
+            const id = yield version_1.deposition_create_version(access_token, sandbox, concept_id, verbose);
             console.log(id);
         }
         catch (e) {
@@ -32,5 +32,5 @@ const deposition_create_in_existing_collection_command = () => {
         }
     }));
 };
-exports.deposition_create_in_existing_collection_command = deposition_create_in_existing_collection_command;
-//# sourceMappingURL=in-existing-collection.js.map
+exports.deposition_create_version_command = deposition_create_version_command;
+//# sourceMappingURL=version.js.map

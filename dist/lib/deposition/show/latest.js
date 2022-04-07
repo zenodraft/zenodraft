@@ -11,14 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deposition_show_latest = void 0;
 const details_1 = require("./../../deposition/show/details");
-const deposition_show_latest = (token, sandbox, collection_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
-    const deposition = yield details_1.deposition_show_details(token, sandbox, collection_id, 'collection', verbose);
+const deposition_show_latest = (token, sandbox, concept_id, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+    const deposition = yield details_1.deposition_show_details(token, sandbox, concept_id, 'concept', verbose);
     let latest_id;
     if ('latest' in deposition.links && deposition.links.latest !== undefined) {
         latest_id = deposition.links.latest.split('/').slice(-1)[0];
     }
     else {
-        throw new Error(`There are no published versions in collection ${collection_id}.`);
+        throw new Error(`There are no published versions in concept ${concept_id}.`);
     }
     return latest_id;
 });

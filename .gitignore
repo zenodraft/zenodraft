@@ -5,3 +5,4 @@ node_modules
 build
 env
 coverage
+zenodraft-*.tgz
