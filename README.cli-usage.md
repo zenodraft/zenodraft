@@ -18,6 +18,8 @@ zenodraft [--sandbox] metadata clear <record_id>
 zenodraft [--sandbox] metadata update <record_id> <local filename>
 ```
 
+Additionally, use `--version` to show zenodraft's version and use `--help` to show the help on any command.
+
 ## Examples
 
 The usage examples below differentiate between an identifier for the concept `CONCEPT_ID` and
@@ -49,6 +51,8 @@ As a new version in an existing concept:
 zenodraft --sandbox deposition create version $CONCEPT_ID
 zenodraft deposition create version $CONCEPT_ID
 ```
+
+These commands print the `RECORD_ID` of the created deposition if they finish successfully.
 
 ### Deleting a draft deposition
 
