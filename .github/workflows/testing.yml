@@ -1,4 +1,4 @@
-concept_idname: testing
+name: testing
 on:
   pull_request:
   push:
