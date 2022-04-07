@@ -64,8 +64,7 @@ zenodraft deposition publish 1234567
 
 Here is the result when viewed on Zenodo:
 
-![zenodo-result](https://raw.githubusercontent.com/zenodraft/zenodraft/0.11.1/img/zenodo-deposition.png)
-
+![zenodo-result](img/zenodo-deposition.png)
 
 <br>
 <br>
@@ -134,7 +133,7 @@ node_modules/.bin/zenodraft --help
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.11.1/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.12.0/Dockerfile
 ```
 
 Running the docker container:
