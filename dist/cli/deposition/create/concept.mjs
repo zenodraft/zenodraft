@@ -7,21 +7,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { deposition_create_in_existing_collection } from '../../../lib/deposition/create/in-existing-collection';
+import { deposition_create_concept } from '../../../lib/deposition/create/concept';
 import { helpers_get_access_token_from_environment } from '../../../lib/helpers/get-access-token-from-environment';
 import * as commander from 'commander';
-export const deposition_create_in_existing_collection_command = () => {
+export const deposition_create_concept_command = () => {
     return new commander.Command()
-        .name('in-existing-collection')
-        .arguments('<collection_id>')
-        .description('create a new draft deposition as a new version in an existing collection', {
-        collection_id: 'id for the collection that the new deposition will be part of.'
-    })
-        .action((collection_id, opts, self) => __awaiter(void 0, void 0, void 0, function* () {
+        .name('concept')
+        .description('create a new draft deposition in a new concept')
+        .action((opts, self) => __awaiter(void 0, void 0, void 0, function* () {
         const { sandbox, verbose } = self.parent.parent.parent.opts();
         try {
             const access_token = helpers_get_access_token_from_environment(sandbox);
-            const id = yield deposition_create_in_existing_collection(access_token, sandbox, collection_id, verbose);
+            const id = yield deposition_create_concept(access_token, sandbox, verbose);
             console.log(id);
         }
         catch (e) {

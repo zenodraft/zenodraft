@@ -45,7 +45,7 @@ export const deposition_show_details = (token, sandbox, id, expected_type, verbo
     if (expected_type === 'deposition') {
         return fetch_details(token, sandbox, id);
     }
-    else if (expected_type === 'collection') {
+    else if (expected_type === 'concept') {
         const id_next = (parseInt(id) + 1).toString();
         let details_next;
         details_next = yield fetch_details(token, sandbox, id_next);
@@ -53,10 +53,10 @@ export const deposition_show_details = (token, sandbox, id, expected_type, verbo
             return details_next;
         }
         else {
-            throw new Error(`Encountered a problem with contents of collection record ${id}.`);
+            throw new Error(`Encountered a problem with contents of concept record ${id}.`);
         }
     }
     else {
-        throw new Error(`Input argument 'expected_type' should be either 'deposition' or 'collection'.`);
+        throw new Error(`Input argument 'expected_type' should be either 'deposition' or 'concept'.`);
     }
 });

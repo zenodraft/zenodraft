@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,13 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { default as fetch } from 'node-fetch';
-import { helpers_get_api } from '../../helpers/get-api';
-export const deposition_create_in_new_collection = (token, sandbox, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deposition_create_concept = void 0;
+const node_fetch_1 = require("node-fetch");
+const get_api_1 = require("../../helpers/get-api");
+const deposition_create_concept = (token, sandbox, verbose = false) => __awaiter(void 0, void 0, void 0, function* () {
     if (verbose) {
-        console.log(`creating a new, empty deposition in a new collection...`);
+        console.log(`creating a new, empty deposition in a new concept...`);
     }
-    const api = helpers_get_api(sandbox);
+    const api = get_api_1.helpers_get_api(sandbox);
     const endpoint = '/deposit/depositions';
     const method = 'POST';
     const headers = {
@@ -23,7 +26,7 @@ export const deposition_create_in_new_collection = (token, sandbox, verbose = fa
     const init = { method, headers, body: JSON.stringify({}) };
     let response;
     try {
-        response = yield fetch(`${api}${endpoint}`, init);
+        response = yield node_fetch_1.default(`${api}${endpoint}`, init);
         if (response.ok !== true) {
             console.debug(response);
             throw new Error('Response was not OK');
@@ -43,3 +46,5 @@ export const deposition_create_in_new_collection = (token, sandbox, verbose = fa
         throw new Error(`Something went wrong while retrieving the json.`);
     }
 });
+exports.deposition_create_concept = deposition_create_concept;
+//# sourceMappingURL=concept.js.map
