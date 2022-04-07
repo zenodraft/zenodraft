@@ -63,7 +63,7 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/delete/${draft_id}/)
-            COMPREPLY=($(compgen -W "<remote filename>"))
+            COMPREPLY=($(compgen -W "<remote_filename>"))
             ;;
         ${COMP_WORDS[0]}/metadata/)
             COMPREPLY=($(compgen -W "clear update" -- ${cur}))
