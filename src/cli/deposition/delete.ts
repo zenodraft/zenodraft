@@ -7,15 +7,15 @@ import { deposition_delete } from '../../lib/deposition/delete'
 export const deposition_delete_command = () => {
     return new commander.Command()
         .name('delete')
-        .arguments('<id>')
-        .description('delete draft deposition with id <id>', {
-            id: 'deposition id'
+        .arguments('<record_id>')
+        .description('delete draft deposition with id <record_id>', {
+            record_id: 'record id'
         })
-        .action(async (id, opts, self) => {
+        .action(async (record_id, opts, self) => {
             const {sandbox, verbose} = self.parent.parent.opts()
             try {
                 const access_token = helpers_get_access_token_from_environment(sandbox)
-                await deposition_delete(access_token, sandbox, id, verbose)
+                await deposition_delete(access_token, sandbox, record_id, verbose)
             } catch (e) {
                 console.error(e.message)
             }
