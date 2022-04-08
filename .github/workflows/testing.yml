@@ -44,10 +44,11 @@ jobs:
       - name: test creating a new draft deposition in a new concept on zenodo sandbox
         run: |
           RECORD_ID=$(zenodraft --sandbox deposition create concept)
-          if [ "$RECORD_ID" == "" ]
+          if [ -z "$RECORD_ID" ]
               then
                   exit 1 
           fi
+          echo "RECORD_ID is: $RECORD_ID"
 
 
 
