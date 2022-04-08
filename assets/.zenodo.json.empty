@@ -1,5 +1,7 @@
 {
+    "access_right": "open",
     "description": "Description of the deposition.",
+    "license": "CC-BY-4.0",
     "title": "Untitled",
     "upload_type": "other"
 }
