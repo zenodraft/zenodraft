@@ -34,12 +34,12 @@ jobs:
 
 
 
-      - name: test creating a new draft deposition in a new collection on zenodo sandbox
+      - name: test creating a new draft deposition in a new concept on zenodo sandbox
         id: get_record_id
         env:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
-          RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
+          RECORD_ID=$(zenodraft --sandbox deposition create concept)
           if [ -z "$RECORD_ID" ]
               then
                   exit 1 
@@ -60,7 +60,7 @@ jobs:
 
 
 
-      - name: test showing the id of the latest draft in the newly created collection
+      - name: test showing the id of the latest draft in the newly created concept
         env:
           CONCEPT_RECORD_ID: ${{ steps.get_concept_record_id.outputs.concept_record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
