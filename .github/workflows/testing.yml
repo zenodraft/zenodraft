@@ -40,6 +40,10 @@ jobs:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
           RECORD_ID=$(zenodraft --sandbox deposition create in-new-collection)
+          if [ $RECORD_ID == "" ]
+              then
+                  exit 1 
+          fi
           echo "::set-output name=record_id::$RECORD_ID"
 
 
