@@ -130,9 +130,10 @@ which zenodraft
 # use the zenodraft cli like so
 zenodraft --version
 zenodraft --help
+# etc
 ```
 
-Or install locally without `-g` flag (but note that [autocomplete](#Autocomplete) only works when `zenodraft` is installed globally):
+Install locally without `-g` flag (but note that [autocomplete](#Autocomplete) only works when `zenodraft` is installed globally):
 
 ```shell
 # local install
@@ -144,6 +145,16 @@ which zenodraft
 # but you can still use the cli by explicitly pointing to it
 node_modules/.bin/zenodraft --version
 node_modules/.bin/zenodraft --help
+# etc
+```
+
+No-install using [`npx`](https://blog.scottlogic.com/2018/04/05/npx-the-npm-package-runner.html):
+
+```shell
+npx zenodraft --version
+npx zenodraft --help
+npx zenodraft --sandbox deposition create concept
+# etc
 ```
 
 ### Docker 
@@ -155,6 +166,7 @@ docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/
 ```
 
 Running the docker container:
+
 ```shell
 docker run --rm zenodraft --help
 docker run --rm zenodraft --version
