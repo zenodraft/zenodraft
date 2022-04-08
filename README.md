@@ -87,6 +87,7 @@ zenodraft [--sandbox] metadata clear <record_id>
 zenodraft [--sandbox] metadata update <record_id> <local filename>
 ```
 
+Additionally, use `--version` to show zenodraft's version and use `--help` to show the help on any command.
 
 For a complete overview of the command line interface, see [here](README.cli-usage.md).
 

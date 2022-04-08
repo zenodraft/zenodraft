@@ -1,12 +1,18 @@
 # CLI Usage
 
 The usage examples below differentiate between an identifier for the concept `CONCEPT_ID` and
-the identifier for a depostion `RECORD_ID`. All commands require an access token, [see the section in the main README](README.md#access-tokens).
+the identifier for a depostion `RECORD_ID`.
 
 ```shell
 CONCEPT_ID=123456
 RECORD_ID=123457
 ```
+
+You can get these numbers from the Zenodo page of your deposition:
+
+![zenodo-versions-widget](/img/zenodo-versions-widget.png)
+
+All commands require an access token, [see the section in the main README](README.md#access-tokens).
 
 ## Creating new draft depositions
 
@@ -23,6 +29,8 @@ As a new version in an existing concept:
 zenodraft --sandbox deposition create version $CONCEPT_ID
 zenodraft deposition create version $CONCEPT_ID
 ```
+
+These commands print the `RECORD_ID` of the created deposition if they finish successfully.
 
 ## Deleting a draft deposition
 
@@ -57,8 +65,8 @@ Either returns the id of the draft deposition, or an empty string in case there 
 Typical usage in automation is to capture the printed value like so:
 
 ```shell
-DRAFT_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_ID)
-DRAFT_ID=$(zenodraft deposition show draft $CONCEPT_ID)
+RECORD_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_ID)
+RECORD_ID=$(zenodraft deposition show draft $CONCEPT_ID)
 ```
 
 ## Getting the list of filenames of a deposition
@@ -80,8 +88,8 @@ Either returns the id of the latest published deposition in the concept, or an e
 Typical usage in automation is to capture the printed value like so:
 
 ```shell
-LATEST_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_ID)
-LATEST_ID=$(zenodraft deposition show latest $CONCEPT_ID)
+RECORD_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_ID)
+RECORD_ID=$(zenodraft deposition show latest $CONCEPT_ID)
 ```
 
 ## Getting the prereserved doi for a deposition:
@@ -128,4 +136,7 @@ zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
 zenodraft metadata update $RECORD_ID .zenodo.json
 ```
 
-The file needs to be a valid JSON file in Zenodo metadata format.
+The file needs to be a valid JSON file in Zenodo metadata format. A JSONschema for the upload metadata file is available
+here: https://github.com/zenodraft/zenodo-upload-metadata-schema. Use https://jsonlint.com/ to check if your document is
+valid JSON, then use a JSONschema linter like https://jsonschemalint.com to check if the JSON is compliant with the
+aforementioned schema.
