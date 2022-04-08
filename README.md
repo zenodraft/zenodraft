@@ -71,6 +71,23 @@ Here is the result when viewed on Zenodo:
 
 ### CLI overview
 
+```shell
+zenodraft [--sandbox] deposition create concept
+zenodraft [--sandbox] deposition create version <concept_id>
+zenodraft [--sandbox] deposition delete <record_id>
+zenodraft [--sandbox] deposition publish <record_id>
+zenodraft [--sandbox] deposition show details <record_id>
+zenodraft [--sandbox] deposition show draft <concept_id>
+zenodraft [--sandbox] deposition show files <record_id>
+zenodraft [--sandbox] deposition show latest <concept_id>
+zenodraft [--sandbox] deposition show prereserved <record_id>
+zenodraft [--sandbox] file add <record_id> <local filename>
+zenodraft [--sandbox] file delete <record_id> <remote filename>
+zenodraft [--sandbox] metadata clear <record_id>
+zenodraft [--sandbox] metadata update <record_id> <local filename>
+```
+
+
 For a complete overview of the command line interface, see [here](README.cli-usage.md).
 
 ### Access tokens
