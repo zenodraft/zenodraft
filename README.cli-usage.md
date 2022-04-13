@@ -1,7 +1,7 @@
 # CLI Usage
 
 The usage examples below differentiate between an identifier for the concept `CONCEPT_ID` and
-the identifier for a depostion `RECORD_ID`.
+the identifier for a deposition `RECORD_ID`.
 
 ```shell
 CONCEPT_ID=123456
