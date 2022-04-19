@@ -36,12 +36,12 @@ Everything also works on Zenodo Sandbox via the `--sandbox` flag. You'll need ac
 # make sure you have the access token available as the
 # environment variable ZENODO_ACCESS_TOKEN
 
-# create a new, draft deposition in a new concept:
+# create a new, draft version in a new concept:
 zenodraft deposition create concept
-1234567
+123456
 
 # upload a local file, e.g. yourfile.zip
-zenodraft file add 1234567 yourfile.zip 
+zenodraft file add 123456 yourfile.zip
 
 # create some metadata file in Zenodo metadata format, e.g.
 echo -e '{
@@ -53,13 +53,13 @@ echo -e '{
   "title": "My deposition"
 }' > .zenodo.json
 
-# update the metadata of the draft deposition
-zenodraft metadata update 1234567 .zenodo.json
+# update the metadata of the draft version
+zenodraft metadata update 123456 .zenodo.json
 
-# inspect the draft deposition on https://zenodo.org/deposit
+# inspect the draft version on https://zenodo.org/deposit
 
-# if all looks good, finalize the deposition by publishing it
-zenodraft deposition publish 1234567
+# if all looks good, finalize the version by publishing it
+zenodraft deposition publish 123456
 ```
 
 Here is the result when viewed on Zenodo:
@@ -74,17 +74,17 @@ Here is the result when viewed on Zenodo:
 ```shell
 zenodraft [--sandbox] deposition create concept
 zenodraft [--sandbox] deposition create version <concept_id>
-zenodraft [--sandbox] deposition delete <record_id>
-zenodraft [--sandbox] deposition publish <record_id>
-zenodraft [--sandbox] deposition show details <record_id>
+zenodraft [--sandbox] deposition delete <version_id>
+zenodraft [--sandbox] deposition publish <version_id>
+zenodraft [--sandbox] deposition show details <version_id>
 zenodraft [--sandbox] deposition show draft <concept_id>
-zenodraft [--sandbox] deposition show files <record_id>
+zenodraft [--sandbox] deposition show files <version_id>
 zenodraft [--sandbox] deposition show latest <concept_id>
-zenodraft [--sandbox] deposition show prereserved <record_id>
-zenodraft [--sandbox] file add <record_id> <local filename>
-zenodraft [--sandbox] file delete <record_id> <remote filename>
-zenodraft [--sandbox] metadata clear <record_id>
-zenodraft [--sandbox] metadata update <record_id> <local filename>
+zenodraft [--sandbox] deposition show prereserved <version_id>
+zenodraft [--sandbox] file add <version_id> <local filename>
+zenodraft [--sandbox] file delete <version_id> <remote filename>
+zenodraft [--sandbox] metadata clear <version_id>
+zenodraft [--sandbox] metadata update <version_id> <local filename>
 ```
 
 Additionally, use `--version` to show zenodraft's version and use `--help` to show the help on any command.
@@ -179,11 +179,11 @@ docker run --rm zenodraft --help
 docker run --rm zenodraft --version
 docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition show details 1234567
+   zenodraft --sandbox deposition show details 123456
 docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
    -v ${PWD}:/data                \
-   zenodraft --sandbox metadata update 1234567 .zenodo.json
+   zenodraft --sandbox metadata update 123456 .zenodo.json
 
 # etc
 ```

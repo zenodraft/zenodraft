@@ -7,19 +7,19 @@ import * as path from 'path'
 
 
 
-export const metadata_update = async (token: string, sandbox: boolean, id: string, filename?: string, verbose = false): Promise<void> => {
+export const metadata_update = async (token: string, sandbox: boolean, version_id: string, filename?: string, verbose = false): Promise<void> => {
     if (verbose) {
         if (filename === undefined) {
-            console.log(`clearing metadata from deposition with id ${id}...`)
+            console.log(`Clearing metadata from deposition with id ${version_id}...`)
         } else {
-            console.log(`adding metadata from ${filename} to deposition with id ${id}...`)
+            console.log(`Adding metadata from ${filename} to deposition with id ${version_id}...`)
         }
     }
     // this next call can throw if there is an inconsistency
-    await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+    await deposition_show_details(token, sandbox, version_id, 'version', verbose)
 
     const api = helpers_get_api(sandbox)
-    const endpoint = `/deposit/depositions/${id}`
+    const endpoint = `/deposit/depositions/${version_id}`
     const method = 'PUT'
     const headers = {
         'Authorization': `Bearer ${token}`,
@@ -43,7 +43,7 @@ export const metadata_update = async (token: string, sandbox: boolean, id: strin
     try {
         const deposition: AnyDeposition = await response.json()
         if (verbose) {
-            console.log(`Updated record ${deposition.record_id}.`)
+            console.log(`Updated deposition with id ${deposition.record_id}.`)
         }
     } catch (e) {
         throw new Error(`Something went wrong while retrieving the json.`)

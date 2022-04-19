@@ -10,7 +10,7 @@ export const deposition_publish = async (token: string, sandbox: boolean, id: st
     }
 
     // result of this next function is not used, but there are some checks in it
-    await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+    await deposition_show_details(token, sandbox, id, 'version', verbose)
 
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}/actions/publish`

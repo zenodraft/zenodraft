@@ -27,7 +27,7 @@ describe('deposition show details with expected type \'deposition\' for mock con
 
     test('should throw because id uses invalid format', async () => {
         const throwfun = async () => {
-            await deposition_show_details(access_token, sandbox, 'mumbojumbo123', 'deposition')
+            await deposition_show_details(access_token, sandbox, 'mumbojumbo123', 'version')
         }
         await expect(throwfun).rejects.toThrow()
         try {
@@ -44,7 +44,7 @@ describe('deposition show details with expected type \'deposition\' for mock con
             .times(2)
             .reply(404)
         const throwfun = async () => {
-            await deposition_show_details(access_token, sandbox, id, 'deposition')
+            await deposition_show_details(access_token, sandbox, id, 'version')
         }
         await expect(throwfun).rejects.toThrow()
         try {
@@ -54,13 +54,13 @@ describe('deposition show details with expected type \'deposition\' for mock con
         }
     })
 
-    test(`should throw because record is not a deposition`, async () => {
+    test(`should throw because record is not a version`, async () => {
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
             .get(`/deposit/depositions/${concept_id}`)
             .times(2)
             .reply(404)
         const throwfun = async () => {
-            await deposition_show_details(access_token, sandbox, concept_id, 'deposition')
+            await deposition_show_details(access_token, sandbox, concept_id, 'version')
         }
         await expect(throwfun).rejects.toThrow()
         try {
@@ -75,7 +75,7 @@ describe('deposition show details with expected type \'deposition\' for mock con
             .get(`/deposit/depositions/${draft_id}`)
             .times(1)
             .replyWithFile(200, filename_mock)
-        const actual = (await deposition_show_details(access_token, sandbox, draft_id, 'deposition')).record_id.toString()
+        const actual = (await deposition_show_details(access_token, sandbox, draft_id, 'version')).record_id.toString()
         const expected = draft_id
         expect(actual).toBe(expected)
     })

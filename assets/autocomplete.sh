@@ -27,40 +27,40 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -W "<concept_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/delete/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/publish/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/)
             COMPREPLY=($(compgen -W "details draft files latest prereserved" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/details/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/draft/)
             COMPREPLY=($(compgen -W "<concept_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/files/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/latest/)
             COMPREPLY=($(compgen -W "<concept_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/prereserved/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/)
             COMPREPLY=($(compgen -W "add delete" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/add/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/add/${draft_id}/)
             COMPREPLY=($(compgen -o filenames -A file -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/delete/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/delete/${draft_id}/)
             COMPREPLY=($(compgen -W "<remote_filename>"))
@@ -69,10 +69,10 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -W "clear update" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/metadata/clear/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/metadata/update/)
-            COMPREPLY=($(compgen -W "<record_id>" -- ${cur}))
+            COMPREPLY=($(compgen -W "<version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/metadata/update/${draft_id}/)
             COMPREPLY=($(compgen -o filenames -A file -- ${cur}))

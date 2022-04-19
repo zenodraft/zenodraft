@@ -10,9 +10,8 @@ import { metadata_update } from '../../metadata/update'
 
 export const deposition_create_version = async (token: string, sandbox: boolean, concept_id: string, verbose = false): Promise<string> => {
     if (verbose) {
-        console.log(`creating a new, empty versioned deposition in existing concept...`)
+        console.log(`Creating a new, empty version in existing concept ${concept_id}...`)
     }
-
     const latest_id = await deposition_show_latest(token, sandbox, concept_id, verbose)
     const new_id = await create_new_versioned_deposition(token, sandbox, latest_id, verbose)
     await remove_files_from_draft(token, sandbox, new_id, verbose)
@@ -23,7 +22,7 @@ export const deposition_create_version = async (token: string, sandbox: boolean,
 
 const create_new_versioned_deposition = async (token: string, sandbox: boolean, latest_id: string, verbose = false): Promise<string> => {
     if (verbose) {
-        console.log(`creating a new version off of latest version in concept...`)
+        console.log(`Creating a new version off of latest version in concept...`)
     }
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`
@@ -45,7 +44,7 @@ const create_new_versioned_deposition = async (token: string, sandbox: boolean, 
         const deposition: AnyDeposition & HasLatest & HasDraft = await response.json()
         const new_id = deposition.links.latest_draft.split('/').slice(-1)[0]
         if (verbose) {
-            console.log(`created new record ${new_id}`)
+            console.log(`Created new version with id ${new_id}`)
         }
         return new_id
     } catch (e) {
@@ -56,7 +55,7 @@ const create_new_versioned_deposition = async (token: string, sandbox: boolean, 
 
 const remove_files_from_draft = async (token: string, sandbox: boolean, id: string, verbose = false): Promise<void> => {
     if (verbose) {
-        console.log(`removing any files from the newly drafted version...`)
+        console.log(`Removing any files from the newly drafted version...`)
     }
     const filenames = await deposition_show_files(token, sandbox, id, verbose)
     for (const filename of filenames) {
