@@ -47,10 +47,8 @@ export const deposition_show_details = async (token: string, sandbox: boolean, i
         details_next = await fetch_details(token, sandbox, id_next)
         if (details_next.conceptrecid === id) {
             return details_next
-        } else {
-            throw new Error(`Encountered a problem with contents of concept ${id}.`)
         }
-    } else {
-        throw new Error(`Input argument 'expected_type' should be either 'version' or 'concept'.`)
+        throw new Error(`Encountered a problem with contents of concept ${id}.`)
     }
+    throw new Error(`Input argument 'expected_type' should be either 'version' or 'concept'.`)
 }
