@@ -1,11 +1,11 @@
 # CLI Usage
 
 The usage examples below differentiate between an identifier for the concept `CONCEPT_ID` and
-the identifier for a depostion `RECORD_ID`.
+the identifier for a depostion `VERSION_ID`.
 
 ```shell
 CONCEPT_ID=123456
-RECORD_ID=123457
+VERSION_ID=123457
 ```
 
 You can get these numbers from the Zenodo page of your deposition:
@@ -30,110 +30,110 @@ zenodraft --sandbox deposition create version $CONCEPT_ID
 zenodraft deposition create version $CONCEPT_ID
 ```
 
-These commands print the `RECORD_ID` of the created deposition if they finish successfully.
+These commands print the `VERSION_ID` of the created version if they finish successfully.
 
-## Deleting a draft deposition
-
-```shell
-zenodraft --sandbox deposition delete $RECORD_ID
-zenodraft deposition delete $RECORD_ID
-```
-
-## Publishing a draft deposition
+## Deleting a draft version
 
 ```shell
-zenodraft --sandbox deposition publish $RECORD_ID
-zenodraft deposition publish $RECORD_ID
+zenodraft --sandbox deposition delete $VERSION_ID
+zenodraft deposition delete $VERSION_ID
 ```
 
-## Getting the details of a deposition
+## Publishing a draft version
 
 ```shell
-zenodraft --sandbox deposition show details $RECORD_ID
-zenodraft deposition show details $RECORD_ID
+zenodraft --sandbox deposition publish $VERSION_ID
+zenodraft deposition publish $VERSION_ID
 ```
 
-## Getting the id of a draft deposition in a concept
+## Getting the details of a version
+
+```shell
+zenodraft --sandbox deposition show details $VERSION_ID
+zenodraft deposition show details $VERSION_ID
+```
+
+## Getting the id of a draft version in a concept
 
 ```shell
 zenodraft --sandbox deposition show draft $CONCEPT_ID
 zenodraft deposition show draft $CONCEPT_ID
 ```
 
-Either returns the id of the draft deposition, or an empty string in case there is no draft deposition in the concept.
+Either returns the id of the draft version, or an empty string in case there is no draft version in the concept.
 
 Typical usage in automation is to capture the printed value like so:
 
 ```shell
-RECORD_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_ID)
-RECORD_ID=$(zenodraft deposition show draft $CONCEPT_ID)
+VERSION_ID=$(zenodraft --sandbox deposition show draft $CONCEPT_ID)
+VERSION_ID=$(zenodraft deposition show draft $CONCEPT_ID)
 ```
 
-## Getting the list of filenames of a deposition
+## Getting the list of filenames of a version
 
 ```shell
-zenodraft --sandbox deposition show files $RECORD_ID
-zenodraft deposition show files $RECORD_ID
+zenodraft --sandbox deposition show files $VERSION_ID
+zenodraft deposition show files $VERSION_ID
 ```
 
-## Getting the deposition id for the latest published version in a concept
+## Getting the id for the latest published version in a concept
 
 ```shell
 zenodraft --sandbox deposition show latest $CONCEPT_ID
 zenodraft deposition show latest $CONCEPT_ID
 ```
 
-Either returns the id of the latest published deposition in the concept, or an empty string in case there are no published depositions in the concept.
+Either returns the id of the latest published version in the concept, or an empty string in case there are no published versions in the concept.
 
 Typical usage in automation is to capture the printed value like so:
 
 ```shell
-RECORD_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_ID)
-RECORD_ID=$(zenodraft deposition show latest $CONCEPT_ID)
+VERSION_ID=$(zenodraft --sandbox deposition show latest $CONCEPT_ID)
+VERSION_ID=$(zenodraft deposition show latest $CONCEPT_ID)
 ```
 
-## Getting the prereserved doi for a deposition:
+## Getting the prereserved doi for a version:
 
 ```shell
-zenodraft --sandbox deposition show prereserved $RECORD_ID
-zenodraft deposition show prereserved $RECORD_ID
+zenodraft --sandbox deposition show prereserved $VERSION_ID
+zenodraft deposition show prereserved $VERSION_ID
 ```
 
-Returns the prereserved doi of the deposition with id `$RECORD_ID`.
+Returns the prereserved doi of the version with id `$VERSION_ID`.
 
 Typical usage in automation is to capture the printed value like so:
 
 ```shell
-PRERESERVED=$(zenodraft --sandbox deposition show prereserved $RECORD_ID)
-PRERESERVED=$(zenodraft deposition show prereserved $RECORD_ID)
+PRERESERVED=$(zenodraft --sandbox deposition show prereserved $VERSION_ID)
+PRERESERVED=$(zenodraft deposition show prereserved $VERSION_ID)
 ```
 
-## Adding a local file to an existing draft deposition:
+## Adding a local file to an existing draft version:
 
 ```shell
-zenodraft --sandbox file add $RECORD_ID file.txt
-zenodraft file add $RECORD_ID file.txt
+zenodraft --sandbox file add $VERSION_ID file.txt
+zenodraft file add $VERSION_ID file.txt
 ```
 
-## Removing a file from an existing draft deposition
+## Removing a file from an existing draft version
 
 ```shell
-zenodraft --sandbox file delete $RECORD_ID file.txt
-zenodraft file delete $RECORD_ID file.txt
+zenodraft --sandbox file delete $VERSION_ID file.txt
+zenodraft file delete $VERSION_ID file.txt
 ```
 
-## Clearing a deposition's metadata
+## Clearing a version's metadata
 
 ```shell
-zenodraft --sandbox metadata clear $RECORD_ID 
-zenodraft metadata clear $RECORD_ID
+zenodraft --sandbox metadata clear $VERSION_ID
+zenodraft metadata clear $VERSION_ID
 ```
 
-## Updating a deposition with metadata from a local file
+## Updating a version with metadata from a local file
 
 ```shell
-zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
-zenodraft metadata update $RECORD_ID .zenodo.json
+zenodraft --sandbox metadata update $VERSION_ID .zenodo.json
+zenodraft metadata update $VERSION_ID .zenodo.json
 ```
 
 The file needs to be a valid JSON file in Zenodo metadata format. A JSONschema for the upload metadata file is available

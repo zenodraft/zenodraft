@@ -105,26 +105,7 @@ node index.mjs
 node --experimental-modules index.mjs
 ```
 
-Should show something like:
-
-```shell
-{
-  cli: [Function: cli],
-  deposition_create_concept: [Function: deposition_create_concept],
-  deposition_create_version: [Function: deposition_create_version],
-  deposition_delete: [Function: deposition_delete],
-  deposition_publish: [Function: deposition_publish],
-  deposition_show_details: [Function: deposition_show_details],
-  deposition_show_latest: [Function: deposition_show_latest],
-  deposition_show_prereserved: [Function: deposition_show_prereserved],
-  file_add: [Function: file_add],
-  file_delete: [Function: file_delete],
-  helpers_get_access_token_from_environment: [Function: helpers_get_access_token_from_environment],
-  helpers_get_api: [Function: helpers_get_api],
-  helpers_validate_in_concept_value: [Function: helpers_validate_in_concept_value],
-  metadata_update: [Function: metadata_update]
-}
-```
+Should show the same as listed above for `require`.
 
 ## For maintainers
 
