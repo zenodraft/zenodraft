@@ -111,14 +111,14 @@ Fill in the placeholders with values of your own, which you can get at
 - Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
 - Zenodo: https://zenodo.org/account/settings/applications/
 
-### Install
-
-Requirements:
+### Prerequisites:
 
 - node v14 (other versions may work)
 - npm v7 (other versions may work)
 
-Install globally with `-g` flag:
+### System install
+
+Install system-wide with the `-g` flag:
 
 ```shell
 # global install
@@ -133,22 +133,29 @@ zenodraft --help
 # etc
 ```
 
-Install locally without `-g` flag (but note that [autocomplete](#Autocomplete) only works when `zenodraft` is installed globally):
+### Project directory install
+
+Install locally without `-g` flag and use `zenodraft` CLI via the
+[`npx`](https://nodejs.dev/learn/the-npx-nodejs-package-runner) command. Note that this will create a `node_modules/`
+directory, and that autocomplete only works when `zenodraft` is installed globally:
 
 ```shell
 # local install
 npm install zenodraft
 
-# this next command doesn't work for local installs
+# this next command returns empty for local installs
 which zenodraft
 
-# but you can still use the cli by explicitly pointing to it
-node_modules/.bin/zenodraft --version
-node_modules/.bin/zenodraft --help
+# but you can still use the cli via npx
+npx zenodraft --version
+npx zenodraft --help
 # etc
 ```
 
-No-install using [`npx`](https://blog.scottlogic.com/2018/04/05/npx-the-npm-package-runner.html):
+### No-install
+
+[`npx`](https://nodejs.dev/learn/the-npx-nodejs-package-runner) allows for running executables without the need for
+installation. Note that this will download and cache `zenodraft` from [npmjs.com](https://npmjs.com) if you don't already have it.
 
 ```shell
 npx zenodraft --version
@@ -170,10 +177,14 @@ Running the docker container:
 ```shell
 docker run --rm zenodraft --help
 docker run --rm zenodraft --version
-docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition create concept
-docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition show details 123456
+docker run --rm                   \
+   -e ZENODO_SANDBOX_ACCESS_TOKEN \
+   zenodraft --sandbox deposition show details 1234567
+docker run --rm                   \
+   -e ZENODO_SANDBOX_ACCESS_TOKEN \
+   -v ${PWD}:/data                \
+   zenodraft --sandbox metadata update 1234567 .zenodo.json
+
 # etc
 ```
 
