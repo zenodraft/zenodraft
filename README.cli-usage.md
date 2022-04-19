@@ -3,11 +3,6 @@
 The usage examples below differentiate between an identifier for the concept `CONCEPT_ID` and
 the identifier for a depostion `VERSION_ID`.
 
-```shell
-CONCEPT_ID=123456
-VERSION_ID=123457
-```
-
 You can get these numbers from the Zenodo page of your deposition:
 
 ![zenodo-versions-widget](/img/zenodo-versions-widget.png)

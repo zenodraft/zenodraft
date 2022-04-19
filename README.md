@@ -38,10 +38,10 @@ Everything also works on Zenodo Sandbox via the `--sandbox` flag. You'll need ac
 
 # create a new, draft version in a new concept:
 zenodraft deposition create concept
-1234567
+123456
 
 # upload a local file, e.g. yourfile.zip
-zenodraft file add 1234567 yourfile.zip 
+zenodraft file add 123456 yourfile.zip
 
 # create some metadata file in Zenodo metadata format, e.g.
 echo -e '{
@@ -54,12 +54,12 @@ echo -e '{
 }' > .zenodo.json
 
 # update the metadata of the draft version
-zenodraft metadata update 1234567 .zenodo.json
+zenodraft metadata update 123456 .zenodo.json
 
 # inspect the draft version on https://zenodo.org/deposit
 
 # if all looks good, finalize the version by publishing it
-zenodraft deposition publish 1234567
+zenodraft deposition publish 123456
 ```
 
 Here is the result when viewed on Zenodo:
@@ -179,11 +179,11 @@ docker run --rm zenodraft --help
 docker run --rm zenodraft --version
 docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition show details 1234567
+   zenodraft --sandbox deposition show details 123456
 docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
    -v ${PWD}:/data                \
-   zenodraft --sandbox metadata update 1234567 .zenodo.json
+   zenodraft --sandbox metadata update 123456 .zenodo.json
 
 # etc
 ```

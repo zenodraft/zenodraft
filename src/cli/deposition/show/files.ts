@@ -8,15 +8,15 @@ import * as os from 'os'
 export const deposition_show_files_command = () => {
     return new commander.Command()
         .name('files')
-        .arguments('<concept_id>')
+        .arguments('<version_id>')
         .description('get the filenames for the files in deposition with id <id>', {
             concept_id: 'id of the deposition for which we want to retrieve the list of filenames'
         })
-        .action(async (concept_id, opts, self) => {
+        .action(async (version_id, opts, self) => {
             const {sandbox, verbose} = self.parent.parent.parent.opts()
             try {
                 const access_token = helpers_get_access_token_from_environment(sandbox)
-                const filenames = await deposition_show_files(access_token, sandbox, concept_id, verbose)
+                const filenames = await deposition_show_files(access_token, sandbox, version_id, verbose)
                 console.log(filenames.join(os.EOL))
             } catch (e) {
                 console.error(e.message)

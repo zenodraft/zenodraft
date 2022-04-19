@@ -3,7 +3,6 @@ import { helpers_get_access_token_from_environment } from '../../../lib/helpers/
 import * as commander from 'commander'
 
 
-
 export const deposition_show_details_command = () => {
     return new commander.Command()
         .name('details')

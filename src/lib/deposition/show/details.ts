@@ -34,7 +34,7 @@ export const deposition_show_details = async (token: string, sandbox: boolean, i
                                               expected_type: 'concept' | 'version', verbose = false): Promise<AnyDeposition> => {
 
     if (verbose) {
-        console.log(`Getting ${expected_type} details for version with id ${id}...`)
+        console.log(`Getting details for ${expected_type} with id ${id}...`)
     }
     const regex = new RegExp('^[0-9]+$')
     assert(regex.test(id) === true, 'id has invalid format.')
@@ -51,6 +51,6 @@ export const deposition_show_details = async (token: string, sandbox: boolean, i
             throw new Error(`Encountered a problem with contents of concept ${id}.`)
         }
     } else {
-        throw new Error(`Input argument 'expected_type' should be either 'deposition' or 'concept'.`)
+        throw new Error(`Input argument 'expected_type' should be either 'version' or 'concept'.`)
     }
 }
