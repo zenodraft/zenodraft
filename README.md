@@ -176,14 +176,10 @@ Running the docker container:
 
 ```shell
 docker run --rm zenodraft --help
-
 docker run --rm zenodraft --version
-
-docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
+docker run --rm                   \
+   -e ZENODO_SANDBOX_ACCESS_TOKEN \
    zenodraft --sandbox deposition show details 1234567
-
-# pass your credentials to the docker container and mount the current
-# directory inside the container so zenodraft can access .zenodo.json
 docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
    -v ${PWD}:/data                \
