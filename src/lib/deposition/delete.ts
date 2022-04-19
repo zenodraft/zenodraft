@@ -8,7 +8,7 @@ export const deposition_delete = async (token: string, sandbox: boolean, id: str
     if (verbose) {
         console.log(`deleting draft deposition with id ${id}...`)
     }
-    await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+    await deposition_show_details(token, sandbox, id, 'version', verbose)
 
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`

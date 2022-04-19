@@ -9,7 +9,7 @@ export const file_add = async (token: string, sandbox: boolean, id: string, file
     if (verbose) {
         console.log(`adding file ${filename} to deposition with id ${id}...`)
     }
-    const deposition = await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+    const deposition = await deposition_show_details(token, sandbox, id, 'version', verbose)
     const bucket = deposition.links.bucket
     let content_type: string = mime.contentType(filename) ? mime.contentType(filename) as string : 'text/plain'
     if (content_type.includes('application/json')) {

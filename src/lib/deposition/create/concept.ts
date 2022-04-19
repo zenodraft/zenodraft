@@ -6,7 +6,7 @@ import { helpers_get_api } from '../../helpers/get-api'
 
 export const deposition_create_concept = async (token: string, sandbox: boolean, verbose = false): Promise<string> => {
     if (verbose) {
-        console.log(`creating a new, empty deposition in a new concept...`)
+        console.log(`creating a new, empty version in a new concept...`)
     }
     const api = helpers_get_api(sandbox)
     const endpoint = '/deposit/depositions'
@@ -30,7 +30,7 @@ export const deposition_create_concept = async (token: string, sandbox: boolean,
     try {
         const deposition: AnyDeposition & HasDraft = await response.json()
         if (verbose) {
-            console.log(`Created new record ${deposition.record_id}.`)
+            console.log(`Created new version with id ${deposition.record_id}.`)
         }
         return deposition.record_id.toString()
     } catch (e) {
