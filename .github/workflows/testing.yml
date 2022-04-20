@@ -39,7 +39,7 @@ jobs:
         env:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
-          RECORD_ID=$(zenodraft --sandbox deposition create concept)
+          RECORD_ID=$(zenodraft deposition create concept --sandbox)
           if [ -z "$RECORD_ID" ]
               then
                   exit 1 
@@ -54,7 +54,7 @@ jobs:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
-          zenodraft --sandbox deposition show details $RECORD_ID > deposition.json
+          zenodraft deposition show details --sandbox $RECORD_ID > deposition.json
           CONCEPT_RECORD_ID=$(cat deposition.json | jq '.conceptrecid' --raw-output)
           echo "::set-output name=concept_record_id::$CONCEPT_RECORD_ID"
 
@@ -64,7 +64,7 @@ jobs:
         env:
           CONCEPT_RECORD_ID: ${{ steps.get_concept_record_id.outputs.concept_record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft --sandbox deposition show latest $CONCEPT_RECORD_ID
+        run: zenodraft deposition show latest --sandbox $CONCEPT_RECORD_ID
 
 
 
@@ -72,7 +72,7 @@ jobs:
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft --sandbox deposition show prereserved $RECORD_ID
+        run: zenodraft deposition show prereserved --sandbox $RECORD_ID
 
 
 
@@ -82,7 +82,7 @@ jobs:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
           echo "these are the file contents" > thefile.txt
-          zenodraft --sandbox file add $RECORD_ID thefile.txt
+          zenodraft file add --sandbox $RECORD_ID thefile.txt
 
 
 
@@ -91,7 +91,7 @@ jobs:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
-          zenodraft --sandbox file delete $RECORD_ID thefile.txt
+          zenodraft file delete --sandbox $RECORD_ID thefile.txt
 
 
 
@@ -101,7 +101,7 @@ jobs:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
           echo "{\"creators\":[{\"affiliation\":\"Netherlands eScience Center\",\"name\":\"Spaaks, Jurriaan H.\",\"orcid\":\"0000-0002-7064-4069\"}],\"description\":\"Auto-generated draft deposition for CI testing of zenodraft's CLI\",\"keywords\":[\"zenodo\",\"cli\"],\"license\":{\"id\":\"Apache-2.0\"},\"title\":\"Auto-generated deposition for testing purposes\"}" > .zenodo.json
-          zenodraft --sandbox metadata update $RECORD_ID .zenodo.json
+          zenodraft metadata update --sandbox $RECORD_ID .zenodo.json
 
 
 
@@ -109,7 +109,7 @@ jobs:
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft --sandbox metadata clear $RECORD_ID
+        run: zenodraft metadata clear --sandbox $RECORD_ID
 
 
 
@@ -117,7 +117,7 @@ jobs:
         env:
           RECORD_ID: ${{ steps.get_record_id.outputs.record_id }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft --sandbox deposition delete $RECORD_ID
+        run: zenodraft deposition delete --sandbox $RECORD_ID
 
 
   unit:

@@ -43,9 +43,9 @@ Assert tarball `zenodraft-x.y.z.tgz` has been created with `npm pack`.
 cd $(mktemp -d --tmpdir zenodraft.XXXXXX)
 npm install path/to/the/tarball/zenodraft-x.y.z.tgz --force   # --force overrides caching
 # you should now have a cli program node_modules/.bin/zenodraft, see if it's working
-node_modules/.bin/zenodraft
-node_modules/.bin/zenodraft --version
-node_modules/.bin/zenodraft --help
+npx zenodraft
+npx zenodraft --version
+npx zenodraft --help
 ```
 
 ## Local testing of the functionality from the package
