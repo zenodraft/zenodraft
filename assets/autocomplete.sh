@@ -92,4 +92,7 @@ _zenodraft_completions()
             ;;
     esac
 }
+# nosort has no effect in some Bash versions (e.g. 4.4.20), set 
+# $ bind "set completion-ignore-case off"
+# to make it work
 complete -o nosort -F _zenodraft_completions zenodraft
