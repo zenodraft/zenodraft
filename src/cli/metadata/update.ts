@@ -1,7 +1,9 @@
 import { helpers_get_access_token_from_environment } from '../../lib/helpers/get-access-token-from-environment'
 import { metadata_update } from '../../lib/metadata/update'
 import { sandboxOption, verboseOption } from '../../lib/helpers/options'
+import { tokensHelpText } from '../../lib/helpers/tokens-help-text'
 import * as commander from 'commander'
+
 
 
 export const metadata_update_command = () => {
@@ -23,4 +25,6 @@ export const metadata_update_command = () => {
                 console.error(e.message)
             }
         })
+        .addHelpText('after', tokensHelpText)
+
 }

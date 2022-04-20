@@ -1,6 +1,7 @@
 import { deposition_show_details } from '../../../lib/deposition/show/details'
 import { helpers_get_access_token_from_environment } from '../../../lib/helpers/get-access-token-from-environment'
 import { sandboxOption, verboseOption } from '../../../lib/helpers/options'
+import { tokensHelpText } from '../../../lib/helpers/tokens-help-text'
 import * as commander from 'commander'
 
 
@@ -23,4 +24,5 @@ export const deposition_show_details_command = () => {
                 console.error(e.message)
             }
         })
+        .addHelpText('after', tokensHelpText)
 }

@@ -1,6 +1,7 @@
 import { deposition_show_files } from '../../../lib/deposition/show/files'
 import { helpers_get_access_token_from_environment } from '../../../lib/helpers/get-access-token-from-environment'
 import { sandboxOption, verboseOption } from '../../../lib/helpers/options'
+import { tokensHelpText } from '../../../lib/helpers/tokens-help-text'
 import * as commander from 'commander'
 import * as os from 'os'
 
@@ -26,4 +27,5 @@ export const deposition_show_files_command = () => {
             }
 
         })
+        .addHelpText('after', tokensHelpText)
 }

@@ -1,8 +1,8 @@
 import { deposition_show_prereserved } from '../../../lib/deposition/show/prereserved'
 import { helpers_get_access_token_from_environment } from '../../../lib/helpers/get-access-token-from-environment'
 import { sandboxOption, verboseOption } from '../../../lib/helpers/options'
+import { tokensHelpText } from '../../../lib/helpers/tokens-help-text'
 import * as commander from 'commander'
-
 
 
 export const deposition_show_prereserved_command = () => {
@@ -24,4 +24,5 @@ export const deposition_show_prereserved_command = () => {
                 console.error(e.message)
             }
         })
+        .addHelpText('after', tokensHelpText)
 }

@@ -7,8 +7,6 @@ export const metadata_command = () => {
     return new commander.Command()
         .name('metadata')
         .description('subcommands for metadata')
-        .enablePositionalOptions()
-        .passThroughOptions()
         .addCommand(metadata_clear_command())
         .addCommand(metadata_update_command())
 }

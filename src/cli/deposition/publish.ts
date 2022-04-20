@@ -2,6 +2,7 @@ import * as commander from 'commander'
 import { helpers_get_access_token_from_environment } from '../../lib/helpers/get-access-token-from-environment'
 import { deposition_publish } from '../../lib/deposition/publish'
 import { sandboxOption, verboseOption } from '../../lib/helpers/options'
+import { tokensHelpText } from '../../lib/helpers/tokens-help-text'
 
 
 export const deposition_publish_command = () => {
@@ -22,4 +23,5 @@ export const deposition_publish_command = () => {
                 console.error(e.message)
             }
         })
+        .addHelpText('after', tokensHelpText)
 }
