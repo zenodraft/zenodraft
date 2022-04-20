@@ -72,19 +72,19 @@ Here is the result when viewed on Zenodo:
 ### CLI overview
 
 ```shell
-zenodraft [--sandbox] deposition create concept
-zenodraft [--sandbox] deposition create version <concept_id>
-zenodraft [--sandbox] deposition delete <version_id>
-zenodraft [--sandbox] deposition publish <version_id>
-zenodraft [--sandbox] deposition show details <version_id>
-zenodraft [--sandbox] deposition show draft <concept_id>
-zenodraft [--sandbox] deposition show files <version_id>
-zenodraft [--sandbox] deposition show latest <concept_id>
-zenodraft [--sandbox] deposition show prereserved <version_id>
-zenodraft [--sandbox] file add <version_id> <local filename>
-zenodraft [--sandbox] file delete <version_id> <remote filename>
-zenodraft [--sandbox] metadata clear <version_id>
-zenodraft [--sandbox] metadata update <version_id> <local filename>
+zenodraft deposition create concept [--sandbox]
+zenodraft deposition create version [--sandbox] <concept_id>
+zenodraft deposition delete [--sandbox] <version_id>
+zenodraft deposition publish [--sandbox] <version_id>
+zenodraft deposition show details [--sandbox] <version_id>
+zenodraft deposition show draft [--sandbox] <concept_id>
+zenodraft deposition show files [--sandbox] <version_id>
+zenodraft deposition show latest [--sandbox] <concept_id>
+zenodraft deposition show prereserved [--sandbox] <version_id>
+zenodraft file add [--sandbox] <version_id> <local filename>
+zenodraft file delete [--sandbox] <version_id> <remote filename>
+zenodraft metadata clear [--sandbox] <version_id>
+zenodraft metadata update [--sandbox] <version_id> <local filename>
 ```
 
 Additionally, use `--version` to show zenodraft's version and use `--help` to show the help on any command.
@@ -160,7 +160,7 @@ installation. Note that this will download and cache `zenodraft` from [npmjs.com
 ```shell
 npx zenodraft --version
 npx zenodraft --help
-npx zenodraft --sandbox deposition create concept
+npx zenodraft deposition create concept --sandbox
 # etc
 ```
 
@@ -179,11 +179,11 @@ docker run --rm zenodraft --help
 docker run --rm zenodraft --version
 docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition show details 123456
+   zenodraft deposition show details --sandbox 123456
 docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
    -v ${PWD}:/data                \
-   zenodraft --sandbox metadata update 123456 .zenodo.json
+   zenodraft metadata update --sandbox 123456 .zenodo.json
 
 # etc
 ```
