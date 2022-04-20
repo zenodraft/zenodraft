@@ -3,7 +3,6 @@ import { metadata_update_command } from './metadata/update'
 import { metadata_clear_command } from './metadata/clear'
 
 
-
 export const metadata_command = () => {
     return new commander.Command()
         .name('metadata')

@@ -5,7 +5,6 @@ import { deposition_delete_command } from './deposition/delete'
 import { deposition_publish_command } from './deposition/publish'
 
 
-
 export const deposition_command = () => {
     return new commander.Command()
         .name('deposition')
