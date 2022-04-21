@@ -1,7 +1,7 @@
 #/usr/bin/env bash
 _zenodraft_completions()
 {
-    local history cur draft_id used_options
+    local history cur version_id used_options
     # Join the array elements from COMP_WORDS using forward slashes, 
     # chop off the uncompleted command from the right hand side,
     # remove the sandbox and verbose and help terms:
@@ -10,7 +10,8 @@ _zenodraft_completions()
     # Set $cur to the subcommand that is currently being typed
     cur=${COMP_WORDS[COMP_CWORD]}
 
-    draft_id=$(echo "${COMP_WORDS[@]:-1}" | sed -e 's#[^0-9]##g')
+    # Try to extract a string containing the version id, either as a plain number or as a variable
+    version_id=$(echo ${COMP_WORDS[@]} | grep -e '\$[^\r\n\t\f\v ]*' -e '[0-9]*' -o)
 
     # Take all the words that have been entered so far, 
     # make them into a string; then use grep with exact matching
@@ -66,13 +67,13 @@ _zenodraft_completions()
         ${COMP_WORDS[0]}/file/add/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))
             ;;
-        ${COMP_WORDS[0]}/file/add/${draft_id}/)
+        ${COMP_WORDS[0]}/file/add/${version_id}/)
             COMPREPLY=($(compgen -o filenames -A file -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/file/delete/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))
             ;;
-        ${COMP_WORDS[0]}/file/delete/${draft_id}/)
+        ${COMP_WORDS[0]}/file/delete/${version_id}/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <remote_filename>"))
             ;;
         ${COMP_WORDS[0]}/metadata/)
@@ -84,7 +85,7 @@ _zenodraft_completions()
         ${COMP_WORDS[0]}/metadata/update/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))
             ;;
-        ${COMP_WORDS[0]}/metadata/update/${draft_id}/)
+        ${COMP_WORDS[0]}/metadata/update/${version_id}/)
             COMPREPLY=($(compgen -o filenames -A file -- ${cur}))
             ;;
         *)
