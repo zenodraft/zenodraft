@@ -36,12 +36,12 @@ Everything also works on Zenodo Sandbox via the `--sandbox` flag. You'll need ac
 # make sure you have the access token available as the
 # environment variable ZENODO_ACCESS_TOKEN
 
-# create a new, draft deposition in a new collection:
-zenodraft deposition create in-new-collection
-1234567
+# create a new, draft version in a new concept:
+zenodraft deposition create concept
+123456
 
 # upload a local file, e.g. yourfile.zip
-zenodraft file add 1234567 yourfile.zip 
+zenodraft file add 123456 yourfile.zip
 
 # create some metadata file in Zenodo metadata format, e.g.
 echo -e '{
@@ -53,24 +53,41 @@ echo -e '{
   "title": "My deposition"
 }' > .zenodo.json
 
-# update the metadata of the draft deposition
-zenodraft metadata update 1234567 .zenodo.json
+# update the metadata of the draft version
+zenodraft metadata update 123456 .zenodo.json
 
-# inspect the draft deposition on https://zenodo.org/deposit
+# inspect the draft version on https://zenodo.org/deposit
 
-# if all looks good, finalize the deposition by publishing it
-zenodraft deposition publish 1234567
+# if all looks good, finalize the version by publishing it
+zenodraft deposition publish 123456
 ```
 
 Here is the result when viewed on Zenodo:
 
-![zenodo-result](https://raw.githubusercontent.com/zenodraft/zenodraft/0.11.1/img/zenodo-deposition.png)
-
+![zenodo-result](img/zenodo-deposition.png)
 
 <br>
 <br>
 
 ### CLI overview
+
+```shell
+zenodraft deposition create concept [--sandbox]
+zenodraft deposition create version [--sandbox] <concept_id>
+zenodraft deposition delete [--sandbox] <version_id>
+zenodraft deposition publish [--sandbox] <version_id>
+zenodraft deposition show details [--sandbox] <version_id>
+zenodraft deposition show draft [--sandbox] <concept_id>
+zenodraft deposition show files [--sandbox] <version_id>
+zenodraft deposition show latest [--sandbox] <concept_id>
+zenodraft deposition show prereserved [--sandbox] <version_id>
+zenodraft file add [--sandbox] <version_id> <local filename>
+zenodraft file delete [--sandbox] <version_id> <remote filename>
+zenodraft metadata clear [--sandbox] <version_id>
+zenodraft metadata update [--sandbox] <version_id> <local filename>
+```
+
+Additionally, use `--version` to show zenodraft's version and use `--help` to show the help on any command.
 
 For a complete overview of the command line interface, see [here](README.cli-usage.md).
 
@@ -94,14 +111,14 @@ Fill in the placeholders with values of your own, which you can get at
 - Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
 - Zenodo: https://zenodo.org/account/settings/applications/
 
-### Install
-
-Requirements:
+### Prerequisites:
 
 - node v14 (other versions may work)
 - npm v7 (other versions may work)
 
-Install globally with `-g` flag:
+### System install (recommended)
+
+Install system-wide with the `-g` flag:
 
 ```shell
 # global install
@@ -113,20 +130,38 @@ which zenodraft
 # use the zenodraft cli like so
 zenodraft --version
 zenodraft --help
+# etc
 ```
 
-Or install locally without `-g` flag (but note that [autocomplete](#Autocomplete) only works when `zenodraft` is installed globally):
+### Project directory install
+
+Install locally without `-g` flag and use `zenodraft` CLI via the
+[`npx`](https://nodejs.dev/learn/the-npx-nodejs-package-runner) command. Note that this will create a `node_modules/`
+directory, and that autocomplete only works when `zenodraft` is installed globally:
 
 ```shell
 # local install
 npm install zenodraft
 
-# this next command doesn't work for local installs
+# this next command returns empty for local installs
 which zenodraft
 
-# but you can still use the cli by explicitly pointing to it
-node_modules/.bin/zenodraft --version
-node_modules/.bin/zenodraft --help
+# but you can still use the cli via npx
+npx zenodraft --version
+npx zenodraft --help
+# etc
+```
+
+### No-install
+
+[`npx`](https://nodejs.dev/learn/the-npx-nodejs-package-runner) allows for running executables without the need for
+installation. Note that this will download and cache `zenodraft` from [npmjs.com](https://npmjs.com) if you don't already have it.
+
+```shell
+npx zenodraft --version
+npx zenodraft --help
+npx zenodraft deposition create concept --sandbox
+# etc
 ```
 
 ### Docker 
@@ -134,17 +169,22 @@ node_modules/.bin/zenodraft --help
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.11.1/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.12.0/Dockerfile
 ```
 
 Running the docker container:
+
 ```shell
 docker run --rm zenodraft --help
 docker run --rm zenodraft --version
-docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition create in-new-collection
-docker run --rm -e ZENODO_SANDBOX_ACCESS_TOKEN \
-   zenodraft --sandbox deposition show details 123456
+docker run --rm                   \
+   -e ZENODO_SANDBOX_ACCESS_TOKEN \
+   zenodraft deposition show details --sandbox 123456
+docker run --rm                   \
+   -e ZENODO_SANDBOX_ACCESS_TOKEN \
+   -v ${PWD}:/data                \
+   zenodraft metadata update --sandbox 123456 .zenodo.json
+
 # etc
 ```
 
@@ -167,7 +207,7 @@ _zenodraft_completions()
 complete -F _zenodraft_completions zenodraft
 ```
 
-Source this script to add autocomplete powers to the `zenodraft` program, using something like:
+Source this script to add autocomplete powers to the `zenodraft` program, for example using:
 ```
 # Add autocomplete powers to zenodraft: 
 TMPFILE=$(mktemp)
@@ -175,4 +215,3 @@ zenodraft-autocomplete > $TMPFILE
 source $TMPFILE
 ```
 You can make the change permanent by copying those 4 lines to the bottom of your `~/.bashrc`.
-

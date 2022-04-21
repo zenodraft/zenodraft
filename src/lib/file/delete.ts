@@ -7,7 +7,7 @@ export const file_delete = async (token: string, sandbox: boolean, id: string, f
     if (verbose) {
         console.log(`deleting file ${filename} from deposition with id ${id}...`)
     }
-    const deposition = await deposition_show_details(token, sandbox, id, 'deposition', verbose)
+    const deposition = await deposition_show_details(token, sandbox, id, 'version', verbose)
     const bucket = deposition.links.bucket
     const method = 'DELETE'
     const headers = {
