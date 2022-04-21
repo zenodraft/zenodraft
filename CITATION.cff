@@ -5,10 +5,14 @@ authors:
     given-names: Jurriaan H.
     orcid: https://orcid.org/0000-0002-7064-4069
 cff-version: 1.2.0
-date-released: 2022-04-07
+date-released: 2022-04-21
 identifiers:
   - type: doi
     value: 10.5281/zenodo.6075811
+    description: The identifier for this version of zenodraft
+  - type: doi
+    value: 10.5281/zenodo.5046392
+    description: The identifier for all versions of zenodraft, i.e. the concept
 keywords:
   - zenodo
   - cli
