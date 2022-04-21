@@ -147,3 +147,51 @@ then
 git add .bumpversion.cfg CITATION.cff package-lock.json package.json README.md src/cli.ts
 git commit -m "bumped version"
 ```
+
+### Publishing to NPM
+
+Before you begin, make sure that everything that needs to be part of the release has been
+pushed to GitHub and has been merged into the default branch `main`.
+
+```shell
+# uninstall any globally installed versions of zenodraft
+npm uninstall -g zenodraft
+
+# check that it's gone, should return empty
+which zenodraft
+
+# delete any environment variables that store Zenodo / Zenodo Sandbox tokens
+unset ZENODO_ACCESS_TOKEN
+unset ZENODO_SANDBOX_ACCESS_TOKEN
+
+# log out of npm
+npm logout
+
+# make a temporary directory
+cd $(mktemp -d --tmpdir zenodraft-release-prep.XXXXXX)
+
+# clone the repo in the empty temporary directory
+git clone https://github.com/zenodraft/zenodraft .
+
+# Install dependencies
+npm install
+
+# Generate the JavaScript, package it up into a tarball
+npm run all
+
+# Install zenodraft globally
+npm install -g zenodraft-*.tgz
+
+# Open a new shell to get any new autocomplete related functionality
+bash
+```
+
+Test the functionality of the release candidate.
+
+```shell
+# choose your identity and log in to npm
+npm login
+
+# FINAL STEP, THERE IS NO UNDO: publish the tarball to npmjs.com
+npm publish zenodraft-*.tgz
+```
