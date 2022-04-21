@@ -116,7 +116,7 @@ Fill in the placeholders with values of your own, which you can get at
 - node v14 (other versions may work)
 - npm v7 (other versions may work)
 
-### System install
+### System install (recommended)
 
 Install system-wide with the `-g` flag:
 
