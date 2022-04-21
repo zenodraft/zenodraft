@@ -9,6 +9,10 @@ date-released: 2022-04-21
 identifiers:
   - type: doi
     value: 10.5281/zenodo.6075811
+    description: The identifier for this version of zenodraft
+  - type: doi
+    value: 10.5281/zenodo.5046392
+    description: The identifier for all versions of zenodraft, i.e. the concept
 keywords:
   - zenodo
   - cli
