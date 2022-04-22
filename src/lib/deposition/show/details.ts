@@ -36,7 +36,7 @@ export const deposition_show_details = async (token: string, sandbox: boolean, i
     if (verbose) {
         console.log(`Getting details for ${expected_type} with id ${id}...`)
     }
-    const regex = new RegExp('^[\d]+$')
+    const regex = /^[\d]+$'/
     assert(regex.test(id) === true, 'id has invalid format.')
     if (expected_type === 'version') {
         return fetch_details(token, sandbox, id)
