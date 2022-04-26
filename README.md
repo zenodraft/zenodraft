@@ -96,20 +96,14 @@ For a complete overview of the command line interface, see [here](README.cli-usa
 To use `zenodraft`, a personal access token is required, one for each platform you plan on using.
 `zenodraft` looks for the access token first in the environment variables named
 `ZENODO_SANDBOX_ACCESS_TOKEN` and `ZENODO_ACCESS_TOKEN`, then in a file called
-`.env`, which must reside in the directory from which you run `zenodraft`. 
+`.env`, which must reside in the directory from which you run `zenodraft`.
+See <https://npmjs.com/package/dotenv> for details on how to format your `.env`
+file correctly.
 
-You can create your own `.env` by copying the example env file, like so
+You can get your access tokens at
 
-```shell
-cp example.env .env
-```
-
-and subsequently updating its contents.
-
-Fill in the placeholders with values of your own, which you can get at
-
-- Zenodo Sandbox: https://sandbox.zenodo.org/account/settings/applications/
-- Zenodo: https://zenodo.org/account/settings/applications/
+- https://sandbox.zenodo.org/account/settings/applications/ (Zenodo Sandbox; for testing and development)
+- https://zenodo.org/account/settings/applications/ (Zenodo; for production)
 
 ### Prerequisites:
 
