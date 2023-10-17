@@ -23,7 +23,8 @@ export const file_add = async (sandbox: boolean, id: string, filename: string, v
     const method = 'PUT'
     const headers = {
         'Authorization': `Bearer ${access_token}`,
-        'Content-Type': content_type,
+        //'Content-Type': content_type,
+	'Content-Type': 'application/octet-stream',
         'Content-Length': (fs.statSync(filename).size).toString()
     }
     const init: RequestInit = { method, headers, body: stream }
