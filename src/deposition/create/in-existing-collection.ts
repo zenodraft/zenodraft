@@ -3,6 +3,7 @@ import { RequestInit } from 'node-fetch'
 import fetch from 'node-fetch'
 import { DepositionsResponse } from '../../helpers/zenodo-response-types'
 import { file_delete } from '../../file/delete'
+import { file_delete_by_fileid } from '../../file/delete'
 import { metadata_update } from '../../metadata/update'
 import { helpers_get_access_token_from_environment } from '../../helpers/get-access-token-from-environment'
 import { helpers_get_api } from '../../helpers/get-api'
@@ -64,7 +65,13 @@ const get_id_for_latest_version_in_collection = async (sandbox: boolean, collect
     }
     const id = (parseInt(collection_id) + 1).toString()
     const deposition = await deposition_show_details(sandbox, id)
-    const latest_id = deposition.links.latest.split('/').slice(-1)[0]
+    const str_links = JSON.stringify(deposition.links)
+    const str_latest = JSON.stringify(deposition.links.latest_draft) 
+    if (verbose) {
+        console.log(`deposition links: ${str_links}`)
+	console.log(`deposition link latest: ${str_latest}`)
+    }
+    const latest_id = deposition.links.latest_draft.split('/').slice(-1)[0]
     return latest_id
 }
 
@@ -75,7 +82,10 @@ const remove_files_from_draft = async (sandbox: boolean, id: string, verbose = f
     }
     const deposition = await deposition_show_details(sandbox, id)
     const filenames = deposition.files.map((file) => {return file.filename})
-    for (const filename of filenames) {
-        file_delete(sandbox, id, filename)
+    const fileids = deposition.files.map((file) => {return file.id})
+
+    for (const fileid of fileids) {
+    	console.log(`removing ${fileid} from version ${id} ...`)
+	file_delete_by_fileid(sandbox, id, fileid, verbose)
     }
 }

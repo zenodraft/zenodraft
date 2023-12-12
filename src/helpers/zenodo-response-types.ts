@@ -3,11 +3,13 @@ export type DepositionsResponse = {
     files: [
         {
             filename: string
+	    id: string
         }
     ]
     links: {
         bucket: string
         latest: string
+	files: string
         latest_draft?: string
     }
     metadata: {
