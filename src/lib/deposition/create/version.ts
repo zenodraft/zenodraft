@@ -1,4 +1,4 @@
-import { default as fetch, RequestInit } from 'node-fetch'
+import { default as fetch } from 'node-fetch'
 import { deposition_show_files } from '../../deposition/show/files'
 import { deposition_show_latest } from '../../deposition/show/latest'
 import { AnyDeposition, HasLatest, HasDraft } from '../../helpers/deposition-types'
@@ -26,19 +26,13 @@ const create_new_versioned_deposition = async (token: string, sandbox: boolean, 
     }
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`
-    const method = 'POST'
     const headers = {
         'Authorization': `Bearer ${token}`
     }
-    const init: RequestInit = { method, headers }
-    let response: any
-    try {
-        response = await fetch(`${api}${endpoint}`, init)
-        if (response.ok !== true) {
-            throw new Error()
-        }
-    } catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
+    const url = `${api}${endpoint}`
+    const response = await fetch(url, { method: 'POST', headers })
+    if (response.ok !== true) {
+        throw new Error(`Something went wrong on POST to ${url}: ${response.status} - ${response.statusText}`)
     }
     try {
         const deposition: AnyDeposition & HasLatest & HasDraft = await response.json()
