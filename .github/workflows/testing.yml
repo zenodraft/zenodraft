@@ -41,8 +41,12 @@ jobs:
 
       - name: Test zenodraft CLI
         env:
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }} 
+        shell: bash
         run: |
+
+          set -e
+
           echo "test creating a new draft deposition in a new concept on zenodo sandbox"
           VERSION_ID=$(zenodraft deposition create concept --sandbox)
 
