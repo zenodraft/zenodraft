@@ -16,7 +16,8 @@ Clean up generated code from previous builds:
 npm run clean
 ```
 
-Transpile the TypeScript code from `src/` to `dist/` as CommonJS modules (`dist/**/*.js`) and as ES6 modules (`dist/**/*.mjs`):
+Transpile the TypeScript code from `src/` to `dist/` as CommonJS modules (`dist/**/*.js`) and as ES6
+modules (`dist/**/*.mjs`):
 
 ```
 npm run build
@@ -49,7 +50,9 @@ npm run test test/some/test
 npm run coverage
 ```
 
-Many tests use [_mocking_](https://en.wikipedia.org/wiki/Mock_object) to simulate server replies. Our mocking library is [Nock](https://www.npmjs.com/package/nock). Typically, tests that use mocking will insert simulated server replies using a pre-recorded reply from the `./mocks` directory.
+Many tests use [_mocking_](https://en.wikipedia.org/wiki/Mock_object) to simulate server replies.
+Our mocking library is [Nock](https://www.npmjs.com/package/nock). Typically, tests that use mocking
+will insert simulated server replies using a pre-recorded reply from the `./mocks` directory.
 
 ## Local testing of the cli from the package
 
@@ -105,7 +108,8 @@ Should show something like:
 ### Using ES6 `import`
 
 
-In a new directory, make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
+In a new directory, make a file e.g. `index.mjs` with the following contents (you may use a
+different filename but the extension needs to be `.mjs`):
 
 ```javascript
 // file: index.mjs
@@ -124,6 +128,14 @@ node --experimental-modules index.mjs
 Should show the same as listed above for `require`.
 
 ## For maintainers
+
+### Publishing to GitHub and Zenodo
+
+Use GitHub's _Draft a new release_ button to prepare a release. On publishing the release, GitHub
+will trigger the `publishing.yml` workflow, which in turn sends a snapshot of the release to Zenodo
+using [_zenodraft GitHub Action_](https://github.com/marketplace/actions/zenodraft). As part of the
+process, zenodraft will also update the GitHub release with updated citation metadata, specifically
+the DOI.
 
 ### Publishing to NPM
 
