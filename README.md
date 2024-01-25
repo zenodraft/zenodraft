@@ -16,7 +16,7 @@ You are welcome to leave feedback at https://github.com/zenodraft/zenodraft/issu
 </p>
 <br>
 <br>
-    
+
 ## CLI to manage depositions on Zenodo
 
 ### Features
