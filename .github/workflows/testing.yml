@@ -49,6 +49,13 @@ jobs:
 
           set -e
 
+          zenodraft deposition show details --sandbox 23751
+          echo $VERSION_ID
+          VERSION_ID="3223423"
+          echo $VERSION_ID
+
+          
+
           echo "test creating a new draft deposition in a new concept on zenodo sandbox"
           VERSION_ID=$(zenodraft deposition create concept --sandbox)
 
