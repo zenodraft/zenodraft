@@ -34,6 +34,22 @@ All of the above (clean, build, pack):
 npm run all
 ```
 
+## Testing
+
+We use [Jest](https://jestjs.io/) for testing. Run the tests with
+
+```
+# all tests
+npm run test
+
+# individual test
+npm run test test/some/test
+
+# tests with converage
+npm run coverage
+```
+
+Many tests use [_mocking_](https://en.wikipedia.org/wiki/Mock_object) to simulate server replies. Our mocking library is [Nock](https://www.npmjs.com/package/nock). Typically, tests that use mocking will insert simulated server replies using a pre-recorded reply from the `./mocks` directory.
 
 ## Local testing of the cli from the package
 
@@ -108,45 +124,6 @@ node --experimental-modules index.mjs
 Should show the same as listed above for `require`.
 
 ## For maintainers
-
-### Bumping version string
-
-```shell
-python3 -m venv env
-source env/bin/activate
-python3 -m pip install --upgrade pip setuptools wheel
-python3 -m pip install -r requirements-dev.txt
-```
-
-Bump the version in all relevant files simultaneously using `bumpversion` and `.bumpversion.cfg`:
-
-```shell
-bumpversion major|minor|patch
-```
-
-Then update the `package-lock.json` and `dist/` directory by
-
-```shell
-npm install
-```
-
-Disable source maps in `tsconfig.json`, then
-```
-npm run all
-```
-
-Check the changes with 
-
-```shell
-git status
-```
-
-then
-
-```shell
-git add .bumpversion.cfg CITATION.cff package-lock.json package.json README.md src/cli.ts
-git commit -m "bumped version"
-```
 
 ### Publishing to NPM
 
