@@ -7,9 +7,6 @@ on:
       - main
   workflow_dispatch: 
 
-permissions: {}
-
-
 jobs:
   live-sandbox-cli:
     runs-on: ubuntu-latest
