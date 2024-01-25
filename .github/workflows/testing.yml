@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get a copy of the repo contents
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
 
 
@@ -34,87 +34,36 @@ jobs:
 
 
 
-      - name: test creating a new draft deposition in a new concept on zenodo sandbox
-        id: get_version_id
+      - name: Test zenodraft CLI
         env:
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
         run: |
+          echo "test creating a new draft deposition in a new concept on zenodo sandbox"
           VERSION_ID=$(zenodraft deposition create concept --sandbox)
-          echo "::set-output name=version_id::$VERSION_ID"
 
-
-
-      - name: test showing the complete details for the draft deposition
-        id: get_concept_record_id
-        env:
-          VERSION_ID: ${{ steps.get_version_id.outputs.version_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: |
+          echo "test showing the complete details for the draft deposition"
           zenodraft deposition show details --sandbox $VERSION_ID > deposition.json
           CONCEPT_RECORD_ID=$(cat deposition.json | jq '.conceptrecid' --raw-output)
-          echo "::set-output name=concept_record_id::$CONCEPT_RECORD_ID"
 
+          echo "test showing the prereserved doi for the draft deposition"
+          zenodraft deposition show prereserved --sandbox $VERSION_ID
 
-
-      - name: test showing the id of the latest draft in the newly created concept
-        env:
-          CONCEPT_RECORD_ID: ${{ steps.get_concept_record_id.outputs.concept_record_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft deposition show latest --sandbox $CONCEPT_RECORD_ID
-
-
-
-      - name: test showing the prereserved doi for the draft deposition
-        env:
-          VERSION_ID: ${{ steps.get_version_id.outputs.version_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft deposition show prereserved --sandbox $VERSION_ID
-
-
-
-      - name: test adding a file to the draft deposition
-        env:
-          VERSION_ID: ${{ steps.get_version_id.outputs.version_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: |
+          echo "test adding a file to the draft deposition"
           echo "these are the file contents" > thefile.txt
           zenodraft file add --sandbox $VERSION_ID thefile.txt
 
-
-
-      - name: test removing a file from the draft deposition
-        env:
-          VERSION_ID: ${{ steps.get_version_id.outputs.version_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: |
+          echo "test removing a file from the draft deposition"
           zenodraft file delete --sandbox $VERSION_ID thefile.txt
 
-
-
-      - name: test updating the deposition metadata with information from a local file
-        env:
-          VERSION_ID: ${{ steps.get_version_id.outputs.version_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: |
+          echo "test updating the deposition metadata with information from a local file"
           echo "{\"creators\":[{\"affiliation\":\"Netherlands eScience Center\",\"name\":\"Spaaks, Jurriaan H.\",\"orcid\":\"0000-0002-7064-4069\"}],\"description\":\"Auto-generated draft deposition for CI testing of zenodraft's CLI\",\"keywords\":[\"zenodo\",\"cli\"],\"license\":{\"id\":\"Apache-2.0\"},\"title\":\"Auto-generated deposition for testing purposes\"}" > .zenodo.json
           zenodraft metadata update --sandbox $VERSION_ID .zenodo.json
 
+          echo "test clearing the deposition metadata"
+          zenodraft metadata clear --sandbox $VERSION_ID
 
-
-      - name: test clearing the deposition metadata
-        env:
-          VERSION_ID: ${{ steps.get_version_id.outputs.version_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft metadata clear --sandbox $VERSION_ID
-
-
-
-      - name: test deleting a draft deposition
-        env:
-          VERSION_ID: ${{ steps.get_version_id.outputs.version_id }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-        run: zenodraft deposition delete --sandbox $VERSION_ID
-
+          echo "test deleting a draft deposition"
+          zenodraft deposition delete --sandbox $VERSION_ID
 
   unit:
     runs-on: ubuntu-latest
