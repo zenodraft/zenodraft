@@ -50,7 +50,6 @@ jobs:
           set -e
 
           zenodraft deposition show details --sandbox 23751
-
           echo $VERSION_ID
           VERSION_ID="3223423"
           echo $VERSION_ID
