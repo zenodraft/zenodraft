@@ -1,9 +1,14 @@
 name: testing
+
 on:
   pull_request:
   push:
     branches:
       - main
+  workflow_dispatch: 
+
+permissions: {}
+
 
 jobs:
   live-sandbox-cli:
