@@ -14,27 +14,17 @@ jobs:
       - name: get a copy of the repo contents
         uses: actions/checkout@v4
 
-
-
       - name: install the project's dependencies
         run: npm install
-
-
 
       - name: generate a distributable tarball
         run: npm run all
 
-
-
       - name: install the cli from the tarball
         run: sudo npm install -g zenodraft-*.tgz
 
-
-
       - name: create a new directory to do the testing in
         run: mkdir testing && cd testing
-
-
 
       - name: Test zenodraft CLI
         env:
@@ -45,16 +35,6 @@ jobs:
         run: |
 
           set -e
-
-          zenodraft deposition show details --sandbox 23751
-          echo $VERSION_ID
-          VERSION_ID="3223423"
-          echo $VERSION_ID
-
-
-
-
-
 
           echo "test creating a new draft deposition in a new concept on zenodo sandbox"
           VERSION_ID=$(zenodraft deposition create concept --sandbox)
