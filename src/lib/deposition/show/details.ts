@@ -14,19 +14,11 @@ const fetch_details = async (token: string, sandbox: boolean, id: string): Promi
     }
     const init: RequestInit = { method, headers }
     let response: Response
-    try {
-        response = await fetch(`${api}${endpoint}`, init)
-    } catch (e) {
+    response = await fetch(`${api}${endpoint}`, init)
+    if (response.ok !== true) {
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
-    if (response.ok !== true) {
-        throw new Error(`Response was ${response.status} - ${response.statusText}`)
-    }
-    try {
-        return await response.json()
-    } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json.`)
-    }    
+    return await response.json()
 }
 
 
