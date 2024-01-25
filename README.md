@@ -79,7 +79,6 @@ zenodraft deposition publish [--sandbox] <version_id>
 zenodraft deposition show details [--sandbox] <version_id>
 zenodraft deposition show draft [--sandbox] <concept_id>
 zenodraft deposition show files [--sandbox] <version_id>
-zenodraft deposition show latest [--sandbox] <concept_id>
 zenodraft deposition show prereserved [--sandbox] <version_id>
 zenodraft file add [--sandbox] <version_id> <local filename>
 zenodraft file delete [--sandbox] <version_id> <remote filename>

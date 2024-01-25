@@ -28,7 +28,6 @@ should output
   deposition_show_details: [Getter],
   deposition_show_draft: [Getter],
   deposition_show_files: [Getter],
-  deposition_show_latest: [Getter],
   deposition_show_prereserved: [Getter],
   file_add: [Getter],
   file_delete: [Getter],

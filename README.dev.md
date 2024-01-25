@@ -93,7 +93,6 @@ Should show something like:
   deposition_delete: [Function: deposition_delete],
   deposition_publish: [Function: deposition_publish],
   deposition_show_details: [Function: deposition_show_details],
-  deposition_show_latest: [Function: deposition_show_latest],
   deposition_show_prereserved: [Function: deposition_show_prereserved],
   file_add: [Function: file_add],
   file_delete: [Function: file_delete],
