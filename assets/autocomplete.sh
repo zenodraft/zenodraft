@@ -44,7 +44,7 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/)
-            COMPREPLY=($(compgen -X "*($used_options)" -W "--help details draft files latest prereserved" -- ${cur}))
+            COMPREPLY=($(compgen -X "*($used_options)" -W "--help details draft files prereserved" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/details/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))
@@ -54,9 +54,6 @@ _zenodraft_completions()
             ;;
         ${COMP_WORDS[0]}/deposition/show/files/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))
-            ;;
-        ${COMP_WORDS[0]}/deposition/show/latest/)
-            COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <concept_id>" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/deposition/show/prereserved/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))

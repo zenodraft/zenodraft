@@ -5,7 +5,7 @@ import * as zenodraft from '../../src/lib/index'
 test('zenodraft exports', () => {
 
   const functions = Object.keys(zenodraft)
-  expect(functions.length).toBe(14)
+  expect(functions.length).toBe(13)
   expect(functions.includes('deposition_create_concept')).toBe(true)
   expect(functions.includes('deposition_create_version')).toBe(true)
   expect(functions.includes('deposition_delete')).toBe(true)
@@ -13,7 +13,6 @@ test('zenodraft exports', () => {
   expect(functions.includes('deposition_show_details')).toBe(true)
   expect(functions.includes('deposition_show_draft')).toBe(true)
   expect(functions.includes('deposition_show_files')).toBe(true)
-  expect(functions.includes('deposition_show_latest')).toBe(true)
   expect(functions.includes('deposition_show_prereserved')).toBe(true)
   expect(functions.includes('file_add')).toBe(true)
   expect(functions.includes('file_delete')).toBe(true)

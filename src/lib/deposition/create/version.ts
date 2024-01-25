@@ -1,6 +1,5 @@
 import { default as fetch } from 'node-fetch'
 import { deposition_show_files } from '../../deposition/show/files'
-import { deposition_show_latest } from '../../deposition/show/latest'
 import { AnyDeposition, HasLatest, HasDraft } from '../../helpers/deposition-types'
 import { file_delete } from '../../file/delete'
 import { helpers_get_api } from '../../helpers/get-api'
@@ -12,20 +11,20 @@ export const deposition_create_version = async (token: string, sandbox: boolean,
     if (verbose) {
         console.log(`Creating a new, empty version in existing concept ${concept_id}...`)
     }
-    const latest_id = await deposition_show_latest(token, sandbox, concept_id, verbose)
-    const new_id = await create_new_versioned_deposition(token, sandbox, latest_id, verbose)
+    const new_id = await create_new_versioned_deposition(token, sandbox, concept_id, verbose)
     await remove_files_from_draft(token, sandbox, new_id, verbose)
     await metadata_update(token, sandbox, new_id, undefined, verbose)
     return new_id
 }
 
 
-const create_new_versioned_deposition = async (token: string, sandbox: boolean, latest_id: string, verbose = false): Promise<string> => {
+const create_new_versioned_deposition = async (token: string, sandbox: boolean, concept_id: string, verbose = false): Promise<string> => {
     if (verbose) {
         console.log(`Creating a new version off of latest version in concept...`)
     }
+    const first_id = (parseInt(concept_id) + 1).toString()
     const api = helpers_get_api(sandbox)
-    const endpoint = `/deposit/depositions/${latest_id}/actions/newversion`
+    const endpoint = `/deposit/depositions/${first_id}/actions/newversion`
     const headers = {
         'Authorization': `Bearer ${token}`
     }

@@ -34,28 +34,24 @@ describe('deposition file add', () => {
         define_token(sandbox, 'faux_zenodo_sandbox_token')
         const access_token = helpers_get_access_token_from_environment(sandbox)
         const draft_id = '111'
-        const with_file_id = '121'
         const reqheaders_get = {
             'Authorization': `Bearer ${access_token}`,
             'Content-Type': 'application/json'
         }
         const reqheaders_put = {
             'Authorization': `Bearer ${access_token}`,
-            'Content-Type': 'text/plain; charset=utf-8',
-            'Content-Length': '22'
+            'Content-Type': 'application/octet-stream',
         }
         const draft_mock = get_mocked_data(draft_id)
-        const with_file_mock = get_mocked_data(with_file_id)
         let mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders: reqheaders_get })
         mocked_server
             .get(`/deposit/depositions/${draft_id}`)
             .times(1)
             .replyWithFile(200, draft_mock)
         mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders: reqheaders_put })
-            .put('/files/f8ca0657-db78-4b19-a50a-1b23125d4637/thefile.txt')
+            .put('/files/f75318c8-35fe-4bdf-ba75-03e8c35d1534/thefile.txt')
             .times(1)
             .reply(200)
         await file_add(access_token, sandbox, draft_id, 'thefile.txt')
     })
-
 })

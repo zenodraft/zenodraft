@@ -12,14 +12,20 @@ export const deposition_show_draft = async (token: string, sandbox: boolean, con
         'Content-Type': 'application/json'
     }
     const response = await fetch(url, { method: 'GET', headers })
-    const drafts = await response.json()
-    assert(drafts.constructor == Array && drafts.length > 0, "drafts is not an array or is array of length 0")
-    const filtered = drafts.filter(draft => draft.conceptrecid === concept_id)
+    const depositions = await response.json()
+    assert(depositions.constructor == Array, "Expected depositions to be an Array")
+    if (depositions.length == 0) {
+        throw new Error('You have no depositions yet')
+    }
+    const filtered = depositions.filter(deposition => deposition.conceptrecid === concept_id)
     if (filtered.length === 0) {
-        throw new Error(`There are no draft depositions in concept ${concept_id}.`)
-    } else if (filtered.length === 1) {
-        return filtered[0].id.toString()
-    } else {
+        throw new Error(`You have no depositions with concept ${concept_id}.`)
+    }
+    if (filtered.length > 1) {
         throw new Error(`Something went wrong getting the id for the latest draft for concept ${concept_id}.`)
     }
+    if ('latest_draft' in filtered[0].links === false) {
+        return ''
+    }
+    return filtered[0].links.latest_draft.split('/').slice(-1)[0]
 }
