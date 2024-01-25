@@ -1,23 +1,22 @@
 {
-    "conceptrecid": "120",
-    "created": "2021-07-10T10:26:04.962769+00:00",
-    "doi": "",
-    "doi_url": "https://doi.org/",
+    "conceptrecid": "100",
+    "created": "2024-01-24T16:59:35.709431+00:00",
     "files": [
         {
-            "checksum": "081404b3d2ae5bf599add15b7445ac07",
+            "checksum": "2f0d514dc20d16de868c6a2c568e7e39",
             "filename": "README.md",
             "filesize": 14,
-            "id": "986841cc-25f4-4b05-a75c-9f3dda7c2f12",
+            "id": "c7ff1bb5-a01d-45c3-b66c-bad3c0835c39",
             "links": {
-                "download": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637/README.md",
-                "self": "https://sandbox.zenodo.org/api/deposit/depositions/121/files/986841cc-25f4-4b05-a75c-9f3dda7c2f12"
+                "download": "https://sandbox.zenodo.org/api/records/121/draft/files/README.md/content",
+                "self": "https://sandbox.zenodo.org/api/deposit/depositions/121/files/c7ff1bb5-a01d-45c3-b66c-bad3c0835c39"
             }
         }
     ],
     "id": 121,
     "links": {
-        "bucket": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637",
+        "badge": "https://sandbox.zenodo.org/badge/doi/.svg",
+        "bucket": "https://sandbox.zenodo.org/api/files/f75318c8-35fe-4bdf-ba75-03e8c35d1534",
         "discard": "https://sandbox.zenodo.org/api/deposit/depositions/121/actions/discard",
         "edit": "https://sandbox.zenodo.org/api/deposit/depositions/121/actions/edit",
         "files": "https://sandbox.zenodo.org/api/deposit/depositions/121/files",
@@ -33,22 +32,22 @@
         "access_right": "open",
         "creators": [
             {
+                "affiliation": null,
                 "name": "Family name, Given names"
             }
         ],
-        "description": "<p>This is the description.</p>",
-        "doi": "",
-        "license": "CC-BY-4.0",
+        "description": "The description.",
+        "imprint_publisher": "Zenodo",
+        "license": "cc-by-4.0",
         "prereserve_doi": {
             "doi": "10.5072/zenodo.121",
             "recid": 121
         },
-        "publication_date": "2021-07-10",
-        "publication_type": "article",
+        "publication_date": "2024-01-24",
         "title": "The title",
-        "upload_type": "publication"
+        "upload_type": "other"
     },
-    "modified": "2021-07-10T10:30:00.785252+00:00",
+    "modified": "2024-01-24T17:21:23.066549+00:00",
     "owner": 12345,
     "record_id": 121,
     "state": "unsubmitted",

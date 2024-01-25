@@ -1,12 +1,11 @@
 {
-    "conceptrecid": "110",
-    "created": "2021-07-10T10:26:04.962769+00:00",
-    "doi": "",
-    "doi_url": "https://doi.org/",
+    "conceptrecid": "100",
+    "created": "2024-01-24T16:59:35.709431+00:00",
     "files": [],
     "id": 111,
     "links": {
-        "bucket": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637",
+        "badge": "https://sandbox.zenodo.org/badge/doi/.svg",
+        "bucket": "https://sandbox.zenodo.org/api/files/f75318c8-35fe-4bdf-ba75-03e8c35d1534",
         "discard": "https://sandbox.zenodo.org/api/deposit/depositions/111/actions/discard",
         "edit": "https://sandbox.zenodo.org/api/deposit/depositions/111/actions/edit",
         "files": "https://sandbox.zenodo.org/api/deposit/depositions/111/files",
@@ -22,22 +21,22 @@
         "access_right": "open",
         "creators": [
             {
+                "affiliation": null,
                 "name": "Family name, Given names"
             }
         ],
-        "description": "<p>This is the description.</p>",
-        "doi": "",
-        "license": "CC-BY-4.0",
+        "description": "The description.",
+        "imprint_publisher": "Zenodo",
+        "license": "cc-by-4.0",
         "prereserve_doi": {
             "doi": "10.5072/zenodo.111",
             "recid": 111
         },
-        "publication_date": "2021-07-10",
-        "publication_type": "article",
+        "publication_date": "2024-01-24",
         "title": "The title",
-        "upload_type": "publication"
+        "upload_type": "other"
     },
-    "modified": "2021-07-10T10:30:00.785252+00:00",
+    "modified": "2024-01-24T17:08:32.199053+00:00",
     "owner": 12345,
     "record_id": 111,
     "state": "unsubmitted",
