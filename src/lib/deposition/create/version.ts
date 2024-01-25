@@ -34,16 +34,12 @@ const create_new_versioned_deposition = async (token: string, sandbox: boolean, 
     if (response.ok !== true) {
         throw new Error(`Something went wrong on POST to ${url}: ${response.status} - ${response.statusText}`)
     }
-    try {
-        const deposition: AnyDeposition & HasLatest & HasDraft = await response.json()
-        const new_id = deposition.links.latest_draft.split('/').slice(-1)[0]
-        if (verbose) {
-            console.log(`Created new version with id ${new_id}`)
-        }
-        return new_id
-    } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json.`)
+    const deposition: AnyDeposition & HasLatest & HasDraft = await response.json()
+    const new_id = deposition.links.latest_draft.split('/').slice(-1)[0]
+    if (verbose) {
+        console.log(`Created new version with id ${new_id}`)
     }
+    return new_id
 }
 
 

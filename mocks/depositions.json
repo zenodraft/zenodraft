@@ -1,0 +1,68 @@
+[
+    {
+        "created": "2024-01-24T17:25:38.086679+00:00",
+        "modified": "2024-01-24T17:25:38.254168+00:00",
+        "id": 151,
+        "conceptrecid": "100",
+        "doi": "10.5072/zenodo.151",
+        "conceptdoi": "10.5072/zenodo.100",
+        "doi_url": "https://doi.org/10.5072/zenodo.151",
+        "metadata": {
+            "title": "The title",
+            "doi": "10.5072/zenodo.151",
+            "publication_date": "2024-01-24",
+            "description": "<p>This is the description.</p>",
+            "access_right": "open",
+            "creators": [
+                {
+                    "name": "Family name, Given names",
+                    "affiliation": null
+                }
+            ],
+            "license": "cc-by-4.0",
+            "imprint_publisher": "Zenodo",
+            "upload_type": "other",
+            "prereserve_doi": {
+                "doi": "10.5281/zenodo.151",
+                "recid": 151
+            }
+        },
+        "title": "The title",
+        "links": {
+            "self": "https://sandbox.zenodo.org/api/records/151",
+            "html": "https://sandbox.zenodo.org/records/151",
+            "doi": "https://doi.org/10.5072/zenodo.151",
+            "parent_doi": "https://sandbox.zenodo.org/doi/10.5072/zenodo.100",
+            "badge": "https://sandbox.zenodo.org/badge/doi/10.5072%2Fzenodo.151.svg",
+            "conceptbadge": "https://sandbox.zenodo.org/badge/doi/10.5072%2Fzenodo.100.svg",
+            "files": "https://sandbox.zenodo.org/api/records/151/files",
+            "latest_draft": "https://sandbox.zenodo.org/api/deposit/depositions/151",
+            "latest_draft_html": "https://sandbox.zenodo.org/deposit/151",
+            "publish": "https://sandbox.zenodo.org/api/deposit/depositions/151/actions/publish",
+            "edit": "https://sandbox.zenodo.org/api/deposit/depositions/151/actions/edit",
+            "discard": "https://sandbox.zenodo.org/api/deposit/depositions/151/actions/discard",
+            "newversion": "https://sandbox.zenodo.org/api/deposit/depositions/151/actions/newversion",
+            "registerconceptdoi": "https://sandbox.zenodo.org/api/deposit/depositions/151/actions/registerconceptdoi",
+            "record": "https://sandbox.zenodo.org/api/records/151",
+            "record_html": "https://sandbox.zenodo.org/record/151",
+            "latest": "https://sandbox.zenodo.org/api/records/151/versions/latest",
+            "latest_html": "https://sandbox.zenodo.org/record/151/versions/latest"
+        },
+        "record_id": 151,
+        "owner": 3210,
+        "files": [
+            {
+                "id": "c7ff1bb5-a01d-45c3-b66c-bad3c0835c39",
+                "filename": "README.md",
+                "filesize": 14,
+                "checksum": "2f0d514dc20d16de868c6a2c568e7e39",
+                "links": {
+                    "self": "https://sandbox.zenodo.org/api/records/151/files/c7ff1bb5-a01d-45c3-b66c-bad3c0835c39",
+                    "download": "https://sandbox.zenodo.org/api/records/151/draft/files/README.md/content"
+                }
+            }
+        ],
+        "state": "done",
+        "submitted": true
+    }
+]

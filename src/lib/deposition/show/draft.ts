@@ -1,5 +1,6 @@
 import { helpers_get_api } from '../../helpers/get-api'
 import { default as fetch } from 'node-fetch'
+import * as assert from 'assert'
 
 
 export const deposition_show_draft = async (token: string, sandbox: boolean, concept_id: string, verbose = false): Promise<string> => {
@@ -12,6 +13,7 @@ export const deposition_show_draft = async (token: string, sandbox: boolean, con
     }
     const response = await fetch(url, { method: 'GET', headers })
     const drafts = await response.json()
+    assert(drafts.constructor == Array && drafts.length > 0, "drafts is not an array or is array of length 0")
     const filtered = drafts.filter(draft => draft.conceptrecid === concept_id)
     if (filtered.length === 0) {
         throw new Error(`There are no draft depositions in concept ${concept_id}.`)

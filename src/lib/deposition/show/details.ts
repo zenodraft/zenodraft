@@ -4,7 +4,16 @@ import { helpers_get_api } from './../../helpers/get-api'
 import * as assert from 'assert'
 
 
-const fetch_details = async (token: string, sandbox: boolean, id: string): Promise<AnyDeposition> => {
+export const deposition_show_details = async (token: string,
+                                              sandbox: boolean,
+                                              id: string,
+                                              verbose = false): Promise<AnyDeposition> => {
+
+    if (verbose) {
+        console.log(`Getting details for version with id ${id}...`)
+    }
+    const regex = /^[\d]+$/
+    assert(regex.test(id) === true, 'id has invalid format.')
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${id}`
     const method = 'GET'
@@ -19,28 +28,4 @@ const fetch_details = async (token: string, sandbox: boolean, id: string): Promi
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
     return await response.json()
-}
-
-
-export const deposition_show_details = async (token: string, sandbox: boolean, id: string,
-                                              expected_type: 'concept' | 'version', verbose = false): Promise<AnyDeposition> => {
-
-    if (verbose) {
-        console.log(`Getting details for ${expected_type} with id ${id}...`)
-    }
-    const regex = /^[\d]+$/
-    assert(regex.test(id) === true, 'id has invalid format.')
-    if (expected_type === 'version') {
-        return fetch_details(token, sandbox, id)
-    }
-    if (expected_type === 'concept') {
-        const id_next = (parseInt(id) + 1).toString()
-        let details_next: AnyDeposition
-        details_next = await fetch_details(token, sandbox, id_next)
-        if (details_next.conceptrecid === id) {
-            return details_next
-        }
-        throw new Error(`Encountered a problem with contents of concept ${id}.`)
-    }
-    throw new Error(`Input argument 'expected_type' should be either 'version' or 'concept'.`)
 }

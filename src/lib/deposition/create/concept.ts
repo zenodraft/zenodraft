@@ -20,13 +20,9 @@ export const deposition_create_concept = async (token: string, sandbox: boolean,
         throw new Error(`Something went wrong on 'POST' to ${url}: ${response.status} - ${response.statusText}`)
     }
 
-    try {
-        const deposition: AnyDeposition & HasDraft = await response.json()
-        if (verbose) {
-            console.log(`Created new version with id ${deposition.record_id}.`)
-        }
-        return deposition.record_id.toString()
-    } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json.`)
+    const deposition: AnyDeposition & HasDraft = await response.json()
+    if (verbose) {
+        console.log(`Created new version with id ${deposition.record_id}.`)
     }
+    return deposition.record_id.toString()
 }

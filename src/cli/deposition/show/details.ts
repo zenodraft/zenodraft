@@ -18,7 +18,7 @@ export const deposition_show_details_command = () => {
             const { sandbox, verbose } = opts
             try {
                 const access_token = helpers_get_access_token_from_environment(sandbox)
-                const details = await deposition_show_details(access_token, sandbox, version_id, 'version', verbose)
+                const details = await deposition_show_details(access_token, sandbox, version_id, verbose)
                 console.log(JSON.stringify(details, null, 4))
             } catch (e) {
                 console.error(e.message)

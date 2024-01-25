@@ -16,7 +16,7 @@ export const metadata_update = async (token: string, sandbox: boolean, version_i
         }
     }
     // this next call can throw if there is an inconsistency
-    await deposition_show_details(token, sandbox, version_id, 'version', verbose)
+    await deposition_show_details(token, sandbox, version_id, verbose)
 
     const api = helpers_get_api(sandbox)
     const endpoint = `/deposit/depositions/${version_id}`
@@ -30,22 +30,12 @@ export const metadata_update = async (token: string, sandbox: boolean, version_i
     const user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename, 'utf8'))
     const metadata = {...minimal_metadata, ...user_metadata}
     const init: RequestInit = { method, headers, body: JSON.stringify({metadata}) }
-    let response: any
-    try {
-        response = await fetch(`${api}${endpoint}`, init)
-        if (response.ok !== true) {
-            throw new Error('Response was not OK')
-        }
-    } catch (e) {
+    const response = await fetch(`${api}${endpoint}`, init)
+    if (response.ok !== true) {
         throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
-
-    try {
-        const deposition: AnyDeposition = await response.json()
-        if (verbose) {
-            console.log(`Updated deposition with id ${deposition.record_id}.`)
-        }
-    } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json.`)
+    const deposition: AnyDeposition = await response.json()
+    if (verbose) {
+        console.log(`Updated deposition with id ${deposition.record_id}.`)
     }
 }

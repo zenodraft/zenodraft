@@ -3,11 +3,11 @@ import { deposition_show_details } from '../deposition/show/details'
 import { File } from '../helpers/deposition-types'
 
 
-export const file_delete = async (token: string, sandbox: boolean, id: string, filename: string, verbose = false): Promise<void> => {
+export const file_delete = async (token: string, sandbox: boolean, version_id: string, filename: string, verbose = false): Promise<void> => {
     if (verbose) {
-        console.log(`deleting file ${filename} from deposition with id ${id}...`)
+        console.log(`deleting file ${filename} from deposition with id ${version_id}...`)
     }
-    const deposition = await deposition_show_details(token, sandbox, id, 'version', verbose)
+    const deposition = await deposition_show_details(token, sandbox, version_id, verbose)
     const headers = {
         'Authorization': `Bearer ${token}`
     }
