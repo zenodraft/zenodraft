@@ -41,7 +41,9 @@ jobs:
 
       - name: Test zenodraft CLI
         env:
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }} 
+          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+          VERSION_ID: ""
+
         shell: bash
         run: |
 
@@ -51,8 +53,7 @@ jobs:
           VERSION_ID=$(zenodraft deposition create concept --sandbox)
 
           echo "test showing the complete details for the draft deposition"
-          zenodraft deposition show details --sandbox $VERSION_ID > deposition.json
-          CONCEPT_RECORD_ID=$(cat deposition.json | jq '.conceptrecid' --raw-output)
+          zenodraft deposition show details --sandbox $VERSION_ID
 
           echo "test showing the prereserved doi for the draft deposition"
           zenodraft deposition show prereserved --sandbox $VERSION_ID
