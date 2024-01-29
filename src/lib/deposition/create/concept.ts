@@ -1,4 +1,4 @@
-import { default as fetch, RequestInit } from 'node-fetch'
+import { default as fetch } from 'node-fetch'
 import { AnyDeposition, HasDraft } from '../../helpers/deposition-types'
 import { helpers_get_api } from '../../helpers/get-api'
 
@@ -10,30 +10,19 @@ export const deposition_create_concept = async (token: string, sandbox: boolean,
     }
     const api = helpers_get_api(sandbox)
     const endpoint = '/deposit/depositions'
-    const method = 'POST'
+    const url = `${api}${endpoint}`
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
     }
-    const init: RequestInit = { method, headers, body: JSON.stringify({}) }
-    let response: any
-    try {
-        response = await fetch(`${api}${endpoint}`, init)
-        if (response.ok !== true) {
-            console.debug(response)
-            throw new Error('Response was not OK')
-        }
-    } catch (e) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
+    const response = await fetch(url, { method: 'POST', headers, body: JSON.stringify({}) })
+    if (response.ok !== true) {
+        throw new Error(`Something went wrong on 'POST' to ${url}: ${response.status} - ${response.statusText}`)
     }
 
-    try {
-        const deposition: AnyDeposition & HasDraft = await response.json()
-        if (verbose) {
-            console.log(`Created new version with id ${deposition.record_id}.`)
-        }
-        return deposition.record_id.toString()
-    } catch (e) {
-        throw new Error(`Something went wrong while retrieving the json.`)
+    const deposition: AnyDeposition & HasDraft = await response.json()
+    if (verbose) {
+        console.log(`Created new version with id ${deposition.record_id}.`)
     }
+    return deposition.record_id.toString()
 }

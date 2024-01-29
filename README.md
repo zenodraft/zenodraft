@@ -14,7 +14,7 @@ You are welcome to leave feedback at https://github.com/zenodraft/zenodraft/issu
 </p>
 <br>
 <br>
-    
+
 ## CLI to manage depositions on Zenodo
 
 ### Features
@@ -77,7 +77,6 @@ zenodraft deposition publish [--sandbox] <version_id>
 zenodraft deposition show details [--sandbox] <version_id>
 zenodraft deposition show draft [--sandbox] <concept_id>
 zenodraft deposition show files [--sandbox] <version_id>
-zenodraft deposition show latest [--sandbox] <concept_id>
 zenodraft deposition show prereserved [--sandbox] <version_id>
 zenodraft file add [--sandbox] <version_id> <local filename>
 zenodraft file delete [--sandbox] <version_id> <remote filename>
@@ -161,7 +160,7 @@ npx zenodraft deposition create concept --sandbox
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.12.0/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.13.0/Dockerfile
 ```
 
 Running the docker container:

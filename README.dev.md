@@ -16,11 +16,13 @@ Clean up generated code from previous builds:
 npm run clean
 ```
 
-Transpile the TypeScript code from `src/` to `dist/` as CommonJS modules (`dist/**/*.js`) and as ES6 modules (`dist/**/*.mjs`):
+Transpile the TypeScript code from `src/` to `dist/` as CommonJS modules (`dist/**/*.js`) and as ES6
+modules (`dist/**/*.mjs`):
 
 ```
 npm run build
 ```
+
 
 Package the contents from `dist/` into a distributable tarball:
 
@@ -34,6 +36,24 @@ All of the above (clean, build, pack):
 npm run all
 ```
 
+## Testing
+
+We use [Jest](https://jestjs.io/) for testing. Run the tests with
+
+```
+# all tests
+npm run test
+
+# individual test
+npm run test test/some/test
+
+# tests with converage
+npm run coverage
+```
+
+Many tests use [_mocking_](https://en.wikipedia.org/wiki/Mock_object) to simulate server replies.
+Our mocking library is [Nock](https://www.npmjs.com/package/nock). Typically, tests that use mocking
+will insert simulated server replies using a pre-recorded reply from the `./mocks` directory.
 
 ## Local testing of the cli from the package
 
@@ -74,7 +94,6 @@ Should show something like:
   deposition_delete: [Function: deposition_delete],
   deposition_publish: [Function: deposition_publish],
   deposition_show_details: [Function: deposition_show_details],
-  deposition_show_latest: [Function: deposition_show_latest],
   deposition_show_prereserved: [Function: deposition_show_prereserved],
   file_add: [Function: file_add],
   file_delete: [Function: file_delete],
@@ -89,7 +108,8 @@ Should show something like:
 ### Using ES6 `import`
 
 
-In a new directory, make a file e.g. `index.mjs` with the following contents (you may use a different filename but the extension needs to be `.mjs`):
+In a new directory, make a file e.g. `index.mjs` with the following contents (you may use a
+different filename but the extension needs to be `.mjs`):
 
 ```javascript
 // file: index.mjs
@@ -109,44 +129,13 @@ Should show the same as listed above for `require`.
 
 ## For maintainers
 
-### Bumping version string
+### Publishing to GitHub and Zenodo
 
-```shell
-python3 -m venv env
-source env/bin/activate
-python3 -m pip install --upgrade pip setuptools wheel
-python3 -m pip install -r requirements-dev.txt
-```
-
-Bump the version in all relevant files simultaneously using `bumpversion` and `.bumpversion.cfg`:
-
-```shell
-bumpversion major|minor|patch
-```
-
-Then update the `package-lock.json` and `dist/` directory by
-
-```shell
-npm install
-```
-
-Disable source maps in `tsconfig.json`, then
-```
-npm run all
-```
-
-Check the changes with 
-
-```shell
-git status
-```
-
-then
-
-```shell
-git add .bumpversion.cfg CITATION.cff package-lock.json package.json README.md src/cli.ts
-git commit -m "bumped version"
-```
+Use GitHub's _Draft a new release_ button to prepare a release. On publishing the release, GitHub
+will trigger the `publishing.yml` workflow, which in turn sends a snapshot of the release to Zenodo
+using [_zenodraft GitHub Action_](https://github.com/marketplace/actions/zenodraft). As part of the
+process, zenodraft will also update the GitHub release with updated citation metadata, specifically
+the DOI.
 
 ### Publishing to NPM
 

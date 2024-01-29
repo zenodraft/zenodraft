@@ -1,66 +1,64 @@
 {
-    "conceptdoi": "10.5072/zenodo.130",
-    "conceptrecid": "130",
-    "created": "2021-07-10T10:26:04.962769+00:00",
+    "conceptdoi": "10.5072/zenodo.100",
+    "conceptrecid": "100",
+    "created": "2024-01-24T17:25:38.086679+00:00",
     "doi": "10.5072/zenodo.131",
     "doi_url": "https://doi.org/10.5072/zenodo.131",
     "files": [
         {
-            "checksum": "081404b3d2ae5bf599add15b7445ac07",
+            "checksum": "2f0d514dc20d16de868c6a2c568e7e39",
             "filename": "README.md",
             "filesize": 14,
-            "id": "986841cc-25f4-4b05-a75c-9f3dda7c2f12",
+            "id": "c7ff1bb5-a01d-45c3-b66c-bad3c0835c39",
             "links": {
-                "download": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637/README.md",
-                "self": "https://sandbox.zenodo.org/api/deposit/depositions/131/files/986841cc-25f4-4b05-a75c-9f3dda7c2f12"
+                "download": "https://sandbox.zenodo.org/api/records/131/draft/files/README.md/content",
+                "self": "https://sandbox.zenodo.org/api/records/131/files/c7ff1bb5-a01d-45c3-b66c-bad3c0835c39"
             }
         }
     ],
     "id": 131,
     "links": {
-        "badge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.131.svg",
-        "bucket": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637",
-        "conceptbadge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.130.svg",
-        "conceptdoi": "https://doi.org/10.5072/zenodo.130",
+        "badge": "https://sandbox.zenodo.org/badge/doi/10.5072%2Fzenodo.131.svg",
+        "bucket": "https://sandbox.zenodo.org/api/files/f75318c8-35fe-4bdf-ba75-03e8c35d1534",
+        "conceptbadge": "https://sandbox.zenodo.org/badge/doi/10.5072%2Fzenodo.100.svg",
         "discard": "https://sandbox.zenodo.org/api/deposit/depositions/131/actions/discard",
         "doi": "https://doi.org/10.5072/zenodo.131",
         "edit": "https://sandbox.zenodo.org/api/deposit/depositions/131/actions/edit",
-        "files": "https://sandbox.zenodo.org/api/deposit/depositions/131/files",
-        "html": "https://sandbox.zenodo.org/deposit/131",
-        "latest": "https://sandbox.zenodo.org/api/records/131",
-        "latest_html": "https://sandbox.zenodo.org/record/131",
+        "files": "https://sandbox.zenodo.org/api/records/131/files",
+        "html": "https://sandbox.zenodo.org/records/131",
+        "latest": "https://sandbox.zenodo.org/api/records/131/versions/latest",
+        "latest_draft": "https://sandbox.zenodo.org/api/deposit/depositions/131",
+        "latest_draft_html": "https://sandbox.zenodo.org/deposit/131",
+        "latest_html": "https://sandbox.zenodo.org/record/131/versions/latest",
         "newversion": "https://sandbox.zenodo.org/api/deposit/depositions/131/actions/newversion",
+        "parent_doi": "https://sandbox.zenodo.org/doi/10.5072/zenodo.100",
         "publish": "https://sandbox.zenodo.org/api/deposit/depositions/131/actions/publish",
         "record": "https://sandbox.zenodo.org/api/records/131",
         "record_html": "https://sandbox.zenodo.org/record/131",
         "registerconceptdoi": "https://sandbox.zenodo.org/api/deposit/depositions/131/actions/registerconceptdoi",
-        "self": "https://sandbox.zenodo.org/api/deposit/depositions/131"
+        "self": "https://sandbox.zenodo.org/api/records/131"
     },
     "metadata": {
         "access_right": "open",
-        "communities": [
-            {
-                "identifier": "zenodo"
-            }
-        ],
         "creators": [
             {
+                "affiliation": null,
                 "name": "Family name, Given names"
             }
         ],
-        "description": "<p>This is the description.</p>",
+        "description": "The description.",
         "doi": "10.5072/zenodo.131",
-        "license": "CC-BY-4.0",
+        "imprint_publisher": "Zenodo",
+        "license": "cc-by-4.0",
         "prereserve_doi": {
             "doi": "10.5072/zenodo.131",
             "recid": 131
         },
-        "publication_date": "2021-07-10",
-        "publication_type": "article",
+        "publication_date": "2024-01-24",
         "title": "The title",
-        "upload_type": "publication"
+        "upload_type": "other"
     },
-    "modified": "2021-07-10T10:36:05.420315+00:00",
+    "modified": "2024-01-24T17:25:38.254168+00:00",
     "owner": 12345,
     "record_id": 131,
     "state": "done",

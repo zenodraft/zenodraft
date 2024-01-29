@@ -5,12 +5,21 @@ on:
       - published
 
 jobs:
-
   publish:
       runs-on: ubuntu-latest
       steps:
         - name: checkout
-          uses: actions/checkout@v2      
+          uses: actions/checkout@v4
+
+        - name: Generate .zenodo.citation.json
+          uses: citation-file-format/cffconvert-github-action@2.0.0
+          with:
+            args: "--format zenodo --infile CITATION.cff --outfile $RUNNER_TEMP/.zenodo.citation.json"
+
+        - name: Merge .zenodo.extras.json into .zenodo.citation.json
+          run: |
+            cat $RUNNER_TEMP/.zenodo.citation.json .zenodo.extras.json | jq -s add -S --indent 4 > $RUNNER_TEMP/.zenodo.json
+
         - name: Create a draft snapshot of the repository contents on Zenodo using metadata
                 from repository file .zenodo.json
           env:
@@ -19,7 +28,7 @@ jobs:
           uses: zenodraft/action@0.10.0
           with:
             collection: 5046392
-            metadata: .zenodo.json
+            metadata: $RUNNER_TEMP/.zenodo.json
             publish: false
             sandbox: false
             upsert-doi: true

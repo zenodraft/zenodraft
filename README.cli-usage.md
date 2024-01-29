@@ -71,22 +71,6 @@ zenodraft deposition show files --sandbox $VERSION_ID
 zenodraft deposition show files $VERSION_ID
 ```
 
-## Getting the id for the latest published version in a concept
-
-```shell
-zenodraft deposition show latest --sandbox $CONCEPT_ID
-zenodraft deposition show latest $CONCEPT_ID
-```
-
-Either returns the id of the latest published version in the concept, or an empty string in case there are no published versions in the concept.
-
-Typical usage in automation is to capture the printed value like so:
-
-```shell
-VERSION_ID=$(zenodraft deposition show latest --sandbox $CONCEPT_ID)
-VERSION_ID=$(zenodraft deposition show latest $CONCEPT_ID)
-```
-
 ## Getting the prereserved doi for a version:
 
 ```shell

@@ -1,34 +1,34 @@
 {
-    "conceptdoi": "10.5072/zenodo.140",
-    "conceptrecid": "140",
-    "created": "2021-07-10T10:26:04.962769+00:00",
+    "conceptdoi": "10.5072/zenodo.100",
+    "conceptrecid": "100",
+    "created": "2024-01-24T16:59:35.709431+00:00",
     "doi": "10.5072/zenodo.141",
     "doi_url": "https://doi.org/10.5072/zenodo.141",
     "files": [
         {
-            "checksum": "081404b3d2ae5bf599add15b7445ac07",
+            "checksum": "2f0d514dc20d16de868c6a2c568e7e39",
             "filename": "README.md",
             "filesize": 14,
-            "id": "986841cc-25f4-4b05-a75c-9f3dda7c2f12",
+            "id": "c7ff1bb5-a01d-45c3-b66c-bad3c0835c39",
             "links": {
-                "download": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637/README.md",
-                "self": "https://sandbox.zenodo.org/api/deposit/depositions/141/files/986841cc-25f4-4b05-a75c-9f3dda7c2f12"
+                "download": "https://sandbox.zenodo.org/api/records/141/draft/files/README.md/content",
+                "self": "https://sandbox.zenodo.org/api/deposit/depositions/141/files/c7ff1bb5-a01d-45c3-b66c-bad3c0835c39"
             }
         }
     ],
     "id": 141,
     "links": {
-        "badge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.141.svg",
-        "bucket": "https://sandbox.zenodo.org/api/files/f8ca0657-db78-4b19-a50a-1b23125d4637",
-        "conceptbadge": "https://sandbox.zenodo.org/badge/doi/10.5072/zenodo.140.svg",
-        "conceptdoi": "https://doi.org/10.5072/zenodo.140",
+        "badge": "https://sandbox.zenodo.org/badge/doi/10.5072%2Fzenodo.141.svg",
+        "bucket": "https://sandbox.zenodo.org/api/files/1e2b917e-6fdb-4ce8-8bb3-91194d12d9e9",
         "discard": "https://sandbox.zenodo.org/api/deposit/depositions/141/actions/discard",
         "doi": "https://doi.org/10.5072/zenodo.141",
         "edit": "https://sandbox.zenodo.org/api/deposit/depositions/141/actions/edit",
         "files": "https://sandbox.zenodo.org/api/deposit/depositions/141/files",
         "html": "https://sandbox.zenodo.org/deposit/141",
-        "latest": "https://sandbox.zenodo.org/api/records/141",
-        "latest_html": "https://sandbox.zenodo.org/record/141",
+        "latest": "https://sandbox.zenodo.org/api/records/141/versions/latest",
+        "latest_draft": "https://sandbox.zenodo.org/api/deposit/depositions/141",
+        "latest_draft_html": "https://sandbox.zenodo.org/deposit/141",
+        "latest_html": "https://sandbox.zenodo.org/record/141/versions/latest",
         "newversion": "https://sandbox.zenodo.org/api/deposit/depositions/141/actions/newversion",
         "publish": "https://sandbox.zenodo.org/api/deposit/depositions/141/actions/publish",
         "record": "https://sandbox.zenodo.org/api/records/141",
@@ -38,29 +38,25 @@
     },
     "metadata": {
         "access_right": "open",
-        "communities": [
-            {
-                "identifier": "zenodo"
-            }
-        ],
         "creators": [
             {
+                "affiliation": null,
                 "name": "Family name, Given names"
             }
         ],
-        "description": "<p>This is the description.</p>",
+        "description": "The description.",
         "doi": "10.5072/zenodo.141",
-        "license": "CC-BY-4.0",
+        "imprint_publisher": "Zenodo",
+        "license": "cc-by-4.0",
         "prereserve_doi": {
             "doi": "10.5072/zenodo.141",
             "recid": 141
         },
-        "publication_date": "2021-07-10",
-        "publication_type": "article",
+        "publication_date": "2024-01-24",
         "title": "The title",
-        "upload_type": "publication"
+        "upload_type": "other"
     },
-    "modified": "2021-07-10T10:39:21.693825+00:00",
+    "modified": "2024-01-24T17:34:34.666001+00:00",
     "owner": 12345,
     "record_id": 141,
     "state": "inprogress",

@@ -5,7 +5,7 @@ authors:
     given-names: Jurriaan H.
     orcid: https://orcid.org/0000-0002-7064-4069
 cff-version: 1.2.0
-date-released: 2022-04-21
+date-released: 2024-01-24
 identifiers:
   - type: doi
     value: 10.5281/zenodo.6475642
@@ -20,7 +20,7 @@ license: Apache-2.0
 message: If you use this software, please cite it using these metadata.
 repository-code: https://github.com/zenodraft/zenodraft
 title: zenodraft
-version: 0.12.0
+version: 0.13.0
 references:
   - authors:
       - affiliation: Netherlands eScience Center

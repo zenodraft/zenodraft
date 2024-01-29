@@ -7,6 +7,6 @@ export const remove_tempdir = (temporary_directory: string) => {
         // leave the temporary directory on the file system to
         // avoid problems related to uv_cwd
     } else {
-        fs.rmdirSync(temporary_directory, { recursive: true })
+        fs.rmSync(temporary_directory, { recursive: true })
     }
 }
