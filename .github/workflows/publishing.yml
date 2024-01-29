@@ -40,8 +40,8 @@ jobs:
           shell: bash
           run: |
             yq eval '.identifiers[0].value = "'$PRERESERVED'"' --inplace CITATION.cff --output-format yaml
-            git config --global user.name 'CI'
-            git config --global user.email 'ci@users.noreply.github.com'
+            git config --global user.name 'jspaaks via CI'
+            git config --global user.email 'jspaaks@users.noreply.github.com'
             git add CITATION.cff
             git commit -m "updated CITATION.cff with DOI"
             git push
