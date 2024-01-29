@@ -5,8 +5,6 @@ on:
 jobs:
   zenodo:
       env:
-        PRERESERVED: ""
-        VERSION: ""
         ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
 
       runs-on: ubuntu-latest
@@ -32,9 +30,9 @@ jobs:
           shell: bash
           run: |
             VERSION=$(zenodraft deposition create version 23750 --sandbox)
-            echo $VERSION
+            echo $VERSION >> "$GITHUB_ENV"
             PRERESERVED=$(zenodraft deposition show prereserved --sandbox $VERSION)
-            echo $PRERESERVED
+            echo $PRERESERVED >> "$GITHUB_ENV"
 
         - name: Update CITATION.cff with prereserved DOI
           shell: bash
