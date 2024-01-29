@@ -5,7 +5,7 @@ on:
 jobs:
   zenodo:
       env:
-        ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+        ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
 
       runs-on: ubuntu-latest
       steps:
@@ -29,11 +29,11 @@ jobs:
         - name: Get prereserved DOI
           shell: bash
           run: |
-            VERSION=$(zenodraft deposition create version 23750 --sandbox)
+            VERSION=$(zenodraft deposition create version 5046392)
             echo "VERSION='$VERSION'"
             echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
-            PRERESERVED=$(zenodraft deposition show prereserved --sandbox $VERSION)
+            PRERESERVED=$(zenodraft deposition show prereserved $VERSION)
             echo "PRERESERVED='$PRERESERVED'"
             echo "PRERESERVED=$PRERESERVED" >> "$GITHUB_ENV"
 
@@ -56,5 +56,5 @@ jobs:
             cat CITATION.cff
             cat .zenodo.json
             zip -u -v zenodraft.zip . CITATION.cff
-            zenodraft file add --sandbox $VERSION zenodraft.zip
-            zenodraft metadata update --sandbox $VERSION .zenodo.json
+            zenodraft file add $VERSION zenodraft.zip
+            zenodraft metadata update $VERSION .zenodo.json
