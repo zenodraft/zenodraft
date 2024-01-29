@@ -15,7 +15,7 @@ jobs:
 
         - name: Create preliminary zip
           run: |
-            zip -r -v -x ".git/*" zenodraft.zip .
+            zip -x ".git/*" -r -v zenodraft.zip .
 
         - name: Install self
           shell: bash
