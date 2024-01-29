@@ -4,40 +4,54 @@ on:
 
 jobs:
   zenodo:
+      env:
+        PRERESERVED: ""
+        VERSION: ""
+        ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
+
       runs-on: ubuntu-latest
       steps:
-        - name: checkout
+
+        - name: Get a copy of the repo contents
           uses: actions/checkout@v4
 
-        - name: Create zip
+        - name: Create preliminary zip
           run: |
             rm -rf .git
             zip -r -v zenodraft.zip .
+
+        - name: Install self
+          shell: bash
+          run: |
+            npm install
+            npm run all
+            npm install zenodraft-*.tgz -g
+            zenodraft --version
+
+        - name: Get prereserved DOI
+          shell: bash
+          run: |
+            VERSION=$(zenodraft deposition create version 23750 --sandbox)
+            echo $VERSION
+            PRERESERVED=$(zenodraft deposition show prereserved --sandbox $VERSION)
+            echo $PRERESERVED
+
+        - name: Update CITATION.cff with prereserved DOI
+          shell: bash
+          run: |
+            yq --yml-output --in-place '.identifiers[0].value = "'$PRERESERVED'"' CITATION.cff
 
         - name: Generate .zenodo.citation.json
           uses: citation-file-format/cffconvert-github-action@2.0.0
           with:
             args: "--format zenodo --infile CITATION.cff --outfile .zenodo.citation.json"
 
-        - name: Merge .zenodo.extras.json into .zenodo.citation.json
-          run: |
-            cat .zenodo.citation.json .zenodo.extras.json | jq -s add -S --indent 4 > .zenodo.json
-
         - name: Create a draft snapshot of the repository contents on Zenodo using metadata
                 from repository file .zenodo.json
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
           shell: bash
           run: |
             set -e
-            npm install
-            npm run all
-            npm install zenodraft-*.tgz -g
-            zenodraft --version
-            VERSION=$(zenodraft deposition create version 23750 --sandbox)
-            PRERESERVED=$(zenodraft deposition show prereserved --sandbox $VERSION)
-            echo "TODO upsert doi: $PRERESERVED"
-            zenodraft file upload --sandbox $VERSION zenodraft.zip
+            cat .zenodo.citation.json .zenodo.extras.json | jq -s add -S --indent 4 > .zenodo.json
+            zip -u -v zenodraft.zip . CITATION.cff
+            zenodraft file add --sandbox $VERSION zenodraft.zip
             zenodraft metadata update --sandbox $VERSION .zenodo.json
-
