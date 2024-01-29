@@ -39,7 +39,7 @@ jobs:
         - name: Update CITATION.cff with prereserved DOI
           shell: bash
           run: |
-            yq e '.identifiers[0].value = "'$PRERESERVED'"' --inplace CITATION.cff
+            yq eval '.identifiers[0].value = "'$PRERESERVED'"' --inplace CITATION.cff --output-format yaml
             cat CITATION.cff
 
         - name: Generate .zenodo.citation.json
