@@ -1,4 +1,4 @@
-name: zenodraft
+name: publishing
 on:
   workflow_dispatch:
 
@@ -7,8 +7,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: checkout
-          path: dirty
           uses: actions/checkout@v4
+          with:
+            path: dirty
 
         - run: |
             cd dirty
@@ -34,8 +35,9 @@ jobs:
             npm run all
 
         - name: checkout
-          path: ../clean
           uses: actions/checkout@v4
+          with:
+              path: ../clean
 
         - run: |
             cd ../clean
