@@ -5,7 +5,7 @@ authors:
     given-names: Jurriaan H.
     orcid: https://orcid.org/0000-0002-7064-4069
 cff-version: 1.2.0
-date-released: 2024-01-24
+date-released: 2024-01-29
 identifiers:
   - type: doi
     value: 10.5281/zenodo.6475642
