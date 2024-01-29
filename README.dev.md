@@ -129,18 +129,31 @@ Should show the same as listed above for `require`.
 
 ## For maintainers
 
-### Publishing to GitHub and Zenodo
+Order of publishing
 
-Use GitHub's _Draft a new release_ button to prepare a release. On publishing the release, GitHub
-will trigger the `publishing.yml` workflow, which in turn sends a snapshot of the release to Zenodo
-using [_zenodraft GitHub Action_](https://github.com/marketplace/actions/zenodraft). As part of the
-process, zenodraft will also update the GitHub release with updated citation metadata, specifically
-the DOI.
+1. Preparation
+2. Zenodo
+3. GitHub
+4. NPM
 
-### Publishing to NPM
+### Preparation
 
 Before you begin, make sure that everything that needs to be part of the release has been
 pushed to GitHub and has been merged into the default branch `main`.
+
+### Publishing to Zenodo
+
+Manually triggering the `publishing.yml` workflow will send a snapshot of the repository to Zenodo.
+As part of the process, the workflow will also update the citation metadata with the prereserved DOI
+that Zenodo supplies, and commit it back to the repository.
+
+### Publishing to GitHub and Zenodo
+
+After the `publishing` workflow from the previous step finishes, check that the DOI has been updated,
+then use GitHub's _Draft a new release_ button to make a release.
+
+### Publishing to NPM
+
 
 ```shell
 # uninstall any globally installed versions of zenodraft
