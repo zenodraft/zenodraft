@@ -7,8 +7,6 @@
     <a href="https://github.com/zenodraft/zenodraft"><img src="https://img.shields.io/github/license/zenodraft/zenodraft?style=flat-square" alt="github license badge"></a>
     <a href="https://www.npmjs.com/package/zenodraft"><img src="https://img.shields.io/npm/v/zenodraft?style=flat-square" alt="npm version"></a>
     <a href="https://doi.org/10.5281/zenodo.5046392"><img src="https://img.shields.io/badge/DOI-10.5281%20%2F%20zenodo.5046392-blue.svg?style=flat-square" alt="DOI"></a>
-    <a href="https://sonarcloud.io/dashboard?id=zenodraft_zenodraft"><img src="https://sonarcloud.io/api/project_badges/measure?project=zenodraft_zenodraft&metric=code_smells" alt="code smells badge"></a>
-    <a href="https://sonarcloud.io/dashboard?id=zenodraft_zenodraft"><img src="https://sonarcloud.io/api/project_badges/measure?project=zenodraft_zenodraft&metric=coverage" alt="coverage"></a>
     <a href="https://fair-software.eu"><img src="https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green?style=flat-square" alt="fair-software badge"></a>
 </p>
 <p align="center">
