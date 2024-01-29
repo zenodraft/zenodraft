@@ -39,20 +39,21 @@ jobs:
         - name: Update CITATION.cff with prereserved DOI
           shell: bash
           run: |
+            echo "PRERESERVED = $PRERESERVED"
             yq eval '.identifiers[0].value = "'$PRERESERVED'"' --inplace CITATION.cff --output-format yaml
             cat CITATION.cff
 
-        - name: Generate .zenodo.citation.json
-          uses: citation-file-format/cffconvert-github-action@2.0.0
-          with:
-            args: "--format zenodo --infile CITATION.cff --outfile .zenodo.citation.json"
+        #- name: Generate .zenodo.citation.json
+        #  uses: citation-file-format/cffconvert-github-action@2.0.0
+        #  with:
+        #    args: "--format zenodo --infile CITATION.cff --outfile .zenodo.citation.json"
 
-        - name: Create a draft snapshot of the repository contents on Zenodo using metadata
-                from repository file .zenodo.json
-          shell: bash
-          run: |
-            set -e
-            cat .zenodo.citation.json .zenodo.extras.json | jq -s add -S --indent 4 > .zenodo.json
-            zip -u -v zenodraft.zip . CITATION.cff
-            zenodraft file add --sandbox $VERSION zenodraft.zip
-            zenodraft metadata update --sandbox $VERSION .zenodo.json
+        #- name: Create a draft snapshot of the repository contents on Zenodo using metadata
+        #        from repository file .zenodo.json
+        #  shell: bash
+        #  run: |
+        #    set -e
+        #    cat .zenodo.citation.json .zenodo.extras.json | jq -s add -S --indent 4 > .zenodo.json
+        #    zip -u -v zenodraft.zip . CITATION.cff
+        #    zenodraft file add --sandbox $VERSION zenodraft.zip
+        #    zenodraft metadata update --sandbox $VERSION .zenodo.json
