@@ -76,7 +76,7 @@ In a new directory, make a file e.g. `index.js` with the following contents:
 
 ```javascript
 // file: index.js
-const zenodraft = require('zenodraft').default;
+const zenodraft = require('zenodraft');
 console.info(zenodraft);
 ```
 
@@ -114,7 +114,7 @@ different filename but the extension needs to be `.mjs`):
 ```javascript
 // file: index.mjs
 import zenodraft from 'zenodraft';
-console.info(zenodraft.default);
+console.info(zenodraft);
 ```
 
 ```shell
