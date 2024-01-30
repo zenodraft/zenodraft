@@ -10,7 +10,6 @@
     "dependencies": {
         "commander": "^7.2.0",
         "dotenv": "^10.0.0",
-        "mime-types": "^2.1.31",
         "node-fetch": "^2.6.7"
     },
     "description": "CLI to manage depositions on Zenodo and Zenodo Sandbox",
@@ -38,8 +37,8 @@
         "zenodo"
     ],
     "license": "Apache-2.0",
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
+    "main": "dist/lib/index.js",
+    "module": "dist/lib/index.mjs",
     "name": "zenodraft",
     "repository": {
         "type": "git",
@@ -56,6 +55,6 @@
         "test": "jest --config jest.config.js",
         "tests": "npm run test"
     },
-    "types": "dist/index.d.ts",
+    "types": "dist/lib/index.d.ts",
     "version": "0.13.0"
 }
