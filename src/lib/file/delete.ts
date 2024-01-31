@@ -9,7 +9,8 @@ export const file_delete = async (token: string, sandbox: boolean, version_id: s
     }
     const deposition = await deposition_show_details(token, sandbox, version_id, verbose)
     const headers = {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
     }
     const url1 = `${deposition.links.files}`
     const response1 = await fetch(url1, { method: 'GET', headers })
