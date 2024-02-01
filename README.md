@@ -160,7 +160,7 @@ npx zenodraft deposition create concept --sandbox
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.13.2/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.13.3/Dockerfile
 ```
 
 Running the docker container:
