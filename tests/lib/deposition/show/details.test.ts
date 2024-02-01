@@ -50,7 +50,7 @@ describe('deposition show details with expected type \'deposition\' for mock con
         try {
             await throwfun()
         } catch (e) {
-            expect(e.message).toBe("Something went wrong on GET to https://sandbox.zenodo.org/api/deposit/depositions/999: 404 - Not Found")
+            expect(e.message).toBe("(errid 8) Something went wrong on GET to https://sandbox.zenodo.org/api/deposit/depositions/999: 404 - Not Found")
         }
     })
 
@@ -66,7 +66,7 @@ describe('deposition show details with expected type \'deposition\' for mock con
         try {
             await throwfun()
         } catch (e) {
-            expect(e.message).toBe("Something went wrong on GET to https://sandbox.zenodo.org/api/deposit/depositions/100: 404 - Not Found")
+            expect(e.message).toBe("(errid 8) Something went wrong on GET to https://sandbox.zenodo.org/api/deposit/depositions/100: 404 - Not Found")
         }
     })
 
