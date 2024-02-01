@@ -22,6 +22,9 @@ export const deposition_publish = async (token: string, sandbox: boolean, versio
     let response: any
     response = await fetch(`${api}${endpoint}`, init)
     if (response.ok !== true) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
+        throw new Error(`(errid 10) Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
+    }
+    if (verbose) {
+        console.log(`publishing draft deposition with id ${version_id}...done`)
     }
 }

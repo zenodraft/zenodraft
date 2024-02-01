@@ -17,12 +17,12 @@ export const deposition_create_concept = async (token: string, sandbox: boolean,
     }
     const response = await fetch(url, { method: 'POST', headers, body: JSON.stringify({}) })
     if (response.ok !== true) {
-        throw new Error(`Something went wrong on 'POST' to ${url}: ${response.status} - ${response.statusText}`)
+        throw new Error(`(errid 11) Something went wrong on 'POST' to ${url}: ${response.status} - ${response.statusText}`)
     }
 
     const deposition: AnyDeposition & HasDraft = await response.json()
     if (verbose) {
-        console.log(`Created new version with id ${deposition.record_id}.`)
+        console.log(`creating a new, empty version in a new concept...done. id=${deposition.record_id}`)
     }
     return deposition.record_id.toString()
 }

@@ -19,23 +19,29 @@ export const metadata_update = async (token: string, sandbox: boolean, version_i
     await deposition_show_details(token, sandbox, version_id, verbose)
 
     const api = helpers_get_api(sandbox)
-    const endpoint = `/deposit/depositions/${version_id}`
-    const method = 'PUT'
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-    }
+    const url = `${api}/deposit/depositions/${version_id}`
     const minimal_metadata_filename = path.join(__dirname, '..', '..', '..', 'assets', '.zenodo.json.empty')
     const minimal_metadata = JSON.parse(fs.readFileSync(minimal_metadata_filename, 'utf8'))
     const user_metadata = filename === undefined ? {} : JSON.parse(fs.readFileSync(filename, 'utf8'))
     const metadata = {...minimal_metadata, ...user_metadata}
-    const init: RequestInit = { method, headers, body: JSON.stringify({metadata}) }
-    const response = await fetch(`${api}${endpoint}`, init)
+
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({metadata})
+    })
     if (response.ok !== true) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
+        throw new Error(`(errid 13) Something went wrong on PUT to ${url}: ${response.status} - ${response.statusText}`)
     }
     const deposition: AnyDeposition = await response.json()
     if (verbose) {
-        console.log(`Updated deposition with id ${deposition.record_id}.`)
+        if (filename === undefined) {
+            console.log(`Clearing metadata from deposition with id ${version_id}...done`)
+        } else {
+            console.log(`Adding metadata from ${filename} to deposition with id ${version_id}...done`)
+        }
     }
 }

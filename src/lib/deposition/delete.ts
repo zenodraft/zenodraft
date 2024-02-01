@@ -20,6 +20,9 @@ export const deposition_delete = async (token: string, sandbox: boolean, version
     let response: any
     response = await fetch(`${api}${endpoint}`, init)
     if (response.ok !== true) {
-        throw new Error(`Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
+        throw new Error(`(errid 9) Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
+    }
+    if (verbose) {
+        console.log(`deleting draft deposition with id ${version_id}...done`)
     }
 }

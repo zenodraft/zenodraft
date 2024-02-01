@@ -20,6 +20,9 @@ export const file_add = async (token: string, sandbox: boolean, version_id: stri
     const init: RequestInit = { method, headers, body: stream }
     const response = await fetch(`${bucket}/${filename}`, init)
     if (response.ok !== true) {
-        throw new Error(`Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText}`)
+        throw new Error(`(errid 4) Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText}`)
+    }
+    if (verbose) {
+        console.log(`adding file ${filename} to deposition with id ${version_id}...done`)
     }
 }
