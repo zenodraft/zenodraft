@@ -1,6 +1,7 @@
 import { default as fetch } from 'node-fetch'
 import { AnyDeposition, HasDraft } from '../../helpers/deposition-types'
 import { helpers_get_api } from '../../helpers/get-api'
+import { metadata_update } from '../../metadata/update'
 
 
 
@@ -23,8 +24,10 @@ export const deposition_create_concept = async (token: string, sandbox: boolean,
         throw new Error(`(errid 11) Something went wrong on 'POST' to ${url}: ${response.status} - ${response.statusText}`)
     }
     const deposition: AnyDeposition & HasDraft = await response.json()
+    const new_id = deposition.record_id.toString()
     if (verbose) {
-        console.log(`${msg}done. id=${deposition.record_id}`)
+        console.log(`${msg}done. id=${new_id}`)
     }
+    await metadata_update(token, sandbox, new_id, undefined, verbose)
     return deposition.record_id.toString()
 }
