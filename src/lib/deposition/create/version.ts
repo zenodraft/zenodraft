@@ -48,7 +48,7 @@ const remove_files_from_draft = async (token: string, sandbox: boolean, id: stri
     }
     const filenames = await deposition_show_files(token, sandbox, id, verbose)
     for (const filename of filenames) {
-        file_delete(token, sandbox, id, filename)
+        await file_delete(token, sandbox, id, filename)
     }
     if (verbose) {
         console.log(`${msg}done`)
