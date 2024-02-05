@@ -8,7 +8,7 @@ import { metadata_update } from '../../metadata/update'
 
 
 export const deposition_create_version = async (token: string, sandbox: boolean, concept_id: string, verbose = false): Promise<string> => {
-    const msg = `Creating a new, empty version in existing concept ${concept_id}...`
+    const msg = `creating a new, empty version in existing concept ${concept_id}...`
     if (verbose) {
         console.log(msg)
     }
@@ -42,7 +42,7 @@ const create_new_versioned_deposition = async (token: string, sandbox: boolean, 
 
 
 const remove_files_from_draft = async (token: string, sandbox: boolean, id: string, verbose = false): Promise<void> => {
-    const msg = `Removing any files from the newly drafted version...`
+    const msg = `removing any files from the newly drafted version...`
     if (verbose) {
         console.log(msg)
     }

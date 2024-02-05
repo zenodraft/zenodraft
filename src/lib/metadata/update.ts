@@ -7,8 +7,8 @@ import * as path from 'path'
 
 
 export const metadata_update = async (token: string, sandbox: boolean, version_id: string, filename?: string, verbose = false): Promise<void> => {
-    const msg_clearing = `Clearing metadata from deposition with id ${version_id}...`
-    const msg_updating = `Adding metadata from ${filename} to deposition with id ${version_id}...`
+    const msg_clearing = `clearing metadata from deposition with id ${version_id}...`
+    const msg_updating = `adding metadata from ${filename} to deposition with id ${version_id}...`
     if (verbose) {
         if (filename === undefined) {
             console.log(msg_clearing)
