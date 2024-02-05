@@ -5,8 +5,9 @@ import * as fs from 'fs'
 
 
 export const file_add = async (token: string, sandbox: boolean, version_id: string, filename: string, verbose = false): Promise<void> => {
+    const msg = `adding file ${filename} to deposition with id ${version_id}...`
     if (verbose) {
-        console.log(`adding file ${filename} to deposition with id ${version_id}...`)
+        console.log(msg)
     }
     const deposition = await deposition_show_details(token, sandbox, version_id, verbose)
     const bucket = deposition.links.bucket
@@ -23,6 +24,6 @@ export const file_add = async (token: string, sandbox: boolean, version_id: stri
         throw new Error(`(errid 4) Something went wrong on ${method} to ${bucket}/${filename}: ${response.status} - ${response.statusText}`)
     }
     if (verbose) {
-        console.log(`adding file ${filename} to deposition with id ${version_id}...done`)
+        console.log(`${msg}done`)
     }
 }
