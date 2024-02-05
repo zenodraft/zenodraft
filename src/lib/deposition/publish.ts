@@ -5,8 +5,9 @@ import { helpers_get_api } from '../helpers/get-api'
 
 
 export const deposition_publish = async (token: string, sandbox: boolean, version_id: string, verbose = false): Promise<void> => {
+    const msg = `publishing draft deposition with id ${version_id}...`
     if (verbose) {
-        console.log(`publishing draft deposition with id ${version_id}...`)
+        console.log(msg)
     }
 
     // result of this next function is not used, but there are some checks in it
@@ -25,6 +26,6 @@ export const deposition_publish = async (token: string, sandbox: boolean, versio
         throw new Error(`(errid 10) Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
     if (verbose) {
-        console.log(`publishing draft deposition with id ${version_id}...done`)
+        console.log(`${msg}done`)
     }
 }

@@ -5,13 +5,14 @@ import * as assert from 'assert'
 
 export const deposition_show_draft = async (token: string, sandbox: boolean, concept_id: string, verbose = false): Promise<string> => {
     const api = helpers_get_api(sandbox)
-    const endpoint = '/deposit/depositions'
-    const url = `${api}${endpoint}`
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-    }
-    const response = await fetch(url, { method: 'GET', headers })
+    const url = `${api}/deposit/depositions`
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
     const depositions = await response.json()
     assert(depositions.constructor == Array, "Expected depositions to be an Array")
     if (depositions.length == 0) {

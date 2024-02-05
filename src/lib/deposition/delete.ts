@@ -5,8 +5,9 @@ import { helpers_get_api } from '../helpers/get-api'
 
 
 export const deposition_delete = async (token: string, sandbox: boolean, version_id: string, verbose = false): Promise<void> => {
+    const msg = `deleting draft deposition with id ${version_id}...`
     if (verbose) {
-        console.log(`deleting draft deposition with id ${version_id}...`)
+        console.log(msg)
     }
     await deposition_show_details(token, sandbox, version_id, verbose)
 
@@ -23,6 +24,6 @@ export const deposition_delete = async (token: string, sandbox: boolean, version
         throw new Error(`(errid 9) Something went wrong on ${method} to ${api}${endpoint}: ${response.status} - ${response.statusText}`)
     }
     if (verbose) {
-        console.log(`deleting draft deposition with id ${version_id}...done`)
+        console.log(`${msg}done`)
     }
 }

@@ -4,8 +4,9 @@ import { File } from '../helpers/deposition-types'
 
 
 export const file_delete = async (token: string, sandbox: boolean, version_id: string, filename: string, verbose = false): Promise<void> => {
+    const msg = `deleting file ${filename} from deposition with id ${version_id}...`
     if (verbose) {
-        console.log(`deleting file ${filename} from deposition with id ${version_id}...`)
+        console.log(msg)
     }
     const deposition = await deposition_show_details(token, sandbox, version_id, verbose)
     const response1 = await fetch(deposition.links.files, {
@@ -36,6 +37,6 @@ export const file_delete = async (token: string, sandbox: boolean, version_id: s
         throw new Error(`(errid 3) Something went wrong on DELETE to ${deposition.links.files}/${fileid}: ${response2.status} - ${response2.statusText} `)
     }
     if (verbose) {
-        console.log(`deleting file ${filename} from deposition with id ${version_id}...done`)
+        console.log(`${msg}done`)
     }
 }
