@@ -147,6 +147,8 @@ Manually triggering the `publishing.yml` workflow will send a snapshot of the re
 As part of the process, the workflow will also update the citation metadata with the prereserved DOI
 that Zenodo supplies, and commit it back to the repository.
 
+Once the workflow finishes, log in to Zenodo to publish the deposition there.
+
 ### Publishing to GitHub
 
 After the `publishing` workflow from the previous step finishes, check that the DOI has been updated,
