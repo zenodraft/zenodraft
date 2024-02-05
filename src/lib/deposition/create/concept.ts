@@ -10,7 +10,7 @@ export const deposition_create_concept = async (token: string, sandbox: boolean,
         console.log(msg)
     }
     const api = helpers_get_api(sandbox)
-    const url = `${api}'/deposit/depositions'`
+    const url = `${api}/deposit/depositions`
     const response = await fetch(url, {
         method: 'POST',
         headers: {
