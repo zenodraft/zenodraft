@@ -18,13 +18,20 @@ describe('deposition create concept', () => {
         const access_token = helpers_get_access_token_from_environment(sandbox)
         const draft_id = '101'
         const reqheaders = {
-            'Authorization': `Bearer ${access_token}`
+            'Authorization': `Bearer ${access_token}`,
+            'Content-Type': 'application/json',
         }
         const filename_mock = get_mocked_data(draft_id)
         const mocked_server = nock('https://sandbox.zenodo.org/api', { reqheaders })
-            .post(`/deposit/depositions`)
+            .post('/deposit/depositions', JSON.stringify({}))
             .times(1)
             .replyWithFile(200, filename_mock)
+            .get(`/deposit/depositions/${draft_id}`)
+            .times(1)
+            .replyWithFile(200, filename_mock)
+            .put(`/deposit/depositions/${draft_id}`)
+            .times(1)
+            .reply(200)
         const actual = await deposition_create_concept(access_token, sandbox)
         const expected = draft_id
         expect(actual).toEqual(expected)
