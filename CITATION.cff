@@ -5,10 +5,10 @@ authors:
     given-names: Jurriaan H.
     orcid: https://orcid.org/0000-0002-7064-4069
 cff-version: 1.2.0
-date-released: 2024-02-01
+date-released: 2024-02-05
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.10599874
+    value: 10.5281/zenodo.10618994
     description: The identifier for this version of zenodraft
   - type: doi
     value: 10.5281/zenodo.5046392
