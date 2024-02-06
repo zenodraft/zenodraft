@@ -20,6 +20,7 @@ license: Apache-2.0
 message: If you use this software, please cite it using these metadata.
 repository-code: https://github.com/zenodraft/zenodraft
 title: zenodraft
+type: software
 version: 0.13.3
 references:
   - authors:
