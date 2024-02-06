@@ -9,6 +9,8 @@ on:
 
 jobs:
   live-sandbox-cli:
+    env:
+      ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - name: get a copy of the repo contents
@@ -26,40 +28,39 @@ jobs:
       - name: create a new directory to do the testing in
         run: mkdir testing && cd testing
 
-      - name: Test zenodraft CLI
-        env:
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_ACCESS_TOKEN }}
-          VERSION_ID: ""
-
-        shell: bash
+      - name: Test creating a new draft deposition in a new concept on Zenodo Sandbox
         run: |
-
-          set -e
-
-          echo "test creating a new draft deposition in a new concept on zenodo sandbox"
           VERSION_ID=$(zenodraft deposition create concept --sandbox)
+          echo "VERSION_ID=$VERSION_ID" >> "$GITHUB_ENV"
 
-          echo "test showing the complete details for the draft deposition"
+      - name: Test showing the complete details for the draft deposition
+        run: |
           zenodraft deposition show details --sandbox $VERSION_ID
 
-          echo "test showing the prereserved doi for the draft deposition"
+      - name: Test showing the prereserved doi for the draft deposition
+        run: |
           zenodraft deposition show prereserved --sandbox $VERSION_ID
 
-          echo "test adding a file to the draft deposition"
+      - name: Test adding a file to the draft deposition
+        run: |
           echo "these are the file contents" > thefile.txt
           zenodraft file add --sandbox $VERSION_ID thefile.txt
 
-          echo "test removing a file from the draft deposition"
+      - name: Test removing a file from the draft deposition
+        run: |
           zenodraft file delete --sandbox $VERSION_ID thefile.txt
 
-          echo "test updating the deposition metadata with information from a local file"
+      - name: Test updating the deposition metadata with information from a local file
+        run: |
           echo "{\"creators\":[{\"affiliation\":\"Netherlands eScience Center\",\"name\":\"Spaaks, Jurriaan H.\",\"orcid\":\"0000-0002-7064-4069\"}],\"description\":\"Auto-generated draft deposition for CI testing of zenodraft's CLI\",\"keywords\":[\"zenodo\",\"cli\"],\"license\":{\"id\":\"Apache-2.0\"},\"title\":\"Auto-generated deposition for testing purposes\"}" > .zenodo.json
           zenodraft metadata update --sandbox $VERSION_ID .zenodo.json
 
-          echo "test clearing the deposition metadata"
+      - name: Test clearing the deposition metadata
+        run: |
           zenodraft metadata clear --sandbox $VERSION_ID
 
-          echo "test deleting a draft deposition"
+      - name: Test deleting a draft deposition
+        run: |
           zenodraft deposition delete --sandbox $VERSION_ID
 
   unit:
