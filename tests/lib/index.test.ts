@@ -5,7 +5,7 @@ import * as zenodraft from '../../src/lib/index'
 test('zenodraft exports', () => {
 
   const functions = Object.keys(zenodraft)
-  expect(functions.length).toBe(13)
+  expect(functions.length).toBe(14)
   expect(functions.includes('deposition_create_concept')).toBe(true)
   expect(functions.includes('deposition_create_version')).toBe(true)
   expect(functions.includes('deposition_delete')).toBe(true)
@@ -19,4 +19,5 @@ test('zenodraft exports', () => {
   expect(functions.includes('helpers_get_access_token_from_environment')).toBe(true)
   expect(functions.includes('helpers_get_api')).toBe(true)
   expect(functions.includes('metadata_update')).toBe(true)
+  expect(functions.includes('metadata_validate')).toBe(true)
 })
