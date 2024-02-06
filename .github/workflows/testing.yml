@@ -66,10 +66,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get a copy of the repo contents
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: install the dependencies
         run: npm install
 
       - name: run the unit tests using jest and calculate coverage
-        run: npm run test
+        run: npm run coverage
