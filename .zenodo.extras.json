@@ -2,9 +2,10 @@
     "access_right": "open",
     "contributors": [
         {
-            "affiliation": "amberbiology.com",
-            "name": "Lancaster, Alex",
-            "type": "Other"
+            "affiliation": "Amber Biology LLC",
+            "name": "Lancaster, Alexander K",
+            "type": "Other",
+            "orcid": "0000-0002-0002-9263"	    
         }
     ],
     "type": "software"
