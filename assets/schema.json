@@ -19,238 +19,8 @@
             }
         }
     ],
-    "properties": {
-        "access_conditions": {
-            "type": "string"
-        },
-        "access_right": {
-            "description": "Open access uploads have considerably higher visibility on Zenodo.",
-            "enum": [
-                "closed",
-                "embargoed",
-                "open",
-                "restricted"
-            ],
-            "type": "string"
-        },
-        "communities": {
-            "items": {
-                "additionalProperties": false,
-                "properties": {
-                    "identifier": {
-                        "type": "string"
-                    }
-                },
-                "required": [],
-                "type": "object"
-            },
-            "minItems": 0,
-            "type": "array",
-            "uniqueItems": true
-        },
-        "conference_acronym": {
-            "type": "string"
-        },
-        "conference_dates": {
-            "type": "string"
-        },
-        "conference_place": {
-            "type": "string"
-        },
-        "conference_session": {
-            "type": "string"
-        },
-        "conference_session_part": {
-            "type": "string"
-        },
-        "conference_title": {
-            "type": "string"
-        },
-        "conference_url": {
-            "format": "uri",
-            "type": "string"
-        },
-        "contributors": {
-            "items": {
-                "additionalProperties": false,
-                "properties": {
-                    "affiliation": {
-                        "minLength": 1,
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "Family name, given names",
-                        "minLength": 1,
-                        "type": "string"
-                    },
-                    "orcid": {
-                        "description": "ORCID identifier",
-                        "examples": [
-                            "0000-0002-1825-0097"
-                        ],
-                        "pattern": "[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}",
-                        "type": "string"
-                    },
-                    "type": {
-                        "enum": [
-                            "ContactPerson",
-                            "DataCollector",
-                            "DataCurator",
-                            "DataManager",
-                            "Distributor",
-                            "Editor",
-                            "HostingInstitution",
-                            "Other",
-                            "Producer",
-                            "ProjectLeader",
-                            "ProjectManager",
-                            "ProjectMember",
-                            "RegistrationAgency",
-                            "RegistrationAuthority",
-                            "RelatedPerson",
-                            "Researcher",
-                            "ResearchGroup",
-                            "RightsHolder",
-                            "Sponsor",
-                            "Supervisor",
-                            "WorkPackageLeader"
-                        ],
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "name",
-                    "type"
-                ],
-                "type": "object"
-            },
-            "minItems": 0,
-            "type": "array",
-            "uniqueItems": true
-        },
-        "creators": {
-            "items": {
-                "additionalProperties": false,
-                "properties": {
-                    "affiliation": {
-                        "minLength": 1,
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "Family name, given names",
-                        "minLength": 1,
-                        "type": "string"
-                    },
-                    "orcid": {
-                        "description": "ORCID identifier",
-                        "examples": [
-                            "0000-0002-1825-0097"
-                        ],
-                        "pattern": "[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "name"
-                ],
-                "type": "object"
-            },
-            "type": "array",
-            "uniqueItems": true
-        },
-        "description": {
-            "description": "Description",
-            "type": "string"
-        },
-        "doi": {
-            "oneOf": [
-                {
-                    "examples": [
-                        "10.5281/zenodo.1003150"
-                    ],
-                    "pattern": "^10\\.\\d{4,9}(\\.\\d+)?/[A-Za-z0-9:/_;\\-\\.\\(\\)\\[\\]\\\\]+$",
-                    "type": "string"
-                },
-                {
-                    "const": ""
-                }
-            ]
-        },
-        "embargo_date": {
-            "format": "date",
-            "type": "string"
-        },
-        "grants": {
-            "items": {
-                "additionalProperties": false,
-                "examples": [
-                    "10.13039/501100000780::675191"
-                ],
-                "properties": {
-                    "id": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id"
-                ],
-                "type": "object"
-            },
-            "minItems": 0,
-            "type": "array",
-            "uniqueItems": true
-        },
-        "image_type": {
-            "enum": [
-                "diagram",
-                "drawing",
-                "figure",
-                "other",
-                "photo",
-                "plot"
-            ],
-            "type": "string"
-        },
-        "imprint_isbn": {
-            "type": "string"
-        },
-        "imprint_place": {
-            "type": "string"
-        },
-        "imprint_publisher": {
-            "type": "string"
-        },
-        "journal_issue": {
-            "type": "string"
-        },
-        "journal_pages": {
-            "type": "string"
-        },
-        "journal_title": {
-            "type": "string"
-        },
-        "journal_volume": {
-            "type": "string"
-        },
-        "keywords": {
-            "items": {
-                "type": "string"
-            },
-            "minItems": 0,
-            "type": "array",
-            "uniqueItems": true
-        },
-        "language": {
-            "description": "ISO 639 language identifier.",
-            "examples": [
-                "ada",
-                "eng",
-                "bla"
-            ],
-            "pattern": "^[a-z]{2,3}$",
-            "type": "string"
-        },
-        "license": {
+    "definitions": {
+        "license-enum": {
             "enum": [
                 "0BSD",
                 "AAL",
@@ -766,6 +536,257 @@
                 "ZPL-2.1"
             ],
             "type": "string"
+        }
+    },
+    "properties": {
+        "access_conditions": {
+            "type": "string"
+        },
+        "access_right": {
+            "description": "Open access uploads have considerably higher visibility on Zenodo.",
+            "enum": [
+                "closed",
+                "embargoed",
+                "open",
+                "restricted"
+            ],
+            "type": "string"
+        },
+        "communities": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "identifier": {
+                        "type": "string"
+                    }
+                },
+                "required": [],
+                "type": "object"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+        },
+        "conference_acronym": {
+            "type": "string"
+        },
+        "conference_dates": {
+            "type": "string"
+        },
+        "conference_place": {
+            "type": "string"
+        },
+        "conference_session": {
+            "type": "string"
+        },
+        "conference_session_part": {
+            "type": "string"
+        },
+        "conference_title": {
+            "type": "string"
+        },
+        "conference_url": {
+            "format": "uri",
+            "type": "string"
+        },
+        "contributors": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "affiliation": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Family name, given names",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "orcid": {
+                        "description": "ORCID identifier",
+                        "examples": [
+                            "0000-0002-1825-0097"
+                        ],
+                        "pattern": "[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}",
+                        "type": "string"
+                    },
+                    "type": {
+                        "enum": [
+                            "ContactPerson",
+                            "DataCollector",
+                            "DataCurator",
+                            "DataManager",
+                            "Distributor",
+                            "Editor",
+                            "HostingInstitution",
+                            "Other",
+                            "Producer",
+                            "ProjectLeader",
+                            "ProjectManager",
+                            "ProjectMember",
+                            "RegistrationAgency",
+                            "RegistrationAuthority",
+                            "RelatedPerson",
+                            "Researcher",
+                            "ResearchGroup",
+                            "RightsHolder",
+                            "Sponsor",
+                            "Supervisor",
+                            "WorkPackageLeader"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+        },
+        "creators": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "affiliation": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Family name, given names",
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "orcid": {
+                        "description": "ORCID identifier",
+                        "examples": [
+                            "0000-0002-1825-0097"
+                        ],
+                        "pattern": "[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ],
+                "type": "object"
+            },
+            "type": "array",
+            "uniqueItems": true
+        },
+        "description": {
+            "description": "Description",
+            "type": "string"
+        },
+        "doi": {
+            "oneOf": [
+                {
+                    "examples": [
+                        "10.5281/zenodo.1003150"
+                    ],
+                    "pattern": "^10\\.\\d{4,9}(\\.\\d+)?/[A-Za-z0-9:/_;\\-\\.\\(\\)\\[\\]\\\\]+$",
+                    "type": "string"
+                },
+                {
+                    "const": ""
+                }
+            ]
+        },
+        "embargo_date": {
+            "format": "date",
+            "type": "string"
+        },
+        "grants": {
+            "items": {
+                "additionalProperties": false,
+                "examples": [
+                    "10.13039/501100000780::675191"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "type": "object"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+        },
+        "image_type": {
+            "enum": [
+                "diagram",
+                "drawing",
+                "figure",
+                "other",
+                "photo",
+                "plot"
+            ],
+            "type": "string"
+        },
+        "imprint_isbn": {
+            "type": "string"
+        },
+        "imprint_place": {
+            "type": "string"
+        },
+        "imprint_publisher": {
+            "type": "string"
+        },
+        "journal_issue": {
+            "type": "string"
+        },
+        "journal_pages": {
+            "type": "string"
+        },
+        "journal_title": {
+            "type": "string"
+        },
+        "journal_volume": {
+            "type": "string"
+        },
+        "keywords": {
+            "items": {
+                "type": "string"
+            },
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+        },
+        "language": {
+            "description": "ISO 639 language identifier.",
+            "examples": [
+                "ada",
+                "eng",
+                "bla"
+            ],
+            "pattern": "^[a-z]{2,3}$",
+            "type": "string"
+        },
+        "license": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/license-enum"
+                },
+                {
+                    "additionalProperties": false,
+                    "properties": {
+                        "id": {
+                            "$ref": "#/definitions/license-enum"
+                        }
+                    },
+                    "required": [
+                        "id"
+                    ],
+                    "type": "object"
+                }
+            ]
         },
         "notes": {
             "minLength": 0,
