@@ -1,7 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import Ajv from 'ajv'
-import { ValidationError } from 'ajv'
 import addFormats from 'ajv-formats'
 
 
@@ -33,7 +32,7 @@ export const metadata_validate = (filename: string, add_minimal: boolean = false
         validate.errors.forEach(error => {
             console.log(error)
         })
-        throw new Error('Validation error')
+        throw new Error('(errid 14) Validation error')
     }
     if (verbose) {
         console.log(`${msg}done`)
