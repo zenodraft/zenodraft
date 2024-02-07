@@ -72,7 +72,7 @@ npx zenodraft --help
 
 ### Using CommonJS `require`
 
-In a new directory, make a file e.g. `index.js` with the following contents:
+Make a file e.g. `index.js` with the following contents:
 
 ```javascript
 // file: index.js
@@ -88,19 +88,20 @@ Should show something like:
 
 ```shell
 {
-  cli: [Function: cli],
-  deposition_create_concept: [Function: deposition_create_concept],
-  deposition_create_version: [Function: deposition_create_version],
-  deposition_delete: [Function: deposition_delete],
-  deposition_publish: [Function: deposition_publish],
-  deposition_show_details: [Function: deposition_show_details],
-  deposition_show_prereserved: [Function: deposition_show_prereserved],
-  file_add: [Function: file_add],
-  file_delete: [Function: file_delete],
-  helpers_get_access_token_from_environment: [Function: helpers_get_access_token_from_environment],
-  helpers_get_api: [Function: helpers_get_api],
-  helpers_validate_in_concept_value: [Function: helpers_validate_in_concept_value],
-  metadata_update: [Function: metadata_update]
+  deposition_create_concept: [Getter],
+  deposition_create_version: [Getter],
+  deposition_delete: [Getter],
+  deposition_publish: [Getter],
+  deposition_show_details: [Getter],
+  deposition_show_draft: [Getter],
+  deposition_show_files: [Getter],
+  deposition_show_prereserved: [Getter],
+  file_add: [Getter],
+  file_delete: [Getter],
+  helpers_get_access_token_from_environment: [Getter],
+  helpers_get_api: [Getter],
+  metadata_update: [Getter],
+  metadata_validate: [Getter]
 }
 ```
 
@@ -108,7 +109,7 @@ Should show something like:
 ### Using ES6 `import`
 
 
-In a new directory, make a file e.g. `index.mjs` with the following contents (you may use a
+Make a file e.g. `index.mjs` with the following contents (you may use a
 different filename but the extension needs to be `.mjs`):
 
 ```javascript
@@ -118,11 +119,7 @@ console.info(zenodraft);
 ```
 
 ```shell
-# node v14
 node index.mjs
-
-# node v12
-node --experimental-modules index.mjs
 ```
 
 Should show the same as listed above for `require`.
