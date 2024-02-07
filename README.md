@@ -390,11 +390,7 @@ console.info(zenodraft);
 Running
 
 ```shell
-# node v14
 node index.mjs
-
-# node v12
-node --experimental-modules index.mjs
 ```
 
 should output the same as listed above for `require`.
