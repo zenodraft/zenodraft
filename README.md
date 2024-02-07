@@ -111,8 +111,8 @@ You can get your access tokens at
 
 Prerequisites:
 
-- node v14 (other versions may work)
-- npm v7 (other versions may work)
+- node >= v20
+- npm >= v10
 
 ### System install (recommended)
 
