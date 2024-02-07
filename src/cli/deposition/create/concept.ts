@@ -20,6 +20,7 @@ export const deposition_create_concept_command = () => {
                 console.log(id)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
 
         })

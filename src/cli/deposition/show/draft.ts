@@ -23,6 +23,7 @@ export const deposition_show_draft_command = () => {
             } catch (e) {
                 console.log('')
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

@@ -21,6 +21,7 @@ export const deposition_delete_command = () => {
                 await deposition_delete(access_token, sandbox, version_id, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

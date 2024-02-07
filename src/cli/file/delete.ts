@@ -22,6 +22,7 @@ export const file_delete_command = () => {
                 await file_delete(access_token, sandbox, version_id, remote_filename, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

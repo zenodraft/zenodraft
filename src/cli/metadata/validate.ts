@@ -19,6 +19,7 @@ export const metadata_validate_command = () => {
                 metadata_validate(local_filename, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

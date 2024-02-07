@@ -22,6 +22,7 @@ export const deposition_show_prereserved_command = () => {
                 console.log(prereserved)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

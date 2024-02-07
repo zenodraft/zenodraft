@@ -24,6 +24,7 @@ export const deposition_show_files_command = () => {
                 console.log(filenames.join(os.EOL))
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
 
         })

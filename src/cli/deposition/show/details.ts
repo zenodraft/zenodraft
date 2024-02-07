@@ -22,6 +22,7 @@ export const deposition_show_details_command = () => {
                 console.log(JSON.stringify(details, null, 4))
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

@@ -23,6 +23,7 @@ export const metadata_update_command = () => {
                 await metadata_update(access_token, sandbox, version_id, local_filename, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

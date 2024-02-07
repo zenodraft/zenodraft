@@ -22,6 +22,7 @@ export const metadata_clear_command = () => {
                 await metadata_update(access_token, sandbox, version_id, undefined, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

@@ -22,6 +22,7 @@ export const deposition_create_version_command = () => {
                 console.log(id)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

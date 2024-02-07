@@ -21,6 +21,7 @@ export const deposition_publish_command = () => {
                 await deposition_publish(access_token, sandbox, version_id, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)
