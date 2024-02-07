@@ -17,6 +17,11 @@ jobs:
           run: |
             zip -x ".git/*" -r -v zenodraft.zip .
 
+        - name: Validate CITATION.cff
+          uses: citation-file-format/cffconvert-github-action@2.0.0
+          with:
+            args: "--validate"
+
         - name: Install self
           shell: bash
           run: |
