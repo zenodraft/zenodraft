@@ -8,7 +8,7 @@ import { metadata_validate_command } from './metadata/validate'
 export const metadata_command = () => {
     return new commander.Command()
         .name('metadata')
-        .description('subcommands for metadata')
+        .description('Subcommands for metadata.')
         .addCommand(metadata_clear_command())
         .addCommand(metadata_update_command())
         .addCommand(metadata_validate_command())

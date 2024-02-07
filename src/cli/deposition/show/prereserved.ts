@@ -9,7 +9,7 @@ export const deposition_show_prereserved_command = () => {
     return new commander.Command()
         .name('prereserved')
         .arguments('<version_id>')
-        .description('get the prereserved doi of the draft deposition with id <version_id>', {
+        .description('Get the prereserved doi of the draft deposition with id <version_id>.', {
             version_id: 'id of the deposition whose prereserved doi we want to retrieve'
         })
         .option(...sandboxOption)

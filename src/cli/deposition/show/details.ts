@@ -9,7 +9,7 @@ export const deposition_show_details_command = () => {
     return new commander.Command()
         .name('details')
         .arguments('<version_id>')
-        .description('get details pertaining to deposition with id <version_id>', {
+        .description('Get details pertaining to deposition with id <version_id>.', {
             version_id: 'id of the deposition that you want to show the details of'
         })
         .option(...sandboxOption)

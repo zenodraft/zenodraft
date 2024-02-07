@@ -11,7 +11,7 @@ export const deposition_show_files_command = () => {
     return new commander.Command()
         .name('files')
         .arguments('<version_id>')
-        .description('get the filenames for the files in deposition with id <version_id>', {
+        .description('Get the filenames for the files in deposition with id <version_id>.', {
             version_id: 'id of the deposition for which we want to retrieve the list of filenames'
         })
         .option(...sandboxOption)

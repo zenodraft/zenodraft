@@ -10,7 +10,7 @@ export const file_add_command = () => {
     return new commander.Command()
         .name('add')
         .arguments('<version_id> <local_filename>')
-        .description('add a local file with filename <local_filename> to existing draft deposition with id <version_id>', {
+        .description('Add a local file with filename <local_filename> to existing draft deposition with id <version_id>.', {
             version_id: 'id of the draft deposition that you want to upload a file to',
             local_filename: 'filename of the local file that is going to be added'
         })

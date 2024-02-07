@@ -9,7 +9,7 @@ export const deposition_delete_command = () => {
     return new commander.Command()
         .name('delete')
         .arguments('<version_id>')
-        .description('delete draft deposition with id <version_id>', {
+        .description('Delete draft deposition with id <version_id>.', {
             version_id: 'id of the draft deposition that you want to delete'
         })
         .option(...sandboxOption)

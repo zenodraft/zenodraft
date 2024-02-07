@@ -9,7 +9,7 @@ export const metadata_validate_command = () => {
     return new commander.Command()
         .name('validate')
         .arguments('<local_filename>')
-        .description('Validate the metadata from <local_filename>', {
+        .description('Validate the metadata from <local_filename>.', {
             local_filename: 'filename of file holding the metadata in Zenodo metadata format'
         })
         .option(...verboseOption)

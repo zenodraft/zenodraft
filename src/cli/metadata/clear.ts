@@ -10,7 +10,7 @@ export const metadata_clear_command = () => {
     return new commander.Command()
         .name('clear')
         .arguments('<version_id>')
-        .description('clear the metadata of an existing deposition with id <version_id>', {
+        .description('Clear the metadata of an existing deposition with id <version_id>.', {
             version_id: 'id of the deposition whose metadata you want to clear'
         })
         .option(...sandboxOption)
