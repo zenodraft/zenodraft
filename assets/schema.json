@@ -9,7 +9,10 @@
                     "access_right": {
                         "const": "embargoed"
                     }
-                }
+                },
+                "required": [
+                    "access_right"
+                ]
             },
             "then": {
                 "required": [
