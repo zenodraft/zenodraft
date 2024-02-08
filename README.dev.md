@@ -195,6 +195,8 @@ then use GitHub's _Draft a new release_ button to make a release.
 
 ### Publishing to NPM
 
+Go back to the first terminal, then
+
 ```shell
 # log out of npm
 npm logout
