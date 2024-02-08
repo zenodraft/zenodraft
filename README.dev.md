@@ -152,20 +152,20 @@ pushed to GitHub and has been merged into the default branch `main`.
 Then, follow the steps below.
 
 ```shell
-# uninstall any globally installed versions of zenodraft
+# Uninstall any globally installed versions of zenodraft
 npm uninstall -g zenodraft
 
-# check that it's gone, should return empty
+# Check that it's gone, should return empty
 which zenodraft
 
-# delete any environment variables that store Zenodo / Zenodo Sandbox tokens
+# Delete any environment variables that store Zenodo / Zenodo Sandbox tokens
 unset ZENODO_ACCESS_TOKEN
 unset ZENODO_SANDBOX_ACCESS_TOKEN
 
-# make a temporary directory
-cd $(mktemp -d --tmpdir zenodraft-rc-preparation.XXXXXX)
+# Make a temporary directory, change into it
+cd $(mktemp -d --tmpdir zenodraft-preparation.XXXXXX)
 
-# clone the repo in the empty temporary directory
+# Clone the repo in the empty temporary directory
 git clone https://github.com/zenodraft/zenodraft .
 
 # Install dependencies
@@ -178,10 +178,10 @@ npm run all
 less zenodraft-*.tgz
 
 # Make a new temporary directory
-cd $(mktemp -d --tmpdir zenodraft-rc-testing.XXXXXX)
+cd $(mktemp -d --tmpdir zenodraft-testing.XXXXXX)
 
 # Install zenodraft globally using the tarball we just made
-npm install -g ../zenodraft-rc-preparation.XXXXXX/zenodraft-*.tgz
+npm install -g ../zenodraft-preparation.XXXXXX/zenodraft-*.tgz
 
 # Source the autocomplete script
 TMPFILE=$(mktemp)
@@ -208,13 +208,14 @@ then use GitHub's _Draft a new release_ button to make a release.
 
 ### Publishing to NPM
 
-Go back to the first terminal, then
-
 ```shell
-# log out of npm
+# Go back to the directory with the tarball
+cd ../zenodraft-preparation.XXXXXX/zenodraft-*.tgz
+
+# Log out of npm
 npm logout
 
-# choose your identity and log in to npm
+# Choose your identity and log in to npm
 npm login
 
 # FINAL STEP, THERE IS NO UNDO: publish the tarball to npmjs.com
