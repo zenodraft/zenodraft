@@ -3,7 +3,8 @@
 ## Install
 
 ```
-git clone https://github.com/zenodraft/zenodraft
+cd some-empty-dir
+git clone https://github.com/zenodraft/zenodraft .
 git checkout -b <new branch>
 npm install
 ```
@@ -22,7 +23,6 @@ modules (`dist/**/*.mjs`):
 ```
 npm run build
 ```
-
 
 Package the contents from `dist/` into a distributable tarball:
 
