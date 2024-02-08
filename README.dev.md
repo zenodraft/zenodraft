@@ -141,13 +141,13 @@ Before you begin, make sure that
 pushed to GitHub and has been merged into the default branch `main`.
 1. the citation metadata (e.g. dates, `version`) has been updated
 1. the version indicators are consistent throughout the whole directory tree, e.g.
-  - `CITATION.cff`
-  - `Dockerfile`
-  - `package-lock.json`
-  - `package.json`
-  - `README.md`
-  - `tests/cli.test.ts`
-  - possibly other files
+   - `CITATION.cff`
+   - `Dockerfile`
+   - `package-lock.json`
+   - `package.json`
+   - `README.md`
+   - `tests/cli.test.ts`
+   - possibly other files
 
 Then, follow the steps below.
 
