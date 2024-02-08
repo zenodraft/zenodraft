@@ -136,7 +136,46 @@ Order of publishing
 ### Preparation
 
 Before you begin, make sure that everything that needs to be part of the release has been
-pushed to GitHub and has been merged into the default branch `main`.
+pushed to GitHub and has been merged into the default branch `main`. Thenn, follow the
+steps below:
+
+```shell
+# uninstall any globally installed versions of zenodraft
+npm uninstall -g zenodraft
+
+# check that it's gone, should return empty
+which zenodraft
+
+# delete any environment variables that store Zenodo / Zenodo Sandbox tokens
+unset ZENODO_ACCESS_TOKEN
+unset ZENODO_SANDBOX_ACCESS_TOKEN
+
+# make a temporary directory
+cd $(mktemp -d --tmpdir zenodraft-rc-preparation.XXXXXX)
+
+# clone the repo in the empty temporary directory
+git clone https://github.com/zenodraft/zenodraft .
+
+# Install dependencies
+npm install
+
+# Generate the JavaScript, package it up into a tarball
+npm run all
+
+# Install zenodraft globally
+npm install -g zenodraft-*.tgz
+```
+
+Open a new shell to get any new autocomplete related functionality
+
+```shell
+# make a temporary directory
+cd $(mktemp -d --tmpdir zenodraft-rc-testing.XXXXXX)
+```
+
+1. Test whether the autocomplete functionality works correctly (see section [_Autocomplete_ from README.md](README.md#autocomplete).
+1. Test whether CLI commands work as expected (see section [_CLI usage_ from README.md](README.md#cli-usage).
+1. Test whether `zenodraft` can be used as a library (see section [_Library usage_ from README.md](README.md#library-usage).
 
 ### Publishing to Zenodo
 
@@ -153,43 +192,10 @@ then use GitHub's _Draft a new release_ button to make a release.
 
 ### Publishing to NPM
 
-
 ```shell
-# uninstall any globally installed versions of zenodraft
-npm uninstall -g zenodraft
-
-# check that it's gone, should return empty
-which zenodraft
-
-# delete any environment variables that store Zenodo / Zenodo Sandbox tokens
-unset ZENODO_ACCESS_TOKEN
-unset ZENODO_SANDBOX_ACCESS_TOKEN
-
 # log out of npm
 npm logout
 
-# make a temporary directory
-cd $(mktemp -d --tmpdir zenodraft-release-prep.XXXXXX)
-
-# clone the repo in the empty temporary directory
-git clone https://github.com/zenodraft/zenodraft .
-
-# Install dependencies
-npm install
-
-# Generate the JavaScript, package it up into a tarball
-npm run all
-
-# Install zenodraft globally
-npm install -g zenodraft-*.tgz
-
-# Open a new shell to get any new autocomplete related functionality
-bash
-```
-
-Test the functionality of the release candidate.
-
-```shell
 # choose your identity and log in to npm
 npm login
 
