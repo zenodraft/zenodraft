@@ -5,7 +5,7 @@ authors:
     given-names: Jurriaan H.
     orcid: https://orcid.org/0000-0002-7064-4069
 cff-version: 1.2.0
-date-released: "TODO"
+date-released: 08-02-2024
 identifiers:
   - type: doi
     value: 10.5281/zenodo.10618994
@@ -31,6 +31,6 @@ references:
     collection-doi: 10.5281/zenodo.3726850
     license: Apache-2.0
     repository-code: https://github.com/iomega/zenodo-upload/
-    title: JS Library to create Zenodo version
+    title: zenodo-upload
     type: software
     url: https://www.npmjs.com/package/@iomeg/zenodo-upload
