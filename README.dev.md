@@ -135,9 +135,21 @@ Order of publishing
 
 ### Preparation
 
-Before you begin, make sure that everything that needs to be part of the release has been
-pushed to GitHub and has been merged into the default branch `main`. Then, follow the
-steps below:
+Before you begin, make sure that
+
+1. everything that needs to be part of the release has been
+pushed to GitHub and has been merged into the default branch `main`.
+1. the citation metadata (e.g. dates, `version`) has been updated
+1. the version indicators are consistent throughout the whole directory tree, e.g.
+  - `CITATION.cff`
+  - `Dockerfile`
+  - `package-lock.json`
+  - `package.json`
+  - `README.md`
+  - `tests/cli.test.ts`
+  - possibly other files
+
+Then, follow the steps below.
 
 ```shell
 # uninstall any globally installed versions of zenodraft
