@@ -136,7 +136,7 @@ Order of publishing
 ### Preparation
 
 Before you begin, make sure that everything that needs to be part of the release has been
-pushed to GitHub and has been merged into the default branch `main`. Thenn, follow the
+pushed to GitHub and has been merged into the default branch `main`. Then, follow the
 steps below:
 
 ```shell
@@ -162,8 +162,8 @@ npm install
 # Generate the JavaScript, package it up into a tarball
 npm run all
 
-# Install zenodraft globally
-npm install -g zenodraft-*.tgz
+# Verify the tarball has the right set of files
+less zenodraft-*.tgz
 ```
 
 Open a new shell to get any new autocomplete related functionality
@@ -171,6 +171,9 @@ Open a new shell to get any new autocomplete related functionality
 ```shell
 # make a temporary directory
 cd $(mktemp -d --tmpdir zenodraft-rc-testing.XXXXXX)
+
+# Install zenodraft globally using the tarball we just made
+npm install -g ../zenodraft-rc-preparation.XXXXXX/zenodraft-*.tgz
 ```
 
 1. Test whether the autocomplete functionality works correctly (see section [_Autocomplete_ from README.md](README.md#autocomplete).
