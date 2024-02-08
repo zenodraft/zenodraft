@@ -4,7 +4,6 @@ import { tokensHelpText } from '../../lib/helpers/tokens-help-text'
 import * as commander from 'commander'
 
 
-
 export const metadata_validate_command = () => {
     return new commander.Command()
         .name('validate')
