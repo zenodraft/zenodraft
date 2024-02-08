@@ -176,16 +176,17 @@ npm run all
 
 # Verify the tarball has the right set of files
 less zenodraft-*.tgz
-```
 
-Open a new shell to get any new autocomplete related functionality
-
-```shell
-# make a temporary directory
+# Make a new temporary directory
 cd $(mktemp -d --tmpdir zenodraft-rc-testing.XXXXXX)
 
 # Install zenodraft globally using the tarball we just made
 npm install -g ../zenodraft-rc-preparation.XXXXXX/zenodraft-*.tgz
+
+# Source the autocomplete script
+TMPFILE=$(mktemp)
+zenodraft-autocomplete > $TMPFILE
+source $TMPFILE
 ```
 
 1. Test whether the autocomplete functionality works correctly (see section [_Autocomplete_ from README.md](README.md#autocomplete)).
