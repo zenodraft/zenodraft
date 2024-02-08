@@ -9,7 +9,7 @@ export const deposition_create_version_command = () => {
     return new commander.Command()
         .name('version')
         .arguments('<concept_id>')
-        .description('create a new draft deposition as a new version in an existing concept', {
+        .description('Create a new draft deposition as a new version in an existing concept.', {
             concept_id: 'id for the concept that the new deposition will be part of.'
         })
         .option(...sandboxOption)
@@ -22,6 +22,7 @@ export const deposition_create_version_command = () => {
                 console.log(id)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

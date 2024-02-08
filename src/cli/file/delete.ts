@@ -9,7 +9,7 @@ export const file_delete_command = () => {
     return new commander.Command()
         .name('delete')
         .arguments('<version_id> <remote_filename>')
-        .description('delete a file with filename <remote_filename> from draft deposition with id <version_id>', {
+        .description('Delete a file with filename <remote_filename> from draft deposition with id <version_id>.', {
             version_id: 'version id',
             remote_filename: 'filename of the deposition file that is going to be deleted.'
         })
@@ -22,6 +22,7 @@ export const file_delete_command = () => {
                 await file_delete(access_token, sandbox, version_id, remote_filename, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

@@ -8,7 +8,7 @@ import { deposition_publish_command } from './deposition/publish'
 export const deposition_command = () => {
     return new commander.Command()
         .name('deposition')
-        .description('subcommands for creating a deposition')
+        .description('Subcommands for depositions.')
         .addCommand(deposition_create_command())
         .addCommand(deposition_show_command())
         .addCommand(deposition_delete_command())

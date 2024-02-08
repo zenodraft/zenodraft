@@ -74,7 +74,7 @@ _zenodraft_completions()
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <remote_filename>"))
             ;;
         ${COMP_WORDS[0]}/metadata/)
-            COMPREPLY=($(compgen -X "*($used_options)" -W "--help clear update" -- ${cur}))
+            COMPREPLY=($(compgen -X "*($used_options)" -W "--help clear update validate" -- ${cur}))
             ;;
         ${COMP_WORDS[0]}/metadata/clear/)
             COMPREPLY=($(compgen -X "*($used_options)" -W "--help --sandbox --verbose <version_id>" -- ${cur}))
@@ -84,6 +84,9 @@ _zenodraft_completions()
             ;;
         ${COMP_WORDS[0]}/metadata/update/${version_id}/)
             COMPREPLY=($(compgen -o filenames -A file -- ${cur}))
+            ;;
+        ${COMP_WORDS[0]}/metadata/validate/)
+            COMPREPLY=($(compgen -X "*($used_options)" -W "--help --verbose" -o filenames -A file -- ${cur}))
             ;;
         *)
             COMPREPLY=()

@@ -8,7 +8,7 @@ import { deposition_show_prereserved_command } from './show/prereserved'
 export const deposition_show_command = () => {
     return new commander.Command()
         .name('show')
-        .description('subcommands for showing information about a deposition')
+        .description('Subcommands for showing information about a deposition.')
         .addCommand(deposition_show_details_command())
         .addCommand(deposition_show_draft_command())
         .addCommand(deposition_show_files_command())

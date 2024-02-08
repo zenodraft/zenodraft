@@ -10,7 +10,7 @@ export const metadata_update_command = () => {
     return new commander.Command()
         .name('update')
         .arguments('<version_id> <local_filename>')
-        .description('update the metadata of an existing deposition with id <version_id> using the metadata from <local_filename>', {
+        .description('Update the metadata of an existing deposition with id <version_id> using the metadata from <local_filename>.', {
             version_id: 'id of the deposition whose metadata you want to update',
             local_filename: 'filename of file holding the metadata in Zenodo metadata format'
         })
@@ -23,6 +23,7 @@ export const metadata_update_command = () => {
                 await metadata_update(access_token, sandbox, version_id, local_filename, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

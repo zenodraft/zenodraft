@@ -9,7 +9,7 @@ export const deposition_show_draft_command = () => {
     return new commander.Command()
         .name('draft')
         .arguments('<concept_id>')
-        .description('get the draft deposition id of the concept with id <concept_id>', {
+        .description('Get the draft deposition id of the concept with id <concept_id>.', {
             concept_id: 'id of the concept for which we want to retrieve the draft id if there is one'
         })
         .option(...sandboxOption)
@@ -23,6 +23,7 @@ export const deposition_show_draft_command = () => {
             } catch (e) {
                 console.log('')
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

@@ -9,7 +9,7 @@ export const deposition_delete_command = () => {
     return new commander.Command()
         .name('delete')
         .arguments('<version_id>')
-        .description('delete draft deposition with id <version_id>', {
+        .description('Delete draft deposition with id <version_id>.', {
             version_id: 'id of the draft deposition that you want to delete'
         })
         .option(...sandboxOption)
@@ -21,6 +21,7 @@ export const deposition_delete_command = () => {
                 await deposition_delete(access_token, sandbox, version_id, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

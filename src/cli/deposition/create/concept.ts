@@ -9,7 +9,7 @@ import * as commander from 'commander'
 export const deposition_create_concept_command = () => {
     return new commander.Command()
         .name('concept')
-        .description('create a new draft deposition in a new concept')
+        .description('Create a new draft deposition in a new concept.')
         .option(...sandboxOption)
         .option(...verboseOption)
         .action(async (opts) => {
@@ -20,6 +20,7 @@ export const deposition_create_concept_command = () => {
                 console.log(id)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
 
         })

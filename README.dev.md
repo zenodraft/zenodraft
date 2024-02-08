@@ -3,7 +3,8 @@
 ## Install
 
 ```
-git clone https://github.com/zenodraft/zenodraft
+cd some-empty-dir
+git clone https://github.com/zenodraft/zenodraft .
 git checkout -b <new branch>
 npm install
 ```
@@ -22,7 +23,6 @@ modules (`dist/**/*.mjs`):
 ```
 npm run build
 ```
-
 
 Package the contents from `dist/` into a distributable tarball:
 
@@ -72,7 +72,7 @@ npx zenodraft --help
 
 ### Using CommonJS `require`
 
-In a new directory, make a file e.g. `index.js` with the following contents:
+Make a file e.g. `index.js` with the following contents:
 
 ```javascript
 // file: index.js
@@ -88,19 +88,20 @@ Should show something like:
 
 ```shell
 {
-  cli: [Function: cli],
-  deposition_create_concept: [Function: deposition_create_concept],
-  deposition_create_version: [Function: deposition_create_version],
-  deposition_delete: [Function: deposition_delete],
-  deposition_publish: [Function: deposition_publish],
-  deposition_show_details: [Function: deposition_show_details],
-  deposition_show_prereserved: [Function: deposition_show_prereserved],
-  file_add: [Function: file_add],
-  file_delete: [Function: file_delete],
-  helpers_get_access_token_from_environment: [Function: helpers_get_access_token_from_environment],
-  helpers_get_api: [Function: helpers_get_api],
-  helpers_validate_in_concept_value: [Function: helpers_validate_in_concept_value],
-  metadata_update: [Function: metadata_update]
+  deposition_create_concept: [Getter],
+  deposition_create_version: [Getter],
+  deposition_delete: [Getter],
+  deposition_publish: [Getter],
+  deposition_show_details: [Getter],
+  deposition_show_draft: [Getter],
+  deposition_show_files: [Getter],
+  deposition_show_prereserved: [Getter],
+  file_add: [Getter],
+  file_delete: [Getter],
+  helpers_get_access_token_from_environment: [Getter],
+  helpers_get_api: [Getter],
+  metadata_update: [Getter],
+  metadata_validate: [Getter]
 }
 ```
 
@@ -108,7 +109,7 @@ Should show something like:
 ### Using ES6 `import`
 
 
-In a new directory, make a file e.g. `index.mjs` with the following contents (you may use a
+Make a file e.g. `index.mjs` with the following contents (you may use a
 different filename but the extension needs to be `.mjs`):
 
 ```javascript
@@ -118,11 +119,7 @@ console.info(zenodraft);
 ```
 
 ```shell
-# node v14
 node index.mjs
-
-# node v12
-node --experimental-modules index.mjs
 ```
 
 Should show the same as listed above for `require`.
@@ -138,8 +135,63 @@ Order of publishing
 
 ### Preparation
 
-Before you begin, make sure that everything that needs to be part of the release has been
+Before you begin, make sure that
+
+1. everything that needs to be part of the release has been
 pushed to GitHub and has been merged into the default branch `main`.
+1. the citation metadata (e.g. dates, `version`) has been updated
+1. the version indicators are consistent throughout the whole directory tree, e.g.
+   - `CITATION.cff`
+   - `Dockerfile`
+   - `package-lock.json`
+   - `package.json`
+   - `README.md`
+   - `tests/cli.test.ts`
+   - possibly other files
+
+Then, follow the steps below.
+
+```shell
+# Uninstall any globally installed versions of zenodraft
+npm uninstall -g zenodraft
+
+# Check that it's gone, should return empty
+which zenodraft
+
+# Delete any environment variables that store Zenodo / Zenodo Sandbox tokens
+unset ZENODO_ACCESS_TOKEN
+unset ZENODO_SANDBOX_ACCESS_TOKEN
+
+# Make a temporary directory, change into it
+cd $(mktemp -d --tmpdir zenodraft-preparation.XXXXXX)
+
+# Clone the repo in the empty temporary directory
+git clone https://github.com/zenodraft/zenodraft .
+
+# Install dependencies
+npm install
+
+# Generate the JavaScript, package it up into a tarball
+npm run all
+
+# Verify the tarball has the right set of files
+less zenodraft-*.tgz
+
+# Make a new temporary directory
+cd $(mktemp -d --tmpdir zenodraft-testing.XXXXXX)
+
+# Install zenodraft globally using the tarball we just made
+npm install -g ../zenodraft-preparation.XXXXXX/zenodraft-*.tgz
+
+# Source the autocomplete script
+TMPFILE=$(mktemp)
+zenodraft-autocomplete > $TMPFILE
+source $TMPFILE
+```
+
+1. Test whether the autocomplete functionality works correctly (see section [_Autocomplete_ from README.md](README.md#autocomplete)).
+1. Test whether CLI commands work as expected (see section [_CLI usage_ from README.md](README.md#cli-usage)).
+1. Test whether `zenodraft` can be used as a library (see section [_Library usage_ from README.md](README.md#library-usage)).
 
 ### Publishing to Zenodo
 
@@ -156,44 +208,14 @@ then use GitHub's _Draft a new release_ button to make a release.
 
 ### Publishing to NPM
 
-
 ```shell
-# uninstall any globally installed versions of zenodraft
-npm uninstall -g zenodraft
+# Go back to the directory with the tarball
+cd ../zenodraft-preparation.XXXXXX/zenodraft-*.tgz
 
-# check that it's gone, should return empty
-which zenodraft
-
-# delete any environment variables that store Zenodo / Zenodo Sandbox tokens
-unset ZENODO_ACCESS_TOKEN
-unset ZENODO_SANDBOX_ACCESS_TOKEN
-
-# log out of npm
+# Log out of npm
 npm logout
 
-# make a temporary directory
-cd $(mktemp -d --tmpdir zenodraft-release-prep.XXXXXX)
-
-# clone the repo in the empty temporary directory
-git clone https://github.com/zenodraft/zenodraft .
-
-# Install dependencies
-npm install
-
-# Generate the JavaScript, package it up into a tarball
-npm run all
-
-# Install zenodraft globally
-npm install -g zenodraft-*.tgz
-
-# Open a new shell to get any new autocomplete related functionality
-bash
-```
-
-Test the functionality of the release candidate.
-
-```shell
-# choose your identity and log in to npm
+# Choose your identity and log in to npm
 npm login
 
 # FINAL STEP, THERE IS NO UNDO: publish the tarball to npmjs.com

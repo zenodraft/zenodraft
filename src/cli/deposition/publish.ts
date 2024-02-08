@@ -9,7 +9,7 @@ export const deposition_publish_command = () => {
     return new commander.Command()
         .name('publish')
         .arguments('<version_id>')
-        .description('publish draft deposition with id <version_id>', {
+        .description('Publish draft deposition with id <version_id>.', {
             version_id: 'id of the draft deposition that you want to publish. Note: you cannot make any changes to the files in the deposition after you publish.'
         })
         .option(...sandboxOption)
@@ -21,6 +21,7 @@ export const deposition_publish_command = () => {
                 await deposition_publish(access_token, sandbox, version_id, verbose)
             } catch (e) {
                 console.error(e.message)
+                process.exit(-1)
             }
         })
         .addHelpText('after', tokensHelpText)

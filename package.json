@@ -8,6 +8,8 @@
         "url": "https://github.com/zenodraft/zenodraft/issues"
     },
     "dependencies": {
+        "ajv": "^8.12.0",
+        "ajv-formats": "^2.1.1",
         "commander": "^7.2.0",
         "dotenv": "^10.0.0",
         "node-fetch": "^2.6.7"
@@ -24,8 +26,8 @@
         "typescript": "^4.3.2"
     },
     "engines": {
-        "node": ">=12.16.0",
-        "npm": ">=6.13.4"
+        "node": ">=20.0.0",
+        "npm": ">=10.0.0"
     },
     "files": [
         "assets",
@@ -49,12 +51,12 @@
         "build": "npm run mjs && npm run cjs",
         "coverage": "jest --config jest.config.js --collectCoverage=true",
         "cjs": "tsc --module commonjs -p tsconfig.json --sourceMap",
-        "clean": "rm -rf dist",
+        "clean": "rm -rf dist coverage",
         "mjs": "tsc --module es6 --declaration -p tsconfig.json && for filename in `find dist -type f -name '*\\.js'`; do mv -- \"$filename\" \"${filename%.js}.mjs\"; done",
         "pretest": "unset ZENODO_SANDBOX_ACCESS_TOKEN && unset ZENODO_ACCESS_TOKEN",
         "test": "jest --config jest.config.js",
         "tests": "npm run test"
     },
     "types": "dist/lib/index.d.ts",
-    "version": "0.13.3"
+    "version": "0.14.0"
 }
