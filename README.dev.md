@@ -47,7 +47,7 @@ npm run test
 # individual test
 npm run test test/some/test
 
-# tests with converage
+# tests with coverage
 npm run coverage
 ```
 
