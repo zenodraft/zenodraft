@@ -8,7 +8,7 @@ import { tokensHelpText } from './lib/helpers/tokens-help-text'
 export const zenodraft_command = () => {
     return new commander.Command()
         .name('zenodraft')
-        .version('0.13.3')
+        .version('0.14.0')
         .description('CLI to manage depositions on Zenodo or Zenodo Sandbox.')
         .addCommand(deposition_command())
         .addCommand(file_command())
