@@ -6,6 +6,12 @@
             "name": "Lancaster, Alexander K",
             "type": "Other",
             "orcid": "0000-0002-0002-9263"
+        },
+        {
+            "affiliation": "Dartmouth College",
+            "name": "Halchenko, Yaroslav",
+            "type": "Other",
+            "orcid": "0000-0003-3456-2493"
         }
     ],
     "upload_type": "software"

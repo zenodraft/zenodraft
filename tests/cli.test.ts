@@ -16,7 +16,7 @@ describe('cli', () => {
         } catch (err) {
             expect(err.code).toBe('commander.version')
             expect(err.exitCode).toBe(0)
-            expect(err.message).toBe('0.14.0')
+            expect(err.message).toBe('0.14.1')
         }
     })
 

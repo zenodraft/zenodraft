@@ -7,8 +7,8 @@
         <img src="https://img.shields.io/badge/github-repo-000.svg?logo=github&labelColor=gray&color=blue&style=flat-square"
             alt="github repo badge">
     </a>
-    <a href="https://github.com/zenodraft/zenodraft/compare/0.14.0..HEAD">
-        <img src="https://img.shields.io/github/commits-since/zenodraft/zenodraft/0.14.0"
+    <a href="https://github.com/zenodraft/zenodraft/compare/0.14.1..HEAD">
+        <img src="https://img.shields.io/github/commits-since/zenodraft/zenodraft/0.14.1"
             alt="commits since latest release">
     </a>
     <a href="https://github.com/zenodraft/zenodraft">
@@ -24,7 +24,7 @@
             alt="Zenodo concept DOI">
     </a>
     <a href="https://fair-software.eu">
-        <img src="https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green?style=flat-square"
+        <img src="https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow?style=flat-square"
             alt="fair-software badge">
     </a>
     <a href="https://fairsoftwarechecklist.net/v0.2?f=31&a=32113&i=31300&r=113">
@@ -192,7 +192,8 @@ npx zenodraft deposition create concept --sandbox
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.0/Dockerfile
+docker build -t zenodraft:0.14.1 https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.1/Dockerfile
+docker build -t zenodraft:latest https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.1/Dockerfile
 ```
 
 Running the docker container:
@@ -207,6 +208,9 @@ docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
    -v ${PWD}:/data                \
    zenodraft metadata update --sandbox 123456 .zenodo.json
+docker run --rm                   \
+   -v ${PWD}:/data                \
+   zenodraft metadata validate .zenodo.json
 
 # etc
 ```
