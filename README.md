@@ -24,7 +24,7 @@
             alt="Zenodo concept DOI">
     </a>
     <a href="https://fair-software.eu">
-        <img src="https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green?style=flat-square"
+        <img src="https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow?style=flat-square"
             alt="fair-software badge">
     </a>
     <a href="https://fairsoftwarechecklist.net/v0.2?f=31&a=32113&i=31300&r=113">
