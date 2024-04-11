@@ -72,6 +72,15 @@ npm install path/to/the/tarball/zenodraft-x.y.z.tgz --force   # --force override
 npx zenodraft
 npx zenodraft --version
 npx zenodraft --help
+echo -e '{
+  "creators": [
+    {
+      "name": "Lastname, Firstname"
+    }
+  ],
+  "title": "My deposition"
+}' > .zenodo.json
+npx zenodraft metadata validate .zenodo.json  # should be quiet
 ```
 
 ## Local testing of the functionality from the package
