@@ -204,7 +204,7 @@ source $TMPFILE
 
 1. Test whether the autocomplete functionality works correctly (see section [_Autocomplete_ from README.md](README.md#autocomplete)).
 1. Test whether CLI commands work as expected (see section [_CLI usage_ from README.md](README.md#cli-usage)).
-1. Test whether `zenodraft` can be used as a library (see section [_library-usage_ from README.md](README.md#library-usage)).
+1. Test whether `zenodraft` can be used as a library (see section [_Library usage_ from README.md](README.md#library-usage)).
 
 ### Publishing to Zenodo
 
