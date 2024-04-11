@@ -51,7 +51,7 @@ We use [Jest](https://jestjs.io/) for testing. Run the tests with
 npm run test
 
 # individual test
-npm run test tests/lib/file/add.test.ts                                                                                                                        
+npm run test tests/lib/file/add.test.ts
 
 # tests with coverage
 npm run coverage
