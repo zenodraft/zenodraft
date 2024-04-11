@@ -7,8 +7,8 @@
         <img src="https://img.shields.io/badge/github-repo-000.svg?logo=github&labelColor=gray&color=blue&style=flat-square"
             alt="github repo badge">
     </a>
-    <a href="https://github.com/zenodraft/zenodraft/compare/0.14.0..HEAD">
-        <img src="https://img.shields.io/github/commits-since/zenodraft/zenodraft/0.14.0"
+    <a href="https://github.com/zenodraft/zenodraft/compare/0.14.1..HEAD">
+        <img src="https://img.shields.io/github/commits-since/zenodraft/zenodraft/0.14.1"
             alt="commits since latest release">
     </a>
     <a href="https://github.com/zenodraft/zenodraft">
@@ -192,7 +192,7 @@ npx zenodraft deposition create concept --sandbox
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.0/Dockerfile
+docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.1/Dockerfile
 ```
 
 Running the docker container:

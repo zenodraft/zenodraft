@@ -139,13 +139,14 @@ Before you begin, make sure that
 
 1. everything that needs to be part of the release has been
 pushed to GitHub and has been merged into the default branch `main`.
-1. the citation metadata (e.g. dates, `version`) has been updated
+1. the citation metadata (e.g. dates, `version`, contributors) has been updated (check `CITATION.cff` and `.zenodo.extras.json`)
 1. the version indicators are consistent throughout the whole directory tree, e.g.
    - `CITATION.cff`
    - `Dockerfile`
    - `package-lock.json`
    - `package.json`
    - `README.md`
+   - `src/cli.ts`
    - `tests/cli.test.ts`
    - possibly other files
 
@@ -168,10 +169,7 @@ cd $(mktemp -d --tmpdir zenodraft-preparation.XXXXXX)
 # Clone the repo in the empty temporary directory
 git clone https://github.com/zenodraft/zenodraft .
 
-# Install dependencies
-npm install
-
-# Generate the JavaScript, package it up into a tarball
+# Install dependencies, generate the JavaScript, package it up into a tarball
 npm run all
 
 # Verify the tarball has the right set of files
