@@ -1,8 +1,8 @@
 module.exports = {
     collectCoverage: false,
     collectCoverageFrom: [
-        // "src/cli/**/*.ts",
-        "src/lib/**/*.ts"        
+        "src/cli/**/*.ts",
+        "src/lib/**/*.ts"
     ],
     coverageReporters: ["text", "html", "lcov"],
     globals: {
@@ -12,10 +12,6 @@ module.exports = {
             }
         }
     },
-    testMatch: [
-        //"**/tests/cli/**/*.test.ts",
-        "**/tests/lib/**/*.test.ts"
-    ],
     transform: {
         "^.+\\.(ts|tsx)$": "ts-jest"
     },
