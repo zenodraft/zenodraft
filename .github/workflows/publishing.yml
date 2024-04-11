@@ -22,11 +22,14 @@ jobs:
           with:
             args: "--validate"
 
-        - name: Install self
+        - name: Install dependencies and generate tarball
           shell: bash
           run: |
-            npm install
             npm run all
+
+        - name: Install zenodraft cli
+          shell: bash
+          run: |
             npm install zenodraft-*.tgz -g
             zenodraft --version
 
