@@ -1,6 +1,6 @@
 # Codespell configuration is within .codespellrc
 ---
-name: Codespell
+name: codespell
 
 on:
   push:
@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   codespell:
-    name: Check for spelling errors
+    name: check for spelling errors
     runs-on: ubuntu-latest
 
     steps:
