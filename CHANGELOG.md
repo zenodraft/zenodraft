@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [`tree/HEAD`](https://github.com/zenodraft/zenodraft/tree/HEAD)
 - [`compare/0.14.1..HEAD`](https://github.com/zenodraft/zenodraft/compare/0.14.1..HEAD)
 
-## 0.14.1
+## 0.14.1 - April 11, 2024
 
 - [`tree/HEAD`](https://github.com/zenodraft/zenodraft/tree/0.14.1)
 - [`compare/0.14.0..HEAD`](https://github.com/zenodraft/zenodraft/compare/0.14.0..0.14.1)
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed bug where `zenodraft --version` still returned `0.13.3`
 
-## 0.14.0
+## 0.14.0 - February 8, 2024
 
 - [`tree/0.14.0`](https://github.com/zenodraft/zenodraft/tree/0.14.0)
 - [`compare/0.13.3..0.14.0`](https://github.com/zenodraft/zenodraft/compare/0.13.3..0.14.0)
