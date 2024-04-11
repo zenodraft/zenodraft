@@ -2,7 +2,7 @@
 
 ## Install
 
-```
+```shell
 cd some-empty-dir
 git clone https://github.com/zenodraft/zenodraft .
 git checkout -b <new branch>
@@ -13,26 +13,32 @@ npm install
 
 Clean up generated code from previous builds:
 
-```
+```shell
 npm run clean
+```
+
+Install dependencies:
+
+```shell
+npm run install
 ```
 
 Transpile the TypeScript code from `src/` to `dist/` as CommonJS modules (`dist/**/*.js`) and as ES6
 modules (`dist/**/*.mjs`):
 
-```
+```shell
 npm run build
 ```
 
 Package the contents from `dist/` into a distributable tarball:
 
-```
+```shell
 npm pack
 ```
 
-All of the above (clean, build, pack):
+All of the above (clean, install, build, pack):
 
-```
+```shell
 npm run all
 ```
 
@@ -45,7 +51,7 @@ We use [Jest](https://jestjs.io/) for testing. Run the tests with
 npm run test
 
 # individual test
-npm run test test/some/test
+npm run test tests/lib/file/add.test.ts                                                                                                                        
 
 # tests with coverage
 npm run coverage
