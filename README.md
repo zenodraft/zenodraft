@@ -192,7 +192,8 @@ npx zenodraft deposition create concept --sandbox
 Building the docker container:
 
 ```shell
-docker build -t zenodraft https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.1/Dockerfile
+docker build -t zenodraft:0.14.1 https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.1/Dockerfile
+docker build -t zenodraft:latest https://raw.githubusercontent.com/zenodraft/zenodraft/0.14.1/Dockerfile
 ```
 
 Running the docker container:
@@ -207,6 +208,9 @@ docker run --rm                   \
    -e ZENODO_SANDBOX_ACCESS_TOKEN \
    -v ${PWD}:/data                \
    zenodraft metadata update --sandbox 123456 .zenodo.json
+docker run --rm                   \
+   -v ${PWD}:/data                \
+   zenodraft metadata validate .zenodo.json
 
 # etc
 ```
